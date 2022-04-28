@@ -75,7 +75,7 @@ dependencies:
   flutter_sticky_header: ^0.6.1
   scrollable_positioned_list: ^0.2.3
   smooth_page_indicator: ^1.0.0+2
-  share_plus: ^3.0.4
+  share_plus: ^4.0.4
   permission_handler: ^9.0.1
   timeline_tile: ^2.0.0
   jdenticon_dart: ^2.0.0
@@ -88,7 +88,7 @@ dependencies:
   implicitly_animated_reorderable_list: ^0.4.2
   cached_network_image: ^3.2.0
   lottie: ^1.2.2
-  local_auth: ^1.1.10
+  local_auth: ^2.0.0
   speech_to_text: ^5.4.3
   assets_audio_player: ^3.0.4+1
   shamsi_date: ^1.0.1

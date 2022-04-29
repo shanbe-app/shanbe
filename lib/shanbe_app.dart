@@ -1,0 +1,176 @@
+import 'package:client/utils/constants.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:get_it/get_it.dart';
+import 'package:client/pages/root_page.dart';
+import 'package:client/rx/services/app_service.dart';
+
+class ShanbeApp extends StatefulWidget {
+  const ShanbeApp({Key? key}) : super(key: key);
+
+  @override
+  _ShanbeAppState createState() => _ShanbeAppState();
+}
+
+class _ShanbeAppState extends State<ShanbeApp> {
+  late Future<void> appInitFuture;
+  late AppService appService;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsFlutterBinding.ensureInitialized();
+    appInitFuture = bootstrapApp();
+  }
+
+  Future<void> bootstrapApp() async {
+    appService = AppService();
+    await appService.onCreate();
+    GetIt.I
+        .registerSingleton<AppService>(appService, instanceName: 'appService');
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    appService.onTerminate();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return PlatformApp(
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale.fromSubtags(languageCode: 'en'),
+        Locale.fromSubtags(languageCode: 'fa')
+      ],
+      navigatorObservers: const [],
+      home: RootPage(
+        appInitFuture: appInitFuture,
+      ),
+      cupertino: (context, target) => CupertinoAppData(
+          theme: const CupertinoThemeData(
+              brightness: Brightness.light,
+              textTheme: CupertinoTextThemeData(
+                textStyle: TextStyle(
+                  color: Constants.TEXT_BODY_COLOR,
+                  fontSize: Constants.S2_FONT_SIZE,
+                  fontFamily: 'Graphik',
+                  fontFamilyFallback: ['Dana'],
+                  fontWeight: Constants.REGULAR_FONT_WEIGHT,
+                ),
+                primaryColor: Constants.PRIMARY_COLOR,
+                tabLabelTextStyle: TextStyle(
+                    fontFamily: 'Graphik',
+                    fontFamilyFallback: ['Dana'],
+                    fontSize: 12,
+                    fontWeight: Constants.MEDIUM_FONT_WEIGHT),
+                // actionTextStyle: TextStyle(fontFamily: 'Graphik'),
+                // dateTimePickerTextStyle: TextStyle(fontFamily: 'Graphik'),
+                // navActionTextStyle: TextStyle(fontFamily: 'Graphik'),
+                // navLargeTitleTextStyle: TextStyle(fontFamily: 'Graphik'),
+                navTitleTextStyle: TextStyle(
+                    fontFamily: 'Graphik',
+                    fontFamilyFallback: ['IranYekan'],
+                    color: Constants.TEXT_BLACK_COLOR,
+                    fontSize: Constants.H6_FONT_SIZE,
+                    fontWeight: Constants
+                        .MEDIUM_FONT_WEIGHT), /*pickerTextStyle: TextStyle(fontFamily: 'Graphik')*/
+              ),
+              primaryColor: Constants.PRIMARY_COLOR,
+              primaryContrastingColor: Colors.white)),
+      material: (context, target) => MaterialAppData(
+          darkTheme: ThemeData(
+              brightness: Brightness.dark,
+              toggleableActiveColor: Constants.SECONDARY_COLOR,
+              primarySwatch: Colors.blue,
+              primaryColor: Constants.PRIMARY_COLOR,
+              canvasColor: Constants.BACKGROUND_COLOR,
+              fontFamily: Constants.APPLICATION_DEFAULT_FONT,
+              errorColor: Constants.ERROR_COLOR,
+              dividerColor: Constants.LINE_COLOR_DARK,
+              elevatedButtonTheme: ElevatedButtonThemeData(
+                  style: ElevatedButton.styleFrom(
+                      primary: Constants.PRIMARY_COLOR_DARK,
+                      onPrimary: Colors.white,
+                      textStyle: const TextStyle(
+                          color: Colors.white,
+                          fontFamily: Constants.APPLICATION_DEFAULT_FONT),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8)))),
+              buttonTheme: ButtonThemeData(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8)),
+              ),
+              dialogTheme: DialogTheme(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24))),
+              snackBarTheme: const SnackBarThemeData(
+                  backgroundColor: Constants.BACKGROUND_COLOR,
+                  contentTextStyle: TextStyle(
+                      color: Constants.TEXT_BODY_COLOR,
+                      fontSize: Constants.S2_FONT_SIZE,
+                      fontFamily: Constants.APPLICATION_DEFAULT_FONT),
+                  behavior: SnackBarBehavior.floating),
+              bottomSheetTheme: const BottomSheetThemeData(
+                  shape: RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(24)))),
+              textTheme: Theme.of(context).textTheme.apply(
+                  fontFamily: Constants.APPLICATION_DEFAULT_FONT,
+                  bodyColor: Constants.TEXT_BODY_COLOR_DARK,
+                  displayColor: Constants.TEXT_BODY_COLOR_DARK)),
+          theme: ThemeData(
+              primarySwatch: Colors.blue,
+              primaryColor: Constants.PRIMARY_COLOR,
+              canvasColor: Constants.BACKGROUND_COLOR,
+              fontFamily: Constants.APPLICATION_DEFAULT_FONT,
+              errorColor: Constants.ERROR_COLOR,
+              toggleableActiveColor: Constants.SECONDARY_COLOR,
+              dividerColor: Constants.LINE_COLOR,
+              colorScheme: Theme.of(context) // Todo Need consideration
+                  .colorScheme
+                  .copyWith(secondary: Constants.SECONDARY_COLOR),
+              elevatedButtonTheme: ElevatedButtonThemeData(
+                  style: ElevatedButton.styleFrom(
+                      primary: Constants.PRIMARY_COLOR_DARK,
+                      onPrimary: Colors.white,
+                      textStyle: const TextStyle(
+                          color: Colors.white,
+                          fontFamily: Constants.APPLICATION_DEFAULT_FONT),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8)))),
+              buttonTheme: ButtonThemeData(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8)),
+              ),
+              dialogTheme: DialogTheme(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24))),
+              snackBarTheme: const SnackBarThemeData(
+                  backgroundColor: Constants.BACKGROUND_COLOR_DARK,
+                  contentTextStyle: TextStyle(
+                      color: Constants.TEXT_BODY_COLOR_DARK,
+                      fontSize: Constants.S2_FONT_SIZE,
+                      fontFamily: Constants.APPLICATION_DEFAULT_FONT),
+                  behavior: SnackBarBehavior.floating),
+//              scaffoldBackgroundColor: Colors.white,
+              bottomSheetTheme: const BottomSheetThemeData(
+                  shape: RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(24)))),
+              textTheme: Theme.of(context).textTheme.apply(
+                  fontFamily: Constants.APPLICATION_DEFAULT_FONT,
+                  bodyColor: Constants.TEXT_BODY_COLOR,
+                  displayColor: Constants.TEXT_BODY_COLOR))),
+    );
+  }
+}

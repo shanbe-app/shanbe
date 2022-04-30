@@ -56,6 +56,9 @@ class _ShanbeAppState extends State<ShanbeApp> {
       home: RootPage(
         appInitFuture: appInitFuture,
       ),
+      showSemanticsDebugger: false,
+      debugShowCheckedModeBanner: false,
+      showPerformanceOverlay: false,
       cupertino: (context, target) => CupertinoAppData(
           theme: const CupertinoThemeData(
               brightness: Brightness.light,

@@ -42,12 +42,15 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "app.shanbe.client"
-        minSdkVersion flutter.minSdkVersion
+        minSdkVersion 22
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        manifestPlaceholders += [
+                'appAuthRedirectScheme': 'app.shanbe.auth',
+                'applicationName': 'io.flutter.app.FlutterApplication'
+        ]
     }
 
     buildTypes {

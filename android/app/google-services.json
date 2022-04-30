@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "641408115307",
+    "project_id": "shanbe-app",
+    "storage_bucket": "shanbe-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:641408115307:android:4ac02e0312f5497b6bc72e",
+        "android_client_info": {
+          "package_name": "app.shanbe.client"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "641408115307-2fovlc3g514cdcrsh3aqpl3p93t8op4c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBl85ebYA7YOpP04hFc_cUOD2_ajQrPv7k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "641408115307-2fovlc3g514cdcrsh3aqpl3p93t8op4c.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "641408115307-ou6obst0o6qc5knt3pqfuqjnbugobfsv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "app.shanbe.client"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

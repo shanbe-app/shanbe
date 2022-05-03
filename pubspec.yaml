@@ -27,7 +27,7 @@ dependencies:
   open_file: ^3.2.1
   file_picker: ^4.5.1
   logging: ^1.0.2
-  web_socket_channel: ^2.1.0
+  web_socket_channel: ^2.2.0
   url_launcher: ^6.0.20
   firebase_core: ^1.15.0
   firebase_messaging: ^11.2.15
@@ -75,20 +75,26 @@ flutter:
   generate: true
   assets:
     - .env
-    - assets/
+    - assets/images/
+    - assets/fonts/
+    - assets/sounds/
   fonts:
     - family: Graphik
       fonts:
-        - asset: assets/fonts/graphik/Graphik-Bold.ttf
+        - asset: assets/fonts/graphik/Graphik-Bold.otf
           weight: 700
-        - asset: assets/fonts/graphik/Graphik-Medium.ttf
+        - asset: assets/fonts/graphik/Graphik-Demi-Bold.otf
+          weight: 600
+        - asset: assets/fonts/graphik/Graphik-Medium.otf
           weight: 500
-        - asset: assets/fonts/graphik/Graphik-Regular.ttf
+        - asset: assets/fonts/graphik/Graphik-Regular.otf
           weight: 400
     - family: Dana
       fonts:
         - asset: assets/fonts/dana/Dana-Bold.ttf
           weight: 700
+        - asset: assets/fonts/dana/Dana-FaNum-Demi-Bold.ttf
+          weight: 600
         - asset: assets/fonts/dana/Dana-Medium.ttf
           weight: 500
         - asset: assets/fonts/dana/Dana-Regular.ttf
@@ -97,9 +103,21 @@ flutter:
       fonts:
         - asset: assets/fonts/dana-farsi-digit/Dana-FaNum-Bold.ttf
           weight: 700
+        - asset: assets/fonts/dana-farsi-digit/Dana-FaNum-Demi-Bold.ttf
+          weight: 600
         - asset: assets/fonts/dana-farsi-digit/Dana-FaNum-Medium.ttf
           weight: 500
         - asset: assets/fonts/dana-farsi-digit/Dana-FaNum-Regular.ttf
+          weight: 400
+    - family: IranSans
+      fonts:
+        - asset: assets/fonts/iransans/IranSansX-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/iransans/IranSansX-Demi-Bold.ttf
+          weight: 600
+        - asset: assets/fonts/iransans/IranSansX-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/iransans/IranSansX-Regular.ttf
           weight: 400
 
 flutter_icons:

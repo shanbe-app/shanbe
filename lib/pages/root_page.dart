@@ -12,6 +12,7 @@ class RootPage extends StatelessWidget {
     return FutureBuilder(
       future: appInitFuture,
       builder: (context, snapshot) {
+        print('here');
         if (snapshot.connectionState == ConnectionState.done) {
           return const InboxPage();
         }

@@ -8,7 +8,9 @@ class FirebaseService extends RxService {
   @override
   Future<void> onCreate() async {
     firebaseApp = await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform)
+        options: DefaultFirebaseOptions.currentPlatform);
+    firebaseApp.setAutomaticResourceManagementEnabled(true);
+    firebaseApp.setAutomaticDataCollectionEnabled(true);
   }
 
   @override

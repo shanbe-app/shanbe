@@ -1,3 +1,1671 @@
 {
-  "helloWorld": "Hello world"
+  "@@locale": "en",
+  "@@last_modified": "2020-05-03T13:06:25.218347",
+  "title": "Shanbe",
+  "@title": {
+    "description": "App title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tasks": "tasks",
+  "@tasks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "habit": "habit",
+  "@habit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "search",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "Settings",
+  "@settings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "calendar": "calendar",
+  "@calendar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "soon": "Soon",
+  "@soon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "myDay": "My day",
+  "@myDay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "note": "Description",
+  "@note": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "allTasks": "All",
+  "@allTasks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addProject": "Create project",
+  "@addProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "todayDayNavigator": "Today، {dayFormatted}",
+  "@todayDayNavigator": {
+    "type": "text",
+    "placeholders": {
+      "dayFormatted": {}
+    }
+  },
+  "tomorrowDayNavigator": "Tomorrow, {dayFormatted}",
+  "@tomorrowDayNavigator": {
+    "type": "text",
+    "placeholders": {
+      "dayFormatted": {}
+    }
+  },
+  "yesterdayDayNavigator": "Yesterday, {dayFormatted}",
+  "@yesterdayDayNavigator": {
+    "type": "text",
+    "placeholders": {
+      "dayFormatted": {}
+    }
+  },
+  "jWeekDay1": "S",
+  "@jWeekDay1": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "jWeekDay2": "S",
+  "@jWeekDay2": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "jWeekDay3": "M",
+  "@jWeekDay3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "jWeekDay4": "T",
+  "@jWeekDay4": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "jWeekDay5": "W",
+  "@jWeekDay5": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "jWeekDay6": "T",
+  "@jWeekDay6": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "jWeekDay7": "F",
+  "@jWeekDay7": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "upcoming": "Upcoming",
+  "@upcoming": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "todoTitle": "What would you like to do?",
+  "@todoTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterProjectName": "Project Name",
+  "@enterProjectName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "create": "Create",
+  "@create": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeEmoji": "Remove Emoji",
+  "@removeEmoji": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setDueDate": "Set Due Date",
+  "@setDueDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "select": "Select",
+  "@select": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "separator": ",",
+  "@separator": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "jWeekDayL1": "Saturday",
+  "@jWeekDayL1": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "jWeekDayL2": "Sunday",
+  "@jWeekDayL2": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "jWeekDayL3": "Monday",
+  "@jWeekDayL3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "jWeekDayL4": "Tuesday",
+  "@jWeekDayL4": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "jWeekDayL5": "Wednesday",
+  "@jWeekDayL5": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "jWeekDayL6": "Thursday",
+  "@jWeekDayL6": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "jWeekDayL7": "Friday",
+  "@jWeekDayL7": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noDate": "No Date",
+  "@noDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noTime": "No Time",
+  "@noTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "gotoCurrentMonth": "Go to current month",
+  "@gotoCurrentMonth": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dueDate": "Due",
+  "@dueDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "today": "Today",
+  "@today": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "forToday": "For today",
+  "@forToday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "overdue": "Overdue",
+  "@overdue": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "done": "Done",
+  "@done": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yesterday": "Yesterday",
+  "@yesterday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tomorrow": "Tomorrow",
+  "@tomorrow": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "projectLimitExceed": "Purchase Pro subscription to create more projects",
+  "@projectLimitExceed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hello": "Hello!",
+  "@hello": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromProjects": "From Projects",
+  "@fromProjects": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "helloName": "Hello, {name}!",
+  "@helloName": {
+    "type": "text",
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "nTask": "{count} todos",
+  "@nTask": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "upcomingSeparator": "•",
+  "@upcomingSeparator": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectDueTime": "Select Due Time",
+  "@selectDueTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "todos": "Todos",
+  "@todos": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "personal": "Backlog",
+  "@personal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showCompletedTodos": "Show completed todos",
+  "@showCompletedTodos": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideCompletedTodos": "Hide completed todos",
+  "@hideCompletedTodos": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editProject": "Edit Project",
+  "@editProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "edit": "Edit",
+  "@edit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteProject": "Delete Project",
+  "@deleteProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "allTodosWillBeDeletedByDeletingProject": "By deleting this project, all of its todos will be deleted.",
+  "@allTodosWillBeDeletedByDeletingProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteProjectQuestion": "Delete Project?",
+  "@deleteProjectQuestion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "delete": "Delete",
+  "@delete": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "doneTodos": "Done Todos",
+  "@doneTodos": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noDueDate": "No Due Date",
+  "@noDueDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addDueDate": "Add Due Date",
+  "@addDueDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nextWeekSaturday": "Next week (Saturday)",
+  "@nextWeekSaturday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pickADate": "Pick Date and Time",
+  "@pickADate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeTodoQuestion": "Remove Todo?",
+  "@removeTodoQuestion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "todoCanNotBeRetrieved": "Todo can not be retrieved after delete.",
+  "@todoCanNotBeRetrieved": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createdAt": "Created at, {date}",
+  "@createdAt": {
+    "type": "text",
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "noTodoForToday": "What you plan for today?",
+  "@noTodoForToday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noTodoForTodayDesc": "What big things should happen today? Write it down.",
+  "@noTodoForTodayDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goodMorning": "Good morning",
+  "@goodMorning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goodAfternoon": "Good afternoon",
+  "@goodAfternoon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goodEvening": "Good evening",
+  "@goodEvening": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goodNight": "Good night",
+  "@goodNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "workProject": "Work",
+  "@workProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shoppingProject": "Shopping",
+  "@shoppingProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "birthdayProject": "Birthdays",
+  "@birthdayProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wishListProject": "Wish list",
+  "@wishListProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "learningProject": "Learning",
+  "@learningProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fitnessProject": "Fitness",
+  "@fitnessProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "financialGoalProject": "Financial goals",
+  "@financialGoalProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "billsReminderProject": "Bills reminder",
+  "@billsReminderProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "donePageEmptyTitle": "No done todo found!",
+  "@donePageEmptyTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "donePageEmptyDesc": "Todos that you have checked them done will appear here.",
+  "@donePageEmptyDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeToShanbe": "Welcome to Shanbe!",
+  "@welcomeToShanbe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeToShanbeDesc": "Keep your life organized & Get things done.",
+  "@welcomeToShanbeDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "letsGo": "Let's Go",
+  "@letsGo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "projectsToOrganize": "Project to stay focused",
+  "@projectsToOrganize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "projectsToOrganizeDesc": "Projects let you separate works into different workspaces so you stay focused.",
+  "@projectsToOrganizeDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toGenerateIdeasNotHavingThem": "To generate ideas not keeping them!",
+  "@toGenerateIdeasNotHavingThem": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toGenerateIdeasNotHavingThemDesc": "Your mind is meant to generate ideas, week take care of keeping them and tracking your progress along the way.",
+  "@toGenerateIdeasNotHavingThemDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "skip": "Skip",
+  "@skip": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goAhead": "Go ahead",
+  "@goAhead": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whatYouWantShanbeFor": "What do you want to use Shanbe for?",
+  "@whatYouWantShanbeFor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeProject": "Welcome",
+  "@welcomeProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeProjectTask1": "Create a new todo with + button",
+  "@welcomeProjectTask1": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeProjectTask2": "To edit multiple todos just hold one of them to activate multiselect",
+  "@welcomeProjectTask2": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeProjectTask3": "Swipe a todo to left to set reminder on it!",
+  "@welcomeProjectTask3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeProjectTask4": "Touch this todo to edit it's details",
+  "@welcomeProjectTask4": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeProjectTask5": "Welcome to Shanbe! Shanbe is your personal place to organize your tasks, set goals and track your progress",
+  "@welcomeProjectTask5": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeProjectTask6": "You can see all your overdue and due todos in this page",
+  "@welcomeProjectTask6": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeProjectTask7": "Check a todo when it's done!",
+  "@welcomeProjectTask7": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noShoppingTitle": "Nothing to shop!",
+  "@noShoppingTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noWorkTitle": "No work todos!",
+  "@noWorkTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noBirthDayTitle": "No birthday found!",
+  "@noBirthDayTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noWishListTitle": "No Wishlist!",
+  "@noWishListTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noLearningTitle": "Nothing to learn!",
+  "@noLearningTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noFitnessTitle": "No fitness todo!",
+  "@noFitnessTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noTodoTitle": "No todo found!",
+  "@noTodoTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noShoppingDesc": "What you want to shop an coming days?",
+  "@noShoppingDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noWorkDesc": "What things should get done in your work?",
+  "@noWorkDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noBirthDayDesc": "Whose birthday should you remember?",
+  "@noBirthDayDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noWishListDesc": "What you wish to have?",
+  "@noWishListDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noLearningDesc": "What should you learn?",
+  "@noLearningDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noFitnessDesc": "How should you get fit?",
+  "@noFitnessDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noTodoDesc": "Create your first todo for this project.",
+  "@noTodoDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sortOrder": "Sort Order",
+  "@sortOrder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sortDueDate": "Due Date",
+  "@sortDueDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sortDueTime": "Due Time",
+  "@sortDueTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sortPriority": "Priority",
+  "@sortPriority": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sortDoneDate": "Done date",
+  "@sortDoneDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sortCreationDate": "Creation Date",
+  "@sortCreationDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sortDefault": "Default",
+  "@sortDefault": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sortProject": "Project",
+  "@sortProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pickDateAndTime": "Pick date & time",
+  "@pickDateAndTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "laterToday": "Today at {time}",
+  "@laterToday": {
+    "type": "text",
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "tomorrowAt": "Tomorrow {time}",
+  "@tomorrowAt": {
+    "type": "text",
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "nextWeekAt": "Next week {time}",
+  "@nextWeekAt": {
+    "type": "text",
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "setReminder": "Remind me",
+  "@setReminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reminderDate": "Date",
+  "@reminderDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reminderTime": "Time",
+  "@reminderTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeAt": "At {time}",
+  "@timeAt": {
+    "type": "text",
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "commentOnBazaar": "Rate Shanbe on Bazaar",
+  "@commentOnBazaar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareWithFriends": "Share with friends",
+  "@shareWithFriends": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareWithFriendsMessage": "Checkout Shanbe on Cafebazaar. I use it to manage my personal goals and projects! https://cafebazaar.ir/app/io.shanbe.shanbe?ref=ias",
+  "@shareWithFriendsMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "runInBackgroundPermissionTitle": "Let Shanbe run in background",
+  "@runInBackgroundPermissionTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "runInBackgroundPermissionDesc": "In order to make sure you get todos alarm, let Shanbe run in background.",
+  "@runInBackgroundPermissionDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "permissionGrantLater": "Later",
+  "@permissionGrantLater": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "permissionGrantDeny": "Deny",
+  "@permissionGrantDeny": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "permissionGrantAllow": "Allow",
+  "@permissionGrantAllow": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dueTime": "Due Time",
+  "@dueTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setPriority": "Set priority",
+  "@setPriority": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "priorityUrgent": "Urgent",
+  "@priorityUrgent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "priorityHigh": "High",
+  "@priorityHigh": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "priorityNormal": "Normal",
+  "@priorityNormal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPriority": "No priority",
+  "@noPriority": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "countTodosSelected": "{count} selected",
+  "@countTodosSelected": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "moveTodos": "Move to another project",
+  "@moveTodos": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAllTodos": "Delete all todos?",
+  "@deleteAllTodos": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "todosCanNotBeRetrievedAfterDelete": "Todos can not be retrieved after delete.",
+  "@todosCanNotBeRetrievedAfterDelete": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAll": "Delete all",
+  "@deleteAll": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginOrRegister": "Login / Register",
+  "@loginOrRegister": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginWasNotSuccessful": "Login was not successful",
+  "@loginWasNotSuccessful": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "profile": "Profile",
+  "@profile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "generalSettings": "General",
+  "@generalSettings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationSettings": "Notifications",
+  "@notificationSettings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "language": "Language",
+  "@language": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "localeFa": "Farsi",
+  "@localeFa": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "localeEn": "English",
+  "@localeEn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeLanguage": "Change Language",
+  "@changeLanguage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "calendarSettings": "Calendar",
+  "@calendarSettings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeCalendar": "Change calendar",
+  "@changeCalendar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shamsi": "Shamsi",
+  "@shamsi": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "gregorian": "Gregorian",
+  "@gregorian": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newProject": "New project",
+  "@newProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showQuickCreateNotification": "show quick add notification",
+  "@showQuickCreateNotification": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showDailyNotification": "My day overview",
+  "@showDailyNotification": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showDailyNotificationDesc": "Get a daily notification for your due tasks",
+  "@showDailyNotificationDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeDailyNotification": "Disable",
+  "@removeDailyNotification": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationsSettingsPage": "Notification settings",
+  "@notificationsSettingsPage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notGettingReminderNotifications": "Not getting reminder notifications!",
+  "@notGettingReminderNotifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "batteryOptimizeHelp": "Background tasks may be terminated by OS on some Chinese ORMs(Huawei, Xiaomi). To stop it go to Battery Optimization, View all apps and exclude Shanbe from battery optimization",
+  "@batteryOptimizeHelp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "batteryOptimizationSettings": "Battery optimization settings",
+  "@batteryOptimizationSettings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "batteryOptimizationSettingsTitle": "Disable battery optimization",
+  "@batteryOptimizationSettingsTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "normalText": "Paragraph",
+  "@normalText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "heading1": "Heading 1",
+  "@heading1": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "heading2": "Heading 2",
+  "@heading2": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "heading3": "Heading 3",
+  "@heading3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pasteALink": "Paste a link",
+  "@pasteALink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "apply": "Apply",
+  "@apply": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "save": "Save",
+  "@save": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addANote": "Add Description",
+  "@addANote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "moveToAnotherProject": "Move to another project",
+  "@moveToAnotherProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "logout": "Logout",
+  "@logout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "logoutQuestion": "Logout of account?",
+  "@logoutQuestion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "willBeAddedInNextRelease": "Will be added on next release!",
+  "@willBeAddedInNextRelease": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "projects": "Projects",
+  "@projects": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteTodo": "Delete Todo",
+  "@deleteTodo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "todaysProjects": "Today's projects",
+  "@todaysProjects": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectColor": "Select Color",
+  "@selectColor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goToDate": "Go to specific date",
+  "@goToDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showQuickCreateNotificationDesc": "Add your todos from notification bar",
+  "@showQuickCreateNotificationDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showDailyNotificationSetDesc": "You'll receive your day's due tasks everyday at {time}",
+  "@showDailyNotificationSetDesc": {
+    "type": "text",
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "about": "About",
+  "@about": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privacyPolicy": "Privacy Policy & Terms of use",
+  "@privacyPolicy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appVersion": "Application Version",
+  "@appVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appVersionValue": "Version {version}",
+  "@appVersionValue": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "featureRequest": "Feature Request/Bug Report",
+  "@featureRequest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "featureRequestEmailSubject": "Feature Request/Bug Report",
+  "@featureRequestEmailSubject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeDueDate": "Remove Due Date",
+  "@removeDueDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addSubTask": "Add sub task",
+  "@addSubTask": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newTodoSetDueDate": "Due Date",
+  "@newTodoSetDueDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newTodoSetPriority": "Priority",
+  "@newTodoSetPriority": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newTodoSetReminder": "Reminder",
+  "@newTodoSetReminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectReminderTime": "Select reminder time",
+  "@selectReminderTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "upgradeToPremium": "Upgrade to Pro",
+  "@upgradeToPremium": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "purchasePremium": "Get Pro",
+  "@purchasePremium": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "restorePurchase": "Restore Purchase",
+  "@restorePurchase": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumAccountPurchase": "Shanbe Pro version",
+  "@premiumAccountPurchase": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumFeatureUnlimited": "Unlimited todos and projects",
+  "@premiumFeatureUnlimited": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumFeatureUnlimitedDesc": "Create unlimited todos, projects and subtasks.",
+  "@premiumFeatureUnlimitedDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumFeatureTags": "Tags",
+  "@premiumFeatureTags": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumFeatureTagsDesc": "Add context to your tasks by tags and filter your tasks by tags.",
+  "@premiumFeatureTagsDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumFeatureX": "Tune In!",
+  "@premiumFeatureX": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumFeatureXDesc": "We are developing Shanbe and new features are coming soon...",
+  "@premiumFeatureXDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumYearlyPrice": "196,000 IRR",
+  "@premiumYearlyPrice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumMonthlyPrice": "20,000 IRR",
+  "@premiumMonthlyPrice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumYearly": "Annul subscription",
+  "@premiumYearly": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumYearlyDiscount": "(20% discount)",
+  "@premiumYearlyDiscount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumMonthly": "Monthly subscription",
+  "@premiumMonthly": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectProject": "Select Project",
+  "@selectProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "subscriptionNotPurchased": "Subscription not purchased",
+  "@subscriptionNotPurchased": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "subscriptionVerificationFailed": "Subscription verification failed contact salam@shanbe.io for assistance",
+  "@subscriptionVerificationFailed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "subscriptionVerified": "Pro subscription purchased!",
+  "@subscriptionVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noActiveSubscriptionFound": "All purchases consumed before",
+  "@noActiveSubscriptionFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPurchaseFound": "No pending purchase found",
+  "@noPurchaseFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editProfile": "Edit Profile",
+  "@editProfile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "Email",
+  "@email": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "firstName": "First Name",
+  "@firstName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lasName": "Last Name",
+  "@lasName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastNameRequired": "Last Name is required",
+  "@lastNameRequired": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "firstNameRequired": "First Name is required",
+  "@firstNameRequired": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "profileUpdatedSuccessfully": "Profile updated successfully",
+  "@profileUpdatedSuccessfully": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "profileNotUpdated": "An error occurred while updating profile info",
+  "@profileNotUpdated": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changePassword": "Change Password",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordUpdateLinkSent": "We emailed you instructions to change your password",
+  "@passwordUpdateLinkSent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordUpdateLinkNotSent": "There was a problem sending you password reset email",
+  "@passwordUpdateLinkNotSent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumUserUntil": "Pro subscription until {date}",
+  "@premiumUserUntil": {
+    "type": "text",
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "extendSubscription": "Extend Subscription",
+  "@extendSubscription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "purchasePremiumToAddMoreSubTasks": "Purchase Pro to add more subtasks",
+  "@purchasePremiumToAddMoreSubTasks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "purchasePremiumToAddMoreTodos": "Purchase Pro to add more todos",
+  "@purchasePremiumToAddMoreTodos": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterTagName": "Label Name",
+  "@enterTagName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editTag": "Edit Label",
+  "@editTag": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addTag": "Create Label",
+  "@addTag": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeColor": "No Color",
+  "@removeColor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tagsArePremiumOnly": "Purchase Pro to create Labels",
+  "@tagsArePremiumOnly": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tagsGuide": "Filter your todos in endless ways according to your workflow, priorities and work context. Use of tags is limited to your imagination!",
+  "@tagsGuide": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "purchaseProcessError": "Error while processing purchase. Please contact salam@shanbe.io if problem persists",
+  "@purchaseProcessError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectTags": "Labels",
+  "@selectTags": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nSelectedTags": "{count,plural, =0{Label}=1{Label}many{Labels}other{Label}}",
+  "@nSelectedTags": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "deleteTag": "Delete Label",
+  "@deleteTag": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteTagConfirm": "Delete Label?",
+  "@deleteTagConfirm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteTagConfirmDesc": "Label \"{tagName}\" will be removed from all todos. Delete it now?",
+  "@deleteTagConfirmDesc": {
+    "type": "text",
+    "placeholders": {
+      "tagName": {}
+    }
+  },
+  "setTags": "Set Labels",
+  "@setTags": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tagSeparator": ", ",
+  "@tagSeparator": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noTagTitle": "No todos with this label!",
+  "@noTagTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectAll": "Select All",
+  "@selectAll": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "repeat": "Repeat",
+  "@repeat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "repeatDaily": "Daily",
+  "@repeatDaily": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "repeatMonthly": "Monthly",
+  "@repeatMonthly": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "repeatWeekly": "Weekly",
+  "@repeatWeekly": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "repeatYearly": "Yearly",
+  "@repeatYearly": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "repeatCustom": "Custom",
+  "@repeatCustom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "repeatEvery": "Every",
+  "@repeatEvery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "days": "Days",
+  "@days": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "weeks": "Weeks",
+  "@weeks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "months": "Months",
+  "@months": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "years": "Years",
+  "@years": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "repeatEveryTitle": "Repeat Every",
+  "@repeatEveryTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setRepeat": "Set Repeat",
+  "@setRepeat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "repeatIntervalRequired": "Required",
+  "@repeatIntervalRequired": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "purchasePremiumToAddRepeatingTasks": "Purchase Pro to create recurring tasks.",
+  "@purchasePremiumToAddRepeatingTasks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumFeatureRepeatingTasks": "Recurring tasks",
+  "@premiumFeatureRepeatingTasks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumFeatureRepeatingTasksDesc": "Plan for your future easily with recurring tasks.",
+  "@premiumFeatureRepeatingTasksDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "darkTheme": "Dark Theme",
+  "@darkTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loggedOutSuccessfully": "Logged out successfully",
+  "@loggedOutSuccessfully": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorLoggingOut": "Error logging out",
+  "@errorLoggingOut": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startFrom": "From",
+  "@startFrom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setEndDate": "Set end date",
+  "@setEndDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oneMonthLater": "One month later",
+  "@oneMonthLater": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectEndDate": "Set End Date",
+  "@selectEndDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "endAt": "Ends at",
+  "@endAt": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeEndDate": "Remove End Date",
+  "@removeEndDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "personalizeProject": "Personalize",
+  "@personalizeProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "purchasePremiumToCustomizeProjects": "Purchase Pro subscription to customize projects",
+  "@purchasePremiumToCustomizeProjects": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "projectColor": "Project Color",
+  "@projectColor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noColor": "No Color",
+  "@noColor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "projectColorSelect": "Project Color Select",
+  "@projectColorSelect": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "projectCover": "Cover",
+  "@projectCover": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noCover": "No Cover",
+  "@noCover": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "projectCoverSelect": "Project Cover Select",
+  "@projectCoverSelect": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumFeaturePersonalize": "Personalize Projects",
+  "@premiumFeaturePersonalize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumFeaturePersonalizeDesc": "Personalize your projects with colors and beautiful images!",
+  "@premiumFeaturePersonalizeDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nTodosTodo": "{count,plural, =0{Todo}=1{Todo}many{Todos}other{Todo}}",
+  "@nTodosTodo": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "nProjectsTodo": "{count,plural, =0{Project}=1{Project}many{Projects}other{Project}}",
+  "@nProjectsTodo": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "doneTodo": "Done",
+  "@doneTodo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "purchasePremiumToCustomizeMyDay": "Purchase Premium to customize My Day",
+  "@purchasePremiumToCustomizeMyDay": {
+    "type": "text",
+    "placeholders": {}
+  },
+     "authOnEnter": "Authorize on App startup",
+     "@authOnEnter": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "authOnEnterDesc": "Use fingerprint to authorize access to Shanbe",
+     "@authOnEnterDesc": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "yourDeviceDoesntSupportThisFeature": "Your device doesn't support this feature.",
+     "@yourDeviceDoesntSupportThisFeature": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "authorizationIsRequiredToChangeThisSetting": "Authorization is required to change this setting.",
+     "@authorizationIsRequiredToChangeThisSetting": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "authorizeToChangeThisSetting": "Authorize to change this setting.",
+     "@authorizeToChangeThisSetting": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "authorizationIsRequiredToAccessApplication": "Authorization is required to access the application.",
+     "@authorizationIsRequiredToAccessApplication": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "authorizationWasNotSuccessful": "Authorization was not successful.",
+     "@authorizationWasNotSuccessful": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "playSoundOnDone": "Play sound one task done",
+     "@playSoundOnDone": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "playSoundOnDoneDesc": "A short sound will be played when you complete a task",
+     "@playSoundOnDoneDesc": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "playSoundOnTaskCreate": "Play sound on task creation",
+     "@playSoundOnTaskCreate": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "playSoundOnTaskCreateDesc": "A short sound will be played when you create a task",
+     "@playSoundOnTaskCreateDesc": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "soundOnDone": "Sound on task done",
+     "@soundOnDone": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "soundOnCreate": "Sound on task creation",
+     "@soundOnCreate": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "none": "None",
+     "@none": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "undo": "Undo",
+     "@undo": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "completed": "Task completed!",
+     "@completed": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "uncompleted": "Task reopened",
+     "@uncompleted": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "goToProject": "Go to Project",
+     "@goToProject": {
+       "type": "text",
+       "placeholders": {}
+     },
+  "backgroundColor": "Background color",
+  "@backgroundColor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareWithFriendsMessageMyket": "Checkout Shanbe on Myket. I use it to manage my goals and projects! https://myket.ir/app/io.shanbe.shanbe",
+     "@shareWithFriendsMessageMyket": {
+     "type": "text",
+     "placeholders": {}
+  },
+  "commentWithMyketApp": "Please place your comment in Myket app.",
+  "@commentWithMyketApp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "voiceInitializationError": "Failed to initialize voice recorder.",
+  "@voiceInitializationError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noVoiceRecognized": "Could not recognize any words.",
+  "@noVoiceRecognized": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "listening": "Listening...",
+  "@listening": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "folders": "Folders",
+  "@folders": {
+    "type": "text",
+    "placeholders": {}
+  }
 }

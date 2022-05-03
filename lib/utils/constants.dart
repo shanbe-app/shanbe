@@ -10,13 +10,13 @@ class Constants {
   static const String REFRESH_TOKEN_PREFS = 'refresh_token';
   static const String SHOW_NOTIFICATIONS_PREFS = 'SHOW_NOTIFICATIONS_PREFS';
 
-  static const Color PRIMARY_COLOR = Color.fromRGBO(97, 70, 203, 1);
-  static const Color PRIMARY_COLOR_DARK = Color.fromRGBO(57, 23, 155, 1);
-  static const Color PRIMARY_COLOR_LIGHT = Color.fromRGBO(236, 232, 255, 1);
+  static final Color PRIMARY_COLOR = Colors.blue.shade300;
+  static final Color PRIMARY_COLOR_DARK = Colors.blue.shade500;
+  static final Color PRIMARY_COLOR_LIGHT = Colors.blue.shade200;
 
-  static const Color SECONDARY_COLOR = Color.fromRGBO(0, 180, 181, 1);
-  static const Color SECONDARY_COLOR_DARK = Color.fromRGBO(43, 137, 137, 1);
-  static const Color SECONDARY_COLOR_LIGHT = Color.fromRGBO(216, 249, 245, 1);
+  static final Color SECONDARY_COLOR = Colors.pink.shade300;
+  static final Color SECONDARY_COLOR_DARK = Colors.pink.shade400;
+  static final Color SECONDARY_COLOR_LIGHT = Colors.pink.shade200;
 
   static const Color ERROR_COLOR = Color.fromRGBO(237, 46, 126, 1);
   static const Color ERROR_COLOR_DARK = Color.fromRGBO(195, 0, 82, 1);
@@ -38,14 +38,20 @@ class Constants {
   static const Color BACKGROUND_COLOR_DARK = Color.fromRGBO(16, 12, 8, 1);
   static const Color INPUT_BACKGROUND_COLOR = Color.fromRGBO(239, 240, 246, 1);
 
-  static const double S2_FONT_SIZE = 14;
+  static const double S2_FONT_SIZE = 12;
   static const double S1_FONT_SIZE = 16;
   static const double H6_FONT_SIZE = 18;
-  static const double H5_FONT_SIZE = 20;
-  static const double H4_FONT_SIZE = 26;
+  static const double H5_FONT_SIZE = 21;
+  static const double H4_FONT_SIZE = 24;
+  static const double H3_FONT_SIZE = 28;
+  static const double H2_FONT_SIZE = 31;
+  static const double H1_FONT_SIZE = 34;
   static const FontWeight REGULAR_FONT_WEIGHT = FontWeight.w400;
   static const FontWeight MEDIUM_FONT_WEIGHT = FontWeight.w500;
+  static const FontWeight DEMI_BOLD_FONT_WEIGHT = FontWeight.w600;
+  static const FontWeight BOLD_FONT_WEIGHT = FontWeight.bold;
   static const String APPLICATION_DEFAULT_FONT = 'Graphik';
+  static const List<String> APPLICATION_FALLBACK_FONTS = ['IranSans', 'Dana', 'sans-serif'];
 
   static const Duration SEARCH_INPUT_DEBOUNCE_DURATION = Duration(milliseconds: 250);
 

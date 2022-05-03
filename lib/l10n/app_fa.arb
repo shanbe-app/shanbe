@@ -1,3 +1,1671 @@
 {
-  "helloWorld": "Hello world"
+  "@@locale": "fa",
+  "@@last_modified": "2020-05-03T13:06:27.187469",
+  "title": "شنبه",
+  "@title": {
+    "description": "App title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tasks": "کارها",
+  "@tasks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "habit": "عادت",
+  "@habit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "جستجو",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "تنظیمات",
+  "@settings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "calendar": "تقویم",
+  "@calendar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "soon": "به‌زودی!",
+  "@soon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "myDay": "روز من",
+  "@myDay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "note": "توضیحات",
+  "@note": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "allTasks": "همه",
+  "@allTasks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addProject": "پروژه جدید",
+  "@addProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "todayDayNavigator": "امروز، {dayFormatted}",
+  "@todayDayNavigator": {
+    "type": "text",
+    "placeholders": {
+      "dayFormatted": {}
+    }
+  },
+  "tomorrowDayNavigator": "فردا، {dayFormatted}",
+  "@tomorrowDayNavigator": {
+    "type": "text",
+    "placeholders": {
+      "dayFormatted": {}
+    }
+  },
+  "yesterdayDayNavigator": "دیروز، {dayFormatted}",
+  "@yesterdayDayNavigator": {
+    "type": "text",
+    "placeholders": {
+      "dayFormatted": {}
+    }
+  },
+  "jWeekDay1": "ش",
+  "@jWeekDay1": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "jWeekDay2": "ی",
+  "@jWeekDay2": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "jWeekDay3": "د",
+  "@jWeekDay3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "jWeekDay4": "س",
+  "@jWeekDay4": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "jWeekDay5": "چ",
+  "@jWeekDay5": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "jWeekDay6": "پ",
+  "@jWeekDay6": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "jWeekDay7": "ج",
+  "@jWeekDay7": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "upcoming": "پیش‌ِرو",
+  "@upcoming": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "todoTitle": "می‌خوام که...",
+  "@todoTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterProjectName": "اسم پروژه",
+  "@enterProjectName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "create": "بساز",
+  "@create": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "بی‌خیال",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeEmoji": "حذف ایموجی",
+  "@removeEmoji": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setDueDate": "انتخاب سررسید",
+  "@setDueDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "select": "انتخاب",
+  "@select": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "separator": "،",
+  "@separator": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "jWeekDayL1": "شنبه",
+  "@jWeekDayL1": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "jWeekDayL2": "یکشنبه",
+  "@jWeekDayL2": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "jWeekDayL3": "دوشنبه",
+  "@jWeekDayL3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "jWeekDayL4": "سه‌شنبه",
+  "@jWeekDayL4": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "jWeekDayL5": "چهارشنبه",
+  "@jWeekDayL5": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "jWeekDayL6": "پنج‌شنبه",
+  "@jWeekDayL6": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "jWeekDayL7": "جمعه",
+  "@jWeekDayL7": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noDate": "بدون تاریخ",
+  "@noDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noTime": "بدون زمان",
+  "@noTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "gotoCurrentMonth": "برو به ماه فعلی",
+  "@gotoCurrentMonth": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dueDate": "سررسید",
+  "@dueDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "today": "امروز",
+  "@today": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "forToday": "برای امروز",
+  "@forToday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "overdue": "سررسید شده",
+  "@overdue": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "done": "انجام شده",
+  "@done": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yesterday": "دیروز",
+  "@yesterday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tomorrow": "فردا",
+  "@tomorrow": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "projectLimitExceed": "برای ساخت پروژه‌های بیشتر، به نسخه حرفه‌ای ارقا دهید",
+  "@projectLimitExceed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hello": "سلام!",
+  "@hello": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromProjects": "از پروژه‌ها",
+  "@fromProjects": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "helloName": "سلام {name}!",
+  "@helloName": {
+    "type": "text",
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "nTask": "{count} کار",
+  "@nTask": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "upcomingSeparator": "•",
+  "@upcomingSeparator": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectDueTime": "ساعت سررسید را انتخاب کنید",
+  "@selectDueTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "todos": "کارها",
+  "@todos": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "personal": "بک‌لاگ",
+  "@personal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showCompletedTodos": "نمایش کارهای انجام شده",
+  "@showCompletedTodos": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideCompletedTodos": "عدم نمایش کارهای انجام شده",
+  "@hideCompletedTodos": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editProject": "ویرایش پروژه",
+  "@editProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "edit": "ویرایش",
+  "@edit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteProject": "حذف پروژه",
+  "@deleteProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "allTodosWillBeDeletedByDeletingProject": "با حذف این پروژه همه کارهای این پروژه نیز حذف می‌شوند.",
+  "@allTodosWillBeDeletedByDeletingProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteProjectQuestion": "حذف پروژه؟",
+  "@deleteProjectQuestion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "delete": "حذف کن",
+  "@delete": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "doneTodos": "انجام شده‌ها",
+  "@doneTodos": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noDueDate": "بدون تاریخ سررسید",
+  "@noDueDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addDueDate": "انتخاب سررسید",
+  "@addDueDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nextWeekSaturday": "هفته‌ی بعد (شنبه)",
+  "@nextWeekSaturday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pickADate": "انتخاب تاریخ و ساعت",
+  "@pickADate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeTodoQuestion": "حذف این کار؟",
+  "@removeTodoQuestion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "todoCanNotBeRetrieved": "امکان بازیابی این کار بعد از حذف ممکن نیست.",
+  "@todoCanNotBeRetrieved": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createdAt": "ساخته شده در {date}",
+  "@createdAt": {
+    "type": "text",
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "noTodoForToday": "چه برنامه‌ای برای امروز داری؟",
+  "@noTodoForToday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noTodoForTodayDesc": "کارهایی که تاریخ سررسیدشون برای امروز هست رو تو این صفحه می‌تونی ببینی",
+  "@noTodoForTodayDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goodMorning": "صبح بخیر",
+  "@goodMorning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goodAfternoon": "ظهر بخیر",
+  "@goodAfternoon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goodEvening": "عصر بخیر",
+  "@goodEvening": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goodNight": "شب بخیر",
+  "@goodNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "workProject": "کاری",
+  "@workProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shoppingProject": "خرید",
+  "@shoppingProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "birthdayProject": "یادآورد تولد",
+  "@birthdayProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wishListProject": "آرزوهام",
+  "@wishListProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "learningProject": "یادگیری",
+  "@learningProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fitnessProject": "فیتنس",
+  "@fitnessProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "financialGoalProject": "اهداف مالی",
+  "@financialGoalProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "billsReminderProject": "یادآور چک",
+  "@billsReminderProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "donePageEmptyTitle": "فعلا هیچ کاری انجام نشده",
+  "@donePageEmptyTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "donePageEmptyDesc": "کارهای انجام شده تو این صفحه نشون داده میشن",
+  "@donePageEmptyDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeToShanbe": "به شنبه خوش اومدی!",
+  "@welcomeToShanbe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeToShanbeDesc": "همه هدف‌ها و برنامه‌هاتو یه جا داشته باش. سکان زندگی در دستت!",
+  "@welcomeToShanbeDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "letsGo": "بزن بریم",
+  "@letsGo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "projectsToOrganize": "هر سخن جایی و هر نکته مکانی دارد جدا!",
+  "@projectsToOrganize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "projectsToOrganizeDesc": "با دسته‌بندی کارهات به پروژه‌های مختلف همیشه منظم میمونی و میدونی برای هر هدفی دقیقاً چیکار باید بکنی.",
+  "@projectsToOrganizeDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toGenerateIdeasNotHavingThem": "فراغ خاطر وسط یه زندگی شلوغ",
+  "@toGenerateIdeasNotHavingThem": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toGenerateIdeasNotHavingThemDesc": "ذهنت رو برای ساختن ایده‌ها و خلاقیت آزاد نگه دار. ما حواسمون به کارا و اهداف روزمرت هست.",
+  "@toGenerateIdeasNotHavingThemDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "skip": "پرش از این مرحله",
+  "@skip": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goAhead": "ادامه",
+  "@goAhead": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whatYouWantShanbeFor": "برای چه کارایی میخوای از شنبه استفاده کنی؟",
+  "@whatYouWantShanbeFor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeProject": "خوش اومدی",
+  "@welcomeProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeProjectTask1": "کارای جدیدت رو با دکمه + بساز",
+  "@welcomeProjectTask1": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeProjectTask2": "اگه چند تا کارو با هم میخای ویرایش کنی کافیه روی یکیشون انگشتتو نگه داری.",
+  "@welcomeProjectTask2": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeProjectTask3": "اگه می‌خوای کاری بهت یاد‌آوری بشه کافیه اون کار رو به چپ بکشی!",
+  "@welcomeProjectTask3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeProjectTask4": "همین کار رو لمس کن تا براش جزییات بیشتری وارد کنی",
+  "@welcomeProjectTask4": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeProjectTask5": "سلام به شنبه خوش اومدی! شنبه فضای اختصاصی تو برای همه برنامه‌ها، کارها و یادآوری‌هاته. با شنبه همیشه حساب کارا دستته!",
+  "@welcomeProjectTask5": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeProjectTask6": "توو این صفحه همه کارای انجام نشده که از قبل موندن یا کارایی که امروز می‌خوای انجام بدی رو می‌تونی ببینی.",
+  "@welcomeProjectTask6": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeProjectTask7": "هر موقع کاری رو انجام دادی تیکش رو بزن!",
+  "@welcomeProjectTask7": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noShoppingTitle": "لیست خرید خالیست!",
+  "@noShoppingTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noWorkTitle": "لیست کاری خالیست!",
+  "@noWorkTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noBirthDayTitle": "هیچ تولدی نیست!",
+  "@noBirthDayTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noWishListTitle": "چه آرزویی داری؟",
+  "@noWishListTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noLearningTitle": "چیز جدیدی برای یادگیری نیست!",
+  "@noLearningTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noFitnessTitle": "کاری برای تناسب اندام نیست!",
+  "@noFitnessTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noTodoTitle": "چه چیزی به دست خواهی آورد؟",
+  "@noTodoTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noShoppingDesc": "چیا باید بخری؟",
+  "@noShoppingDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noWorkDesc": "تو زمینه کاریت چه اتفاق مهمی باید بیفته؟ چه کاری باید انجام بدی؟",
+  "@noWorkDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noBirthDayDesc": "تولد کدوم عزیزت رو نباید فراموشی کنی؟ اینجا وارد کن!",
+  "@noBirthDayDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noWishListDesc": "به کدوم خواستت باید برسی؟",
+  "@noWishListDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noLearningDesc": "چه چیز جدیدی باید یاد بگیری؟ کدوم کتاب رو باید بخونی؟",
+  "@noLearningDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noFitnessDesc": "واسه سلامتی و تناسب اندامت چیکار باید بکنی؟",
+  "@noFitnessDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noTodoDesc": "با لمس دکمه + اولین کار برای این پروژه رو بساز",
+  "@noTodoDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sortOrder": "ترتیب مرتب‌سازی",
+  "@sortOrder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sortDueDate": "تاریخ سررسید",
+  "@sortDueDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sortDueTime": "زمان سررسید",
+  "@sortDueTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sortPriority": "اولویت",
+  "@sortPriority": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sortDoneDate": "تاریخ انجام",
+  "@sortDoneDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sortCreationDate": "زمان ساخت",
+  "@sortCreationDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sortDefault": "پیش‌فرض",
+  "@sortDefault": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sortProject": "پروژه",
+  "@sortProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pickDateAndTime": "انتخاب تاریخ و ساعت",
+  "@pickDateAndTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "laterToday": "امروز {time}",
+  "@laterToday": {
+    "type": "text",
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "tomorrowAt": "فردا {time}",
+  "@tomorrowAt": {
+    "type": "text",
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "nextWeekAt": "هفته بعد {time}",
+  "@nextWeekAt": {
+    "type": "text",
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "setReminder": "یادآوری کن",
+  "@setReminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reminderDate": "تاریخ",
+  "@reminderDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reminderTime": "ساعت",
+  "@reminderTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeAt": "ساعت {time}",
+  "@timeAt": {
+    "type": "text",
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "commentOnBazaar": "امتیازدهی به برنامه",
+  "@commentOnBazaar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareWithFriends": "معرفی شنبه به دوستان",
+  "@shareWithFriends": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareWithFriendsMessage": "برنامه شنبه را در بازار ببین. من از شنبه برای مدیریت کارها و پروژه‌های شخصیم استفاده میکنم! https://cafebazaar.ir/app/io.shanbe.shanbe?ref=ias",
+  "@shareWithFriendsMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "runInBackgroundPermissionTitle": "اجرای شنبه در پس‌زمینه",
+  "@runInBackgroundPermissionTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "runInBackgroundPermissionDesc": "برای اطمینان از دریافت یادآور کارها به شنبه اجازه اجرا در پس‌زمینه را بدهید.",
+  "@runInBackgroundPermissionDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "permissionGrantLater": "بعدا",
+  "@permissionGrantLater": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "permissionGrantDeny": "اجازه نمی‌دهم",
+  "@permissionGrantDeny": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "permissionGrantAllow": "اجازه می‌دهم",
+  "@permissionGrantAllow": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dueTime": "ساعت سررسید",
+  "@dueTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setPriority": "انتخاب اولویت",
+  "@setPriority": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "priorityUrgent": "فوری",
+  "@priorityUrgent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "priorityHigh": "مهم",
+  "@priorityHigh": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "priorityNormal": "عادی",
+  "@priorityNormal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPriority": "بدون اولویت",
+  "@noPriority": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "countTodosSelected": "{count} کار انتخاب شده",
+  "@countTodosSelected": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "moveTodos": "انتقال به پروژه دیگر",
+  "@moveTodos": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAllTodos": "حذف همه کارها؟",
+  "@deleteAllTodos": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "todosCanNotBeRetrievedAfterDelete": "امکان بازیابی کارها پس از حدف ممکن نیست",
+  "@todosCanNotBeRetrievedAfterDelete": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAll": "حذف همه",
+  "@deleteAll": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginOrRegister": "ورود / ثبت‌نام",
+  "@loginOrRegister": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginWasNotSuccessful": "فرآیند ورود موفقیت آمیز نبود",
+  "@loginWasNotSuccessful": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "profile": "حساب کاربری",
+  "@profile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "generalSettings": "عمومی",
+  "@generalSettings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationSettings": "اعلان‌ها و صداها",
+  "@notificationSettings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "language": "زبان",
+  "@language": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "localeFa": "فارسی",
+  "@localeFa": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "localeEn": "انگلیسی",
+  "@localeEn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeLanguage": "تغییر زبان",
+  "@changeLanguage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "calendarSettings": "تقویم",
+  "@calendarSettings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeCalendar": "تغییر تقویم",
+  "@changeCalendar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shamsi": "هجری شمسی",
+  "@shamsi": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "gregorian": "میلادی",
+  "@gregorian": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newProject": "پروژه جدید",
+  "@newProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showQuickCreateNotification": "اعلان ایجاد سریع کار",
+  "@showQuickCreateNotification": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showDailyNotification": "مرور روز من",
+  "@showDailyNotification": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showDailyNotificationDesc": "دریافت روزانه اعلان خلاصه کارهای امروز",
+  "@showDailyNotificationDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeDailyNotification": "غیر فعال‌سازی",
+  "@removeDailyNotification": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationsSettingsPage": "تظیمات اعلان‌ها",
+  "@notificationsSettingsPage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notGettingReminderNotifications": "اعلان‌ها را دریافت نمی‌کنید؟",
+  "@notGettingReminderNotifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "batteryOptimizeHelp": "در برخی گوشی‌های چینی(هوآوی، شیائومی)، سیستم‌عامل، سرویس‌های پس‌زمینه را می‌بندد. برای اطمینان از دریافت یادآورها به صفحه تنظیمات بهینه‌سازی باتری رفته(مطابق تصویر) و اپلیکیشن شنبه را از حالت بهینه‌سازی باتری خارج کنید",
+  "@batteryOptimizeHelp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "batteryOptimizationSettings": "تنظیمات بهینه‌سازی باتری",
+  "@batteryOptimizationSettings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "batteryOptimizationSettingsTitle": "غیرفعال‌سازی بهینه‌سازی باتری",
+  "@batteryOptimizationSettingsTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "normalText": "پاراگراف",
+  "@normalText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "heading1": "سرتیتر ۱",
+  "@heading1": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "heading2": "سرتیتر ۲",
+  "@heading2": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "heading3": "سرتیتر ۳",
+  "@heading3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pasteALink": "لینک را جاگذاری کنید",
+  "@pasteALink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "apply": "اعمال",
+  "@apply": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "save": "ذخیره",
+  "@save": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addANote": "افزودن توضیحات",
+  "@addANote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "moveToAnotherProject": "انتقال به پروژه دیگر",
+  "@moveToAnotherProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "logout": "خروج",
+  "@logout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "logoutQuestion": "خروج از حساب کاربری؟",
+  "@logoutQuestion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "willBeAddedInNextRelease": "در نسخه بعدی اضافه می‌شود!",
+  "@willBeAddedInNextRelease": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "projects": "پروژه‌ها",
+  "@projects": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteTodo": "حذف کار",
+  "@deleteTodo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "todaysProjects": "پروژه‌های امروز",
+  "@todaysProjects": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectColor": "انتخاب رنگ",
+  "@selectColor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goToDate": "مراجعه به تاریخ مشخص",
+  "@goToDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showQuickCreateNotificationDesc": "کارهای خود را از نوار اعلانات بسازید",
+  "@showQuickCreateNotificationDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showDailyNotificationSetDesc": "اعلان روزانه خلاصه کارهای روز خود را هر روز ساعت {time} دریافت می‌کنید",
+  "@showDailyNotificationSetDesc": {
+    "type": "text",
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "about": "درباره",
+  "@about": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privacyPolicy": "حریم خصوصی و شرایط استفاده",
+  "@privacyPolicy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appVersion": "نسخه برنامه",
+  "@appVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appVersionValue": "نسخه {version}",
+  "@appVersionValue": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "featureRequest": "درخواست فیچر/گزارش ایراد",
+  "@featureRequest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "featureRequestEmailSubject": "درخواست فیچر/گزارش ایراد",
+  "@featureRequestEmailSubject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeDueDate": "حذف سررسید",
+  "@removeDueDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addSubTask": "افزودن ریز کار",
+  "@addSubTask": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newTodoSetDueDate": "سررسید",
+  "@newTodoSetDueDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newTodoSetPriority": "اولویت",
+  "@newTodoSetPriority": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newTodoSetReminder": "یادآور",
+  "@newTodoSetReminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectReminderTime": "ساعت سررسید را انتخاب کنید",
+  "@selectReminderTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "upgradeToPremium": "ارتقا به نسخه حرفه‌ای",
+  "@upgradeToPremium": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "purchasePremium": "خرید اشتراک",
+  "@purchasePremium": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "restorePurchase": "بررسی خریدها",
+  "@restorePurchase": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumAccountPurchase": "نسخه حرفه‌ای شنبه",
+  "@premiumAccountPurchase": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumFeatureUnlimited": "نامحدود",
+  "@premiumFeatureUnlimited": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumFeatureUnlimitedDesc": "بی‌نهایت کار،پروژه و ریز کار بساز",
+  "@premiumFeatureUnlimitedDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumFeatureTags": "برچسب‌ها",
+  "@premiumFeatureTags": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumFeatureTagsDesc": "با استفاده برچسب‌ها به کارات محتوا بده و کارهات رو بر اساس برچسب‌ها فیلتر کن",
+  "@premiumFeatureTagsDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumFeatureX": "به زودی!",
+  "@premiumFeatureX": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumFeatureXDesc": "ما در حال توسعه شنبه هستیم و به‌زودی از فیچرهای بیشتر رونمایی می‌کنیم...",
+  "@premiumFeatureXDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumYearlyPrice": "۲۰۰ هزار تومان",
+  "@premiumYearlyPrice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumMonthlyPrice": "۲۰ هزار تومان",
+  "@premiumMonthlyPrice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumYearly": "اشتراک سالانه",
+  "@premiumYearly": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumYearlyDiscount": "(۲ ماه رایگان)",
+  "@premiumYearlyDiscount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumMonthly": "اشتراک ماهانه",
+  "@premiumMonthly": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectProject": "انتخاب پروژه",
+  "@selectProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "subscriptionNotPurchased": "خریدی انجام نشد",
+  "@subscriptionNotPurchased": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "subscriptionVerificationFailed": "مشکلی در پردازش خرید رخ داد، در صورت خرید اشتراک دکمه بررسی خریدها را بفشارید",
+  "@subscriptionVerificationFailed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "subscriptionVerified": "اشتراک حرفه‌ای خریداری شد!",
+  "@subscriptionVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noActiveSubscriptionFound": "تمامی خریدها قبلا مصرف شده‌اند",
+  "@noActiveSubscriptionFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPurchaseFound": "پرداخت معلقی یافت نشد",
+  "@noPurchaseFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editProfile": "ویرایش حساب کاربری",
+  "@editProfile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "ایمیل",
+  "@email": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "firstName": "نام",
+  "@firstName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lasName": "نام خانوادگی",
+  "@lasName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastNameRequired": "نام خانوادگی الزامی است",
+  "@lastNameRequired": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "firstNameRequired": "نام الزامی است",
+  "@firstNameRequired": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "profileUpdatedSuccessfully": "حساب کاربری با موفقیت به‌روزرسانی شد",
+  "@profileUpdatedSuccessfully": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "profileNotUpdated": "مشکلی هنگام به‌روزرسانی حساب کاربری رخ داد",
+  "@profileNotUpdated": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changePassword": "تغییر رمز عبور",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordUpdateLinkSent": "ایمیلی حاوی دستورالعمل بازنشانی رمز عبور برایتان ارسال کردیم",
+  "@passwordUpdateLinkSent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordUpdateLinkNotSent": "مشکلی هنگام ارسال ایمیل بازنشانی رمز عبور رخ داد",
+  "@passwordUpdateLinkNotSent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumUserUntil": "اشتراک حرفه‌ای تا تاریخ {date}",
+  "@premiumUserUntil": {
+    "type": "text",
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "extendSubscription": "تمدید اشتراک",
+  "@extendSubscription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "purchasePremiumToAddMoreSubTasks": "برای افزودن ریز کار بیشتر، به اشتراک حرفه‌ای ارتقا دهید",
+  "@purchasePremiumToAddMoreSubTasks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "purchasePremiumToAddMoreTodos": "برای افزودن کارهای بیشتر، به اشتراک حرفه‌ای ارتقا دهید",
+  "@purchasePremiumToAddMoreTodos": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterTagName": "اسم برچسب",
+  "@enterTagName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editTag": "ویرایش برچسب",
+  "@editTag": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addTag": "برچسب جدید",
+  "@addTag": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeColor": "بدون رنگ",
+  "@removeColor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tagsArePremiumOnly": "برای استفاده از برچسب‌ها به اشتراک حرفه‌ای ارتقا دهید",
+  "@tagsArePremiumOnly": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tagsGuide": "با برچسب‌ها رنگ و نظم رو به کارات هدیه بده! برچسب‌ها بهت این اجازه رو میدن که کارهات رو بر اساس محتوا، اهمیت و یا هر موضوعی که تو مشخص کنی فیلتر کنی. فرض کن مهم‌ترین روز زندگیت یعنی عروسیت در راهه. ممکنه بخای برای مدیریت کارهای عروسیت چندین تا پروژه بسازی.یکی برای کارای آتلیه یکی برای مدیریت کارای رزرو تالار و عروسی. حالا با دادن تگ  \"عروسی\" به کارهای این روزت میتونی تمام کارهای مربوط به عروسیت رو یک جا ببینی و دقیقا بدونی چیکار باید بکنی. نحوه استفاده شما از برچسب ها محدود به تخیلتونن! در صورت داشتن ابهام با salam@shanbe.io تماس بگیرید",
+  "@tagsGuide": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "purchaseProcessError": "مشکلی در پردازش خرید رخ داد. در صورت خرید بسته و اعمال نشدن آن با salam@shanbe.io تماس بگیرید",
+  "@purchaseProcessError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectTags": "برچسب‌‌ها",
+  "@selectTags": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nSelectedTags": "{count,plural, =0{برچسب}=1{برچسب}many{برچسب}other{برچسب}}",
+  "@nSelectedTags": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "deleteTag": "حذف برچسب",
+  "@deleteTag": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteTagConfirm": "حذف برچسب؟",
+  "@deleteTagConfirm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteTagConfirmDesc": "برچسب \"{tagName}\" از همه کارها برداشته خواهد شد. حذف شود؟",
+  "@deleteTagConfirmDesc": {
+    "type": "text",
+    "placeholders": {
+      "tagName": {}
+    }
+  },
+  "setTags": "انتخاب برچسب",
+  "@setTags": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tagSeparator": "، ",
+  "@tagSeparator": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noTagTitle": "هیچ کاری با این برچسب یافت نشد!",
+  "@noTagTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectAll": "انتخاب همه",
+  "@selectAll": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "repeat": "تکرار",
+  "@repeat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "repeatDaily": "روزانه",
+  "@repeatDaily": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "repeatMonthly": "ماهانه",
+  "@repeatMonthly": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "repeatWeekly": "هفتگی",
+  "@repeatWeekly": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "repeatYearly": "سالانه",
+  "@repeatYearly": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "repeatCustom": "سفارشی",
+  "@repeatCustom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "repeatEvery": "هر",
+  "@repeatEvery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "days": "روز",
+  "@days": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "weeks": "هفته",
+  "@weeks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "months": "ماه",
+  "@months": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "years": "سال",
+  "@years": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "repeatEveryTitle": "تکرار هر",
+  "@repeatEveryTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setRepeat": "ایجاد تکرار",
+  "@setRepeat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "repeatIntervalRequired": "الزامی",
+  "@repeatIntervalRequired": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "purchasePremiumToAddRepeatingTasks": "برای ساخت کارهای تکرار شونده، به اشتراک حرفه‌ای ارتقا دهید",
+  "@purchasePremiumToAddRepeatingTasks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumFeatureRepeatingTasks": "کارهای دوره‌ای",
+  "@premiumFeatureRepeatingTasks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumFeatureRepeatingTasksDesc": "با انتخاب دوره تکرار برای یک کار، به راحتی برای آینده‌تان برنامه‌ریزی کنید.",
+  "@premiumFeatureRepeatingTasksDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "darkTheme": "تم تاریک",
+  "@darkTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loggedOutSuccessfully": "با موفقیت خارج شدید",
+  "@loggedOutSuccessfully": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorLoggingOut": "مشکلی هنگام خروج رخ داد.",
+  "@errorLoggingOut": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startFrom": "از",
+  "@startFrom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setEndDate": "انتخاب تاریخ پایان",
+  "@setEndDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oneMonthLater": "یک ماه بعد",
+  "@oneMonthLater": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectEndDate": "انتخاب تاریخ",
+  "@selectEndDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "endAt": "پایان در",
+  "@endAt": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeEndDate": "حذف تاریخ پایان",
+  "@removeEndDate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "personalizeProject": "شخصی‌سازی",
+  "@personalizeProject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "purchasePremiumToCustomizeProjects": "برای شخصی‌سازی پروژه‌ها، به اشتراک حرفه‌ای ارتقا دهید",
+  "@purchasePremiumToCustomizeProjects": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "projectColor": "رنگ پروژه",
+  "@projectColor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noColor": "بدون رنگ",
+  "@noColor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "projectColorSelect": "انتخاب رنگ پروژه",
+  "@projectColorSelect": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "projectCover": "عکس زمینه",
+  "@projectCover": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noCover": "بدون عکس",
+  "@noCover": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "projectCoverSelect": "انتخاب عکس زمینه",
+  "@projectCoverSelect": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumFeaturePersonalize": "شخصی‌سازه پروژه‌ها",
+  "@premiumFeaturePersonalize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "premiumFeaturePersonalizeDesc": "با رنگ‌ها و عکس‌های زیبا پروژه‌های خود را شخصی‌سازی کنید!",
+  "@premiumFeaturePersonalizeDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nTodosTodo": "{count,plural, =0{کار}=1{کار}many{کار}other{کار}}",
+  "@nTodosTodo": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "nProjectsTodo": "{count,plural, =0{پروژه}=1{پروژه}many{پروژه}other{پروژه}}",
+  "@nProjectsTodo": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "doneTodo": "انجام شده",
+  "@doneTodo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "purchasePremiumToCustomizeMyDay": "برای شخصی سازی روز من اشتراک حرفه‌ای را خریداری کنید",
+  "@purchasePremiumToCustomizeMyDay": {
+    "type": "text",
+    "placeholders": {}
+  },
+     "authOnEnter": "احراز هویت هنگام ورود",
+     "@authOnEnter": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "authOnEnterDesc": "با استفاده از اثر انگشت هویت خود را احراز کنید.",
+     "@authOnEnterDesc": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "yourDeviceDoesntSupportThisFeature": "دستگاه شما از این قابلیت پشتیبانی نمی‌کند.",
+     "@yourDeviceDoesntSupportThisFeature": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "authorizationIsRequiredToChangeThisSetting": "احراز هویت برای تغییر این تنظیم نیاز است.",
+     "@authorizationIsRequiredToChangeThisSetting": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "authorizeToChangeThisSetting": "برای تغییر این تنظیم احراز هویت کنید.",
+     "@authorizeToChangeThisSetting": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "authorizationIsRequiredToAccessApplication": "احراز هویت برای دسترسی به برنامه نیاز است.",
+     "@authorizationIsRequiredToAccessApplication": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "authorizationWasNotSuccessful": "احراز هویت موفقی‌آمیز نبود.",
+     "@authorizationWasNotSuccessful": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "playSoundOnDone": "پخش صدا هنگام انجام کار",
+     "@playSoundOnDone": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "playSoundOnDoneDesc": "یک صدای کوتاه هنگامی که کاری را انجام می‌دهید پخش خواهد شد.",
+     "@playSoundOnDoneDesc": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "playSoundOnTaskCreate": "پخش صدا هنگام ایجاد کار",
+     "@playSoundOnTaskCreate": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "playSoundOnTaskCreateDesc": "یک صدای کوتاه هنگام ایجاد کار پخش خواهد شد.",
+     "@playSoundOnTaskCreateDesc": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "soundOnDone": "صدای انجام کار",
+     "@soundOnDone": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "soundOnCreate": "صدای ساخت کار",
+     "@soundOnCreate": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "none": "هیچی",
+     "@none": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "undo": "بازگردانی",
+     "@undo": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "completed": "کار انجام شد",
+     "@completed": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "uncompleted": "کار بازگشایی شد",
+     "@uncompleted": {
+       "type": "text",
+       "placeholders": {}
+     },
+     "goToProject": "رفتن به پروژه این کار",
+     "@goToProject": {
+       "type": "text",
+       "placeholders": {}
+     },
+  "backgroundColor": "رنگ زمینه",
+  "@backgroundColor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareWithFriendsMessageMyket": "برنامه شنبه را در مایکت ببین! من از شنبه برای مدیریت اهداف و پروژه‌هام استفاده می‌کنم. https://myket.ir/app/io.shanbe.shanbe",
+  "@shareWithFriendsMessageMyket": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commentWithMyketApp": "لطفا نظر خود را از طریق اپلیکیشن مایکت به اشتراک بگذارید.",
+  "@commentWithMyketApp": {
+     "type": "text",
+     "placeholders": {}
+  },
+  "voiceInitializationError": "خطا در ضبط صدا",
+  "@voiceInitializationError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noVoiceRecognized": "هیچ کلمه‌ای تشخیص داده نشد.",
+  "@noVoiceRecognized": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "listening": "صحبت کنید...",
+  "@listening": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "folders": "پوشه‌ها",
+  "@folders": {
+    "type": "text",
+    "placeholders": {}
+  }
 }

@@ -1,4 +1,4 @@
-import 'package:client/pages/folders_page.dart';
+import 'package:client/pages/lists_page.dart';
 import 'package:client/rx/services/app_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -29,9 +29,8 @@ class _InboxPageState extends State<InboxPage> {
   Widget build(BuildContext context) {
     t ??= AppLocalizations.of(context);
     return PlatformTabScaffold(
-      iosContentBottomPadding: false,
-      iosContentPadding: false,
       key: widget.key ?? GlobalKey(debugLabel: 'inbox'),
+      iosContentPadding: true,
       appBarBuilder: (context, index) => PlatformAppBar(
         title: PlatformText(t!.today),
         material: (context, target) => MaterialAppBarData(),
@@ -44,10 +43,10 @@ class _InboxPageState extends State<InboxPage> {
               onPressed: () {}),
           cupertino: (context, target) => CupertinoIconButtonData(
               icon: const Icon(
-                CupertinoIcons.list_dash,
+                Icons.menu,
               ),
               onPressed: () {
-                Navigator.of(context).pushNamed('/folders');
+                Navigator.of(context).pushNamed('/lists');
               }),
           padding: EdgeInsets.zero,
         ),
@@ -59,10 +58,9 @@ class _InboxPageState extends State<InboxPage> {
         ),
       )),
       tabController: _controller,
-      bodyBuilder: (context, index) => SafeArea(
-          child: Container(
+      bodyBuilder: (context, index) => Container(
         child: Text('body'),
-      )),
+      ),
       items: [
         BottomNavigationBarItem(
             icon: Icon(Icons.seventeen_mp_sharp), label: 'Tasks'),

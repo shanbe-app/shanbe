@@ -54,6 +54,7 @@ class Constants {
   static const List<String> APPLICATION_FALLBACK_FONTS = ['IranSans', 'Dana', 'sans-serif'];
 
   static const Duration SEARCH_INPUT_DEBOUNCE_DURATION = Duration(milliseconds: 250);
+  static const EdgeInsets PAGE_PADDING = EdgeInsets.symmetric(horizontal: 16);
 
 
   static const List<List<Color>> AVATAR_GRADIENT_COLORS = [

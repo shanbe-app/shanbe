@@ -1667,5 +1667,10 @@
   "@folders": {
     "type": "text",
     "placeholders": {}
+  },
+  "lists": "لیست‌ها",
+  "@lists": {
+    "type": "text",
+    "placeholders": {}
   }
 }

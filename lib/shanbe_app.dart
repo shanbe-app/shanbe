@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:client/pages/folders_page.dart';
+import 'package:client/pages/lists_page.dart';
 import 'package:client/utils/constants.dart';
 import 'package:client/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
@@ -78,17 +78,16 @@ class _ShanbeAppState extends State<ShanbeApp> {
       ),
       onGenerateTitle: (context) => AppLocalizations.of(context).title,
       cupertino: (context, target) => CupertinoAppData(
-          onUnknownRoute: (settings) {
-            print('unknown route ${settings.name}');
-          },
           onGenerateRoute: (settings) {
             switch (settings.name) {
-              case '/folders':
-                // return CupertinoPageRoute(
-                //     builder: (_) => const FoldersPage(), settings: settings);
-                return PageRouteBuilder(
-                    pageBuilder: (context, animation, secondaryAnimation) =>
-                        const FoldersPage(),
+              case '/lists':
+                // return MaterialPageRoute(builder: );
+                // return PageRouteBuilder(
+                //     pageBuilder: (context, animation, secondaryAnimation) =>
+                //         FadeTransition(
+                //             opacity: animation, child: const ListsPage()));
+                return CupertinoPageRoute(
+                    builder: (context) => const ListsPage(),
                     settings: settings);
             }
           },
@@ -96,6 +95,7 @@ class _ShanbeAppState extends State<ShanbeApp> {
             brightness: Brightness.light,
             primaryColor: Constants.PRIMARY_COLOR,
             primaryContrastingColor: Colors.white,
+            scaffoldBackgroundColor: Constants.BACKGROUND_COLOR,
             textTheme: CupertinoTextThemeData(
                 primaryColor: Constants.PRIMARY_COLOR,
                 textStyle: const TextStyle(
@@ -132,7 +132,7 @@ class _ShanbeAppState extends State<ShanbeApp> {
                   fontWeight: Constants.REGULAR_FONT_WEIGHT,
                 ),
                 navLargeTitleTextStyle: const TextStyle(
-                  color: Constants.TEXT_BODY_COLOR,
+                  color: Constants.TEXT_BLACK_COLOR,
                   fontSize: Constants.H1_FONT_SIZE,
                   fontFamily: Constants.APPLICATION_DEFAULT_FONT,
                   fontFamilyFallback: Constants.APPLICATION_FALLBACK_FONTS,
@@ -159,7 +159,8 @@ class _ShanbeAppState extends State<ShanbeApp> {
               toggleableActiveColor: Constants.SECONDARY_COLOR,
               primarySwatch: Colors.blue,
               primaryColor: Constants.PRIMARY_COLOR,
-              canvasColor: Constants.BACKGROUND_COLOR,
+              // canvasColor: Constants.BACKGROUND_COLOR,
+              scaffoldBackgroundColor: Constants.BACKGROUND_COLOR_DARK,
               fontFamily: Constants.APPLICATION_DEFAULT_FONT,
               errorColor: Constants.ERROR_COLOR,
               dividerColor: Constants.LINE_COLOR_DARK,
@@ -197,11 +198,12 @@ class _ShanbeAppState extends State<ShanbeApp> {
           theme: ThemeData(
               primarySwatch: Colors.blue,
               primaryColor: Constants.PRIMARY_COLOR,
-              canvasColor: Constants.BACKGROUND_COLOR,
+              // canvasColor: Constants.BACKGROUND_COLOR,
               fontFamily: Constants.APPLICATION_DEFAULT_FONT,
               errorColor: Constants.ERROR_COLOR,
               toggleableActiveColor: Constants.SECONDARY_COLOR,
               dividerColor: Constants.LINE_COLOR,
+              scaffoldBackgroundColor: Constants.BACKGROUND_COLOR,
               colorScheme: Theme.of(context) // Todo Need consideration
                   .colorScheme
                   .copyWith(secondary: Constants.SECONDARY_COLOR),

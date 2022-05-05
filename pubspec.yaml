@@ -62,6 +62,7 @@ dependencies:
   shamsi_date: ^1.0.1
   cafebazaar_flutter: ^1.0.1
   flutter_platform_widgets: ^1.20.0
+  fluttericon: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -93,7 +94,7 @@ flutter:
       fonts:
         - asset: assets/fonts/dana/Dana-Bold.ttf
           weight: 700
-        - asset: assets/fonts/dana/Dana-FaNum-Demi-Bold.ttf
+        - asset: assets/fonts/dana/Dana-Demi-Bold.ttf
           weight: 600
         - asset: assets/fonts/dana/Dana-Medium.ttf
           weight: 500

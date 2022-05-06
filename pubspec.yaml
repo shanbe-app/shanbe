@@ -39,7 +39,7 @@ dependencies:
   flutter_local_notifications: ^9.3.2
   flutter_keyboard_visibility: ^5.2.0
   flutter_emoji: ^2.4.0
-  uuid: ^3.0.5
+  uuid: ^3.0.6
   flutter_sticky_header: ^0.6.1
   scrollable_positioned_list: ^0.2.3
   smooth_page_indicator: ^1.0.0+2
@@ -63,6 +63,8 @@ dependencies:
   cafebazaar_flutter: ^1.0.1
   flutter_platform_widgets: ^1.20.0
   fluttericon: ^2.0.0
+  couchbase_lite: 3.0.0-nullsafety.2
+  crypto: ^3.0.2
 
 dev_dependencies:
   flutter_test:

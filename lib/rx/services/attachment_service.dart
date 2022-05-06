@@ -1,6 +1,5 @@
-
 import 'package:client/rx/services/rx_service.dart';
-import 'package:client/types/schema/attachment_holder.dart';
+import 'package:client/types/models/attachment_holder.dart';
 
 class AttachmentService extends RxService{
   late List<AttachmentHolder> _attachments;
@@ -13,6 +12,7 @@ class AttachmentService extends RxService{
 
   @override
   Future<void> onTerminate() async{
+
   }
 
 }

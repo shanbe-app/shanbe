@@ -50,7 +50,6 @@ dependencies:
   app_settings: ^4.1.5
   uni_links: ^0.5.1
   flutter_reorderable_list: ^1.2.0
-  flutter_appauth: ^2.3.0
   background_fetch: ^1.0.3
   flutter_dotenv: ^5.0.2
   implicitly_animated_reorderable_list: ^0.4.2
@@ -63,7 +62,6 @@ dependencies:
   cafebazaar_flutter: ^1.0.1
   flutter_platform_widgets: ^1.20.0
   fluttericon: ^2.0.0
-  couchbase_lite: 3.0.0-nullsafety.2
   crypto: ^3.0.2
 
 dev_dependencies:

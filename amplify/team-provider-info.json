@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-shanbe-staging-115838-authRole",
+      "UnauthRoleArn": "arn:aws:iam::906970155596:role/amplify-shanbe-staging-115838-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::906970155596:role/amplify-shanbe-staging-115838-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-shanbe-staging-115838-deployment",
+      "UnauthRoleName": "amplify-shanbe-staging-115838-unauthRole",
+      "StackName": "amplify-shanbe-staging-115838",
+      "StackId": "arn:aws:cloudformation:eu-central-1:906970155596:stack/amplify-shanbe-staging-115838/081c5fe0-cdfd-11ec-a303-06f33819c1c2",
+      "AmplifyAppId": "d3iladnjoow9cx"
+    },
+    "categories": {
+      "auth": {
+        "Shanbe": {}
+      }
+    }
+  }
+}

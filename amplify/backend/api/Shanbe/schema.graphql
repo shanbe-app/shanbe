@@ -1,0 +1,63 @@
+enum ReminderStatus {
+  INITIALIZED
+  SHOWN
+  SNOOZED
+  DONE
+}
+
+enum RepeatType {
+  DAILY
+  WEEKLY
+  MONTHLY
+  YEARLY
+}
+
+type Reminder @model @auth(rules: [{allow: public}, {allow: owner}]) {
+  id: ID!
+  uuid: String
+  date: AWSDateTime
+  time: AWSDateTime
+  status: ReminderStatus
+  todoID: ID! @index(name: "byTodo")
+  Todo: Todo @belongsTo
+}
+
+type Tag @model @auth(rules: [{allow: public}, {allow: owner}]) {
+  id: ID!
+  uuid: String
+  name: String
+  color: String
+  Todos: [Todo] @manyToMany(relationName: "TagTodo")
+}
+
+type Project @model @auth(rules: [{allow: public}, {allow: owner}]) {
+  id: ID!
+  uuid: String
+  name: String
+  emoji: String
+  color: String
+  cover: String
+  Todos: [Todo] @hasMany(indexName: "byProject", fields: ["id"])
+}
+
+type Todo @model @auth(rules: [{allow: public}, {allow: owner}]) {
+  id: ID!
+  uuid: String
+  title: String
+  description: String
+  done: AWSDateTime
+  dueDate: AWSDate
+  dueTime: AWSTime
+  endDate: AWSDate
+  createdAt: AWSDateTime
+  priority: Int
+  repeatType: RepeatType
+  repeatInterval: Int
+  doneRepeat: [AWSJSON]
+  deletedAt: AWSDateTime
+  Reminders: [Reminder] @hasMany(indexName: "byTodo", fields: ["id"])
+  projectID: ID! @index(name: "byProject")
+  Project: Project @belongsTo
+  Tags: [Tag] @manyToMany(relationName: "TagTodo")
+}
+ 

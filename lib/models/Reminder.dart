@@ -30,8 +30,8 @@ class Reminder extends Model {
   static const classType = const _ReminderModelType();
   final String id;
   final String? _uuid;
-  final TemporalDateTime? _date;
-  final TemporalDateTime? _time;
+  final TemporalDate? _date;
+  final TemporalTime? _time;
   final ReminderStatus? _status;
   final String? _todoID;
   final Todo? _Todo;
@@ -44,20 +44,56 @@ class Reminder extends Model {
     return id;
   }
   
-  String? get uuid {
-    return _uuid;
+  String get uuid {
+    try {
+      return _uuid!;
+    } catch(e) {
+      throw new DataStoreException(
+          DataStoreExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+          recoverySuggestion:
+            DataStoreExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+          underlyingException: e.toString()
+          );
+    }
   }
   
-  TemporalDateTime? get date {
-    return _date;
+  TemporalDate get date {
+    try {
+      return _date!;
+    } catch(e) {
+      throw new DataStoreException(
+          DataStoreExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+          recoverySuggestion:
+            DataStoreExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+          underlyingException: e.toString()
+          );
+    }
   }
   
-  TemporalDateTime? get time {
-    return _time;
+  TemporalTime get time {
+    try {
+      return _time!;
+    } catch(e) {
+      throw new DataStoreException(
+          DataStoreExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+          recoverySuggestion:
+            DataStoreExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+          underlyingException: e.toString()
+          );
+    }
   }
   
-  ReminderStatus? get status {
-    return _status;
+  ReminderStatus get status {
+    try {
+      return _status!;
+    } catch(e) {
+      throw new DataStoreException(
+          DataStoreExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+          recoverySuggestion:
+            DataStoreExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+          underlyingException: e.toString()
+          );
+    }
   }
   
   String get todoID {
@@ -77,9 +113,9 @@ class Reminder extends Model {
     return _Todo;
   }
   
-  const Reminder._internal({required this.id, uuid, date, time, status, required todoID, Todo}): _uuid = uuid, _date = date, _time = time, _status = status, _todoID = todoID, _Todo = Todo;
+  const Reminder._internal({required this.id, required uuid, required date, required time, required status, required todoID, Todo}): _uuid = uuid, _date = date, _time = time, _status = status, _todoID = todoID, _Todo = Todo;
   
-  factory Reminder({String? id, String? uuid, TemporalDateTime? date, TemporalDateTime? time, ReminderStatus? status, required String todoID, Todo? Todo}) {
+  factory Reminder({String? id, required String uuid, required TemporalDate date, required TemporalTime time, required ReminderStatus status, required String todoID, Todo? Todo}) {
     return Reminder._internal(
       id: id == null ? UUID.getUUID() : id,
       uuid: uuid,
@@ -127,7 +163,7 @@ class Reminder extends Model {
     return buffer.toString();
   }
   
-  Reminder copyWith({String? id, String? uuid, TemporalDateTime? date, TemporalDateTime? time, ReminderStatus? status, String? todoID, Todo? Todo}) {
+  Reminder copyWith({String? id, String? uuid, TemporalDate? date, TemporalTime? time, ReminderStatus? status, String? todoID, Todo? Todo}) {
     return Reminder(
       id: id ?? this.id,
       uuid: uuid ?? this.uuid,
@@ -141,8 +177,8 @@ class Reminder extends Model {
   Reminder.fromJson(Map<String, dynamic> json)  
     : id = json['id'],
       _uuid = json['uuid'],
-      _date = json['date'] != null ? TemporalDateTime.fromString(json['date']) : null,
-      _time = json['time'] != null ? TemporalDateTime.fromString(json['time']) : null,
+      _date = json['date'] != null ? TemporalDate.fromString(json['date']) : null,
+      _time = json['time'] != null ? TemporalTime.fromString(json['time']) : null,
       _status = enumFromString<ReminderStatus>(json['status'], ReminderStatus.values),
       _todoID = json['todoID'],
       _Todo = json['Todo']?['serializedData'] != null
@@ -191,25 +227,25 @@ class Reminder extends Model {
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
       key: Reminder.UUID,
-      isRequired: false,
+      isRequired: true,
       ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
       key: Reminder.DATE,
-      isRequired: false,
-      ofType: ModelFieldType(ModelFieldTypeEnum.dateTime)
+      isRequired: true,
+      ofType: ModelFieldType(ModelFieldTypeEnum.date)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
       key: Reminder.TIME,
-      isRequired: false,
-      ofType: ModelFieldType(ModelFieldTypeEnum.dateTime)
+      isRequired: true,
+      ofType: ModelFieldType(ModelFieldTypeEnum.time)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
       key: Reminder.STATUS,
-      isRequired: false,
+      isRequired: true,
       ofType: ModelFieldType(ModelFieldTypeEnum.enumeration)
     ));
     

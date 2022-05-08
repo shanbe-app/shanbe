@@ -45,12 +45,30 @@ class Project extends Model {
     return id;
   }
   
-  String? get uuid {
-    return _uuid;
+  String get uuid {
+    try {
+      return _uuid!;
+    } catch(e) {
+      throw new DataStoreException(
+          DataStoreExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+          recoverySuggestion:
+            DataStoreExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+          underlyingException: e.toString()
+          );
+    }
   }
   
-  String? get name {
-    return _name;
+  String get name {
+    try {
+      return _name!;
+    } catch(e) {
+      throw new DataStoreException(
+          DataStoreExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+          recoverySuggestion:
+            DataStoreExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+          underlyingException: e.toString()
+          );
+    }
   }
   
   String? get emoji {
@@ -69,9 +87,9 @@ class Project extends Model {
     return _Todos;
   }
   
-  const Project._internal({required this.id, uuid, name, emoji, color, cover, Todos}): _uuid = uuid, _name = name, _emoji = emoji, _color = color, _cover = cover, _Todos = Todos;
+  const Project._internal({required this.id, required uuid, required name, emoji, color, cover, Todos}): _uuid = uuid, _name = name, _emoji = emoji, _color = color, _cover = cover, _Todos = Todos;
   
-  factory Project({String? id, String? uuid, String? name, String? emoji, String? color, String? cover, List<Todo>? Todos}) {
+  factory Project({String? id, required String uuid, required String name, String? emoji, String? color, String? cover, List<Todo>? Todos}) {
     return Project._internal(
       id: id == null ? UUID.getUUID() : id,
       uuid: uuid,
@@ -185,13 +203,13 @@ class Project extends Model {
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
       key: Project.UUID,
-      isRequired: false,
+      isRequired: true,
       ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
       key: Project.NAME,
-      isRequired: false,
+      isRequired: true,
       ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     

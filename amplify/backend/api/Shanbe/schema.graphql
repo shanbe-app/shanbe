@@ -14,26 +14,26 @@ enum RepeatType {
 
 type Reminder @model @auth(rules: [{allow: public}, {allow: owner}]) {
   id: ID!
-  uuid: String
-  date: AWSDateTime
-  time: AWSDateTime
-  status: ReminderStatus
+  uuid: String!
+  date: AWSDate!
+  time: AWSTime!
+  status: ReminderStatus!
   todoID: ID! @index(name: "byTodo")
   Todo: Todo @belongsTo
 }
 
 type Tag @model @auth(rules: [{allow: public}, {allow: owner}]) {
   id: ID!
-  uuid: String
-  name: String
+  uuid: String!
+  name: String!
   color: String
   Todos: [Todo] @manyToMany(relationName: "TagTodo")
 }
 
 type Project @model @auth(rules: [{allow: public}, {allow: owner}]) {
   id: ID!
-  uuid: String
-  name: String
+  uuid: String!
+  name: String!
   emoji: String
   color: String
   cover: String
@@ -42,14 +42,14 @@ type Project @model @auth(rules: [{allow: public}, {allow: owner}]) {
 
 type Todo @model @auth(rules: [{allow: public}, {allow: owner}]) {
   id: ID!
-  uuid: String
-  title: String
+  uuid: String!
+  title: String!
   description: String
   done: AWSDateTime
   dueDate: AWSDate
   dueTime: AWSTime
   endDate: AWSDate
-  createdAt: AWSDateTime
+  createdAt: AWSDateTime!
   priority: Int
   repeatType: RepeatType
   repeatInterval: Int

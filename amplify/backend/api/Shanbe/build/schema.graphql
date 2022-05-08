@@ -15,10 +15,10 @@ enum RepeatType {
 
 type Reminder @aws_api_key @aws_iam @aws_cognito_user_pools {
   id: ID!
-  uuid: String
-  date: AWSDateTime
-  time: AWSDateTime
-  status: ReminderStatus
+  uuid: String!
+  date: AWSDate!
+  time: AWSTime!
+  status: ReminderStatus!
   todoID: ID!
   Todo: Todo
   createdAt: AWSDateTime!
@@ -31,8 +31,8 @@ type Reminder @aws_api_key @aws_iam @aws_cognito_user_pools {
 
 type Tag @aws_api_key @aws_iam @aws_cognito_user_pools {
   id: ID!
-  uuid: String
-  name: String
+  uuid: String!
+  name: String!
   color: String
   Todos(filter: ModelTagTodoFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelTagTodoConnection
   createdAt: AWSDateTime!
@@ -45,8 +45,8 @@ type Tag @aws_api_key @aws_iam @aws_cognito_user_pools {
 
 type Project @aws_api_key @aws_iam @aws_cognito_user_pools {
   id: ID!
-  uuid: String
-  name: String
+  uuid: String!
+  name: String!
   emoji: String
   color: String
   cover: String
@@ -61,14 +61,14 @@ type Project @aws_api_key @aws_iam @aws_cognito_user_pools {
 
 type Todo @aws_api_key @aws_iam @aws_cognito_user_pools {
   id: ID!
-  uuid: String
-  title: String
+  uuid: String!
+  title: String!
   description: String
   done: AWSDateTime
   dueDate: AWSDate
   dueTime: AWSTime
   endDate: AWSDate
-  createdAt: AWSDateTime
+  createdAt: AWSDateTime!
   priority: Int
   repeatType: RepeatType
   repeatInterval: Int
@@ -244,10 +244,10 @@ input ModelReminderConditionInput {
 
 input CreateReminderInput {
   id: ID
-  uuid: String
-  date: AWSDateTime
-  time: AWSDateTime
-  status: ReminderStatus
+  uuid: String!
+  date: AWSDate!
+  time: AWSTime!
+  status: ReminderStatus!
   todoID: ID!
   _version: Int
 }
@@ -255,8 +255,8 @@ input CreateReminderInput {
 input UpdateReminderInput {
   id: ID!
   uuid: String
-  date: AWSDateTime
-  time: AWSDateTime
+  date: AWSDate
+  time: AWSTime
   status: ReminderStatus
   todoID: ID
   _version: Int
@@ -330,8 +330,8 @@ input ModelTagConditionInput {
 
 input CreateTagInput {
   id: ID
-  uuid: String
-  name: String
+  uuid: String!
+  name: String!
   color: String
   _version: Int
 }
@@ -380,8 +380,8 @@ input ModelProjectConditionInput {
 
 input CreateProjectInput {
   id: ID
-  uuid: String
-  name: String
+  uuid: String!
+  name: String!
   emoji: String
   color: String
   cover: String
@@ -457,8 +457,8 @@ input ModelTodoConditionInput {
 
 input CreateTodoInput {
   id: ID
-  uuid: String
-  title: String
+  uuid: String!
+  title: String!
   description: String
   done: AWSDateTime
   dueDate: AWSDate

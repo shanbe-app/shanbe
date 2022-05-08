@@ -3,7 +3,7 @@
   "serviceConfiguration": {
     "apiName": "Shanbe",
     "serviceName": "AppSync",
-    "gqlSchemaPath": "/tmp/amplify-a78c3e80-025b-4c93-83b6-130d711c4452/amplify/backend/api/Shanbe/schema.graphql",
+    "gqlSchemaPath": "/tmp/amplify-5483be96-7323-4394-aa0a-961d7ec97d84/amplify/backend/api/Shanbe/schema.graphql",
     "defaultAuthType": {
       "mode": "AMAZON_COGNITO_USER_POOLS",
       "cognitoUserPoolId": "authShanbe"

@@ -43,12 +43,30 @@ class Tag extends Model {
     return id;
   }
   
-  String? get uuid {
-    return _uuid;
+  String get uuid {
+    try {
+      return _uuid!;
+    } catch(e) {
+      throw new DataStoreException(
+          DataStoreExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+          recoverySuggestion:
+            DataStoreExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+          underlyingException: e.toString()
+          );
+    }
   }
   
-  String? get name {
-    return _name;
+  String get name {
+    try {
+      return _name!;
+    } catch(e) {
+      throw new DataStoreException(
+          DataStoreExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+          recoverySuggestion:
+            DataStoreExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+          underlyingException: e.toString()
+          );
+    }
   }
   
   String? get color {
@@ -59,9 +77,9 @@ class Tag extends Model {
     return _Todos;
   }
   
-  const Tag._internal({required this.id, uuid, name, color, Todos}): _uuid = uuid, _name = name, _color = color, _Todos = Todos;
+  const Tag._internal({required this.id, required uuid, required name, color, Todos}): _uuid = uuid, _name = name, _color = color, _Todos = Todos;
   
-  factory Tag({String? id, String? uuid, String? name, String? color, List<TagTodo>? Todos}) {
+  factory Tag({String? id, required String uuid, required String name, String? color, List<TagTodo>? Todos}) {
     return Tag._internal(
       id: id == null ? UUID.getUUID() : id,
       uuid: uuid,
@@ -163,13 +181,13 @@ class Tag extends Model {
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
       key: Tag.UUID,
-      isRequired: false,
+      isRequired: true,
       ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
       key: Tag.NAME,
-      isRequired: false,
+      isRequired: true,
       ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     

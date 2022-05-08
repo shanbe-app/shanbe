@@ -56,12 +56,30 @@ class Todo extends Model {
     return id;
   }
   
-  String? get uuid {
-    return _uuid;
+  String get uuid {
+    try {
+      return _uuid!;
+    } catch(e) {
+      throw new DataStoreException(
+          DataStoreExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+          recoverySuggestion:
+            DataStoreExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+          underlyingException: e.toString()
+          );
+    }
   }
   
-  String? get title {
-    return _title;
+  String get title {
+    try {
+      return _title!;
+    } catch(e) {
+      throw new DataStoreException(
+          DataStoreExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+          recoverySuggestion:
+            DataStoreExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+          underlyingException: e.toString()
+          );
+    }
   }
   
   String? get description {
@@ -84,8 +102,17 @@ class Todo extends Model {
     return _endDate;
   }
   
-  TemporalDateTime? get createdAt {
-    return _createdAt;
+  TemporalDateTime get createdAt {
+    try {
+      return _createdAt!;
+    } catch(e) {
+      throw new DataStoreException(
+          DataStoreExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+          recoverySuggestion:
+            DataStoreExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+          underlyingException: e.toString()
+          );
+    }
   }
   
   int? get priority {
@@ -133,9 +160,9 @@ class Todo extends Model {
     return _Tags;
   }
   
-  const Todo._internal({required this.id, uuid, title, description, done, dueDate, dueTime, endDate, createdAt, priority, repeatType, repeatInterval, doneRepeat, deletedAt, Reminders, required projectID, Project, Tags}): _uuid = uuid, _title = title, _description = description, _done = done, _dueDate = dueDate, _dueTime = dueTime, _endDate = endDate, _createdAt = createdAt, _priority = priority, _repeatType = repeatType, _repeatInterval = repeatInterval, _doneRepeat = doneRepeat, _deletedAt = deletedAt, _Reminders = Reminders, _projectID = projectID, _Project = Project, _Tags = Tags;
+  const Todo._internal({required this.id, required uuid, required title, description, done, dueDate, dueTime, endDate, required createdAt, priority, repeatType, repeatInterval, doneRepeat, deletedAt, Reminders, required projectID, Project, Tags}): _uuid = uuid, _title = title, _description = description, _done = done, _dueDate = dueDate, _dueTime = dueTime, _endDate = endDate, _createdAt = createdAt, _priority = priority, _repeatType = repeatType, _repeatInterval = repeatInterval, _doneRepeat = doneRepeat, _deletedAt = deletedAt, _Reminders = Reminders, _projectID = projectID, _Project = Project, _Tags = Tags;
   
-  factory Todo({String? id, String? uuid, String? title, String? description, TemporalDateTime? done, TemporalDate? dueDate, TemporalTime? dueTime, TemporalDate? endDate, TemporalDateTime? createdAt, int? priority, RepeatType? repeatType, int? repeatInterval, List<String>? doneRepeat, TemporalDateTime? deletedAt, List<Reminder>? Reminders, required String projectID, Project? Project, List<TagTodo>? Tags}) {
+  factory Todo({String? id, required String uuid, required String title, String? description, TemporalDateTime? done, TemporalDate? dueDate, TemporalTime? dueTime, TemporalDate? endDate, required TemporalDateTime createdAt, int? priority, RepeatType? repeatType, int? repeatInterval, List<String>? doneRepeat, TemporalDateTime? deletedAt, List<Reminder>? Reminders, required String projectID, Project? Project, List<TagTodo>? Tags}) {
     return Todo._internal(
       id: id == null ? UUID.getUUID() : id,
       uuid: uuid,
@@ -325,13 +352,13 @@ class Todo extends Model {
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
       key: Todo.UUID,
-      isRequired: false,
+      isRequired: true,
       ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
       key: Todo.TITLE,
-      isRequired: false,
+      isRequired: true,
       ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
@@ -367,7 +394,7 @@ class Todo extends Model {
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
       key: Todo.CREATEDAT,
-      isRequired: false,
+      isRequired: true,
       ofType: ModelFieldType(ModelFieldTypeEnum.dateTime)
     ));
     

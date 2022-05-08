@@ -20,7 +20,7 @@
 // ignore_for_file: public_member_api_docs, annotate_overrides, dead_code, dead_codepublic_member_api_docs, depend_on_referenced_packages, file_names, library_private_types_in_public_api, no_leading_underscores_for_library_prefixes, no_leading_underscores_for_local_identifiers, non_constant_identifier_names, null_check_on_nullable_type_parameter, prefer_adjacent_string_concatenation, prefer_const_constructors, prefer_if_null_operators, prefer_interpolation_to_compose_strings, slash_for_doc_comments, sort_child_properties_last, unnecessary_const, unnecessary_constructor_name, unnecessary_late, unnecessary_new, unnecessary_null_aware_assignments, unnecessary_nullable_for_final_variable_declarations, unnecessary_string_interpolations, use_build_context_synchronously
 
 import 'ModelProvider.dart';
-import 'package:amplify_datastore_plugin_interface/amplify_datastore_plugin_interface.dart';
+import 'package:amplify_core/amplify_core.dart';
 import 'package:flutter/foundation.dart';
 
 
@@ -35,6 +35,8 @@ class Reminder extends Model {
   final ReminderStatus? _status;
   final String? _todoID;
   final Todo? _Todo;
+  final TemporalDateTime? _createdAt;
+  final TemporalDateTime? _updatedAt;
 
   @override
   getInstanceType() => classType;
@@ -48,10 +50,10 @@ class Reminder extends Model {
     try {
       return _uuid!;
     } catch(e) {
-      throw new DataStoreException(
-          DataStoreExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+      throw new AmplifyCodeGenModelException(
+          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
           recoverySuggestion:
-            DataStoreExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
           underlyingException: e.toString()
           );
     }
@@ -61,10 +63,10 @@ class Reminder extends Model {
     try {
       return _date!;
     } catch(e) {
-      throw new DataStoreException(
-          DataStoreExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+      throw new AmplifyCodeGenModelException(
+          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
           recoverySuggestion:
-            DataStoreExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
           underlyingException: e.toString()
           );
     }
@@ -74,10 +76,10 @@ class Reminder extends Model {
     try {
       return _time!;
     } catch(e) {
-      throw new DataStoreException(
-          DataStoreExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+      throw new AmplifyCodeGenModelException(
+          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
           recoverySuggestion:
-            DataStoreExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
           underlyingException: e.toString()
           );
     }
@@ -87,10 +89,10 @@ class Reminder extends Model {
     try {
       return _status!;
     } catch(e) {
-      throw new DataStoreException(
-          DataStoreExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+      throw new AmplifyCodeGenModelException(
+          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
           recoverySuggestion:
-            DataStoreExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
           underlyingException: e.toString()
           );
     }
@@ -100,10 +102,10 @@ class Reminder extends Model {
     try {
       return _todoID!;
     } catch(e) {
-      throw new DataStoreException(
-          DataStoreExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+      throw new AmplifyCodeGenModelException(
+          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
           recoverySuggestion:
-            DataStoreExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
           underlyingException: e.toString()
           );
     }
@@ -113,7 +115,15 @@ class Reminder extends Model {
     return _Todo;
   }
   
-  const Reminder._internal({required this.id, required uuid, required date, required time, required status, required todoID, Todo}): _uuid = uuid, _date = date, _time = time, _status = status, _todoID = todoID, _Todo = Todo;
+  TemporalDateTime? get createdAt {
+    return _createdAt;
+  }
+  
+  TemporalDateTime? get updatedAt {
+    return _updatedAt;
+  }
+  
+  const Reminder._internal({required this.id, required uuid, required date, required time, required status, required todoID, Todo, createdAt, updatedAt}): _uuid = uuid, _date = date, _time = time, _status = status, _todoID = todoID, _Todo = Todo, _createdAt = createdAt, _updatedAt = updatedAt;
   
   factory Reminder({String? id, required String uuid, required TemporalDate date, required TemporalTime time, required ReminderStatus status, required String todoID, Todo? Todo}) {
     return Reminder._internal(
@@ -157,14 +167,16 @@ class Reminder extends Model {
     buffer.write("time=" + (_time != null ? _time!.format() : "null") + ", ");
     buffer.write("status=" + (_status != null ? enumToString(_status)! : "null") + ", ");
     buffer.write("todoID=" + "$_todoID" + ", ");
-    buffer.write("Todo=" + (_Todo != null ? _Todo!.toString() : "null"));
+    buffer.write("Todo=" + (_Todo != null ? _Todo!.toString() : "null") + ", ");
+    buffer.write("createdAt=" + (_createdAt != null ? _createdAt!.format() : "null") + ", ");
+    buffer.write("updatedAt=" + (_updatedAt != null ? _updatedAt!.format() : "null"));
     buffer.write("}");
     
     return buffer.toString();
   }
   
   Reminder copyWith({String? id, String? uuid, TemporalDate? date, TemporalTime? time, ReminderStatus? status, String? todoID, Todo? Todo}) {
-    return Reminder(
+    return Reminder._internal(
       id: id ?? this.id,
       uuid: uuid ?? this.uuid,
       date: date ?? this.date,
@@ -183,10 +195,12 @@ class Reminder extends Model {
       _todoID = json['todoID'],
       _Todo = json['Todo']?['serializedData'] != null
         ? Todo.fromJson(new Map<String, dynamic>.from(json['Todo']['serializedData']))
-        : null;
+        : null,
+      _createdAt = json['createdAt'] != null ? TemporalDateTime.fromString(json['createdAt']) : null,
+      _updatedAt = json['updatedAt'] != null ? TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'uuid': _uuid, 'date': _date?.format(), 'time': _time?.format(), 'status': enumToString(_status), 'todoID': _todoID, 'Todo': _Todo?.toJson()
+    'id': id, 'uuid': _uuid, 'date': _date?.format(), 'time': _time?.format(), 'status': enumToString(_status), 'todoID': _todoID, 'Todo': _Todo?.toJson(), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
 
   static final QueryField ID = QueryField(fieldName: "reminder.id");
@@ -215,6 +229,7 @@ class Reminder extends Model {
         authStrategy: AuthStrategy.OWNER,
         ownerField: "owner",
         identityClaim: "cognito:username",
+        provider: AuthRuleProvider.USERPOOLS,
         operations: [
           ModelOperation.CREATE,
           ModelOperation.UPDATE,
@@ -260,6 +275,20 @@ class Reminder extends Model {
       isRequired: false,
       targetName: "todoRemindersId",
       ofModelName: (Todo).toString()
+    ));
+    
+    modelSchemaDefinition.addField(ModelFieldDefinition.nonQueryField(
+      fieldName: 'createdAt',
+      isRequired: false,
+      isReadOnly: true,
+      ofType: ModelFieldType(ModelFieldTypeEnum.dateTime)
+    ));
+    
+    modelSchemaDefinition.addField(ModelFieldDefinition.nonQueryField(
+      fieldName: 'updatedAt',
+      isRequired: false,
+      isReadOnly: true,
+      ofType: ModelFieldType(ModelFieldTypeEnum.dateTime)
     ));
   });
 }

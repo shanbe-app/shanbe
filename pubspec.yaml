@@ -63,6 +63,9 @@ dependencies:
   flutter_platform_widgets: ^1.20.0
   fluttericon: ^2.0.0
   crypto: ^3.0.2
+  amplify_flutter: ^0.4.5
+  amplify_datastore: ^0.4.5
+  amplify_auth_cognito: ^0.4.5
 
 dev_dependencies:
   flutter_test:

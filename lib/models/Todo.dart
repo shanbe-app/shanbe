@@ -20,7 +20,7 @@
 // ignore_for_file: public_member_api_docs, annotate_overrides, dead_code, dead_codepublic_member_api_docs, depend_on_referenced_packages, file_names, library_private_types_in_public_api, no_leading_underscores_for_library_prefixes, no_leading_underscores_for_local_identifiers, non_constant_identifier_names, null_check_on_nullable_type_parameter, prefer_adjacent_string_concatenation, prefer_const_constructors, prefer_if_null_operators, prefer_interpolation_to_compose_strings, slash_for_doc_comments, sort_child_properties_last, unnecessary_const, unnecessary_constructor_name, unnecessary_late, unnecessary_new, unnecessary_null_aware_assignments, unnecessary_nullable_for_final_variable_declarations, unnecessary_string_interpolations, use_build_context_synchronously
 
 import 'ModelProvider.dart';
-import 'package:amplify_datastore_plugin_interface/amplify_datastore_plugin_interface.dart';
+import 'package:amplify_core/amplify_core.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 
@@ -47,6 +47,7 @@ class Todo extends Model {
   final String? _projectID;
   final Project? _Project;
   final List<TagTodo>? _Tags;
+  final TemporalDateTime? _updatedAt;
 
   @override
   getInstanceType() => classType;
@@ -60,10 +61,10 @@ class Todo extends Model {
     try {
       return _uuid!;
     } catch(e) {
-      throw new DataStoreException(
-          DataStoreExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+      throw new AmplifyCodeGenModelException(
+          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
           recoverySuggestion:
-            DataStoreExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
           underlyingException: e.toString()
           );
     }
@@ -73,10 +74,10 @@ class Todo extends Model {
     try {
       return _title!;
     } catch(e) {
-      throw new DataStoreException(
-          DataStoreExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+      throw new AmplifyCodeGenModelException(
+          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
           recoverySuggestion:
-            DataStoreExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
           underlyingException: e.toString()
           );
     }
@@ -106,10 +107,10 @@ class Todo extends Model {
     try {
       return _createdAt!;
     } catch(e) {
-      throw new DataStoreException(
-          DataStoreExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+      throw new AmplifyCodeGenModelException(
+          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
           recoverySuggestion:
-            DataStoreExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
           underlyingException: e.toString()
           );
     }
@@ -143,10 +144,10 @@ class Todo extends Model {
     try {
       return _projectID!;
     } catch(e) {
-      throw new DataStoreException(
-          DataStoreExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+      throw new AmplifyCodeGenModelException(
+          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
           recoverySuggestion:
-            DataStoreExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
           underlyingException: e.toString()
           );
     }
@@ -160,7 +161,11 @@ class Todo extends Model {
     return _Tags;
   }
   
-  const Todo._internal({required this.id, required uuid, required title, description, done, dueDate, dueTime, endDate, required createdAt, priority, repeatType, repeatInterval, doneRepeat, deletedAt, Reminders, required projectID, Project, Tags}): _uuid = uuid, _title = title, _description = description, _done = done, _dueDate = dueDate, _dueTime = dueTime, _endDate = endDate, _createdAt = createdAt, _priority = priority, _repeatType = repeatType, _repeatInterval = repeatInterval, _doneRepeat = doneRepeat, _deletedAt = deletedAt, _Reminders = Reminders, _projectID = projectID, _Project = Project, _Tags = Tags;
+  TemporalDateTime? get updatedAt {
+    return _updatedAt;
+  }
+  
+  const Todo._internal({required this.id, required uuid, required title, description, done, dueDate, dueTime, endDate, required createdAt, priority, repeatType, repeatInterval, doneRepeat, deletedAt, Reminders, required projectID, Project, Tags, updatedAt}): _uuid = uuid, _title = title, _description = description, _done = done, _dueDate = dueDate, _dueTime = dueTime, _endDate = endDate, _createdAt = createdAt, _priority = priority, _repeatType = repeatType, _repeatInterval = repeatInterval, _doneRepeat = doneRepeat, _deletedAt = deletedAt, _Reminders = Reminders, _projectID = projectID, _Project = Project, _Tags = Tags, _updatedAt = updatedAt;
   
   factory Todo({String? id, required String uuid, required String title, String? description, TemporalDateTime? done, TemporalDate? dueDate, TemporalTime? dueTime, TemporalDate? endDate, required TemporalDateTime createdAt, int? priority, RepeatType? repeatType, int? repeatInterval, List<String>? doneRepeat, TemporalDateTime? deletedAt, List<Reminder>? Reminders, required String projectID, Project? Project, List<TagTodo>? Tags}) {
     return Todo._internal(
@@ -235,14 +240,15 @@ class Todo extends Model {
     buffer.write("doneRepeat=" + (_doneRepeat != null ? _doneRepeat!.toString() : "null") + ", ");
     buffer.write("deletedAt=" + (_deletedAt != null ? _deletedAt!.format() : "null") + ", ");
     buffer.write("projectID=" + "$_projectID" + ", ");
-    buffer.write("Project=" + (_Project != null ? _Project!.toString() : "null"));
+    buffer.write("Project=" + (_Project != null ? _Project!.toString() : "null") + ", ");
+    buffer.write("updatedAt=" + (_updatedAt != null ? _updatedAt!.format() : "null"));
     buffer.write("}");
     
     return buffer.toString();
   }
   
   Todo copyWith({String? id, String? uuid, String? title, String? description, TemporalDateTime? done, TemporalDate? dueDate, TemporalTime? dueTime, TemporalDate? endDate, TemporalDateTime? createdAt, int? priority, RepeatType? repeatType, int? repeatInterval, List<String>? doneRepeat, TemporalDateTime? deletedAt, List<Reminder>? Reminders, String? projectID, Project? Project, List<TagTodo>? Tags}) {
-    return Todo(
+    return Todo._internal(
       id: id ?? this.id,
       uuid: uuid ?? this.uuid,
       title: title ?? this.title,
@@ -293,10 +299,11 @@ class Todo extends Model {
           .where((e) => e?['serializedData'] != null)
           .map((e) => TagTodo.fromJson(new Map<String, dynamic>.from(e['serializedData'])))
           .toList()
-        : null;
+        : null,
+      _updatedAt = json['updatedAt'] != null ? TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'uuid': _uuid, 'title': _title, 'description': _description, 'done': _done?.format(), 'dueDate': _dueDate?.format(), 'dueTime': _dueTime?.format(), 'endDate': _endDate?.format(), 'createdAt': _createdAt?.format(), 'priority': _priority, 'repeatType': enumToString(_repeatType), 'repeatInterval': _repeatInterval, 'doneRepeat': _doneRepeat, 'deletedAt': _deletedAt?.format(), 'Reminders': _Reminders?.map((Reminder? e) => e?.toJson()).toList(), 'projectID': _projectID, 'Project': _Project?.toJson(), 'Tags': _Tags?.map((TagTodo? e) => e?.toJson()).toList()
+    'id': id, 'uuid': _uuid, 'title': _title, 'description': _description, 'done': _done?.format(), 'dueDate': _dueDate?.format(), 'dueTime': _dueTime?.format(), 'endDate': _endDate?.format(), 'createdAt': _createdAt?.format(), 'priority': _priority, 'repeatType': enumToString(_repeatType), 'repeatInterval': _repeatInterval, 'doneRepeat': _doneRepeat, 'deletedAt': _deletedAt?.format(), 'Reminders': _Reminders?.map((Reminder? e) => e?.toJson()).toList(), 'projectID': _projectID, 'Project': _Project?.toJson(), 'Tags': _Tags?.map((TagTodo? e) => e?.toJson()).toList(), 'updatedAt': _updatedAt?.format()
   };
 
   static final QueryField ID = QueryField(fieldName: "todo.id");
@@ -340,6 +347,7 @@ class Todo extends Model {
         authStrategy: AuthStrategy.OWNER,
         ownerField: "owner",
         identityClaim: "cognito:username",
+        provider: AuthRuleProvider.USERPOOLS,
         operations: [
           ModelOperation.CREATE,
           ModelOperation.UPDATE,
@@ -454,6 +462,13 @@ class Todo extends Model {
       isRequired: false,
       ofModelName: (TagTodo).toString(),
       associatedKey: TagTodo.TODO
+    ));
+    
+    modelSchemaDefinition.addField(ModelFieldDefinition.nonQueryField(
+      fieldName: 'updatedAt',
+      isRequired: false,
+      isReadOnly: true,
+      ofType: ModelFieldType(ModelFieldTypeEnum.dateTime)
     ));
   });
 }

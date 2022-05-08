@@ -119,7 +119,7 @@
     }
   },
   "Resources": {
-    "TagTodoTable": {
+    "TodoTagTable": {
       "Type": "AWS::DynamoDB::Table",
       "Properties": {
         "KeySchema": [
@@ -252,7 +252,7 @@
           "Fn::Join": [
             "",
             [
-              "TagTodo-",
+              "TodoTag-",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
@@ -271,7 +271,7 @@
       "UpdateReplacePolicy": "Delete",
       "DeletionPolicy": "Delete"
     },
-    "TagTodoIAMRole371E4845": {
+    "TodoTagIAMRole29C4DB5A": {
       "Type": "AWS::IAM::Role",
       "Properties": {
         "AssumeRolePolicyDocument": {
@@ -290,7 +290,7 @@
           "Fn::Join": [
             "",
             [
-              "TagTodoIAMRolef4aedd-",
+              "TodoTagIAMRolea9a7e5-",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
@@ -303,7 +303,7 @@
         }
       }
     },
-    "TagTodoIAMRoleDefaultPolicy5CDF555C": {
+    "TodoTagIAMRoleDefaultPolicyB87FF40B": {
       "Type": "AWS::IAM::Policy",
       "Properties": {
         "PolicyDocument": {
@@ -326,7 +326,7 @@
               "Resource": [
                 {
                   "Fn::GetAtt": [
-                    "TagTodoTable",
+                    "TodoTagTable",
                     "Arn"
                   ]
                 },
@@ -336,7 +336,7 @@
                     [
                       {
                         "Fn::GetAtt": [
-                          "TagTodoTable",
+                          "TodoTagTable",
                           "Arn"
                         ]
                       },
@@ -349,10 +349,10 @@
           ],
           "Version": "2012-10-17"
         },
-        "PolicyName": "TagTodoIAMRoleDefaultPolicy5CDF555C",
+        "PolicyName": "TodoTagIAMRoleDefaultPolicyB87FF40B",
         "Roles": [
           {
-            "Ref": "TagTodoIAMRole371E4845"
+            "Ref": "TodoTagIAMRole29C4DB5A"
           }
         ]
       }
@@ -383,7 +383,7 @@
                         "Fn::Join": [
                           "",
                           [
-                            "TagTodo-",
+                            "TodoTag-",
                             {
                               "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
                             },
@@ -405,7 +405,7 @@
                         "Fn::Join": [
                           "",
                           [
-                            "TagTodo-",
+                            "TodoTag-",
                             {
                               "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
                             },
@@ -471,18 +471,18 @@
         "PolicyName": "DynamoDBAccess71ABE5AE",
         "Roles": [
           {
-            "Ref": "TagTodoIAMRole371E4845"
+            "Ref": "TodoTagIAMRole29C4DB5A"
           }
         ]
       }
     },
-    "TagTodoDataSource": {
+    "TodoTagDataSource": {
       "Type": "AWS::AppSync::DataSource",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "Name": "TagTodoTable",
+        "Name": "TodoTagTable",
         "Type": "AMAZON_DYNAMODB",
         "DynamoDBConfig": {
           "AwsRegion": {
@@ -508,22 +508,22 @@
             "DeltaSyncTableTTL": "30"
           },
           "TableName": {
-            "Ref": "TagTodoTable"
+            "Ref": "TodoTagTable"
           },
           "Versioned": true
         },
         "ServiceRoleArn": {
           "Fn::GetAtt": [
-            "TagTodoIAMRole371E4845",
+            "TodoTagIAMRole29C4DB5A",
             "Arn"
           ]
         }
       },
       "DependsOn": [
-        "TagTodoIAMRole371E4845"
+        "TodoTagIAMRole29C4DB5A"
       ]
     },
-    "QueryGetTagTodoDataResolverFnQueryGetTagTodoDataResolverFnAppSyncFunctionD1F953D7": {
+    "QueryGetTodoTagDataResolverFnQueryGetTodoTagDataResolverFnAppSyncFunction6BB7D84D": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -531,12 +531,12 @@
         },
         "DataSourceName": {
           "Fn::GetAtt": [
-            "TagTodoDataSource",
+            "TodoTagDataSource",
             "Name"
           ]
         },
         "FunctionVersion": "2018-05-29",
-        "Name": "QueryGetTagTodoDataResolverFn",
+        "Name": "QueryGetTodoTagDataResolverFn",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
             "",
@@ -549,7 +549,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Query.getTagTodo.req.vtl"
+              "/resolvers/Query.getTodoTag.req.vtl"
             ]
           ]
         },
@@ -565,7 +565,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Query.getTagTodo.res.vtl"
+              "/resolvers/Query.getTodoTag.res.vtl"
             ]
           ]
         },
@@ -575,16 +575,16 @@
         }
       },
       "DependsOn": [
-        "TagTodoDataSource"
+        "TodoTagDataSource"
       ]
     },
-    "GetTagTodoResolver": {
+    "GetTodoTagResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "getTagTodo",
+        "FieldName": "getTodoTag",
         "TypeName": "Query",
         "Kind": "PIPELINE",
         "PipelineConfig": {
@@ -597,7 +597,7 @@
             },
             {
               "Fn::GetAtt": [
-                "QueryGetTagTodoDataResolverFnQueryGetTagTodoDataResolverFnAppSyncFunctionD1F953D7",
+                "QueryGetTodoTagDataResolverFnQueryGetTodoTagDataResolverFnAppSyncFunction6BB7D84D",
                 "FunctionId"
               ]
             }
@@ -607,13 +607,13 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"getTagTodo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"getTodoTag\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
               "\"))\n$util.qr($ctx.stash.put(\"tableName\", \"",
               {
-                "Ref": "TagTodoTable"
+                "Ref": "TodoTagTable"
               },
               "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
               {
@@ -638,7 +638,7 @@
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
       }
     },
-    "QueryListTagTodosDataResolverFnQueryListTagTodosDataResolverFnAppSyncFunction37E6797B": {
+    "QueryListTodoTagsDataResolverFnQueryListTodoTagsDataResolverFnAppSyncFunction71413607": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -646,12 +646,12 @@
         },
         "DataSourceName": {
           "Fn::GetAtt": [
-            "TagTodoDataSource",
+            "TodoTagDataSource",
             "Name"
           ]
         },
         "FunctionVersion": "2018-05-29",
-        "Name": "QueryListTagTodosDataResolverFn",
+        "Name": "QueryListTodoTagsDataResolverFn",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
             "",
@@ -664,7 +664,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Query.listTagTodos.req.vtl"
+              "/resolvers/Query.listTodoTags.req.vtl"
             ]
           ]
         },
@@ -680,7 +680,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Query.listTagTodos.res.vtl"
+              "/resolvers/Query.listTodoTags.res.vtl"
             ]
           ]
         },
@@ -690,16 +690,16 @@
         }
       },
       "DependsOn": [
-        "TagTodoDataSource"
+        "TodoTagDataSource"
       ]
     },
-    "ListTagTodoResolver": {
+    "ListTodoTagResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "listTagTodos",
+        "FieldName": "listTodoTags",
         "TypeName": "Query",
         "Kind": "PIPELINE",
         "PipelineConfig": {
@@ -712,7 +712,7 @@
             },
             {
               "Fn::GetAtt": [
-                "QueryListTagTodosDataResolverFnQueryListTagTodosDataResolverFnAppSyncFunction37E6797B",
+                "QueryListTodoTagsDataResolverFnQueryListTodoTagsDataResolverFnAppSyncFunction71413607",
                 "FunctionId"
               ]
             }
@@ -722,13 +722,13 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"listTagTodos\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"listTodoTags\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
               "\"))\n$util.qr($ctx.stash.put(\"tableName\", \"",
               {
-                "Ref": "TagTodoTable"
+                "Ref": "TodoTagTable"
               },
               "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
               {
@@ -753,7 +753,7 @@
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
       }
     },
-    "QuerysyncTagTodospreAuth0FunctionQuerysyncTagTodospreAuth0FunctionAppSyncFunctionC7B7CCD6": {
+    "QuerysyncTodoTagspreAuth0FunctionQuerysyncTodoTagspreAuth0FunctionAppSyncFunction15A1B21A": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -761,12 +761,12 @@
         },
         "DataSourceName": {
           "Fn::GetAtt": [
-            "TagTodoDataSource",
+            "TodoTagDataSource",
             "Name"
           ]
         },
         "FunctionVersion": "2018-05-29",
-        "Name": "QuerysyncTagTodospreAuth0Function",
+        "Name": "QuerysyncTodoTagspreAuth0Function",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
             "",
@@ -779,17 +779,17 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Query.syncTagTodos.preAuth.1.req.vtl"
+              "/resolvers/Query.syncTodoTags.preAuth.1.req.vtl"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson({})"
       },
       "DependsOn": [
-        "TagTodoDataSource"
+        "TodoTagDataSource"
       ]
     },
-    "QuerySyncTagTodosDataResolverFnQuerySyncTagTodosDataResolverFnAppSyncFunctionFF1166BE": {
+    "QuerySyncTodoTagsDataResolverFnQuerySyncTodoTagsDataResolverFnAppSyncFunction449BF318": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -797,12 +797,12 @@
         },
         "DataSourceName": {
           "Fn::GetAtt": [
-            "TagTodoDataSource",
+            "TodoTagDataSource",
             "Name"
           ]
         },
         "FunctionVersion": "2018-05-29",
-        "Name": "QuerySyncTagTodosDataResolverFn",
+        "Name": "QuerySyncTodoTagsDataResolverFn",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
             "",
@@ -815,7 +815,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Query.syncTagTodos.req.vtl"
+              "/resolvers/Query.syncTodoTags.req.vtl"
             ]
           ]
         },
@@ -831,7 +831,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Query.syncTagTodos.res.vtl"
+              "/resolvers/Query.syncTodoTags.res.vtl"
             ]
           ]
         },
@@ -841,23 +841,23 @@
         }
       },
       "DependsOn": [
-        "TagTodoDataSource"
+        "TodoTagDataSource"
       ]
     },
-    "SyncTagTodoResolver": {
+    "SyncTodoTagResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "syncTagTodos",
+        "FieldName": "syncTodoTags",
         "TypeName": "Query",
         "Kind": "PIPELINE",
         "PipelineConfig": {
           "Functions": [
             {
               "Fn::GetAtt": [
-                "QuerysyncTagTodospreAuth0FunctionQuerysyncTagTodospreAuth0FunctionAppSyncFunctionC7B7CCD6",
+                "QuerysyncTodoTagspreAuth0FunctionQuerysyncTodoTagspreAuth0FunctionAppSyncFunction15A1B21A",
                 "FunctionId"
               ]
             },
@@ -869,7 +869,7 @@
             },
             {
               "Fn::GetAtt": [
-                "QuerySyncTagTodosDataResolverFnQuerySyncTagTodosDataResolverFnAppSyncFunctionFF1166BE",
+                "QuerySyncTodoTagsDataResolverFnQuerySyncTodoTagsDataResolverFnAppSyncFunction449BF318",
                 "FunctionId"
               ]
             }
@@ -879,13 +879,13 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"syncTagTodos\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"syncTodoTags\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
               "\"))\n$util.qr($ctx.stash.put(\"tableName\", \"",
               {
-                "Ref": "TagTodoTable"
+                "Ref": "TodoTagTable"
               },
               "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
               {
@@ -910,7 +910,7 @@
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
       }
     },
-    "MutationcreateTagTodoauth0FunctionMutationcreateTagTodoauth0FunctionAppSyncFunctionA93909AE": {
+    "MutationcreateTodoTagauth0FunctionMutationcreateTodoTagauth0FunctionAppSyncFunctionD7CD1D53": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -920,7 +920,7 @@
           "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
         },
         "FunctionVersion": "2018-05-29",
-        "Name": "MutationcreateTagTodoauth0Function",
+        "Name": "MutationcreateTodoTagauth0Function",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
             "",
@@ -933,14 +933,14 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.createTagTodo.auth.1.req.vtl"
+              "/resolvers/Mutation.createTodoTag.auth.1.req.vtl"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson({})"
       }
     },
-    "MutationCreateTagTodoDataResolverFnMutationCreateTagTodoDataResolverFnAppSyncFunction8FB519EB": {
+    "MutationCreateTodoTagDataResolverFnMutationCreateTodoTagDataResolverFnAppSyncFunction43C2643F": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -948,12 +948,12 @@
         },
         "DataSourceName": {
           "Fn::GetAtt": [
-            "TagTodoDataSource",
+            "TodoTagDataSource",
             "Name"
           ]
         },
         "FunctionVersion": "2018-05-29",
-        "Name": "MutationCreateTagTodoDataResolverFn",
+        "Name": "MutationCreateTodoTagDataResolverFn",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
             "",
@@ -966,7 +966,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.createTagTodo.req.vtl"
+              "/resolvers/Mutation.createTodoTag.req.vtl"
             ]
           ]
         },
@@ -982,7 +982,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.createTagTodo.res.vtl"
+              "/resolvers/Mutation.createTodoTag.res.vtl"
             ]
           ]
         },
@@ -992,16 +992,16 @@
         }
       },
       "DependsOn": [
-        "TagTodoDataSource"
+        "TodoTagDataSource"
       ]
     },
-    "CreateTagTodoResolver": {
+    "CreateTodoTagResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "createTagTodo",
+        "FieldName": "createTodoTag",
         "TypeName": "Mutation",
         "Kind": "PIPELINE",
         "PipelineConfig": {
@@ -1011,7 +1011,7 @@
             },
             {
               "Fn::GetAtt": [
-                "MutationcreateTagTodoauth0FunctionMutationcreateTagTodoauth0FunctionAppSyncFunctionA93909AE",
+                "MutationcreateTodoTagauth0FunctionMutationcreateTodoTagauth0FunctionAppSyncFunctionD7CD1D53",
                 "FunctionId"
               ]
             },
@@ -1020,7 +1020,7 @@
             },
             {
               "Fn::GetAtt": [
-                "MutationCreateTagTodoDataResolverFnMutationCreateTagTodoDataResolverFnAppSyncFunction8FB519EB",
+                "MutationCreateTodoTagDataResolverFnMutationCreateTodoTagDataResolverFnAppSyncFunction43C2643F",
                 "FunctionId"
               ]
             }
@@ -1030,13 +1030,13 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"createTagTodo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"createTodoTag\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
               "\"))\n$util.qr($ctx.stash.put(\"tableName\", \"",
               {
-                "Ref": "TagTodoTable"
+                "Ref": "TodoTagTable"
               },
               "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
               {
@@ -1061,7 +1061,7 @@
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
       }
     },
-    "MutationupdateTagTodoauth0FunctionMutationupdateTagTodoauth0FunctionAppSyncFunctionC1C30A13": {
+    "MutationupdateTodoTagauth0FunctionMutationupdateTodoTagauth0FunctionAppSyncFunction1F209E50": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -1069,12 +1069,12 @@
         },
         "DataSourceName": {
           "Fn::GetAtt": [
-            "TagTodoDataSource",
+            "TodoTagDataSource",
             "Name"
           ]
         },
         "FunctionVersion": "2018-05-29",
-        "Name": "MutationupdateTagTodoauth0Function",
+        "Name": "MutationupdateTodoTagauth0Function",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
             "",
@@ -1087,7 +1087,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.updateTagTodo.auth.1.req.vtl"
+              "/resolvers/Mutation.updateTodoTag.auth.1.req.vtl"
             ]
           ]
         },
@@ -1103,16 +1103,16 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.updateTagTodo.auth.1.res.vtl"
+              "/resolvers/Mutation.updateTodoTag.auth.1.res.vtl"
             ]
           ]
         }
       },
       "DependsOn": [
-        "TagTodoDataSource"
+        "TodoTagDataSource"
       ]
     },
-    "MutationUpdateTagTodoDataResolverFnMutationUpdateTagTodoDataResolverFnAppSyncFunction4B1BE560": {
+    "MutationUpdateTodoTagDataResolverFnMutationUpdateTodoTagDataResolverFnAppSyncFunctionB5D0815E": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -1120,12 +1120,12 @@
         },
         "DataSourceName": {
           "Fn::GetAtt": [
-            "TagTodoDataSource",
+            "TodoTagDataSource",
             "Name"
           ]
         },
         "FunctionVersion": "2018-05-29",
-        "Name": "MutationUpdateTagTodoDataResolverFn",
+        "Name": "MutationUpdateTodoTagDataResolverFn",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
             "",
@@ -1138,7 +1138,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.updateTagTodo.req.vtl"
+              "/resolvers/Mutation.updateTodoTag.req.vtl"
             ]
           ]
         },
@@ -1154,7 +1154,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.updateTagTodo.res.vtl"
+              "/resolvers/Mutation.updateTodoTag.res.vtl"
             ]
           ]
         },
@@ -1164,16 +1164,16 @@
         }
       },
       "DependsOn": [
-        "TagTodoDataSource"
+        "TodoTagDataSource"
       ]
     },
-    "UpdateTagTodoResolver": {
+    "UpdateTodoTagResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "updateTagTodo",
+        "FieldName": "updateTodoTag",
         "TypeName": "Mutation",
         "Kind": "PIPELINE",
         "PipelineConfig": {
@@ -1183,7 +1183,7 @@
             },
             {
               "Fn::GetAtt": [
-                "MutationupdateTagTodoauth0FunctionMutationupdateTagTodoauth0FunctionAppSyncFunctionC1C30A13",
+                "MutationupdateTodoTagauth0FunctionMutationupdateTodoTagauth0FunctionAppSyncFunction1F209E50",
                 "FunctionId"
               ]
             },
@@ -1192,7 +1192,7 @@
             },
             {
               "Fn::GetAtt": [
-                "MutationUpdateTagTodoDataResolverFnMutationUpdateTagTodoDataResolverFnAppSyncFunction4B1BE560",
+                "MutationUpdateTodoTagDataResolverFnMutationUpdateTodoTagDataResolverFnAppSyncFunctionB5D0815E",
                 "FunctionId"
               ]
             }
@@ -1202,13 +1202,13 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"updateTagTodo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"updateTodoTag\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
               "\"))\n$util.qr($ctx.stash.put(\"tableName\", \"",
               {
-                "Ref": "TagTodoTable"
+                "Ref": "TodoTagTable"
               },
               "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
               {
@@ -1233,7 +1233,7 @@
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
       }
     },
-    "MutationdeleteTagTodoauth0FunctionMutationdeleteTagTodoauth0FunctionAppSyncFunction39147A9C": {
+    "MutationdeleteTodoTagauth0FunctionMutationdeleteTodoTagauth0FunctionAppSyncFunction16A6EFFE": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -1241,12 +1241,12 @@
         },
         "DataSourceName": {
           "Fn::GetAtt": [
-            "TagTodoDataSource",
+            "TodoTagDataSource",
             "Name"
           ]
         },
         "FunctionVersion": "2018-05-29",
-        "Name": "MutationdeleteTagTodoauth0Function",
+        "Name": "MutationdeleteTodoTagauth0Function",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
             "",
@@ -1259,7 +1259,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.deleteTagTodo.auth.1.req.vtl"
+              "/resolvers/Mutation.deleteTodoTag.auth.1.req.vtl"
             ]
           ]
         },
@@ -1275,16 +1275,16 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.deleteTagTodo.auth.1.res.vtl"
+              "/resolvers/Mutation.deleteTodoTag.auth.1.res.vtl"
             ]
           ]
         }
       },
       "DependsOn": [
-        "TagTodoDataSource"
+        "TodoTagDataSource"
       ]
     },
-    "MutationDeleteTagTodoDataResolverFnMutationDeleteTagTodoDataResolverFnAppSyncFunction15C05903": {
+    "MutationDeleteTodoTagDataResolverFnMutationDeleteTodoTagDataResolverFnAppSyncFunctionEB2C5E02": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -1292,12 +1292,12 @@
         },
         "DataSourceName": {
           "Fn::GetAtt": [
-            "TagTodoDataSource",
+            "TodoTagDataSource",
             "Name"
           ]
         },
         "FunctionVersion": "2018-05-29",
-        "Name": "MutationDeleteTagTodoDataResolverFn",
+        "Name": "MutationDeleteTodoTagDataResolverFn",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
             "",
@@ -1310,7 +1310,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.deleteTagTodo.req.vtl"
+              "/resolvers/Mutation.deleteTodoTag.req.vtl"
             ]
           ]
         },
@@ -1326,7 +1326,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Mutation.deleteTagTodo.res.vtl"
+              "/resolvers/Mutation.deleteTodoTag.res.vtl"
             ]
           ]
         },
@@ -1336,23 +1336,23 @@
         }
       },
       "DependsOn": [
-        "TagTodoDataSource"
+        "TodoTagDataSource"
       ]
     },
-    "DeleteTagTodoResolver": {
+    "DeleteTodoTagResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "deleteTagTodo",
+        "FieldName": "deleteTodoTag",
         "TypeName": "Mutation",
         "Kind": "PIPELINE",
         "PipelineConfig": {
           "Functions": [
             {
               "Fn::GetAtt": [
-                "MutationdeleteTagTodoauth0FunctionMutationdeleteTagTodoauth0FunctionAppSyncFunction39147A9C",
+                "MutationdeleteTodoTagauth0FunctionMutationdeleteTodoTagauth0FunctionAppSyncFunction16A6EFFE",
                 "FunctionId"
               ]
             },
@@ -1361,7 +1361,7 @@
             },
             {
               "Fn::GetAtt": [
-                "MutationDeleteTagTodoDataResolverFnMutationDeleteTagTodoDataResolverFnAppSyncFunction15C05903",
+                "MutationDeleteTodoTagDataResolverFnMutationDeleteTodoTagDataResolverFnAppSyncFunctionEB2C5E02",
                 "FunctionId"
               ]
             }
@@ -1371,13 +1371,13 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"deleteTagTodo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"deleteTodoTag\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
               "\"))\n$util.qr($ctx.stash.put(\"tableName\", \"",
               {
-                "Ref": "TagTodoTable"
+                "Ref": "TodoTagTable"
               },
               "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
               {
@@ -1402,13 +1402,13 @@
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
       }
     },
-    "SubscriptiononCreateTagTodoResolver": {
+    "SubscriptiononCreateTodoTagResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "onCreateTagTodo",
+        "FieldName": "onCreateTodoTag",
         "TypeName": "Subscription",
         "Kind": "PIPELINE",
         "PipelineConfig": {
@@ -1428,7 +1428,7 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onCreateTagTodo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onCreateTodoTag\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
@@ -1455,13 +1455,13 @@
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
       }
     },
-    "SubscriptiononUpdateTagTodoResolver": {
+    "SubscriptiononUpdateTodoTagResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "onUpdateTagTodo",
+        "FieldName": "onUpdateTodoTag",
         "TypeName": "Subscription",
         "Kind": "PIPELINE",
         "PipelineConfig": {
@@ -1481,7 +1481,7 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onUpdateTagTodo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onUpdateTodoTag\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
@@ -1508,13 +1508,13 @@
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
       }
     },
-    "SubscriptiononDeleteTagTodoResolver": {
+    "SubscriptiononDeleteTodoTagResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "onDeleteTagTodo",
+        "FieldName": "onDeleteTodoTag",
         "TypeName": "Subscription",
         "Kind": "PIPELINE",
         "PipelineConfig": {
@@ -1534,7 +1534,7 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onDeleteTagTodo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onDeleteTodoTag\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
@@ -1561,14 +1561,14 @@
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
       }
     },
-    "TagTodoownerResolver": {
+    "TodoTagownerResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
         "FieldName": "owner",
-        "TypeName": "TagTodo",
+        "TypeName": "TodoTag",
         "Kind": "PIPELINE",
         "PipelineConfig": {
           "Functions": [
@@ -1581,7 +1581,7 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"TagTodo\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"owner\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"TodoTag\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"owner\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
@@ -1610,11 +1610,11 @@
     }
   },
   "Outputs": {
-    "GetAttTagTodoTableStreamArn": {
+    "GetAttTodoTagTableStreamArn": {
       "Description": "Your DynamoDB table StreamArn.",
       "Value": {
         "Fn::GetAtt": [
-          "TagTodoTable",
+          "TodoTagTable",
           "StreamArn"
         ]
       },
@@ -1626,16 +1626,16 @@
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
-              "GetAtt:TagTodoTable:StreamArn"
+              "GetAtt:TodoTagTable:StreamArn"
             ]
           ]
         }
       }
     },
-    "GetAttTagTodoTableName": {
+    "GetAttTodoTagTableName": {
       "Description": "Your DynamoDB table name.",
       "Value": {
-        "Ref": "TagTodoTable"
+        "Ref": "TodoTagTable"
       },
       "Export": {
         "Name": {
@@ -1645,17 +1645,17 @@
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
-              "GetAtt:TagTodoTable:Name"
+              "GetAtt:TodoTagTable:Name"
             ]
           ]
         }
       }
     },
-    "GetAttTagTodoDataSourceName": {
+    "GetAttTodoTagDataSourceName": {
       "Description": "Your model DataSource name.",
       "Value": {
         "Fn::GetAtt": [
-          "TagTodoDataSource",
+          "TodoTagDataSource",
           "Name"
         ]
       },
@@ -1667,23 +1667,23 @@
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
-              "GetAtt:TagTodoDataSource:Name"
+              "GetAtt:TodoTagDataSource:Name"
             ]
           ]
         }
       }
     },
-    "transformerrootstackTagTodoTagTodoDataSourceAC68D5B2Name": {
+    "transformerrootstackTodoTagTodoTagDataSourceE85006FEName": {
       "Value": {
         "Fn::GetAtt": [
-          "TagTodoDataSource",
+          "TodoTagDataSource",
           "Name"
         ]
       }
     },
-    "transformerrootstackTagTodoTagTodoTableC6636DE0Ref": {
+    "transformerrootstackTodoTagTodoTagTable3DD45F99Ref": {
       "Value": {
-        "Ref": "TagTodoTable"
+        "Ref": "TodoTagTable"
       }
     }
   }

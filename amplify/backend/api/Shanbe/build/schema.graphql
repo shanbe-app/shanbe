@@ -15,12 +15,11 @@ enum RepeatType {
 
 type Reminder @aws_api_key @aws_iam @aws_cognito_user_pools {
   id: ID!
-  uuid: String!
   date: AWSDate!
   time: AWSTime!
   status: ReminderStatus!
   todoID: ID!
-  Todo: Todo
+  todo: Todo
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!
   _version: Int!
@@ -31,10 +30,9 @@ type Reminder @aws_api_key @aws_iam @aws_cognito_user_pools {
 
 type Tag @aws_api_key @aws_iam @aws_cognito_user_pools {
   id: ID!
-  uuid: String!
   name: String!
   color: String
-  Todos(filter: ModelTagTodoFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelTagTodoConnection
+  todos(filter: ModelTodoTagFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelTodoTagConnection
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!
   _version: Int!
@@ -45,12 +43,11 @@ type Tag @aws_api_key @aws_iam @aws_cognito_user_pools {
 
 type Project @aws_api_key @aws_iam @aws_cognito_user_pools {
   id: ID!
-  uuid: String!
   name: String!
   emoji: String
   color: String
   cover: String
-  Todos(filter: ModelTodoFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelTodoConnection
+  todos(filter: ModelTodoFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelTodoConnection
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!
   _version: Int!
@@ -61,7 +58,6 @@ type Project @aws_api_key @aws_iam @aws_cognito_user_pools {
 
 type Todo @aws_api_key @aws_iam @aws_cognito_user_pools {
   id: ID!
-  uuid: String!
   title: String!
   description: String
   done: AWSDateTime
@@ -74,10 +70,10 @@ type Todo @aws_api_key @aws_iam @aws_cognito_user_pools {
   repeatInterval: Int
   doneRepeat: [AWSJSON]
   deletedAt: AWSDateTime
-  Reminders(filter: ModelReminderFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelReminderConnection
+  reminders(filter: ModelReminderFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelReminderConnection
   projectID: ID!
-  Project: Project
-  Tags(filter: ModelTagTodoFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelTagTodoConnection
+  project: Project
+  tags(filter: ModelTodoTagFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelTodoTagConnection
   updatedAt: AWSDateTime!
   _version: Int!
   _deleted: Boolean
@@ -85,7 +81,7 @@ type Todo @aws_api_key @aws_iam @aws_cognito_user_pools {
   owner: String
 }
 
-type TagTodo @aws_api_key @aws_iam @aws_cognito_user_pools {
+type TodoTag @aws_api_key @aws_iam @aws_cognito_user_pools {
   id: ID!
   tagID: ID!
   todoID: ID!
@@ -203,7 +199,6 @@ input ModelReminderStatusInput {
 
 input ModelReminderFilterInput {
   id: ModelIDInput
-  uuid: ModelStringInput
   date: ModelStringInput
   time: ModelStringInput
   status: ModelReminderStatusInput
@@ -226,13 +221,12 @@ type Query {
   getTodo(id: ID!): Todo @aws_api_key @aws_iam @aws_cognito_user_pools
   listTodos(filter: ModelTodoFilterInput, limit: Int, nextToken: String): ModelTodoConnection @aws_api_key @aws_iam @aws_cognito_user_pools
   syncTodos(filter: ModelTodoFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelTodoConnection @aws_api_key @aws_iam @aws_cognito_user_pools
-  getTagTodo(id: ID!): TagTodo @aws_api_key @aws_iam @aws_cognito_user_pools
-  listTagTodos(filter: ModelTagTodoFilterInput, limit: Int, nextToken: String): ModelTagTodoConnection @aws_api_key @aws_iam @aws_cognito_user_pools
-  syncTagTodos(filter: ModelTagTodoFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelTagTodoConnection @aws_api_key @aws_iam @aws_cognito_user_pools
+  getTodoTag(id: ID!): TodoTag @aws_api_key @aws_iam @aws_cognito_user_pools
+  listTodoTags(filter: ModelTodoTagFilterInput, limit: Int, nextToken: String): ModelTodoTagConnection @aws_api_key @aws_iam @aws_cognito_user_pools
+  syncTodoTags(filter: ModelTodoTagFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelTodoTagConnection @aws_api_key @aws_iam @aws_cognito_user_pools
 }
 
 input ModelReminderConditionInput {
-  uuid: ModelStringInput
   date: ModelStringInput
   time: ModelStringInput
   status: ModelReminderStatusInput
@@ -244,7 +238,6 @@ input ModelReminderConditionInput {
 
 input CreateReminderInput {
   id: ID
-  uuid: String!
   date: AWSDate!
   time: AWSTime!
   status: ReminderStatus!
@@ -254,7 +247,6 @@ input CreateReminderInput {
 
 input UpdateReminderInput {
   id: ID!
-  uuid: String
   date: AWSDate
   time: AWSTime
   status: ReminderStatus
@@ -280,9 +272,9 @@ type Mutation {
   createTodo(input: CreateTodoInput!, condition: ModelTodoConditionInput): Todo @aws_api_key @aws_iam @aws_cognito_user_pools
   updateTodo(input: UpdateTodoInput!, condition: ModelTodoConditionInput): Todo @aws_api_key @aws_iam @aws_cognito_user_pools
   deleteTodo(input: DeleteTodoInput!, condition: ModelTodoConditionInput): Todo @aws_api_key @aws_iam @aws_cognito_user_pools
-  createTagTodo(input: CreateTagTodoInput!, condition: ModelTagTodoConditionInput): TagTodo @aws_api_key @aws_iam @aws_cognito_user_pools
-  updateTagTodo(input: UpdateTagTodoInput!, condition: ModelTagTodoConditionInput): TagTodo @aws_api_key @aws_iam @aws_cognito_user_pools
-  deleteTagTodo(input: DeleteTagTodoInput!, condition: ModelTagTodoConditionInput): TagTodo @aws_api_key @aws_iam @aws_cognito_user_pools
+  createTodoTag(input: CreateTodoTagInput!, condition: ModelTodoTagConditionInput): TodoTag @aws_api_key @aws_iam @aws_cognito_user_pools
+  updateTodoTag(input: UpdateTodoTagInput!, condition: ModelTodoTagConditionInput): TodoTag @aws_api_key @aws_iam @aws_cognito_user_pools
+  deleteTodoTag(input: DeleteTodoTagInput!, condition: ModelTodoTagConditionInput): TodoTag @aws_api_key @aws_iam @aws_cognito_user_pools
 }
 
 type Subscription {
@@ -298,9 +290,9 @@ type Subscription {
   onCreateTodo(owner: String): Todo @aws_subscribe(mutations: ["createTodo"]) @aws_api_key @aws_iam @aws_cognito_user_pools
   onUpdateTodo(owner: String): Todo @aws_subscribe(mutations: ["updateTodo"]) @aws_api_key @aws_iam @aws_cognito_user_pools
   onDeleteTodo(owner: String): Todo @aws_subscribe(mutations: ["deleteTodo"]) @aws_api_key @aws_iam @aws_cognito_user_pools
-  onCreateTagTodo(owner: String): TagTodo @aws_subscribe(mutations: ["createTagTodo"]) @aws_api_key @aws_iam @aws_cognito_user_pools
-  onUpdateTagTodo(owner: String): TagTodo @aws_subscribe(mutations: ["updateTagTodo"]) @aws_api_key @aws_iam @aws_cognito_user_pools
-  onDeleteTagTodo(owner: String): TagTodo @aws_subscribe(mutations: ["deleteTagTodo"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onCreateTodoTag(owner: String): TodoTag @aws_subscribe(mutations: ["createTodoTag"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onUpdateTodoTag(owner: String): TodoTag @aws_subscribe(mutations: ["updateTodoTag"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onDeleteTodoTag(owner: String): TodoTag @aws_subscribe(mutations: ["deleteTodoTag"]) @aws_api_key @aws_iam @aws_cognito_user_pools
 }
 
 type ModelTagConnection @aws_api_key @aws_iam @aws_cognito_user_pools {
@@ -311,7 +303,6 @@ type ModelTagConnection @aws_api_key @aws_iam @aws_cognito_user_pools {
 
 input ModelTagFilterInput {
   id: ModelIDInput
-  uuid: ModelStringInput
   name: ModelStringInput
   color: ModelStringInput
   and: [ModelTagFilterInput]
@@ -320,7 +311,6 @@ input ModelTagFilterInput {
 }
 
 input ModelTagConditionInput {
-  uuid: ModelStringInput
   name: ModelStringInput
   color: ModelStringInput
   and: [ModelTagConditionInput]
@@ -330,7 +320,6 @@ input ModelTagConditionInput {
 
 input CreateTagInput {
   id: ID
-  uuid: String!
   name: String!
   color: String
   _version: Int
@@ -338,7 +327,6 @@ input CreateTagInput {
 
 input UpdateTagInput {
   id: ID!
-  uuid: String
   name: String
   color: String
   _version: Int
@@ -357,7 +345,6 @@ type ModelProjectConnection @aws_api_key @aws_iam @aws_cognito_user_pools {
 
 input ModelProjectFilterInput {
   id: ModelIDInput
-  uuid: ModelStringInput
   name: ModelStringInput
   emoji: ModelStringInput
   color: ModelStringInput
@@ -368,7 +355,6 @@ input ModelProjectFilterInput {
 }
 
 input ModelProjectConditionInput {
-  uuid: ModelStringInput
   name: ModelStringInput
   emoji: ModelStringInput
   color: ModelStringInput
@@ -380,7 +366,6 @@ input ModelProjectConditionInput {
 
 input CreateProjectInput {
   id: ID
-  uuid: String!
   name: String!
   emoji: String
   color: String
@@ -390,7 +375,6 @@ input CreateProjectInput {
 
 input UpdateProjectInput {
   id: ID!
-  uuid: String
   name: String
   emoji: String
   color: String
@@ -416,7 +400,6 @@ input ModelRepeatTypeInput {
 
 input ModelTodoFilterInput {
   id: ModelIDInput
-  uuid: ModelStringInput
   title: ModelStringInput
   description: ModelStringInput
   done: ModelStringInput
@@ -436,7 +419,6 @@ input ModelTodoFilterInput {
 }
 
 input ModelTodoConditionInput {
-  uuid: ModelStringInput
   title: ModelStringInput
   description: ModelStringInput
   done: ModelStringInput
@@ -457,7 +439,6 @@ input ModelTodoConditionInput {
 
 input CreateTodoInput {
   id: ID
-  uuid: String!
   title: String!
   description: String
   done: AWSDateTime
@@ -476,7 +457,6 @@ input CreateTodoInput {
 
 input UpdateTodoInput {
   id: ID!
-  uuid: String
   title: String
   description: String
   done: AWSDateTime
@@ -498,44 +478,44 @@ input DeleteTodoInput {
   _version: Int
 }
 
-type ModelTagTodoConnection @aws_api_key @aws_iam @aws_cognito_user_pools {
-  items: [TagTodo]!
+type ModelTodoTagConnection @aws_api_key @aws_iam @aws_cognito_user_pools {
+  items: [TodoTag]!
   nextToken: String
   startedAt: AWSTimestamp
 }
 
-input ModelTagTodoFilterInput {
+input ModelTodoTagFilterInput {
   id: ModelIDInput
   tagID: ModelIDInput
   todoID: ModelIDInput
-  and: [ModelTagTodoFilterInput]
-  or: [ModelTagTodoFilterInput]
-  not: ModelTagTodoFilterInput
+  and: [ModelTodoTagFilterInput]
+  or: [ModelTodoTagFilterInput]
+  not: ModelTodoTagFilterInput
 }
 
-input ModelTagTodoConditionInput {
+input ModelTodoTagConditionInput {
   tagID: ModelIDInput
   todoID: ModelIDInput
-  and: [ModelTagTodoConditionInput]
-  or: [ModelTagTodoConditionInput]
-  not: ModelTagTodoConditionInput
+  and: [ModelTodoTagConditionInput]
+  or: [ModelTodoTagConditionInput]
+  not: ModelTodoTagConditionInput
 }
 
-input CreateTagTodoInput {
+input CreateTodoTagInput {
   id: ID
   tagID: ID!
   todoID: ID!
   _version: Int
 }
 
-input UpdateTagTodoInput {
+input UpdateTodoTagInput {
   id: ID!
   tagID: ID
   todoID: ID
   _version: Int
 }
 
-input DeleteTagTodoInput {
+input DeleteTodoTagInput {
   id: ID!
   _version: Int
 }

@@ -30,12 +30,11 @@ import 'package:flutter/foundation.dart';
 class Project extends Model {
   static const classType = const _ProjectModelType();
   final String id;
-  final String? _uuid;
   final String? _name;
   final String? _emoji;
   final String? _color;
   final String? _cover;
-  final List<Todo>? _Todos;
+  final List<Todo>? _todos;
   final TemporalDateTime? _createdAt;
   final TemporalDateTime? _updatedAt;
 
@@ -45,19 +44,6 @@ class Project extends Model {
   @override
   String getId() {
     return id;
-  }
-  
-  String get uuid {
-    try {
-      return _uuid!;
-    } catch(e) {
-      throw new AmplifyCodeGenModelException(
-          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
-          recoverySuggestion:
-            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
-          underlyingException: e.toString()
-          );
-    }
   }
   
   String get name {
@@ -85,8 +71,8 @@ class Project extends Model {
     return _cover;
   }
   
-  List<Todo>? get Todos {
-    return _Todos;
+  List<Todo>? get todos {
+    return _todos;
   }
   
   TemporalDateTime? get createdAt {
@@ -97,17 +83,16 @@ class Project extends Model {
     return _updatedAt;
   }
   
-  const Project._internal({required this.id, required uuid, required name, emoji, color, cover, Todos, createdAt, updatedAt}): _uuid = uuid, _name = name, _emoji = emoji, _color = color, _cover = cover, _Todos = Todos, _createdAt = createdAt, _updatedAt = updatedAt;
+  const Project._internal({required this.id, required name, emoji, color, cover, todos, createdAt, updatedAt}): _name = name, _emoji = emoji, _color = color, _cover = cover, _todos = todos, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory Project({String? id, required String uuid, required String name, String? emoji, String? color, String? cover, List<Todo>? Todos}) {
+  factory Project({String? id, required String name, String? emoji, String? color, String? cover, List<Todo>? todos}) {
     return Project._internal(
       id: id == null ? UUID.getUUID() : id,
-      uuid: uuid,
       name: name,
       emoji: emoji,
       color: color,
       cover: cover,
-      Todos: Todos != null ? List<Todo>.unmodifiable(Todos) : Todos);
+      todos: todos != null ? List<Todo>.unmodifiable(todos) : todos);
   }
   
   bool equals(Object other) {
@@ -119,12 +104,11 @@ class Project extends Model {
     if (identical(other, this)) return true;
     return other is Project &&
       id == other.id &&
-      _uuid == other._uuid &&
       _name == other._name &&
       _emoji == other._emoji &&
       _color == other._color &&
       _cover == other._cover &&
-      DeepCollectionEquality().equals(_Todos, other._Todos);
+      DeepCollectionEquality().equals(_todos, other._todos);
   }
   
   @override
@@ -136,7 +120,6 @@ class Project extends Model {
     
     buffer.write("Project {");
     buffer.write("id=" + "$id" + ", ");
-    buffer.write("uuid=" + "$_uuid" + ", ");
     buffer.write("name=" + "$_name" + ", ");
     buffer.write("emoji=" + "$_emoji" + ", ");
     buffer.write("color=" + "$_color" + ", ");
@@ -148,26 +131,24 @@ class Project extends Model {
     return buffer.toString();
   }
   
-  Project copyWith({String? id, String? uuid, String? name, String? emoji, String? color, String? cover, List<Todo>? Todos}) {
+  Project copyWith({String? id, String? name, String? emoji, String? color, String? cover, List<Todo>? todos}) {
     return Project._internal(
       id: id ?? this.id,
-      uuid: uuid ?? this.uuid,
       name: name ?? this.name,
       emoji: emoji ?? this.emoji,
       color: color ?? this.color,
       cover: cover ?? this.cover,
-      Todos: Todos ?? this.Todos);
+      todos: todos ?? this.todos);
   }
   
   Project.fromJson(Map<String, dynamic> json)  
     : id = json['id'],
-      _uuid = json['uuid'],
       _name = json['name'],
       _emoji = json['emoji'],
       _color = json['color'],
       _cover = json['cover'],
-      _Todos = json['Todos'] is List
-        ? (json['Todos'] as List)
+      _todos = json['todos'] is List
+        ? (json['todos'] as List)
           .where((e) => e?['serializedData'] != null)
           .map((e) => Todo.fromJson(new Map<String, dynamic>.from(e['serializedData'])))
           .toList()
@@ -176,17 +157,16 @@ class Project extends Model {
       _updatedAt = json['updatedAt'] != null ? TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'uuid': _uuid, 'name': _name, 'emoji': _emoji, 'color': _color, 'cover': _cover, 'Todos': _Todos?.map((Todo? e) => e?.toJson()).toList(), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
+    'id': id, 'name': _name, 'emoji': _emoji, 'color': _color, 'cover': _cover, 'todos': _todos?.map((Todo? e) => e?.toJson()).toList(), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
 
   static final QueryField ID = QueryField(fieldName: "project.id");
-  static final QueryField UUID = QueryField(fieldName: "uuid");
   static final QueryField NAME = QueryField(fieldName: "name");
   static final QueryField EMOJI = QueryField(fieldName: "emoji");
   static final QueryField COLOR = QueryField(fieldName: "color");
   static final QueryField COVER = QueryField(fieldName: "cover");
   static final QueryField TODOS = QueryField(
-    fieldName: "Todos",
+    fieldName: "todos",
     fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Todo).toString()));
   static var schema = Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
     modelSchemaDefinition.name = "Project";
@@ -215,12 +195,6 @@ class Project extends Model {
     ];
     
     modelSchemaDefinition.addField(ModelFieldDefinition.id());
-    
-    modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Project.UUID,
-      isRequired: true,
-      ofType: ModelFieldType(ModelFieldTypeEnum.string)
-    ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
       key: Project.NAME,

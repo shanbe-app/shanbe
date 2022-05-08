@@ -23,22 +23,22 @@ import 'package:amplify_core/amplify_core.dart';
 import 'Project.dart';
 import 'Reminder.dart';
 import 'Tag.dart';
-import 'TagTodo.dart';
 import 'Todo.dart';
+import 'TodoTag.dart';
 
 export 'Project.dart';
 export 'Reminder.dart';
 export 'ReminderStatus.dart';
 export 'RepeatType.dart';
 export 'Tag.dart';
-export 'TagTodo.dart';
 export 'Todo.dart';
+export 'TodoTag.dart';
 
 class ModelProvider implements ModelProviderInterface {
   @override
-  String version = "d0ca57e8322cbb3ecef802b4d6084d3d";
+  String version = "09931d68ca0017ac28370179ec2c9edb";
   @override
-  List<ModelSchema> modelSchemas = [Project.schema, Reminder.schema, Tag.schema, TagTodo.schema, Todo.schema];
+  List<ModelSchema> modelSchemas = [Project.schema, Reminder.schema, Tag.schema, Todo.schema, TodoTag.schema];
   static final ModelProvider _instance = ModelProvider();
   @override
   List<ModelSchema> customTypeSchemas = [];
@@ -53,10 +53,10 @@ class ModelProvider implements ModelProviderInterface {
         return Reminder.classType;
       case "Tag":
         return Tag.classType;
-      case "TagTodo":
-        return TagTodo.classType;
       case "Todo":
         return Todo.classType;
+      case "TodoTag":
+        return TodoTag.classType;
       default:
         throw Exception("Failed to find model in model provider for model name: " + modelName);
     }

@@ -30,7 +30,6 @@ import 'package:flutter/foundation.dart';
 class Todo extends Model {
   static const classType = const _TodoModelType();
   final String id;
-  final String? _uuid;
   final String? _title;
   final String? _description;
   final TemporalDateTime? _done;
@@ -43,10 +42,10 @@ class Todo extends Model {
   final int? _repeatInterval;
   final List<String>? _doneRepeat;
   final TemporalDateTime? _deletedAt;
-  final List<Reminder>? _Reminders;
+  final List<Reminder>? _reminders;
   final String? _projectID;
-  final Project? _Project;
-  final List<TagTodo>? _Tags;
+  final Project? _project;
+  final List<TodoTag>? _tags;
   final TemporalDateTime? _updatedAt;
 
   @override
@@ -55,19 +54,6 @@ class Todo extends Model {
   @override
   String getId() {
     return id;
-  }
-  
-  String get uuid {
-    try {
-      return _uuid!;
-    } catch(e) {
-      throw new AmplifyCodeGenModelException(
-          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
-          recoverySuggestion:
-            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
-          underlyingException: e.toString()
-          );
-    }
   }
   
   String get title {
@@ -136,8 +122,8 @@ class Todo extends Model {
     return _deletedAt;
   }
   
-  List<Reminder>? get Reminders {
-    return _Reminders;
+  List<Reminder>? get reminders {
+    return _reminders;
   }
   
   String get projectID {
@@ -153,24 +139,23 @@ class Todo extends Model {
     }
   }
   
-  Project? get Project {
-    return _Project;
+  Project? get project {
+    return _project;
   }
   
-  List<TagTodo>? get Tags {
-    return _Tags;
+  List<TodoTag>? get tags {
+    return _tags;
   }
   
   TemporalDateTime? get updatedAt {
     return _updatedAt;
   }
   
-  const Todo._internal({required this.id, required uuid, required title, description, done, dueDate, dueTime, endDate, required createdAt, priority, repeatType, repeatInterval, doneRepeat, deletedAt, Reminders, required projectID, Project, Tags, updatedAt}): _uuid = uuid, _title = title, _description = description, _done = done, _dueDate = dueDate, _dueTime = dueTime, _endDate = endDate, _createdAt = createdAt, _priority = priority, _repeatType = repeatType, _repeatInterval = repeatInterval, _doneRepeat = doneRepeat, _deletedAt = deletedAt, _Reminders = Reminders, _projectID = projectID, _Project = Project, _Tags = Tags, _updatedAt = updatedAt;
+  const Todo._internal({required this.id, required title, description, done, dueDate, dueTime, endDate, required createdAt, priority, repeatType, repeatInterval, doneRepeat, deletedAt, reminders, required projectID, project, tags, updatedAt}): _title = title, _description = description, _done = done, _dueDate = dueDate, _dueTime = dueTime, _endDate = endDate, _createdAt = createdAt, _priority = priority, _repeatType = repeatType, _repeatInterval = repeatInterval, _doneRepeat = doneRepeat, _deletedAt = deletedAt, _reminders = reminders, _projectID = projectID, _project = project, _tags = tags, _updatedAt = updatedAt;
   
-  factory Todo({String? id, required String uuid, required String title, String? description, TemporalDateTime? done, TemporalDate? dueDate, TemporalTime? dueTime, TemporalDate? endDate, required TemporalDateTime createdAt, int? priority, RepeatType? repeatType, int? repeatInterval, List<String>? doneRepeat, TemporalDateTime? deletedAt, List<Reminder>? Reminders, required String projectID, Project? Project, List<TagTodo>? Tags}) {
+  factory Todo({String? id, required String title, String? description, TemporalDateTime? done, TemporalDate? dueDate, TemporalTime? dueTime, TemporalDate? endDate, required TemporalDateTime createdAt, int? priority, RepeatType? repeatType, int? repeatInterval, List<String>? doneRepeat, TemporalDateTime? deletedAt, List<Reminder>? reminders, required String projectID, Project? project, List<TodoTag>? tags}) {
     return Todo._internal(
       id: id == null ? UUID.getUUID() : id,
-      uuid: uuid,
       title: title,
       description: description,
       done: done,
@@ -183,10 +168,10 @@ class Todo extends Model {
       repeatInterval: repeatInterval,
       doneRepeat: doneRepeat != null ? List<String>.unmodifiable(doneRepeat) : doneRepeat,
       deletedAt: deletedAt,
-      Reminders: Reminders != null ? List<Reminder>.unmodifiable(Reminders) : Reminders,
+      reminders: reminders != null ? List<Reminder>.unmodifiable(reminders) : reminders,
       projectID: projectID,
-      Project: Project,
-      Tags: Tags != null ? List<TagTodo>.unmodifiable(Tags) : Tags);
+      project: project,
+      tags: tags != null ? List<TodoTag>.unmodifiable(tags) : tags);
   }
   
   bool equals(Object other) {
@@ -198,7 +183,6 @@ class Todo extends Model {
     if (identical(other, this)) return true;
     return other is Todo &&
       id == other.id &&
-      _uuid == other._uuid &&
       _title == other._title &&
       _description == other._description &&
       _done == other._done &&
@@ -211,10 +195,10 @@ class Todo extends Model {
       _repeatInterval == other._repeatInterval &&
       DeepCollectionEquality().equals(_doneRepeat, other._doneRepeat) &&
       _deletedAt == other._deletedAt &&
-      DeepCollectionEquality().equals(_Reminders, other._Reminders) &&
+      DeepCollectionEquality().equals(_reminders, other._reminders) &&
       _projectID == other._projectID &&
-      _Project == other._Project &&
-      DeepCollectionEquality().equals(_Tags, other._Tags);
+      _project == other._project &&
+      DeepCollectionEquality().equals(_tags, other._tags);
   }
   
   @override
@@ -226,7 +210,6 @@ class Todo extends Model {
     
     buffer.write("Todo {");
     buffer.write("id=" + "$id" + ", ");
-    buffer.write("uuid=" + "$_uuid" + ", ");
     buffer.write("title=" + "$_title" + ", ");
     buffer.write("description=" + "$_description" + ", ");
     buffer.write("done=" + (_done != null ? _done!.format() : "null") + ", ");
@@ -240,17 +223,16 @@ class Todo extends Model {
     buffer.write("doneRepeat=" + (_doneRepeat != null ? _doneRepeat!.toString() : "null") + ", ");
     buffer.write("deletedAt=" + (_deletedAt != null ? _deletedAt!.format() : "null") + ", ");
     buffer.write("projectID=" + "$_projectID" + ", ");
-    buffer.write("Project=" + (_Project != null ? _Project!.toString() : "null") + ", ");
+    buffer.write("project=" + (_project != null ? _project!.toString() : "null") + ", ");
     buffer.write("updatedAt=" + (_updatedAt != null ? _updatedAt!.format() : "null"));
     buffer.write("}");
     
     return buffer.toString();
   }
   
-  Todo copyWith({String? id, String? uuid, String? title, String? description, TemporalDateTime? done, TemporalDate? dueDate, TemporalTime? dueTime, TemporalDate? endDate, TemporalDateTime? createdAt, int? priority, RepeatType? repeatType, int? repeatInterval, List<String>? doneRepeat, TemporalDateTime? deletedAt, List<Reminder>? Reminders, String? projectID, Project? Project, List<TagTodo>? Tags}) {
+  Todo copyWith({String? id, String? title, String? description, TemporalDateTime? done, TemporalDate? dueDate, TemporalTime? dueTime, TemporalDate? endDate, TemporalDateTime? createdAt, int? priority, RepeatType? repeatType, int? repeatInterval, List<String>? doneRepeat, TemporalDateTime? deletedAt, List<Reminder>? reminders, String? projectID, Project? project, List<TodoTag>? tags}) {
     return Todo._internal(
       id: id ?? this.id,
-      uuid: uuid ?? this.uuid,
       title: title ?? this.title,
       description: description ?? this.description,
       done: done ?? this.done,
@@ -263,15 +245,14 @@ class Todo extends Model {
       repeatInterval: repeatInterval ?? this.repeatInterval,
       doneRepeat: doneRepeat ?? this.doneRepeat,
       deletedAt: deletedAt ?? this.deletedAt,
-      Reminders: Reminders ?? this.Reminders,
+      reminders: reminders ?? this.reminders,
       projectID: projectID ?? this.projectID,
-      Project: Project ?? this.Project,
-      Tags: Tags ?? this.Tags);
+      project: project ?? this.project,
+      tags: tags ?? this.tags);
   }
   
   Todo.fromJson(Map<String, dynamic> json)  
     : id = json['id'],
-      _uuid = json['uuid'],
       _title = json['title'],
       _description = json['description'],
       _done = json['done'] != null ? TemporalDateTime.fromString(json['done']) : null,
@@ -284,30 +265,29 @@ class Todo extends Model {
       _repeatInterval = (json['repeatInterval'] as num?)?.toInt(),
       _doneRepeat = json['doneRepeat']?.cast<String>(),
       _deletedAt = json['deletedAt'] != null ? TemporalDateTime.fromString(json['deletedAt']) : null,
-      _Reminders = json['Reminders'] is List
-        ? (json['Reminders'] as List)
+      _reminders = json['reminders'] is List
+        ? (json['reminders'] as List)
           .where((e) => e?['serializedData'] != null)
           .map((e) => Reminder.fromJson(new Map<String, dynamic>.from(e['serializedData'])))
           .toList()
         : null,
       _projectID = json['projectID'],
-      _Project = json['Project']?['serializedData'] != null
-        ? Project.fromJson(new Map<String, dynamic>.from(json['Project']['serializedData']))
+      _project = json['project']?['serializedData'] != null
+        ? Project.fromJson(new Map<String, dynamic>.from(json['project']['serializedData']))
         : null,
-      _Tags = json['Tags'] is List
-        ? (json['Tags'] as List)
+      _tags = json['tags'] is List
+        ? (json['tags'] as List)
           .where((e) => e?['serializedData'] != null)
-          .map((e) => TagTodo.fromJson(new Map<String, dynamic>.from(e['serializedData'])))
+          .map((e) => TodoTag.fromJson(new Map<String, dynamic>.from(e['serializedData'])))
           .toList()
         : null,
       _updatedAt = json['updatedAt'] != null ? TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'uuid': _uuid, 'title': _title, 'description': _description, 'done': _done?.format(), 'dueDate': _dueDate?.format(), 'dueTime': _dueTime?.format(), 'endDate': _endDate?.format(), 'createdAt': _createdAt?.format(), 'priority': _priority, 'repeatType': enumToString(_repeatType), 'repeatInterval': _repeatInterval, 'doneRepeat': _doneRepeat, 'deletedAt': _deletedAt?.format(), 'Reminders': _Reminders?.map((Reminder? e) => e?.toJson()).toList(), 'projectID': _projectID, 'Project': _Project?.toJson(), 'Tags': _Tags?.map((TagTodo? e) => e?.toJson()).toList(), 'updatedAt': _updatedAt?.format()
+    'id': id, 'title': _title, 'description': _description, 'done': _done?.format(), 'dueDate': _dueDate?.format(), 'dueTime': _dueTime?.format(), 'endDate': _endDate?.format(), 'createdAt': _createdAt?.format(), 'priority': _priority, 'repeatType': enumToString(_repeatType), 'repeatInterval': _repeatInterval, 'doneRepeat': _doneRepeat, 'deletedAt': _deletedAt?.format(), 'reminders': _reminders?.map((Reminder? e) => e?.toJson()).toList(), 'projectID': _projectID, 'project': _project?.toJson(), 'tags': _tags?.map((TodoTag? e) => e?.toJson()).toList(), 'updatedAt': _updatedAt?.format()
   };
 
   static final QueryField ID = QueryField(fieldName: "todo.id");
-  static final QueryField UUID = QueryField(fieldName: "uuid");
   static final QueryField TITLE = QueryField(fieldName: "title");
   static final QueryField DESCRIPTION = QueryField(fieldName: "description");
   static final QueryField DONE = QueryField(fieldName: "done");
@@ -321,15 +301,15 @@ class Todo extends Model {
   static final QueryField DONEREPEAT = QueryField(fieldName: "doneRepeat");
   static final QueryField DELETEDAT = QueryField(fieldName: "deletedAt");
   static final QueryField REMINDERS = QueryField(
-    fieldName: "Reminders",
+    fieldName: "reminders",
     fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Reminder).toString()));
   static final QueryField PROJECTID = QueryField(fieldName: "projectID");
   static final QueryField PROJECT = QueryField(
-    fieldName: "Project",
+    fieldName: "project",
     fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Project).toString()));
   static final QueryField TAGS = QueryField(
-    fieldName: "Tags",
-    fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (TagTodo).toString()));
+    fieldName: "tags",
+    fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (TodoTag).toString()));
   static var schema = Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
     modelSchemaDefinition.name = "Todo";
     modelSchemaDefinition.pluralName = "Todos";
@@ -357,12 +337,6 @@ class Todo extends Model {
     ];
     
     modelSchemaDefinition.addField(ModelFieldDefinition.id());
-    
-    modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Todo.UUID,
-      isRequired: true,
-      ofType: ModelFieldType(ModelFieldTypeEnum.string)
-    ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
       key: Todo.TITLE,
@@ -460,8 +434,8 @@ class Todo extends Model {
     modelSchemaDefinition.addField(ModelFieldDefinition.hasMany(
       key: Todo.TAGS,
       isRequired: false,
-      ofModelName: (TagTodo).toString(),
-      associatedKey: TagTodo.TODO
+      ofModelName: (TodoTag).toString(),
+      associatedKey: TodoTag.TODO
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.nonQueryField(

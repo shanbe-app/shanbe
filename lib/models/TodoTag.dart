@@ -21,18 +21,16 @@
 
 import 'ModelProvider.dart';
 import 'package:amplify_core/amplify_core.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 
 
-/** This is an auto generated class representing the Tag type in your schema. */
+/** This is an auto generated class representing the TodoTag type in your schema. */
 @immutable
-class Tag extends Model {
-  static const classType = const _TagModelType();
+class TodoTag extends Model {
+  static const classType = const _TodoTagModelType();
   final String id;
-  final String? _name;
-  final String? _color;
-  final List<TodoTag>? _todos;
+  final Todo? _todo;
+  final Tag? _tag;
   final TemporalDateTime? _createdAt;
   final TemporalDateTime? _updatedAt;
 
@@ -44,9 +42,9 @@ class Tag extends Model {
     return id;
   }
   
-  String get name {
+  Todo get todo {
     try {
-      return _name!;
+      return _todo!;
     } catch(e) {
       throw new AmplifyCodeGenModelException(
           AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
@@ -57,12 +55,17 @@ class Tag extends Model {
     }
   }
   
-  String? get color {
-    return _color;
-  }
-  
-  List<TodoTag>? get todos {
-    return _todos;
+  Tag get tag {
+    try {
+      return _tag!;
+    } catch(e) {
+      throw new AmplifyCodeGenModelException(
+          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+          recoverySuggestion:
+            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+          underlyingException: e.toString()
+          );
+    }
   }
   
   TemporalDateTime? get createdAt {
@@ -73,14 +76,13 @@ class Tag extends Model {
     return _updatedAt;
   }
   
-  const Tag._internal({required this.id, required name, color, todos, createdAt, updatedAt}): _name = name, _color = color, _todos = todos, _createdAt = createdAt, _updatedAt = updatedAt;
+  const TodoTag._internal({required this.id, required todo, required tag, createdAt, updatedAt}): _todo = todo, _tag = tag, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory Tag({String? id, required String name, String? color, List<TodoTag>? todos}) {
-    return Tag._internal(
+  factory TodoTag({String? id, required Todo todo, required Tag tag}) {
+    return TodoTag._internal(
       id: id == null ? UUID.getUUID() : id,
-      name: name,
-      color: color,
-      todos: todos != null ? List<TodoTag>.unmodifiable(todos) : todos);
+      todo: todo,
+      tag: tag);
   }
   
   bool equals(Object other) {
@@ -90,11 +92,10 @@ class Tag extends Model {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Tag &&
+    return other is TodoTag &&
       id == other.id &&
-      _name == other._name &&
-      _color == other._color &&
-      DeepCollectionEquality().equals(_todos, other._todos);
+      _todo == other._todo &&
+      _tag == other._tag;
   }
   
   @override
@@ -104,10 +105,10 @@ class Tag extends Model {
   String toString() {
     var buffer = new StringBuffer();
     
-    buffer.write("Tag {");
+    buffer.write("TodoTag {");
     buffer.write("id=" + "$id" + ", ");
-    buffer.write("name=" + "$_name" + ", ");
-    buffer.write("color=" + "$_color" + ", ");
+    buffer.write("todo=" + (_todo != null ? _todo!.toString() : "null") + ", ");
+    buffer.write("tag=" + (_tag != null ? _tag!.toString() : "null") + ", ");
     buffer.write("createdAt=" + (_createdAt != null ? _createdAt!.format() : "null") + ", ");
     buffer.write("updatedAt=" + (_updatedAt != null ? _updatedAt!.format() : "null"));
     buffer.write("}");
@@ -115,82 +116,53 @@ class Tag extends Model {
     return buffer.toString();
   }
   
-  Tag copyWith({String? id, String? name, String? color, List<TodoTag>? todos}) {
-    return Tag._internal(
+  TodoTag copyWith({String? id, Todo? todo, Tag? tag}) {
+    return TodoTag._internal(
       id: id ?? this.id,
-      name: name ?? this.name,
-      color: color ?? this.color,
-      todos: todos ?? this.todos);
+      todo: todo ?? this.todo,
+      tag: tag ?? this.tag);
   }
   
-  Tag.fromJson(Map<String, dynamic> json)  
+  TodoTag.fromJson(Map<String, dynamic> json)  
     : id = json['id'],
-      _name = json['name'],
-      _color = json['color'],
-      _todos = json['todos'] is List
-        ? (json['todos'] as List)
-          .where((e) => e?['serializedData'] != null)
-          .map((e) => TodoTag.fromJson(new Map<String, dynamic>.from(e['serializedData'])))
-          .toList()
+      _todo = json['todo']?['serializedData'] != null
+        ? Todo.fromJson(new Map<String, dynamic>.from(json['todo']['serializedData']))
+        : null,
+      _tag = json['tag']?['serializedData'] != null
+        ? Tag.fromJson(new Map<String, dynamic>.from(json['tag']['serializedData']))
         : null,
       _createdAt = json['createdAt'] != null ? TemporalDateTime.fromString(json['createdAt']) : null,
       _updatedAt = json['updatedAt'] != null ? TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'name': _name, 'color': _color, 'todos': _todos?.map((TodoTag? e) => e?.toJson()).toList(), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
+    'id': id, 'todo': _todo?.toJson(), 'tag': _tag?.toJson(), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
 
-  static final QueryField ID = QueryField(fieldName: "tag.id");
-  static final QueryField NAME = QueryField(fieldName: "name");
-  static final QueryField COLOR = QueryField(fieldName: "color");
-  static final QueryField TODOS = QueryField(
-    fieldName: "todos",
-    fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (TodoTag).toString()));
+  static final QueryField ID = QueryField(fieldName: "todoTag.id");
+  static final QueryField TODO = QueryField(
+    fieldName: "todo",
+    fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Todo).toString()));
+  static final QueryField TAG = QueryField(
+    fieldName: "tag",
+    fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Tag).toString()));
   static var schema = Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
-    modelSchemaDefinition.name = "Tag";
-    modelSchemaDefinition.pluralName = "Tags";
-    
-    modelSchemaDefinition.authRules = [
-      AuthRule(
-        authStrategy: AuthStrategy.PUBLIC,
-        operations: [
-          ModelOperation.CREATE,
-          ModelOperation.UPDATE,
-          ModelOperation.DELETE,
-          ModelOperation.READ
-        ]),
-      AuthRule(
-        authStrategy: AuthStrategy.OWNER,
-        ownerField: "owner",
-        identityClaim: "cognito:username",
-        provider: AuthRuleProvider.USERPOOLS,
-        operations: [
-          ModelOperation.CREATE,
-          ModelOperation.UPDATE,
-          ModelOperation.DELETE,
-          ModelOperation.READ
-        ])
-    ];
+    modelSchemaDefinition.name = "TodoTag";
+    modelSchemaDefinition.pluralName = "TodoTags";
     
     modelSchemaDefinition.addField(ModelFieldDefinition.id());
     
-    modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Tag.NAME,
+    modelSchemaDefinition.addField(ModelFieldDefinition.belongsTo(
+      key: TodoTag.TODO,
       isRequired: true,
-      ofType: ModelFieldType(ModelFieldTypeEnum.string)
+      targetName: "todoID",
+      ofModelName: (Todo).toString()
     ));
     
-    modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Tag.COLOR,
-      isRequired: false,
-      ofType: ModelFieldType(ModelFieldTypeEnum.string)
-    ));
-    
-    modelSchemaDefinition.addField(ModelFieldDefinition.hasMany(
-      key: Tag.TODOS,
-      isRequired: false,
-      ofModelName: (TodoTag).toString(),
-      associatedKey: TodoTag.TAG
+    modelSchemaDefinition.addField(ModelFieldDefinition.belongsTo(
+      key: TodoTag.TAG,
+      isRequired: true,
+      targetName: "tagID",
+      ofModelName: (Tag).toString()
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.nonQueryField(
@@ -209,11 +181,11 @@ class Tag extends Model {
   });
 }
 
-class _TagModelType extends ModelType<Tag> {
-  const _TagModelType();
+class _TodoTagModelType extends ModelType<TodoTag> {
+  const _TodoTagModelType();
   
   @override
-  Tag fromJson(Map<String, dynamic> jsonData) {
-    return Tag.fromJson(jsonData);
+  TodoTag fromJson(Map<String, dynamic> jsonData) {
+    return TodoTag.fromJson(jsonData);
   }
 }

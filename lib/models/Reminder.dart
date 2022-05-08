@@ -29,12 +29,11 @@ import 'package:flutter/foundation.dart';
 class Reminder extends Model {
   static const classType = const _ReminderModelType();
   final String id;
-  final String? _uuid;
   final TemporalDate? _date;
   final TemporalTime? _time;
   final ReminderStatus? _status;
   final String? _todoID;
-  final Todo? _Todo;
+  final Todo? _todo;
   final TemporalDateTime? _createdAt;
   final TemporalDateTime? _updatedAt;
 
@@ -44,19 +43,6 @@ class Reminder extends Model {
   @override
   String getId() {
     return id;
-  }
-  
-  String get uuid {
-    try {
-      return _uuid!;
-    } catch(e) {
-      throw new AmplifyCodeGenModelException(
-          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
-          recoverySuggestion:
-            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
-          underlyingException: e.toString()
-          );
-    }
   }
   
   TemporalDate get date {
@@ -111,8 +97,8 @@ class Reminder extends Model {
     }
   }
   
-  Todo? get Todo {
-    return _Todo;
+  Todo? get todo {
+    return _todo;
   }
   
   TemporalDateTime? get createdAt {
@@ -123,17 +109,16 @@ class Reminder extends Model {
     return _updatedAt;
   }
   
-  const Reminder._internal({required this.id, required uuid, required date, required time, required status, required todoID, Todo, createdAt, updatedAt}): _uuid = uuid, _date = date, _time = time, _status = status, _todoID = todoID, _Todo = Todo, _createdAt = createdAt, _updatedAt = updatedAt;
+  const Reminder._internal({required this.id, required date, required time, required status, required todoID, todo, createdAt, updatedAt}): _date = date, _time = time, _status = status, _todoID = todoID, _todo = todo, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory Reminder({String? id, required String uuid, required TemporalDate date, required TemporalTime time, required ReminderStatus status, required String todoID, Todo? Todo}) {
+  factory Reminder({String? id, required TemporalDate date, required TemporalTime time, required ReminderStatus status, required String todoID, Todo? todo}) {
     return Reminder._internal(
       id: id == null ? UUID.getUUID() : id,
-      uuid: uuid,
       date: date,
       time: time,
       status: status,
       todoID: todoID,
-      Todo: Todo);
+      todo: todo);
   }
   
   bool equals(Object other) {
@@ -145,12 +130,11 @@ class Reminder extends Model {
     if (identical(other, this)) return true;
     return other is Reminder &&
       id == other.id &&
-      _uuid == other._uuid &&
       _date == other._date &&
       _time == other._time &&
       _status == other._status &&
       _todoID == other._todoID &&
-      _Todo == other._Todo;
+      _todo == other._todo;
   }
   
   @override
@@ -162,12 +146,11 @@ class Reminder extends Model {
     
     buffer.write("Reminder {");
     buffer.write("id=" + "$id" + ", ");
-    buffer.write("uuid=" + "$_uuid" + ", ");
     buffer.write("date=" + (_date != null ? _date!.format() : "null") + ", ");
     buffer.write("time=" + (_time != null ? _time!.format() : "null") + ", ");
     buffer.write("status=" + (_status != null ? enumToString(_status)! : "null") + ", ");
     buffer.write("todoID=" + "$_todoID" + ", ");
-    buffer.write("Todo=" + (_Todo != null ? _Todo!.toString() : "null") + ", ");
+    buffer.write("todo=" + (_todo != null ? _todo!.toString() : "null") + ", ");
     buffer.write("createdAt=" + (_createdAt != null ? _createdAt!.format() : "null") + ", ");
     buffer.write("updatedAt=" + (_updatedAt != null ? _updatedAt!.format() : "null"));
     buffer.write("}");
@@ -175,42 +158,39 @@ class Reminder extends Model {
     return buffer.toString();
   }
   
-  Reminder copyWith({String? id, String? uuid, TemporalDate? date, TemporalTime? time, ReminderStatus? status, String? todoID, Todo? Todo}) {
+  Reminder copyWith({String? id, TemporalDate? date, TemporalTime? time, ReminderStatus? status, String? todoID, Todo? todo}) {
     return Reminder._internal(
       id: id ?? this.id,
-      uuid: uuid ?? this.uuid,
       date: date ?? this.date,
       time: time ?? this.time,
       status: status ?? this.status,
       todoID: todoID ?? this.todoID,
-      Todo: Todo ?? this.Todo);
+      todo: todo ?? this.todo);
   }
   
   Reminder.fromJson(Map<String, dynamic> json)  
     : id = json['id'],
-      _uuid = json['uuid'],
       _date = json['date'] != null ? TemporalDate.fromString(json['date']) : null,
       _time = json['time'] != null ? TemporalTime.fromString(json['time']) : null,
       _status = enumFromString<ReminderStatus>(json['status'], ReminderStatus.values),
       _todoID = json['todoID'],
-      _Todo = json['Todo']?['serializedData'] != null
-        ? Todo.fromJson(new Map<String, dynamic>.from(json['Todo']['serializedData']))
+      _todo = json['todo']?['serializedData'] != null
+        ? Todo.fromJson(new Map<String, dynamic>.from(json['todo']['serializedData']))
         : null,
       _createdAt = json['createdAt'] != null ? TemporalDateTime.fromString(json['createdAt']) : null,
       _updatedAt = json['updatedAt'] != null ? TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'uuid': _uuid, 'date': _date?.format(), 'time': _time?.format(), 'status': enumToString(_status), 'todoID': _todoID, 'Todo': _Todo?.toJson(), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
+    'id': id, 'date': _date?.format(), 'time': _time?.format(), 'status': enumToString(_status), 'todoID': _todoID, 'todo': _todo?.toJson(), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
 
   static final QueryField ID = QueryField(fieldName: "reminder.id");
-  static final QueryField UUID = QueryField(fieldName: "uuid");
   static final QueryField DATE = QueryField(fieldName: "date");
   static final QueryField TIME = QueryField(fieldName: "time");
   static final QueryField STATUS = QueryField(fieldName: "status");
   static final QueryField TODOID = QueryField(fieldName: "todoID");
   static final QueryField TODO = QueryField(
-    fieldName: "Todo",
+    fieldName: "todo",
     fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Todo).toString()));
   static var schema = Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
     modelSchemaDefinition.name = "Reminder";
@@ -239,12 +219,6 @@ class Reminder extends Model {
     ];
     
     modelSchemaDefinition.addField(ModelFieldDefinition.id());
-    
-    modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Reminder.UUID,
-      isRequired: true,
-      ofType: ModelFieldType(ModelFieldTypeEnum.string)
-    ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
       key: Reminder.DATE,

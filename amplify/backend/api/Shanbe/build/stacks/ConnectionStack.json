@@ -1,6 +1,6 @@
 {
   "Resources": {
-    "ReminderTodoauth0FunctionReminderTodoauth0FunctionAppSyncFunction4D243D89": {
+    "Remindertodoauth0FunctionRemindertodoauth0FunctionAppSyncFunctionD80ABF8E": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -10,7 +10,7 @@
           "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
         },
         "FunctionVersion": "2018-05-29",
-        "Name": "ReminderTodoauth0Function",
+        "Name": "Remindertodoauth0Function",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
             "",
@@ -23,7 +23,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Reminder.Todo.auth.1.req.vtl"
+              "/resolvers/Reminder.todo.auth.1.req.vtl"
             ]
           ]
         },
@@ -53,7 +53,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Reminder.Todo.req.vtl"
+              "/resolvers/Reminder.todo.req.vtl"
             ]
           ]
         },
@@ -69,7 +69,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Reminder.Todo.res.vtl"
+              "/resolvers/Reminder.todo.res.vtl"
             ]
           ]
         },
@@ -79,20 +79,20 @@
         }
       }
     },
-    "ReminderTodoResolver": {
+    "RemindertodoResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "Todo",
+        "FieldName": "todo",
         "TypeName": "Reminder",
         "Kind": "PIPELINE",
         "PipelineConfig": {
           "Functions": [
             {
               "Fn::GetAtt": [
-                "ReminderTodoauth0FunctionReminderTodoauth0FunctionAppSyncFunction4D243D89",
+                "Remindertodoauth0FunctionRemindertodoauth0FunctionAppSyncFunctionD80ABF8E",
                 "FunctionId"
               ]
             },
@@ -108,7 +108,7 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Reminder\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"Todo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Reminder\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"todo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
@@ -162,7 +162,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Todo.Project.req.vtl"
+              "/resolvers/Todo.project.req.vtl"
             ]
           ]
         },
@@ -178,7 +178,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Todo.Project.res.vtl"
+              "/resolvers/Todo.project.res.vtl"
             ]
           ]
         },
@@ -188,20 +188,20 @@
         }
       }
     },
-    "TodoProjectResolver": {
+    "TodoprojectResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "Project",
+        "FieldName": "project",
         "TypeName": "Todo",
         "Kind": "PIPELINE",
         "PipelineConfig": {
           "Functions": [
             {
               "Fn::GetAtt": [
-                "ReminderTodoauth0FunctionReminderTodoauth0FunctionAppSyncFunction4D243D89",
+                "Remindertodoauth0FunctionRemindertodoauth0FunctionAppSyncFunctionD80ABF8E",
                 "FunctionId"
               ]
             },
@@ -217,7 +217,7 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Todo\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"Project\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Todo\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"project\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
@@ -271,7 +271,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Project.Todos.req.vtl"
+              "/resolvers/Project.todos.req.vtl"
             ]
           ]
         },
@@ -287,7 +287,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Project.Todos.res.vtl"
+              "/resolvers/Project.todos.res.vtl"
             ]
           ]
         },
@@ -297,20 +297,20 @@
         }
       }
     },
-    "ProjectTodosResolver": {
+    "ProjecttodosResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "Todos",
+        "FieldName": "todos",
         "TypeName": "Project",
         "Kind": "PIPELINE",
         "PipelineConfig": {
           "Functions": [
             {
               "Fn::GetAtt": [
-                "ReminderTodoauth0FunctionReminderTodoauth0FunctionAppSyncFunction4D243D89",
+                "Remindertodoauth0FunctionRemindertodoauth0FunctionAppSyncFunctionD80ABF8E",
                 "FunctionId"
               ]
             },
@@ -326,7 +326,7 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Project\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"Todos\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Project\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"todos\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
@@ -380,7 +380,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Todo.Reminders.req.vtl"
+              "/resolvers/Todo.reminders.req.vtl"
             ]
           ]
         },
@@ -396,7 +396,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Todo.Reminders.res.vtl"
+              "/resolvers/Todo.reminders.res.vtl"
             ]
           ]
         },
@@ -406,20 +406,20 @@
         }
       }
     },
-    "TodoRemindersResolver": {
+    "TodoremindersResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "Reminders",
+        "FieldName": "reminders",
         "TypeName": "Todo",
         "Kind": "PIPELINE",
         "PipelineConfig": {
           "Functions": [
             {
               "Fn::GetAtt": [
-                "ReminderTodoauth0FunctionReminderTodoauth0FunctionAppSyncFunction4D243D89",
+                "Remindertodoauth0FunctionRemindertodoauth0FunctionAppSyncFunctionD80ABF8E",
                 "FunctionId"
               ]
             },
@@ -435,7 +435,7 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Todo\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"Reminders\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Todo\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"reminders\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
@@ -466,7 +466,7 @@
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
       }
     },
-    "TagTodoTagDataResolverFnTagTodoTagDataResolverFnAppSyncFunction9856D470": {
+    "TodoTagTagDataResolverFnTodoTagTagDataResolverFnAppSyncFunction1741462B": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -476,7 +476,7 @@
           "Ref": "referencetotransformerrootstackTagNestedStackTagNestedStackResourceA6031AE1OutputstransformerrootstackTagTagDataSourceA4C926F0Name"
         },
         "FunctionVersion": "2018-05-29",
-        "Name": "TagTodoTagDataResolverFn",
+        "Name": "TodoTagTagDataResolverFn",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
             "",
@@ -489,7 +489,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/TagTodo.tag.req.vtl"
+              "/resolvers/TodoTag.tag.req.vtl"
             ]
           ]
         },
@@ -505,7 +505,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/TagTodo.tag.res.vtl"
+              "/resolvers/TodoTag.tag.res.vtl"
             ]
           ]
         },
@@ -515,26 +515,26 @@
         }
       }
     },
-    "TagTodotagResolver": {
+    "TodoTagtagResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
         "FieldName": "tag",
-        "TypeName": "TagTodo",
+        "TypeName": "TodoTag",
         "Kind": "PIPELINE",
         "PipelineConfig": {
           "Functions": [
             {
               "Fn::GetAtt": [
-                "ReminderTodoauth0FunctionReminderTodoauth0FunctionAppSyncFunction4D243D89",
+                "Remindertodoauth0FunctionRemindertodoauth0FunctionAppSyncFunctionD80ABF8E",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "TagTodoTagDataResolverFnTagTodoTagDataResolverFnAppSyncFunction9856D470",
+                "TodoTagTagDataResolverFnTodoTagTagDataResolverFnAppSyncFunction1741462B",
                 "FunctionId"
               ]
             }
@@ -544,7 +544,7 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"TagTodo\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"tag\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"TodoTag\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"tag\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
@@ -575,7 +575,7 @@
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
       }
     },
-    "TagTodoTodoDataResolverFnTagTodoTodoDataResolverFnAppSyncFunction453A216A": {
+    "TodoTagTodoDataResolverFnTodoTagTodoDataResolverFnAppSyncFunctionCF4A0F55": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
         "ApiId": {
@@ -585,7 +585,7 @@
           "Ref": "referencetotransformerrootstackTodoNestedStackTodoNestedStackResource9AC126A3OutputstransformerrootstackTodoTodoDataSourceBD713D7DName"
         },
         "FunctionVersion": "2018-05-29",
-        "Name": "TagTodoTodoDataResolverFn",
+        "Name": "TodoTagTodoDataResolverFn",
         "RequestMappingTemplateS3Location": {
           "Fn::Join": [
             "",
@@ -598,7 +598,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/TagTodo.todo.req.vtl"
+              "/resolvers/TodoTag.todo.req.vtl"
             ]
           ]
         },
@@ -614,7 +614,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/TagTodo.todo.res.vtl"
+              "/resolvers/TodoTag.todo.res.vtl"
             ]
           ]
         },
@@ -624,26 +624,26 @@
         }
       }
     },
-    "TagTodotodoResolver": {
+    "TodoTagtodoResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
         "FieldName": "todo",
-        "TypeName": "TagTodo",
+        "TypeName": "TodoTag",
         "Kind": "PIPELINE",
         "PipelineConfig": {
           "Functions": [
             {
               "Fn::GetAtt": [
-                "ReminderTodoauth0FunctionReminderTodoauth0FunctionAppSyncFunction4D243D89",
+                "Remindertodoauth0FunctionRemindertodoauth0FunctionAppSyncFunctionD80ABF8E",
                 "FunctionId"
               ]
             },
             {
               "Fn::GetAtt": [
-                "TagTodoTodoDataResolverFnTagTodoTodoDataResolverFnAppSyncFunction453A216A",
+                "TodoTagTodoDataResolverFnTodoTagTodoDataResolverFnAppSyncFunctionCF4A0F55",
                 "FunctionId"
               ]
             }
@@ -653,7 +653,7 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"TagTodo\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"todo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"TodoTag\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"todo\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
@@ -691,7 +691,7 @@
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
         "DataSourceName": {
-          "Ref": "referencetotransformerrootstackTagTodoNestedStackTagTodoNestedStackResource77D7AF4EOutputstransformerrootstackTagTodoTagTodoDataSourceAC68D5B2Name"
+          "Ref": "referencetotransformerrootstackTodoTagNestedStackTodoTagNestedStackResourceC3C38FB4OutputstransformerrootstackTodoTagTodoTagDataSourceE85006FEName"
         },
         "FunctionVersion": "2018-05-29",
         "Name": "TagTodosDataResolverFn",
@@ -707,7 +707,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Tag.Todos.req.vtl"
+              "/resolvers/Tag.todos.req.vtl"
             ]
           ]
         },
@@ -723,7 +723,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Tag.Todos.res.vtl"
+              "/resolvers/Tag.todos.res.vtl"
             ]
           ]
         },
@@ -733,20 +733,20 @@
         }
       }
     },
-    "TagTodosResolver": {
+    "TagtodosResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "Todos",
+        "FieldName": "todos",
         "TypeName": "Tag",
         "Kind": "PIPELINE",
         "PipelineConfig": {
           "Functions": [
             {
               "Fn::GetAtt": [
-                "ReminderTodoauth0FunctionReminderTodoauth0FunctionAppSyncFunction4D243D89",
+                "Remindertodoauth0FunctionRemindertodoauth0FunctionAppSyncFunctionD80ABF8E",
                 "FunctionId"
               ]
             },
@@ -762,13 +762,13 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Tag\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"Todos\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Tag\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"todos\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
               "\"))\n$util.qr($ctx.stash.put(\"tableName\", \"",
               {
-                "Ref": "referencetotransformerrootstackTagTodoNestedStackTagTodoNestedStackResource77D7AF4EOutputstransformerrootstackTagTodoTagTodoTableC6636DE0Ref"
+                "Ref": "referencetotransformerrootstackTodoTagNestedStackTodoTagNestedStackResourceC3C38FB4OutputstransformerrootstackTodoTagTodoTagTable3DD45F99Ref"
               },
               "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
               {
@@ -800,7 +800,7 @@
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
         "DataSourceName": {
-          "Ref": "referencetotransformerrootstackTagTodoNestedStackTagTodoNestedStackResource77D7AF4EOutputstransformerrootstackTagTodoTagTodoDataSourceAC68D5B2Name"
+          "Ref": "referencetotransformerrootstackTodoTagNestedStackTodoTagNestedStackResourceC3C38FB4OutputstransformerrootstackTodoTagTodoTagDataSourceE85006FEName"
         },
         "FunctionVersion": "2018-05-29",
         "Name": "TodoTagsDataResolverFn",
@@ -816,7 +816,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Todo.Tags.req.vtl"
+              "/resolvers/Todo.tags.req.vtl"
             ]
           ]
         },
@@ -832,7 +832,7 @@
               {
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
-              "/resolvers/Todo.Tags.res.vtl"
+              "/resolvers/Todo.tags.res.vtl"
             ]
           ]
         },
@@ -842,20 +842,20 @@
         }
       }
     },
-    "TodoTagsResolver": {
+    "TodotagsResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
         },
-        "FieldName": "Tags",
+        "FieldName": "tags",
         "TypeName": "Todo",
         "Kind": "PIPELINE",
         "PipelineConfig": {
           "Functions": [
             {
               "Fn::GetAtt": [
-                "ReminderTodoauth0FunctionReminderTodoauth0FunctionAppSyncFunction4D243D89",
+                "Remindertodoauth0FunctionRemindertodoauth0FunctionAppSyncFunctionD80ABF8E",
                 "FunctionId"
               ]
             },
@@ -871,13 +871,13 @@
           "Fn::Join": [
             "",
             [
-              "$util.qr($ctx.stash.put(\"typeName\", \"Todo\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"Tags\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+              "$util.qr($ctx.stash.put(\"typeName\", \"Todo\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"tags\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
               "\"))\n$util.qr($ctx.stash.put(\"tableName\", \"",
               {
-                "Ref": "referencetotransformerrootstackTagTodoNestedStackTagTodoNestedStackResource77D7AF4EOutputstransformerrootstackTagTodoTagTodoTableC6636DE0Ref"
+                "Ref": "referencetotransformerrootstackTodoTagNestedStackTodoTagNestedStackResourceC3C38FB4OutputstransformerrootstackTodoTagTodoTagTable3DD45F99Ref"
               },
               "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
               {
@@ -946,10 +946,10 @@
     "referencetotransformerrootstackTagNestedStackTagNestedStackResourceA6031AE1OutputstransformerrootstackTagTagTableA249BF5FRef": {
       "Type": "String"
     },
-    "referencetotransformerrootstackTagTodoNestedStackTagTodoNestedStackResource77D7AF4EOutputstransformerrootstackTagTodoTagTodoDataSourceAC68D5B2Name": {
+    "referencetotransformerrootstackTodoTagNestedStackTodoTagNestedStackResourceC3C38FB4OutputstransformerrootstackTodoTagTodoTagDataSourceE85006FEName": {
       "Type": "String"
     },
-    "referencetotransformerrootstackTagTodoNestedStackTagTodoNestedStackResource77D7AF4EOutputstransformerrootstackTagTodoTagTodoTableC6636DE0Ref": {
+    "referencetotransformerrootstackTodoTagNestedStackTodoTagNestedStackResourceC3C38FB4OutputstransformerrootstackTodoTagTodoTagTable3DD45F99Ref": {
       "Type": "String"
     }
   }

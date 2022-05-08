@@ -138,7 +138,7 @@
                     ]
                 },
                 "Description": "api key description",
-                "Expires": 1654615783
+                "Expires": 1654617185
             }
         },
         "GraphQLAPINONEDS95A13CF0": {
@@ -754,7 +754,7 @@
                 "GraphQLAPITransformerSchema3CB2AE18"
             ]
         },
-        "TagTodo": {
+        "TodoTag": {
             "Type": "AWS::CloudFormation::Stack",
             "Properties": {
                 "TemplateURL": {
@@ -777,7 +777,7 @@
                             {
                                 "Ref": "S3DeploymentRootKey"
                             },
-                            "/stacks/TagTodo.json"
+                            "/stacks/TodoTag.json"
                         ]
                     ]
                 },
@@ -972,16 +972,16 @@
                             "Outputs.transformerrootstackTagTagTableA249BF5FRef"
                         ]
                     },
-                    "referencetotransformerrootstackTagTodoNestedStackTagTodoNestedStackResource77D7AF4EOutputstransformerrootstackTagTodoTagTodoDataSourceAC68D5B2Name": {
+                    "referencetotransformerrootstackTodoTagNestedStackTodoTagNestedStackResourceC3C38FB4OutputstransformerrootstackTodoTagTodoTagDataSourceE85006FEName": {
                         "Fn::GetAtt": [
-                            "TagTodo",
-                            "Outputs.transformerrootstackTagTodoTagTodoDataSourceAC68D5B2Name"
+                            "TodoTag",
+                            "Outputs.transformerrootstackTodoTagTodoTagDataSourceE85006FEName"
                         ]
                     },
-                    "referencetotransformerrootstackTagTodoNestedStackTagTodoNestedStackResource77D7AF4EOutputstransformerrootstackTagTodoTagTodoTableC6636DE0Ref": {
+                    "referencetotransformerrootstackTodoTagNestedStackTodoTagNestedStackResourceC3C38FB4OutputstransformerrootstackTodoTagTodoTagTable3DD45F99Ref": {
                         "Fn::GetAtt": [
-                            "TagTodo",
-                            "Outputs.transformerrootstackTagTodoTagTodoTableC6636DE0Ref"
+                            "TodoTag",
+                            "Outputs.transformerrootstackTodoTagTodoTagTable3DD45F99Ref"
                         ]
                     }
                 }
@@ -991,8 +991,8 @@
                 "Project",
                 "Reminder",
                 "Tag",
-                "TagTodo",
-                "Todo"
+                "Todo",
+                "TodoTag"
             ]
         },
         "CustomResourcesjson": {
@@ -1042,7 +1042,7 @@
                 "Tag",
                 "Project",
                 "Todo",
-                "TagTodo",
+                "TodoTag",
                 "ConnectionStack"
             ]
         }

@@ -11,6 +11,7 @@ class FirebaseService extends RxService {
         options: DefaultFirebaseOptions.currentPlatform);
     firebaseApp.setAutomaticResourceManagementEnabled(true);
     firebaseApp.setAutomaticDataCollectionEnabled(true);
+    // setAnalyticsCollectionEnabled(true); set on analytics
   }
 
   @override

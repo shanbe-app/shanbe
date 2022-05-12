@@ -32,9 +32,9 @@ class _ShanbeAppState extends State<ShanbeApp> {
 
   Future<void> bootstrapApp() async {
     appService = AppService();
-    await appService.onCreate();
     GetIt.I
         .registerSingleton<AppService>(appService, instanceName: 'appService');
+    await appService.onCreate();
   }
 
   @override

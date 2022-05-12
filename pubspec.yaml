@@ -124,6 +124,9 @@ flutter:
           weight: 500
         - asset: assets/fonts/iransans/IranSansX-Regular.ttf
           weight: 400
+    - family: Shanbe
+      fonts:
+        - asset: assets/fonts/icons/Shanbe.ttf
 
 flutter_icons:
   android: "launcher_icon"

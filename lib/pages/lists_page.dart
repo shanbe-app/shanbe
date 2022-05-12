@@ -19,13 +19,14 @@ class _ListsPageState extends State<ListsPage> {
   Widget build(BuildContext context) {
     t ??= AppLocalizations.of(context);
     return PlatformScaffold(
-      key: widget.key ?? GlobalKey(debugLabel: 'folders'),
+      key: widget.key ?? GlobalKey(debugLabel: 'lists'),
       iosContentPadding: false,
       body: CustomScrollView(
         primary: true,
         slivers: [
           CupertinoSliverNavigationBar(
             largeTitle: PlatformText(t!.lists),
+            stretch: true,
             automaticallyImplyLeading: true,
             previousPageTitle: 'Tasks',
 

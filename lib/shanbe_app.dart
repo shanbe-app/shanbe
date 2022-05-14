@@ -159,6 +159,7 @@ class _ShanbeAppState extends State<ShanbeApp> {
               toggleableActiveColor: Constants.SECONDARY_COLOR,
               primarySwatch: Colors.blue,
               primaryColor: Constants.PRIMARY_COLOR,
+              accentColor: Constants.SECONDARY_COLOR,
               // canvasColor: Constants.BACKGROUND_COLOR,
               scaffoldBackgroundColor: Constants.BACKGROUND_COLOR_DARK,
               fontFamily: Constants.APPLICATION_DEFAULT_FONT,
@@ -198,6 +199,7 @@ class _ShanbeAppState extends State<ShanbeApp> {
           theme: ThemeData(
               primarySwatch: Colors.blue,
               primaryColor: Constants.PRIMARY_COLOR,
+              accentColor: Constants.SECONDARY_COLOR,
               // canvasColor: Constants.BACKGROUND_COLOR,
               fontFamily: Constants.APPLICATION_DEFAULT_FONT,
               errorColor: Constants.ERROR_COLOR,

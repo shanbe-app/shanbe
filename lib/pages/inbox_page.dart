@@ -1,12 +1,10 @@
-import 'package:client/pages/lists_page.dart';
 import 'package:client/rx/services/app_service.dart';
-import 'package:client/shanbe_app_icons.dart';
 import 'package:client/shanbe_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:get_it/get_it.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class InboxPage extends StatefulWidget {
   const InboxPage({Key? key}) : super(key: key);
@@ -69,7 +67,7 @@ class _InboxPageState extends State<InboxPage> {
         BottomNavigationBarItem(
             icon: Icon(Icons.seventeen_mp_sharp), label: 'Calendar'),
         BottomNavigationBarItem(
-            icon: Icon(Shanbe.album), label: 'Focus'),
+            icon: Icon(Shanbe.bullseye_1), label: 'Focus'),
         BottomNavigationBarItem(
             icon: Icon(Icons.book), label: 'Notes'),
         BottomNavigationBarItem(

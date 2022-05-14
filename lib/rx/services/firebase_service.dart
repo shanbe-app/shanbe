@@ -16,7 +16,7 @@ class FirebaseService extends RxService {
 
   @override
   Future<void> onTerminate() async {
-    firebaseApp.delete();
+    await firebaseApp.delete();
   }
 
 }

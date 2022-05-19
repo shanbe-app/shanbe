@@ -1,6 +1,5 @@
 import 'package:client/rx/services/app_service.dart';
 import 'package:client/shanbe_icons.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';

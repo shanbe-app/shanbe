@@ -11,15 +11,31 @@ import 'package:rxdart/rxdart.dart';
 class AuthBloc extends RxBloc {
   final AmplifyService amplifyService;
   final _authState = BehaviorSubject<AuthState>();
-  final _authResponse = BehaviorSubject<AuthResponse>();
 
-  AuthBloc(AppService service) : amplifyService = service.amplifyService;
+  AuthBloc(AppService service) : amplifyService = service.amplifyService {
+/*    Amplify.Hub.listen([HubChannel.Auth], (event) {
+      switch (event.eventName) {
+        case 'SIGNED_IN':
+          _authState.add(AuthState.authenticated);
+          break;
+        case 'SIGNED_OUT':
+          _authState.add(AuthState.notAuthenticated);
+          break;
+        case 'SESSION_EXPIRED':
+          _authState.add(AuthState.notAuthenticated);
+          break;
+        case 'USER_DELETED':
+          _authState.add(AuthState.notAuthenticated);
+          break;
+      }
+    });*/
+  }
 
   void authenticate(String username, String password) {
     _authState.add(AuthState.authenticating);
     StreamSubscription subscription = Stream.fromFuture(amplifyService.authPool
-        .signIn(
-        request: SignInRequest(username: username, password: password)))
+            .signIn(
+                request: SignInRequest(username: username, password: password)))
         .listen((event) {
       if (event.isSignedIn) {
         _authState.add(AuthState.authenticated);
@@ -33,36 +49,38 @@ class AuthBloc extends RxBloc {
   void logout() {
     _authState.add(AuthState.authenticating);
     StreamSubscription subscription = Stream.fromFuture(amplifyService.authPool
-        .signOut(
-        request: SignOutRequest(
-            options: const SignOutOptions(globalSignOut: false))))
+            .signOut(
+                request: SignOutRequest(
+                    options: const SignOutOptions(globalSignOut: false))))
         .listen((event) {});
     compositeSubscription.add(subscription);
   }
 
   void register(String name, String email, String password) {
-    Stream.fromFuture(amplifyService.authPool.signUp(request: SignUpRequest(
-        username: email,
-        password: password,
-        options: CognitoSignUpOptions(userAttributes: {
-          CognitoUserAttributeKey.name: name,
-          CognitoUserAttributeKey.email: email
-        })))).listen((event) {
-
-    });
+    Stream.fromFuture(amplifyService.authPool.signUp(
+        request: SignUpRequest(
+            username: email,
+            password: password,
+            options: CognitoSignUpOptions(userAttributes: {
+              CognitoUserAttributeKey.name: name,
+              CognitoUserAttributeKey.email: email
+            })))).listen((event) {});
   }
 
-  void socialSignIn(AuthProvider provider){
+  void socialSignIn(AuthProvider provider) {
     _authState.add(AuthState.authenticating);
-    Stream.fromFuture(Amplify.Auth.signInWithWebUI(provider: provider)).listen((event) {
+    Stream.fromFuture(Amplify.Auth.signInWithWebUI(provider: provider))
+        .listen((event) {
       print('event ${event.isSignedIn} ${event.nextStep}');
     });
   }
 
   void fetchCurrentUser() {
     Stream.fromFuture(Amplify.Auth.fetchAuthSession()).listen((event) {
-      event.
-    })
+      // Amplify.Auth.fetchUserAttributes()
+      // Amplify.Auth.getCurrentUser()
+      event.isSignedIn;
+    });
   }
 
   @override

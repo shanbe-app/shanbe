@@ -8,6 +8,9 @@
             <category android:name="android.intent.category.DEFAULT" />
             <data android:scheme="https" />
         </intent>
+        <intent>
+            <action android:name="android.support.customtabs.action.CustomTabsService" />
+        </intent>
     </queries>
    <application
         tools:replace="android:label"
@@ -16,6 +19,15 @@
         android:icon="@mipmap/ic_launcher"
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_rules">
+       <activity
+               android:name="com.amplifyframework.auth.cognito.activities.HostedUIRedirectActivity">
+           <intent-filter>
+               <action android:name="android.intent.action.VIEW" />
+               <category android:name="android.intent.category.DEFAULT" />
+               <category android:name="android.intent.category.BROWSABLE" />
+               <data android:scheme="app.shanbe.client" />
+           </intent-filter>
+       </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true"

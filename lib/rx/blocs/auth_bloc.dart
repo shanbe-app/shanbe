@@ -33,9 +33,8 @@ class AuthBloc extends RxBloc {
 
   void authenticate(String username, String password) {
     _authState.add(AuthState.authenticating);
-    StreamSubscription subscription = Stream.fromFuture(amplifyService.authPool
-            .signIn(
-                request: SignInRequest(username: username, password: password)))
+    StreamSubscription subscription = Stream.fromFuture(
+            Amplify.Auth.signIn(username: username, password: password))
         .listen((event) {
       if (event.isSignedIn) {
         _authState.add(AuthState.authenticated);
@@ -48,23 +47,20 @@ class AuthBloc extends RxBloc {
 
   void logout() {
     _authState.add(AuthState.authenticating);
-    StreamSubscription subscription = Stream.fromFuture(amplifyService.authPool
-            .signOut(
-                request: SignOutRequest(
-                    options: const SignOutOptions(globalSignOut: false))))
+    StreamSubscription subscription = Stream.fromFuture(Amplify.Auth.signOut(
+            options: const SignOutOptions(globalSignOut: false)))
         .listen((event) {});
     compositeSubscription.add(subscription);
   }
 
   void register(String name, String email, String password) {
-    Stream.fromFuture(amplifyService.authPool.signUp(
-        request: SignUpRequest(
-            username: email,
-            password: password,
-            options: CognitoSignUpOptions(userAttributes: {
-              CognitoUserAttributeKey.name: name,
-              CognitoUserAttributeKey.email: email
-            })))).listen((event) {});
+    Stream.fromFuture(Amplify.Auth.signUp(
+        username: email,
+        password: password,
+        options: CognitoSignUpOptions(userAttributes: {
+          CognitoUserAttributeKey.name: name,
+          CognitoUserAttributeKey.email: email
+        }))).listen((event) {});
   }
 
   void socialSignIn(AuthProvider provider) {

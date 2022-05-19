@@ -1,5 +1,6 @@
 import 'package:client/rx/services/app_service.dart';
 import 'package:client/shanbe_icons.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
@@ -33,6 +34,7 @@ class _InboxPageState extends State<InboxPage> {
       appBarBuilder: (context, index) => PlatformAppBar(
         title: PlatformText(t!.today),
         material: (context, target) => MaterialAppBarData(),
+        cupertino: (context, target) => CupertinoNavigationBarData(),
         leading: PlatformIconButton(
           material: (context, target) => MaterialIconButtonData(
               icon: const Icon(
@@ -45,33 +47,43 @@ class _InboxPageState extends State<InboxPage> {
                 Icons.menu,
               ),
               onPressed: () {
-                Navigator.of(context).pushNamed('/lists');
+                Navigator.of(context).pushNamed('/projects');
               }),
           padding: EdgeInsets.zero,
         ),
       ),
-      material: (context, platform) => MaterialTabScaffoldData(
-          drawer: Drawer(
-        child: Container(
-          child: Text('here'),
-        ),
-      )),
       tabController: _controller,
       bodyBuilder: (context, index) => Container(
         child: Text('body'),
       ),
-      items: [
+      materialBuilder: (context, platform, index) => MaterialTabScaffoldData(),
+      cupertinoBuilder: (context, platform, index) =>
+          CupertinoTabScaffoldData(),
+      materialTabs: (context, platform) => MaterialNavBarData(items: [
         BottomNavigationBarItem(
-            icon: Icon(Icons.seventeen_mp_sharp), label: 'Tasks'),
+            icon: const Icon(Icons.check_box_outlined), label: t!.tasks),
         BottomNavigationBarItem(
-            icon: Icon(Icons.seventeen_mp_sharp), label: 'Calendar'),
+            icon: const Icon(Icons.calendar_month_rounded), label: t!.calendar),
         BottomNavigationBarItem(
-            icon: Icon(Shanbe.bullseye_1), label: 'Focus'),
+            icon: const Icon(Shanbe.bullseye_1), label: t!.focus),
+        BottomNavigationBarItem(icon: const Icon(Icons.book), label: t!.notes),
         BottomNavigationBarItem(
-            icon: Icon(Icons.book), label: 'Notes'),
+            icon: const Icon(Icons.settings), label: t!.settings)
+      ]),
+      cupertinoTabs: (context, platform) =>
+          CupertinoTabBarData(height: 52, items: [
+        const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.checkmark_square),
+            label: 'امروز',
+            activeIcon: Icon(CupertinoIcons.checkmark_square_fill)),
         BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle), label: 'Profile')
-      ],
+            icon: const Icon(CupertinoIcons.calendar), label: t!.calendar),
+        BottomNavigationBarItem(
+            icon: const Icon(Shanbe.bullseye_1), label: t!.focus),
+        BottomNavigationBarItem(icon: const Icon(Icons.book), label: t!.notes),
+        BottomNavigationBarItem(
+            icon: const Icon(CupertinoIcons.settings), label: t!.settings)
+      ]),
     );
   }
 }

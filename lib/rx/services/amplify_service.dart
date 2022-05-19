@@ -7,24 +7,25 @@ import 'package:client/models/ModelProvider.dart';
 import 'package:client/rx/services/rx_service.dart';
 
 class AmplifyService extends RxService {
-  final AmplifyDataStore dataStore =
-      AmplifyDataStore(modelProvider: ModelProvider.instance);
-  final AmplifyAuthCognito authPool = AmplifyAuthCognito();
-  final AmplifyAPI amplifyAPI =
-      AmplifyAPI(modelProvider: ModelProvider.instance, authProviders: []);
-
   AmplifyService();
 
   @override
   Future<void> onCreate() async {
-    await dataStore.start();
-    await Amplify.addPlugins([dataStore, authPool, amplifyAPI]);
+    AmplifyDataStore dataStore =
+        AmplifyDataStore(modelProvider: ModelProvider.instance);
+    AmplifyAuthCognito auth = AmplifyAuthCognito();
+    AmplifyAPI api =
+        AmplifyAPI(modelProvider: ModelProvider.instance, authProviders: []);
+    await Amplify.addPlugins([dataStore, auth, api]);
     await Amplify.configure(amplifyconfig);
-    // Amplify.DataStore.observe(Project.classType).listen((event) {});
+    Amplify.DataStore.start();
+    Amplify.Hub.listen([HubChannel.Auth, HubChannel.DataStore], (event) {
+      print('event ${event.eventName} ${event.payload}');
+    });
   }
 
   @override
   Future<void> onTerminate() async {
-    dataStore.stop();
+    Amplify.DataStore.stop();
   }
 }

@@ -1,3 +1,4 @@
+import 'package:client/pages/lists_page.dart';
 import 'package:client/rx/services/app_service.dart';
 import 'package:client/shanbe_icons.dart';
 import 'package:flutter/cupertino.dart';
@@ -47,7 +48,7 @@ class _InboxPageState extends State<InboxPage> {
                 Icons.menu,
               ),
               onPressed: () {
-                Navigator.of(context).pushNamed('/projects');
+                Navigator.pushNamed(context, '/lists');
               }),
           padding: EdgeInsets.zero,
         ),
@@ -72,15 +73,18 @@ class _InboxPageState extends State<InboxPage> {
       ]),
       cupertinoTabs: (context, platform) =>
           CupertinoTabBarData(height: 52, items: [
-        const BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.checkmark_square),
-            label: 'امروز',
-            activeIcon: Icon(CupertinoIcons.checkmark_square_fill)),
+        BottomNavigationBarItem(
+            icon: const Icon(CupertinoIcons.checkmark_square),
+            label: t!.tasks,
+            activeIcon: const Icon(CupertinoIcons.checkmark_square_fill)),
         BottomNavigationBarItem(
             icon: const Icon(CupertinoIcons.calendar), label: t!.calendar),
         BottomNavigationBarItem(
             icon: const Icon(Shanbe.bullseye_1), label: t!.focus),
-        BottomNavigationBarItem(icon: const Icon(Icons.book), label: t!.notes),
+        BottomNavigationBarItem(
+            icon: const Icon(CupertinoIcons.book),
+            label: t!.notes,
+            activeIcon: const Icon(CupertinoIcons.book_fill)),
         BottomNavigationBarItem(
             icon: const Icon(CupertinoIcons.settings), label: t!.settings)
       ]),

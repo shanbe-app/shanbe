@@ -18,10 +18,10 @@ class AmplifyService extends RxService {
         AmplifyAPI(modelProvider: ModelProvider.instance, authProviders: []);
     await Amplify.addPlugins([dataStore, auth, api]);
     await Amplify.configure(amplifyconfig);
-    Amplify.DataStore.start();
-    Amplify.Hub.listen([HubChannel.Auth, HubChannel.DataStore], (event) {
-      print('event ${event.eventName} ${event.payload}');
-    });
+    await Amplify.DataStore.start();
+    // Amplify.Hub.listen([HubChannel.Auth, HubChannel.DataStore], (event) {
+    //   print('event ${event.eventName} ${event.payload}');
+    // });
   }
 
   @override

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:client/pages/edit_lists_ppage.dart';
 import 'package:client/pages/lists_page.dart';
 import 'package:client/utils/constants.dart';
 import 'package:client/utils/utils.dart';
@@ -32,7 +33,6 @@ class _ShanbeAppState extends State<ShanbeApp> {
 
   Future<void> bootstrapApp() async {
     appService = AppService();
-    appService.registerSingleton();
     await appService.onCreate();
   }
 
@@ -44,7 +44,6 @@ class _ShanbeAppState extends State<ShanbeApp> {
 
   @override
   Widget build(BuildContext context) {
-    appService.registerAppLocalizations(context);
     return PlatformApp(
       key: GlobalKey(debugLabel: 'shanbeApp'),
       showSemanticsDebugger: false,
@@ -72,103 +71,92 @@ class _ShanbeAppState extends State<ShanbeApp> {
         return const Locale.fromSubtags(languageCode: 'en');
       },
       navigatorObservers: const [],
-      home: RootPage(
-        appInitFuture: appInitFuture,
-      ),
+      initialRoute: '/',
       onGenerateTitle: (context) => AppLocalizations.of(context).title,
+      onGenerateRoute: (settings) {
+        print('ongenrateroute ${settings.name}');
+        switch (settings.name) {
+          case '/':
+            return platformPageRoute(
+                context: context,
+                builder: (context) => RootPage(
+                      appInitFuture: appInitFuture,
+                    ));
+          case '/lists':
+            return platformPageRoute(
+                context: context, builder: (context) => const ListsPage());
+          case '/edit-lists':
+            return platformPageRoute(
+                context: context, builder: (context) => const EditListsPage());
+          default:
+            return null;
+        }
+      },
       cupertino: (context, target) => CupertinoAppData(
-          onGenerateRoute: (settings) {
-            print('name ${settings.name}');
-            switch (settings.name) {
-              case '/projects':
-                // return MaterialPageRoute(builder: );
-                // return PageRouteBuilder(
-                //     pageBuilder: (context, animation, secondaryAnimation) =>
-                //         FadeTransition(
-                //             opacity: animation, child: const ListsPage()));
-                return CupertinoPageRoute(
-                    builder: (context) => const ListsPage(),
-                    settings: settings);
-            }
-          },
           theme: CupertinoThemeData(
-            brightness: Brightness.light,
-            primaryColor: Constants.PRIMARY_COLOR,
-            primaryContrastingColor: Colors.white,
-            scaffoldBackgroundColor: Constants.BACKGROUND_COLOR,
-            textTheme: CupertinoTextThemeData(
-              primaryColor: Constants.PRIMARY_COLOR,
-              textStyle: const TextStyle(
-                color: Constants.TEXT_BODY_COLOR,
-                fontSize: Constants.S1_FONT_SIZE,
-                fontFamily: Constants.APPLICATION_DEFAULT_FONT,
-                fontFamilyFallback: Constants.APPLICATION_FALLBACK_FONTS,
-                fontWeight: Constants.REGULAR_FONT_WEIGHT,
-              ),
-              tabLabelTextStyle: const TextStyle(
-                  fontFamily: Constants.APPLICATION_DEFAULT_FONT,
-                  fontFamilyFallback: Constants.APPLICATION_FALLBACK_FONTS,
-                  fontSize: Constants.S2_FONT_SIZE,
-                  color: CupertinoColors.inactiveGray,
-                  fontWeight: Constants.MEDIUM_FONT_WEIGHT),
-              navTitleTextStyle: const TextStyle(
-                  fontFamily: Constants.APPLICATION_DEFAULT_FONT,
-                  fontFamilyFallback: Constants.APPLICATION_FALLBACK_FONTS,
-                  fontSize: Constants.H6_FONT_SIZE,
-                  color: Constants.TEXT_BLACK_COLOR,
-                  fontWeight: Constants.DEMI_BOLD_FONT_WEIGHT),
-              actionTextStyle: const TextStyle(
-                color: CupertinoColors.activeBlue,
-                fontSize: Constants.S2_FONT_SIZE,
-                fontFamily: Constants.APPLICATION_DEFAULT_FONT,
-                fontFamilyFallback: Constants.APPLICATION_FALLBACK_FONTS,
-                fontWeight: Constants.REGULAR_FONT_WEIGHT,
-              ),
-              navActionTextStyle: const TextStyle(
-                color: CupertinoColors.activeBlue,
-                fontSize: Constants.S2_FONT_SIZE,
-                fontFamily: Constants.APPLICATION_DEFAULT_FONT,
-                fontFamilyFallback: Constants.APPLICATION_FALLBACK_FONTS,
-                fontWeight: Constants.REGULAR_FONT_WEIGHT,
-              ),
-              navLargeTitleTextStyle: const TextStyle(
-                color: Constants.TEXT_BLACK_COLOR,
-                fontSize: Constants.H1_FONT_SIZE,
-                fontFamily: Constants.APPLICATION_DEFAULT_FONT,
-                fontFamilyFallback: Constants.APPLICATION_FALLBACK_FONTS,
-                fontWeight: Constants.BOLD_FONT_WEIGHT,
-              ),
-              pickerTextStyle: const TextStyle(
-                color: Constants.TEXT_BODY_COLOR,
-                fontSize: Constants.H5_FONT_SIZE,
-                fontFamily: Constants.APPLICATION_DEFAULT_FONT,
-                fontFamilyFallback: Constants.APPLICATION_FALLBACK_FONTS,
-                fontWeight: Constants.REGULAR_FONT_WEIGHT,
-              ),
-              dateTimePickerTextStyle: const TextStyle(
-                color: Constants.TEXT_BODY_COLOR,
-                fontSize: Constants.H5_FONT_SIZE,
-                fontFamily: Constants.APPLICATION_DEFAULT_FONT,
-                fontFamilyFallback: Constants.APPLICATION_FALLBACK_FONTS,
-                fontWeight: Constants.REGULAR_FONT_WEIGHT,
-              ),
-            ),
-          )),
+        brightness: Brightness.light,
+        primaryColor: Constants.PRIMARY_COLOR,
+        primaryContrastingColor: Colors.white,
+        scaffoldBackgroundColor: Constants.BACKGROUND_COLOR,
+        textTheme: CupertinoTextThemeData(
+          primaryColor: Constants.PRIMARY_COLOR,
+          textStyle: const TextStyle(
+            color: Constants.TEXT_BODY_COLOR,
+            fontSize: Constants.S2_FONT_SIZE,
+            fontFamily: Constants.APPLICATION_DEFAULT_FONT,
+            fontFamilyFallback: Constants.APPLICATION_FALLBACK_FONTS,
+            fontWeight: Constants.REGULAR_FONT_WEIGHT,
+          ),
+          tabLabelTextStyle: const TextStyle(
+              fontFamily: Constants.APPLICATION_DEFAULT_FONT,
+              fontFamilyFallback: Constants.APPLICATION_FALLBACK_FONTS,
+              fontSize: Constants.S2_FONT_SIZE,
+              color: CupertinoColors.inactiveGray,
+              fontWeight: Constants.MEDIUM_FONT_WEIGHT),
+          navTitleTextStyle: const TextStyle(
+              fontFamily: Constants.APPLICATION_DEFAULT_FONT,
+              fontFamilyFallback: Constants.APPLICATION_FALLBACK_FONTS,
+              fontSize: Constants.H6_FONT_SIZE,
+              color: Constants.TEXT_BLACK_COLOR,
+              fontWeight: Constants.DEMI_BOLD_FONT_WEIGHT),
+          actionTextStyle: const TextStyle(
+            color: CupertinoColors.activeBlue,
+            fontSize: Constants.S2_FONT_SIZE,
+            fontFamily: Constants.APPLICATION_DEFAULT_FONT,
+            fontFamilyFallback: Constants.APPLICATION_FALLBACK_FONTS,
+            fontWeight: Constants.REGULAR_FONT_WEIGHT,
+          ),
+          navActionTextStyle: const TextStyle(
+            color: CupertinoColors.activeBlue,
+            fontSize: Constants.S2_FONT_SIZE,
+            fontFamily: Constants.APPLICATION_DEFAULT_FONT,
+            fontFamilyFallback: Constants.APPLICATION_FALLBACK_FONTS,
+            fontWeight: Constants.REGULAR_FONT_WEIGHT,
+          ),
+          navLargeTitleTextStyle: const TextStyle(
+            color: Constants.TEXT_BLACK_COLOR,
+            fontSize: Constants.H1_FONT_SIZE,
+            fontFamily: Constants.APPLICATION_DEFAULT_FONT,
+            fontFamilyFallback: Constants.APPLICATION_FALLBACK_FONTS,
+            fontWeight: Constants.BOLD_FONT_WEIGHT,
+          ),
+          pickerTextStyle: const TextStyle(
+            color: Constants.TEXT_BODY_COLOR,
+            fontSize: Constants.H1_FONT_SIZE,
+            fontFamily: Constants.APPLICATION_DEFAULT_FONT,
+            fontFamilyFallback: Constants.APPLICATION_FALLBACK_FONTS,
+            fontWeight: Constants.REGULAR_FONT_WEIGHT,
+          ),
+          dateTimePickerTextStyle: const TextStyle(
+            color: Constants.TEXT_BODY_COLOR,
+            fontSize: Constants.H1_FONT_SIZE,
+            fontFamily: Constants.APPLICATION_DEFAULT_FONT,
+            fontFamilyFallback: Constants.APPLICATION_FALLBACK_FONTS,
+            fontWeight: Constants.REGULAR_FONT_WEIGHT,
+          ),
+        ),
+      )),
       material: (context, target) => MaterialAppData(
-          onGenerateRoute: (settings) {
-            print('name ${settings.name}');
-            switch (settings.name) {
-              case '/projects':
-                // return MaterialPageRoute(builder: );
-                // return PageRouteBuilder(
-                //     pageBuilder: (context, animation, secondaryAnimation) =>
-                //         FadeTransition(
-                //             opacity: animation, child: const ListsPage()));
-                return MaterialPageRoute(
-                    builder: (context) => const ListsPage(),
-                    settings: settings);
-            }
-          },
           darkTheme: ThemeData(
               brightness: Brightness.dark,
               toggleableActiveColor: Constants.SECONDARY_COLOR,

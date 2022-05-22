@@ -7,7 +7,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "tasks": "tasks",
+  "tasks": "Tasks",
   "@tasks": {
     "type": "text",
     "placeholders": {}
@@ -27,7 +27,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "calendar": "calendar",
+  "calendar": "Calendar",
   "@calendar": {
     "type": "text",
     "placeholders": {}

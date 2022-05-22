@@ -1,7 +1,7 @@
+import 'package:client/shanbe_icons.dart';
 import 'package:client/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -18,24 +18,32 @@ class _ListsPageState extends State<ListsPage> {
   @override
   Widget build(BuildContext context) {
     t ??= AppLocalizations.of(context);
-    return PlatformScaffold(
+    return Scaffold(
       key: widget.key ?? GlobalKey(debugLabel: 'lists'),
-      iosContentPadding: false,
       body: CustomScrollView(
         primary: true,
         slivers: [
+          // SliverAppBar(
+          //   actions: [
+          //     ElevatedButton(child: Text('edit'),onPressed: ,)
+          //   ],
+          //   title: Text('Lists'),
+          //
+          // ),
           CupertinoSliverNavigationBar(
             largeTitle: PlatformText(t!.lists),
-            stretch: true,
+            stretch: false,
             automaticallyImplyLeading: true,
-            previousPageTitle: 'Tasks',
-
+            previousPageTitle: t!.today,
+            trailing: PlatformIconButton(icon: const Icon(Shanbe.sliders),onPressed: (){
+              Navigator.pushNamed(context, '/edit-lists');
+            },),
           ),
           SliverToBoxAdapter(
             child: Container(
               padding: Constants.PAGE_PADDING,
-              margin: EdgeInsets.symmetric(vertical: 16),
-              child: CupertinoSearchTextField(
+              margin: const EdgeInsets.symmetric(vertical: 16),
+              child: const CupertinoSearchTextField(
                 placeholder: 'Search',
               ),
             ),
@@ -54,8 +62,8 @@ class _ListsPageState extends State<ListsPage> {
               ),
             ),
           ),
-        //  Projects
-        //  Tags
+          //  Projects
+          //  Tags
         ],
       ),
     );

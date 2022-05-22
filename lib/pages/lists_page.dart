@@ -74,7 +74,8 @@ class _ListsPageState extends State<ListsPage> {
               automaticallyImplyLeading: true,
               previousPageTitle: t!.today,
               trailing: PlatformIconButton(
-                icon: const Icon(Shanbe.sliders),
+                icon: const Icon(Shanbe.sliders_h),
+                padding: EdgeInsets.zero,
                 onPressed: () {
                   Navigator.pushNamed(context, '/edit-lists');
                 },
@@ -94,6 +95,31 @@ class _ListsPageState extends State<ListsPage> {
                 margin: Constants.PAGE_PADDING,
                 child: Column(
                   children: [
+                    PlatformWidget(
+                        material: (_, __) => MaterialButton(
+                              onPressed: () {},
+                              child: Row(
+                                children: [
+                                  Icon(Icons.today,),
+                                  SizedBox(
+                                    width: 4,
+                                  ),
+                                  PlatformText(t!.today)
+                                ],
+                              ),
+                            ),
+                        cupertino: (_, __) => CupertinoButton(
+                              child: Row(
+                                children: [
+                                  Icon(Icons.calendar_today),
+                                  SizedBox(
+                                    width: 4,
+                                  ),
+                                  PlatformText(t!.today)
+                                ],
+                              ),
+                              onPressed: () {},
+                            )),
                     Text('Today'),
                     Text('All'),
                     Text('Completed'),

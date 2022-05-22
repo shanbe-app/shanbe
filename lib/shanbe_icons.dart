@@ -29,6 +29,7 @@ class Shanbe {
   static const _kFontFam = 'Shanbe';
   static const String? _kFontPkg = null;
 
+  static const IconData sliders_h = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData bullseye_1 = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData sliders = IconData(0xf1de, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

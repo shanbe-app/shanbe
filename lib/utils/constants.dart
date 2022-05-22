@@ -38,8 +38,8 @@ class Constants {
   static const Color BACKGROUND_COLOR_DARK = Color.fromRGBO(16, 12, 8, 1);
   static const Color INPUT_BACKGROUND_COLOR = Color.fromRGBO(239, 240, 246, 1);
 
-  static const double S2_FONT_SIZE = 14;
-  static const double S1_FONT_SIZE = 16;
+  static const double S2_FONT_SIZE = 12;
+  static const double S1_FONT_SIZE = 14;
   static const double H6_FONT_SIZE = 18;
   static const double H5_FONT_SIZE = 21;
   static const double H4_FONT_SIZE = 24;

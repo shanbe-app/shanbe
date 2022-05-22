@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 class EditListsPage extends StatefulWidget {
   const EditListsPage({Key? key}) : super(key: key);
@@ -10,8 +12,9 @@ class EditListsPage extends StatefulWidget {
 class _EditListsPageState extends State<EditListsPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Text('edit'),
+    return PlatformWidget(
+      material: (_, __) => Scaffold(),
+      cupertino: (_, __) => CupertinoPageScaffold(child: Text('body'),),
     );
   }
 }

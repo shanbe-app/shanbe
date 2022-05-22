@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:client/pages/edit_lists_ppage.dart';
+import 'package:client/pages/edit_lists_page.dart';
 import 'package:client/pages/lists_page.dart';
 import 'package:client/utils/constants.dart';
 import 'package:client/utils/utils.dart';

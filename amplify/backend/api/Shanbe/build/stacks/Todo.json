@@ -52,7 +52,7 @@
     "referencetotransformerrootstackReminderNestedStackReminderNestedStackResourceEE45F251OutputstransformerrootstackReminderQuerygetReminderauth0FunctionQuerygetReminderauth0FunctionAppSyncFunction126CEE98FunctionId": {
       "Type": "String"
     },
-    "referencetotransformerrootstackReminderNestedStackReminderNestedStackResourceEE45F251OutputstransformerrootstackReminderQuerygetReminderpostAuth0FunctionQuerygetReminderpostAuth0FunctionAppSyncFunctionA378761FFunctionId": {
+    "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileQuerygetProfilepostAuth0FunctionQuerygetProfilepostAuth0FunctionAppSyncFunctionF75D72BBFunctionId": {
       "Type": "String"
     },
     "referencetotransformerrootstackauthRoleNameFB872D50Ref": {
@@ -64,19 +64,19 @@
     "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name": {
       "Type": "String"
     },
-    "referencetotransformerrootstackReminderNestedStackReminderNestedStackResourceEE45F251OutputstransformerrootstackReminderMutationcreateReminderinit0FunctionMutationcreateReminderinit0FunctionAppSyncFunction3C8B18D2FunctionId": {
+    "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileMutationcreateProfileinit0FunctionMutationcreateProfileinit0FunctionAppSyncFunction25ECE1A3FunctionId": {
       "Type": "String"
     },
-    "referencetotransformerrootstackReminderNestedStackReminderNestedStackResourceEE45F251OutputstransformerrootstackReminderMutationupdateReminderinit0FunctionMutationupdateReminderinit0FunctionAppSyncFunctionD9A24FFBFunctionId": {
+    "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileMutationupdateProfileinit0FunctionMutationupdateProfileinit0FunctionAppSyncFunction76055D1FFunctionId": {
       "Type": "String"
     },
     "referencetotransformerrootstackReminderNestedStackReminderNestedStackResourceEE45F251OutputstransformerrootstackReminderSubscriptiononCreateReminderauth0FunctionSubscriptiononCreateReminderauth0FunctionAppSyncFunctionD2AD8DA6FunctionId": {
       "Type": "String"
     },
-    "referencetotransformerrootstackReminderNestedStackReminderNestedStackResourceEE45F251OutputstransformerrootstackReminderSubscriptionOnCreateReminderDataResolverFnSubscriptionOnCreateReminderDataResolverFnAppSyncFunction148A60CFFunctionId": {
+    "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileSubscriptionOnCreateProfileDataResolverFnSubscriptionOnCreateProfileDataResolverFnAppSyncFunctionD0003F7AFunctionId": {
       "Type": "String"
     },
-    "referencetotransformerrootstackReminderNestedStackReminderNestedStackResourceEE45F251OutputstransformerrootstackReminderReminderOwnerDataResolverFnReminderOwnerDataResolverFnAppSyncFunctionDAA9F383FunctionId": {
+    "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileProfileOwnerDataResolverFnProfileOwnerDataResolverFnAppSyncFunction01139966FunctionId": {
       "Type": "String"
     }
   },
@@ -561,7 +561,7 @@
               "Ref": "referencetotransformerrootstackReminderNestedStackReminderNestedStackResourceEE45F251OutputstransformerrootstackReminderQuerygetReminderauth0FunctionQuerygetReminderauth0FunctionAppSyncFunction126CEE98FunctionId"
             },
             {
-              "Ref": "referencetotransformerrootstackReminderNestedStackReminderNestedStackResourceEE45F251OutputstransformerrootstackReminderQuerygetReminderpostAuth0FunctionQuerygetReminderpostAuth0FunctionAppSyncFunctionA378761FFunctionId"
+              "Ref": "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileQuerygetProfilepostAuth0FunctionQuerygetProfilepostAuth0FunctionAppSyncFunctionF75D72BBFunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -676,7 +676,7 @@
               "Ref": "referencetotransformerrootstackReminderNestedStackReminderNestedStackResourceEE45F251OutputstransformerrootstackReminderQuerygetReminderauth0FunctionQuerygetReminderauth0FunctionAppSyncFunction126CEE98FunctionId"
             },
             {
-              "Ref": "referencetotransformerrootstackReminderNestedStackReminderNestedStackResourceEE45F251OutputstransformerrootstackReminderQuerygetReminderpostAuth0FunctionQuerygetReminderpostAuth0FunctionAppSyncFunctionA378761FFunctionId"
+              "Ref": "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileQuerygetProfilepostAuth0FunctionQuerygetProfilepostAuth0FunctionAppSyncFunctionF75D72BBFunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -833,7 +833,7 @@
               "Ref": "referencetotransformerrootstackReminderNestedStackReminderNestedStackResourceEE45F251OutputstransformerrootstackReminderQuerygetReminderauth0FunctionQuerygetReminderauth0FunctionAppSyncFunction126CEE98FunctionId"
             },
             {
-              "Ref": "referencetotransformerrootstackReminderNestedStackReminderNestedStackResourceEE45F251OutputstransformerrootstackReminderQuerygetReminderpostAuth0FunctionQuerygetReminderpostAuth0FunctionAppSyncFunctionA378761FFunctionId"
+              "Ref": "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileQuerygetProfilepostAuth0FunctionQuerygetProfilepostAuth0FunctionAppSyncFunctionF75D72BBFunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -975,7 +975,7 @@
         "PipelineConfig": {
           "Functions": [
             {
-              "Ref": "referencetotransformerrootstackReminderNestedStackReminderNestedStackResourceEE45F251OutputstransformerrootstackReminderMutationcreateReminderinit0FunctionMutationcreateReminderinit0FunctionAppSyncFunction3C8B18D2FunctionId"
+              "Ref": "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileMutationcreateProfileinit0FunctionMutationcreateProfileinit0FunctionAppSyncFunction25ECE1A3FunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -984,7 +984,7 @@
               ]
             },
             {
-              "Ref": "referencetotransformerrootstackReminderNestedStackReminderNestedStackResourceEE45F251OutputstransformerrootstackReminderQuerygetReminderpostAuth0FunctionQuerygetReminderpostAuth0FunctionAppSyncFunctionA378761FFunctionId"
+              "Ref": "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileQuerygetProfilepostAuth0FunctionQuerygetProfilepostAuth0FunctionAppSyncFunctionF75D72BBFunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -1147,7 +1147,7 @@
         "PipelineConfig": {
           "Functions": [
             {
-              "Ref": "referencetotransformerrootstackReminderNestedStackReminderNestedStackResourceEE45F251OutputstransformerrootstackReminderMutationupdateReminderinit0FunctionMutationupdateReminderinit0FunctionAppSyncFunctionD9A24FFBFunctionId"
+              "Ref": "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileMutationupdateProfileinit0FunctionMutationupdateProfileinit0FunctionAppSyncFunction76055D1FFunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -1156,7 +1156,7 @@
               ]
             },
             {
-              "Ref": "referencetotransformerrootstackReminderNestedStackReminderNestedStackResourceEE45F251OutputstransformerrootstackReminderQuerygetReminderpostAuth0FunctionQuerygetReminderpostAuth0FunctionAppSyncFunctionA378761FFunctionId"
+              "Ref": "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileQuerygetProfilepostAuth0FunctionQuerygetProfilepostAuth0FunctionAppSyncFunctionF75D72BBFunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -1325,7 +1325,7 @@
               ]
             },
             {
-              "Ref": "referencetotransformerrootstackReminderNestedStackReminderNestedStackResourceEE45F251OutputstransformerrootstackReminderQuerygetReminderpostAuth0FunctionQuerygetReminderpostAuth0FunctionAppSyncFunctionA378761FFunctionId"
+              "Ref": "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileQuerygetProfilepostAuth0FunctionQuerygetProfilepostAuth0FunctionAppSyncFunctionF75D72BBFunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -1385,10 +1385,10 @@
               "Ref": "referencetotransformerrootstackReminderNestedStackReminderNestedStackResourceEE45F251OutputstransformerrootstackReminderSubscriptiononCreateReminderauth0FunctionSubscriptiononCreateReminderauth0FunctionAppSyncFunctionD2AD8DA6FunctionId"
             },
             {
-              "Ref": "referencetotransformerrootstackReminderNestedStackReminderNestedStackResourceEE45F251OutputstransformerrootstackReminderQuerygetReminderpostAuth0FunctionQuerygetReminderpostAuth0FunctionAppSyncFunctionA378761FFunctionId"
+              "Ref": "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileQuerygetProfilepostAuth0FunctionQuerygetProfilepostAuth0FunctionAppSyncFunctionF75D72BBFunctionId"
             },
             {
-              "Ref": "referencetotransformerrootstackReminderNestedStackReminderNestedStackResourceEE45F251OutputstransformerrootstackReminderSubscriptionOnCreateReminderDataResolverFnSubscriptionOnCreateReminderDataResolverFnAppSyncFunction148A60CFFunctionId"
+              "Ref": "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileSubscriptionOnCreateProfileDataResolverFnSubscriptionOnCreateProfileDataResolverFnAppSyncFunctionD0003F7AFunctionId"
             }
           ]
         },
@@ -1438,10 +1438,10 @@
               "Ref": "referencetotransformerrootstackReminderNestedStackReminderNestedStackResourceEE45F251OutputstransformerrootstackReminderSubscriptiononCreateReminderauth0FunctionSubscriptiononCreateReminderauth0FunctionAppSyncFunctionD2AD8DA6FunctionId"
             },
             {
-              "Ref": "referencetotransformerrootstackReminderNestedStackReminderNestedStackResourceEE45F251OutputstransformerrootstackReminderQuerygetReminderpostAuth0FunctionQuerygetReminderpostAuth0FunctionAppSyncFunctionA378761FFunctionId"
+              "Ref": "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileQuerygetProfilepostAuth0FunctionQuerygetProfilepostAuth0FunctionAppSyncFunctionF75D72BBFunctionId"
             },
             {
-              "Ref": "referencetotransformerrootstackReminderNestedStackReminderNestedStackResourceEE45F251OutputstransformerrootstackReminderSubscriptionOnCreateReminderDataResolverFnSubscriptionOnCreateReminderDataResolverFnAppSyncFunction148A60CFFunctionId"
+              "Ref": "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileSubscriptionOnCreateProfileDataResolverFnSubscriptionOnCreateProfileDataResolverFnAppSyncFunctionD0003F7AFunctionId"
             }
           ]
         },
@@ -1491,10 +1491,10 @@
               "Ref": "referencetotransformerrootstackReminderNestedStackReminderNestedStackResourceEE45F251OutputstransformerrootstackReminderSubscriptiononCreateReminderauth0FunctionSubscriptiononCreateReminderauth0FunctionAppSyncFunctionD2AD8DA6FunctionId"
             },
             {
-              "Ref": "referencetotransformerrootstackReminderNestedStackReminderNestedStackResourceEE45F251OutputstransformerrootstackReminderQuerygetReminderpostAuth0FunctionQuerygetReminderpostAuth0FunctionAppSyncFunctionA378761FFunctionId"
+              "Ref": "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileQuerygetProfilepostAuth0FunctionQuerygetProfilepostAuth0FunctionAppSyncFunctionF75D72BBFunctionId"
             },
             {
-              "Ref": "referencetotransformerrootstackReminderNestedStackReminderNestedStackResourceEE45F251OutputstransformerrootstackReminderSubscriptionOnCreateReminderDataResolverFnSubscriptionOnCreateReminderDataResolverFnAppSyncFunction148A60CFFunctionId"
+              "Ref": "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileSubscriptionOnCreateProfileDataResolverFnSubscriptionOnCreateProfileDataResolverFnAppSyncFunctionD0003F7AFunctionId"
             }
           ]
         },
@@ -1541,7 +1541,7 @@
         "PipelineConfig": {
           "Functions": [
             {
-              "Ref": "referencetotransformerrootstackReminderNestedStackReminderNestedStackResourceEE45F251OutputstransformerrootstackReminderReminderOwnerDataResolverFnReminderOwnerDataResolverFnAppSyncFunctionDAA9F383FunctionId"
+              "Ref": "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileProfileOwnerDataResolverFnProfileOwnerDataResolverFnAppSyncFunction01139966FunctionId"
             }
           ]
         },

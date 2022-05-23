@@ -1,3 +1,8 @@
+type Profile @model @auth(rules: [{allow: owner, operations: [read]}, {allow: public, operations: [create, read, update], provider: iam}]) {
+  id: ID!
+  premium_until: AWSDateTime
+}
+
 enum ReminderStatus {
   INITIALIZED
   SHOWN

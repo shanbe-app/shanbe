@@ -78,6 +78,5 @@
       "providerPlugin": "awscloudformation",
       "dependsOn": []
     }
-  },
-  "function": {}
+  }
 }

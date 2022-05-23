@@ -52,10 +52,25 @@
     "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref": {
       "Type": "String"
     },
+    "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileQuerygetProfilepostAuth0FunctionQuerygetProfilepostAuth0FunctionAppSyncFunctionF75D72BBFunctionId": {
+      "Type": "String"
+    },
     "referencetotransformerrootstackauthRoleNameFB872D50Ref": {
       "Type": "String"
     },
     "referencetotransformerrootstackunauthRoleName49F3C1FERef": {
+      "Type": "String"
+    },
+    "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileMutationcreateProfileinit0FunctionMutationcreateProfileinit0FunctionAppSyncFunction25ECE1A3FunctionId": {
+      "Type": "String"
+    },
+    "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileMutationupdateProfileinit0FunctionMutationupdateProfileinit0FunctionAppSyncFunction76055D1FFunctionId": {
+      "Type": "String"
+    },
+    "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileSubscriptionOnCreateProfileDataResolverFnSubscriptionOnCreateProfileDataResolverFnAppSyncFunctionD0003F7AFunctionId": {
+      "Type": "String"
+    },
+    "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileProfileOwnerDataResolverFnProfileOwnerDataResolverFnAppSyncFunction01139966FunctionId": {
       "Type": "String"
     }
   },
@@ -500,36 +515,6 @@
         "ResponseMappingTemplate": "$util.toJson({})"
       }
     },
-    "QuerygetReminderpostAuth0FunctionQuerygetReminderpostAuth0FunctionAppSyncFunctionE8F1F84D": {
-      "Type": "AWS::AppSync::FunctionConfiguration",
-      "Properties": {
-        "ApiId": {
-          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
-        },
-        "DataSourceName": {
-          "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
-        },
-        "FunctionVersion": "2018-05-29",
-        "Name": "QuerygetReminderpostAuth0Function",
-        "RequestMappingTemplateS3Location": {
-          "Fn::Join": [
-            "",
-            [
-              "s3://",
-              {
-                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
-              },
-              "/",
-              {
-                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
-              },
-              "/resolvers/Query.getReminder.postAuth.1.req.vtl"
-            ]
-          ]
-        },
-        "ResponseMappingTemplate": "$util.toJson({})"
-      }
-    },
     "QueryGetReminderDataResolverFnQueryGetReminderDataResolverFnAppSyncFunction2023A8B0": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
@@ -603,10 +588,7 @@
               ]
             },
             {
-              "Fn::GetAtt": [
-                "QuerygetReminderpostAuth0FunctionQuerygetReminderpostAuth0FunctionAppSyncFunctionE8F1F84D",
-                "FunctionId"
-              ]
+              "Ref": "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileQuerygetProfilepostAuth0FunctionQuerygetProfilepostAuth0FunctionAppSyncFunctionF75D72BBFunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -724,10 +706,7 @@
               ]
             },
             {
-              "Fn::GetAtt": [
-                "QuerygetReminderpostAuth0FunctionQuerygetReminderpostAuth0FunctionAppSyncFunctionE8F1F84D",
-                "FunctionId"
-              ]
+              "Ref": "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileQuerygetProfilepostAuth0FunctionQuerygetProfilepostAuth0FunctionAppSyncFunctionF75D72BBFunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -887,10 +866,7 @@
               ]
             },
             {
-              "Fn::GetAtt": [
-                "QuerygetReminderpostAuth0FunctionQuerygetReminderpostAuth0FunctionAppSyncFunctionE8F1F84D",
-                "FunctionId"
-              ]
+              "Ref": "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileQuerygetProfilepostAuth0FunctionQuerygetProfilepostAuth0FunctionAppSyncFunctionF75D72BBFunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -933,36 +909,6 @@
           ]
         },
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
-      }
-    },
-    "MutationcreateReminderinit0FunctionMutationcreateReminderinit0FunctionAppSyncFunctionF8CB3ED8": {
-      "Type": "AWS::AppSync::FunctionConfiguration",
-      "Properties": {
-        "ApiId": {
-          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
-        },
-        "DataSourceName": {
-          "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
-        },
-        "FunctionVersion": "2018-05-29",
-        "Name": "MutationcreateReminderinit0Function",
-        "RequestMappingTemplateS3Location": {
-          "Fn::Join": [
-            "",
-            [
-              "s3://",
-              {
-                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
-              },
-              "/",
-              {
-                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
-              },
-              "/resolvers/Mutation.createReminder.init.1.req.vtl"
-            ]
-          ]
-        },
-        "ResponseMappingTemplate": "$util.toJson({})"
       }
     },
     "MutationcreateReminderauth0FunctionMutationcreateReminderauth0FunctionAppSyncFunction88F1C065": {
@@ -1062,10 +1008,7 @@
         "PipelineConfig": {
           "Functions": [
             {
-              "Fn::GetAtt": [
-                "MutationcreateReminderinit0FunctionMutationcreateReminderinit0FunctionAppSyncFunctionF8CB3ED8",
-                "FunctionId"
-              ]
+              "Ref": "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileMutationcreateProfileinit0FunctionMutationcreateProfileinit0FunctionAppSyncFunction25ECE1A3FunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -1074,10 +1017,7 @@
               ]
             },
             {
-              "Fn::GetAtt": [
-                "QuerygetReminderpostAuth0FunctionQuerygetReminderpostAuth0FunctionAppSyncFunctionE8F1F84D",
-                "FunctionId"
-              ]
+              "Ref": "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileQuerygetProfilepostAuth0FunctionQuerygetProfilepostAuth0FunctionAppSyncFunctionF75D72BBFunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -1120,36 +1060,6 @@
           ]
         },
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
-      }
-    },
-    "MutationupdateReminderinit0FunctionMutationupdateReminderinit0FunctionAppSyncFunctionA5730B99": {
-      "Type": "AWS::AppSync::FunctionConfiguration",
-      "Properties": {
-        "ApiId": {
-          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
-        },
-        "DataSourceName": {
-          "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
-        },
-        "FunctionVersion": "2018-05-29",
-        "Name": "MutationupdateReminderinit0Function",
-        "RequestMappingTemplateS3Location": {
-          "Fn::Join": [
-            "",
-            [
-              "s3://",
-              {
-                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
-              },
-              "/",
-              {
-                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
-              },
-              "/resolvers/Mutation.updateReminder.init.1.req.vtl"
-            ]
-          ]
-        },
-        "ResponseMappingTemplate": "$util.toJson({})"
       }
     },
     "MutationupdateReminderauth0FunctionMutationupdateReminderauth0FunctionAppSyncFunctionC56A7CD3": {
@@ -1270,10 +1180,7 @@
         "PipelineConfig": {
           "Functions": [
             {
-              "Fn::GetAtt": [
-                "MutationupdateReminderinit0FunctionMutationupdateReminderinit0FunctionAppSyncFunctionA5730B99",
-                "FunctionId"
-              ]
+              "Ref": "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileMutationupdateProfileinit0FunctionMutationupdateProfileinit0FunctionAppSyncFunction76055D1FFunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -1282,10 +1189,7 @@
               ]
             },
             {
-              "Fn::GetAtt": [
-                "QuerygetReminderpostAuth0FunctionQuerygetReminderpostAuth0FunctionAppSyncFunctionE8F1F84D",
-                "FunctionId"
-              ]
+              "Ref": "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileQuerygetProfilepostAuth0FunctionQuerygetProfilepostAuth0FunctionAppSyncFunctionF75D72BBFunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -1454,10 +1358,7 @@
               ]
             },
             {
-              "Fn::GetAtt": [
-                "QuerygetReminderpostAuth0FunctionQuerygetReminderpostAuth0FunctionAppSyncFunctionE8F1F84D",
-                "FunctionId"
-              ]
+              "Ref": "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileQuerygetProfilepostAuth0FunctionQuerygetProfilepostAuth0FunctionAppSyncFunctionF75D72BBFunctionId"
             },
             {
               "Fn::GetAtt": [
@@ -1532,51 +1433,6 @@
         "ResponseMappingTemplate": "$util.toJson({})"
       }
     },
-    "SubscriptionOnCreateReminderDataResolverFnSubscriptionOnCreateReminderDataResolverFnAppSyncFunctionF80881D7": {
-      "Type": "AWS::AppSync::FunctionConfiguration",
-      "Properties": {
-        "ApiId": {
-          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
-        },
-        "DataSourceName": {
-          "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
-        },
-        "FunctionVersion": "2018-05-29",
-        "Name": "SubscriptionOnCreateReminderDataResolverFn",
-        "RequestMappingTemplateS3Location": {
-          "Fn::Join": [
-            "",
-            [
-              "s3://",
-              {
-                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
-              },
-              "/",
-              {
-                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
-              },
-              "/resolvers/Subscription.onCreateReminder.req.vtl"
-            ]
-          ]
-        },
-        "ResponseMappingTemplateS3Location": {
-          "Fn::Join": [
-            "",
-            [
-              "s3://",
-              {
-                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
-              },
-              "/",
-              {
-                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
-              },
-              "/resolvers/Subscription.onCreateReminder.res.vtl"
-            ]
-          ]
-        }
-      }
-    },
     "SubscriptiononCreateReminderResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
@@ -1595,16 +1451,10 @@
               ]
             },
             {
-              "Fn::GetAtt": [
-                "QuerygetReminderpostAuth0FunctionQuerygetReminderpostAuth0FunctionAppSyncFunctionE8F1F84D",
-                "FunctionId"
-              ]
+              "Ref": "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileQuerygetProfilepostAuth0FunctionQuerygetProfilepostAuth0FunctionAppSyncFunctionF75D72BBFunctionId"
             },
             {
-              "Fn::GetAtt": [
-                "SubscriptionOnCreateReminderDataResolverFnSubscriptionOnCreateReminderDataResolverFnAppSyncFunctionF80881D7",
-                "FunctionId"
-              ]
+              "Ref": "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileSubscriptionOnCreateProfileDataResolverFnSubscriptionOnCreateProfileDataResolverFnAppSyncFunctionD0003F7AFunctionId"
             }
           ]
         },
@@ -1657,16 +1507,10 @@
               ]
             },
             {
-              "Fn::GetAtt": [
-                "QuerygetReminderpostAuth0FunctionQuerygetReminderpostAuth0FunctionAppSyncFunctionE8F1F84D",
-                "FunctionId"
-              ]
+              "Ref": "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileQuerygetProfilepostAuth0FunctionQuerygetProfilepostAuth0FunctionAppSyncFunctionF75D72BBFunctionId"
             },
             {
-              "Fn::GetAtt": [
-                "SubscriptionOnCreateReminderDataResolverFnSubscriptionOnCreateReminderDataResolverFnAppSyncFunctionF80881D7",
-                "FunctionId"
-              ]
+              "Ref": "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileSubscriptionOnCreateProfileDataResolverFnSubscriptionOnCreateProfileDataResolverFnAppSyncFunctionD0003F7AFunctionId"
             }
           ]
         },
@@ -1719,16 +1563,10 @@
               ]
             },
             {
-              "Fn::GetAtt": [
-                "QuerygetReminderpostAuth0FunctionQuerygetReminderpostAuth0FunctionAppSyncFunctionE8F1F84D",
-                "FunctionId"
-              ]
+              "Ref": "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileQuerygetProfilepostAuth0FunctionQuerygetProfilepostAuth0FunctionAppSyncFunctionF75D72BBFunctionId"
             },
             {
-              "Fn::GetAtt": [
-                "SubscriptionOnCreateReminderDataResolverFnSubscriptionOnCreateReminderDataResolverFnAppSyncFunctionF80881D7",
-                "FunctionId"
-              ]
+              "Ref": "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileSubscriptionOnCreateProfileDataResolverFnSubscriptionOnCreateProfileDataResolverFnAppSyncFunctionD0003F7AFunctionId"
             }
           ]
         },
@@ -1763,51 +1601,6 @@
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
       }
     },
-    "ReminderOwnerDataResolverFnReminderOwnerDataResolverFnAppSyncFunction26771E04": {
-      "Type": "AWS::AppSync::FunctionConfiguration",
-      "Properties": {
-        "ApiId": {
-          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
-        },
-        "DataSourceName": {
-          "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
-        },
-        "FunctionVersion": "2018-05-29",
-        "Name": "ReminderOwnerDataResolverFn",
-        "RequestMappingTemplateS3Location": {
-          "Fn::Join": [
-            "",
-            [
-              "s3://",
-              {
-                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
-              },
-              "/",
-              {
-                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
-              },
-              "/resolvers/Reminder.owner.req.vtl"
-            ]
-          ]
-        },
-        "ResponseMappingTemplateS3Location": {
-          "Fn::Join": [
-            "",
-            [
-              "s3://",
-              {
-                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
-              },
-              "/",
-              {
-                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
-              },
-              "/resolvers/Reminder.owner.res.vtl"
-            ]
-          ]
-        }
-      }
-    },
     "ReminderownerResolver": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
@@ -1820,10 +1613,7 @@
         "PipelineConfig": {
           "Functions": [
             {
-              "Fn::GetAtt": [
-                "ReminderOwnerDataResolverFnReminderOwnerDataResolverFnAppSyncFunction26771E04",
-                "FunctionId"
-              ]
+              "Ref": "referencetotransformerrootstackProfileNestedStackProfileNestedStackResource2A51D492OutputstransformerrootstackProfileProfileOwnerDataResolverFnProfileOwnerDataResolverFnAppSyncFunction01139966FunctionId"
             }
           ]
         },
@@ -1931,50 +1721,10 @@
         ]
       }
     },
-    "transformerrootstackReminderQuerygetReminderpostAuth0FunctionQuerygetReminderpostAuth0FunctionAppSyncFunctionA378761FFunctionId": {
-      "Value": {
-        "Fn::GetAtt": [
-          "QuerygetReminderpostAuth0FunctionQuerygetReminderpostAuth0FunctionAppSyncFunctionE8F1F84D",
-          "FunctionId"
-        ]
-      }
-    },
-    "transformerrootstackReminderMutationcreateReminderinit0FunctionMutationcreateReminderinit0FunctionAppSyncFunction3C8B18D2FunctionId": {
-      "Value": {
-        "Fn::GetAtt": [
-          "MutationcreateReminderinit0FunctionMutationcreateReminderinit0FunctionAppSyncFunctionF8CB3ED8",
-          "FunctionId"
-        ]
-      }
-    },
-    "transformerrootstackReminderMutationupdateReminderinit0FunctionMutationupdateReminderinit0FunctionAppSyncFunctionD9A24FFBFunctionId": {
-      "Value": {
-        "Fn::GetAtt": [
-          "MutationupdateReminderinit0FunctionMutationupdateReminderinit0FunctionAppSyncFunctionA5730B99",
-          "FunctionId"
-        ]
-      }
-    },
     "transformerrootstackReminderSubscriptiononCreateReminderauth0FunctionSubscriptiononCreateReminderauth0FunctionAppSyncFunctionD2AD8DA6FunctionId": {
       "Value": {
         "Fn::GetAtt": [
           "SubscriptiononCreateReminderauth0FunctionSubscriptiononCreateReminderauth0FunctionAppSyncFunctionF463FDB3",
-          "FunctionId"
-        ]
-      }
-    },
-    "transformerrootstackReminderSubscriptionOnCreateReminderDataResolverFnSubscriptionOnCreateReminderDataResolverFnAppSyncFunction148A60CFFunctionId": {
-      "Value": {
-        "Fn::GetAtt": [
-          "SubscriptionOnCreateReminderDataResolverFnSubscriptionOnCreateReminderDataResolverFnAppSyncFunctionF80881D7",
-          "FunctionId"
-        ]
-      }
-    },
-    "transformerrootstackReminderReminderOwnerDataResolverFnReminderOwnerDataResolverFnAppSyncFunctionDAA9F383FunctionId": {
-      "Value": {
-        "Fn::GetAtt": [
-          "ReminderOwnerDataResolverFnReminderOwnerDataResolverFnAppSyncFunction26771E04",
           "FunctionId"
         ]
       }

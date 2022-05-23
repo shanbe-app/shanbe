@@ -1,4 +1,15 @@
 
+type Profile @aws_iam @aws_cognito_user_pools {
+  id: ID!
+  premium_until: AWSDateTime
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  owner: String
+}
+
 enum ReminderStatus {
   INITIALIZED
   SHOWN
@@ -186,6 +197,107 @@ enum ModelSortDirection {
   DESC
 }
 
+type ModelProfileConnection @aws_iam @aws_cognito_user_pools {
+  items: [Profile]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelProfileFilterInput {
+  id: ModelIDInput
+  premium_until: ModelStringInput
+  and: [ModelProfileFilterInput]
+  or: [ModelProfileFilterInput]
+  not: ModelProfileFilterInput
+}
+
+type Query {
+  getProfile(id: ID!): Profile @aws_iam @aws_cognito_user_pools
+  listProfiles(filter: ModelProfileFilterInput, limit: Int, nextToken: String): ModelProfileConnection @aws_iam @aws_cognito_user_pools
+  syncProfiles(filter: ModelProfileFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelProfileConnection @aws_iam @aws_cognito_user_pools
+  getReminder(id: ID!): Reminder @aws_api_key @aws_iam @aws_cognito_user_pools
+  listReminders(filter: ModelReminderFilterInput, limit: Int, nextToken: String): ModelReminderConnection @aws_api_key @aws_iam @aws_cognito_user_pools
+  syncReminders(filter: ModelReminderFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelReminderConnection @aws_api_key @aws_iam @aws_cognito_user_pools
+  getTag(id: ID!): Tag @aws_api_key @aws_iam @aws_cognito_user_pools
+  listTags(filter: ModelTagFilterInput, limit: Int, nextToken: String): ModelTagConnection @aws_api_key @aws_iam @aws_cognito_user_pools
+  syncTags(filter: ModelTagFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelTagConnection @aws_api_key @aws_iam @aws_cognito_user_pools
+  getProject(id: ID!): Project @aws_api_key @aws_iam @aws_cognito_user_pools
+  listProjects(filter: ModelProjectFilterInput, limit: Int, nextToken: String): ModelProjectConnection @aws_api_key @aws_iam @aws_cognito_user_pools
+  syncProjects(filter: ModelProjectFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelProjectConnection @aws_api_key @aws_iam @aws_cognito_user_pools
+  getTodo(id: ID!): Todo @aws_api_key @aws_iam @aws_cognito_user_pools
+  listTodos(filter: ModelTodoFilterInput, limit: Int, nextToken: String): ModelTodoConnection @aws_api_key @aws_iam @aws_cognito_user_pools
+  syncTodos(filter: ModelTodoFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelTodoConnection @aws_api_key @aws_iam @aws_cognito_user_pools
+  getTodoTag(id: ID!): TodoTag @aws_api_key @aws_iam @aws_cognito_user_pools
+  listTodoTags(filter: ModelTodoTagFilterInput, limit: Int, nextToken: String): ModelTodoTagConnection @aws_api_key @aws_iam @aws_cognito_user_pools
+  syncTodoTags(filter: ModelTodoTagFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelTodoTagConnection @aws_api_key @aws_iam @aws_cognito_user_pools
+}
+
+input ModelProfileConditionInput {
+  premium_until: ModelStringInput
+  and: [ModelProfileConditionInput]
+  or: [ModelProfileConditionInput]
+  not: ModelProfileConditionInput
+}
+
+input CreateProfileInput {
+  id: ID
+  premium_until: AWSDateTime
+  _version: Int
+}
+
+input UpdateProfileInput {
+  id: ID!
+  premium_until: AWSDateTime
+  _version: Int
+}
+
+input DeleteProfileInput {
+  id: ID!
+  _version: Int
+}
+
+type Mutation {
+  createProfile(input: CreateProfileInput!, condition: ModelProfileConditionInput): Profile @aws_iam
+  updateProfile(input: UpdateProfileInput!, condition: ModelProfileConditionInput): Profile @aws_iam
+  deleteProfile(input: DeleteProfileInput!, condition: ModelProfileConditionInput): Profile @aws_iam @aws_cognito_user_pools
+  createReminder(input: CreateReminderInput!, condition: ModelReminderConditionInput): Reminder @aws_api_key @aws_iam @aws_cognito_user_pools
+  updateReminder(input: UpdateReminderInput!, condition: ModelReminderConditionInput): Reminder @aws_api_key @aws_iam @aws_cognito_user_pools
+  deleteReminder(input: DeleteReminderInput!, condition: ModelReminderConditionInput): Reminder @aws_api_key @aws_iam @aws_cognito_user_pools
+  createTag(input: CreateTagInput!, condition: ModelTagConditionInput): Tag @aws_api_key @aws_iam @aws_cognito_user_pools
+  updateTag(input: UpdateTagInput!, condition: ModelTagConditionInput): Tag @aws_api_key @aws_iam @aws_cognito_user_pools
+  deleteTag(input: DeleteTagInput!, condition: ModelTagConditionInput): Tag @aws_api_key @aws_iam @aws_cognito_user_pools
+  createProject(input: CreateProjectInput!, condition: ModelProjectConditionInput): Project @aws_api_key @aws_iam @aws_cognito_user_pools
+  updateProject(input: UpdateProjectInput!, condition: ModelProjectConditionInput): Project @aws_api_key @aws_iam @aws_cognito_user_pools
+  deleteProject(input: DeleteProjectInput!, condition: ModelProjectConditionInput): Project @aws_api_key @aws_iam @aws_cognito_user_pools
+  createTodo(input: CreateTodoInput!, condition: ModelTodoConditionInput): Todo @aws_api_key @aws_iam @aws_cognito_user_pools
+  updateTodo(input: UpdateTodoInput!, condition: ModelTodoConditionInput): Todo @aws_api_key @aws_iam @aws_cognito_user_pools
+  deleteTodo(input: DeleteTodoInput!, condition: ModelTodoConditionInput): Todo @aws_api_key @aws_iam @aws_cognito_user_pools
+  createTodoTag(input: CreateTodoTagInput!, condition: ModelTodoTagConditionInput): TodoTag @aws_api_key @aws_iam @aws_cognito_user_pools
+  updateTodoTag(input: UpdateTodoTagInput!, condition: ModelTodoTagConditionInput): TodoTag @aws_api_key @aws_iam @aws_cognito_user_pools
+  deleteTodoTag(input: DeleteTodoTagInput!, condition: ModelTodoTagConditionInput): TodoTag @aws_api_key @aws_iam @aws_cognito_user_pools
+}
+
+type Subscription {
+  onCreateProfile(owner: String): Profile @aws_subscribe(mutations: ["createProfile"]) @aws_iam @aws_cognito_user_pools
+  onUpdateProfile(owner: String): Profile @aws_subscribe(mutations: ["updateProfile"]) @aws_iam @aws_cognito_user_pools
+  onDeleteProfile(owner: String): Profile @aws_subscribe(mutations: ["deleteProfile"]) @aws_iam @aws_cognito_user_pools
+  onCreateReminder(owner: String): Reminder @aws_subscribe(mutations: ["createReminder"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onUpdateReminder(owner: String): Reminder @aws_subscribe(mutations: ["updateReminder"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onDeleteReminder(owner: String): Reminder @aws_subscribe(mutations: ["deleteReminder"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onCreateTag(owner: String): Tag @aws_subscribe(mutations: ["createTag"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onUpdateTag(owner: String): Tag @aws_subscribe(mutations: ["updateTag"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onDeleteTag(owner: String): Tag @aws_subscribe(mutations: ["deleteTag"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onCreateProject(owner: String): Project @aws_subscribe(mutations: ["createProject"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onUpdateProject(owner: String): Project @aws_subscribe(mutations: ["updateProject"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onDeleteProject(owner: String): Project @aws_subscribe(mutations: ["deleteProject"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onCreateTodo(owner: String): Todo @aws_subscribe(mutations: ["createTodo"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onUpdateTodo(owner: String): Todo @aws_subscribe(mutations: ["updateTodo"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onDeleteTodo(owner: String): Todo @aws_subscribe(mutations: ["deleteTodo"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onCreateTodoTag(owner: String): TodoTag @aws_subscribe(mutations: ["createTodoTag"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onUpdateTodoTag(owner: String): TodoTag @aws_subscribe(mutations: ["updateTodoTag"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+  onDeleteTodoTag(owner: String): TodoTag @aws_subscribe(mutations: ["deleteTodoTag"]) @aws_api_key @aws_iam @aws_cognito_user_pools
+}
+
 type ModelReminderConnection @aws_api_key @aws_iam @aws_cognito_user_pools {
   items: [Reminder]!
   nextToken: String
@@ -206,24 +318,6 @@ input ModelReminderFilterInput {
   and: [ModelReminderFilterInput]
   or: [ModelReminderFilterInput]
   not: ModelReminderFilterInput
-}
-
-type Query {
-  getReminder(id: ID!): Reminder @aws_api_key @aws_iam @aws_cognito_user_pools
-  listReminders(filter: ModelReminderFilterInput, limit: Int, nextToken: String): ModelReminderConnection @aws_api_key @aws_iam @aws_cognito_user_pools
-  syncReminders(filter: ModelReminderFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelReminderConnection @aws_api_key @aws_iam @aws_cognito_user_pools
-  getTag(id: ID!): Tag @aws_api_key @aws_iam @aws_cognito_user_pools
-  listTags(filter: ModelTagFilterInput, limit: Int, nextToken: String): ModelTagConnection @aws_api_key @aws_iam @aws_cognito_user_pools
-  syncTags(filter: ModelTagFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelTagConnection @aws_api_key @aws_iam @aws_cognito_user_pools
-  getProject(id: ID!): Project @aws_api_key @aws_iam @aws_cognito_user_pools
-  listProjects(filter: ModelProjectFilterInput, limit: Int, nextToken: String): ModelProjectConnection @aws_api_key @aws_iam @aws_cognito_user_pools
-  syncProjects(filter: ModelProjectFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelProjectConnection @aws_api_key @aws_iam @aws_cognito_user_pools
-  getTodo(id: ID!): Todo @aws_api_key @aws_iam @aws_cognito_user_pools
-  listTodos(filter: ModelTodoFilterInput, limit: Int, nextToken: String): ModelTodoConnection @aws_api_key @aws_iam @aws_cognito_user_pools
-  syncTodos(filter: ModelTodoFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelTodoConnection @aws_api_key @aws_iam @aws_cognito_user_pools
-  getTodoTag(id: ID!): TodoTag @aws_api_key @aws_iam @aws_cognito_user_pools
-  listTodoTags(filter: ModelTodoTagFilterInput, limit: Int, nextToken: String): ModelTodoTagConnection @aws_api_key @aws_iam @aws_cognito_user_pools
-  syncTodoTags(filter: ModelTodoTagFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelTodoTagConnection @aws_api_key @aws_iam @aws_cognito_user_pools
 }
 
 input ModelReminderConditionInput {
@@ -257,42 +351,6 @@ input UpdateReminderInput {
 input DeleteReminderInput {
   id: ID!
   _version: Int
-}
-
-type Mutation {
-  createReminder(input: CreateReminderInput!, condition: ModelReminderConditionInput): Reminder @aws_api_key @aws_iam @aws_cognito_user_pools
-  updateReminder(input: UpdateReminderInput!, condition: ModelReminderConditionInput): Reminder @aws_api_key @aws_iam @aws_cognito_user_pools
-  deleteReminder(input: DeleteReminderInput!, condition: ModelReminderConditionInput): Reminder @aws_api_key @aws_iam @aws_cognito_user_pools
-  createTag(input: CreateTagInput!, condition: ModelTagConditionInput): Tag @aws_api_key @aws_iam @aws_cognito_user_pools
-  updateTag(input: UpdateTagInput!, condition: ModelTagConditionInput): Tag @aws_api_key @aws_iam @aws_cognito_user_pools
-  deleteTag(input: DeleteTagInput!, condition: ModelTagConditionInput): Tag @aws_api_key @aws_iam @aws_cognito_user_pools
-  createProject(input: CreateProjectInput!, condition: ModelProjectConditionInput): Project @aws_api_key @aws_iam @aws_cognito_user_pools
-  updateProject(input: UpdateProjectInput!, condition: ModelProjectConditionInput): Project @aws_api_key @aws_iam @aws_cognito_user_pools
-  deleteProject(input: DeleteProjectInput!, condition: ModelProjectConditionInput): Project @aws_api_key @aws_iam @aws_cognito_user_pools
-  createTodo(input: CreateTodoInput!, condition: ModelTodoConditionInput): Todo @aws_api_key @aws_iam @aws_cognito_user_pools
-  updateTodo(input: UpdateTodoInput!, condition: ModelTodoConditionInput): Todo @aws_api_key @aws_iam @aws_cognito_user_pools
-  deleteTodo(input: DeleteTodoInput!, condition: ModelTodoConditionInput): Todo @aws_api_key @aws_iam @aws_cognito_user_pools
-  createTodoTag(input: CreateTodoTagInput!, condition: ModelTodoTagConditionInput): TodoTag @aws_api_key @aws_iam @aws_cognito_user_pools
-  updateTodoTag(input: UpdateTodoTagInput!, condition: ModelTodoTagConditionInput): TodoTag @aws_api_key @aws_iam @aws_cognito_user_pools
-  deleteTodoTag(input: DeleteTodoTagInput!, condition: ModelTodoTagConditionInput): TodoTag @aws_api_key @aws_iam @aws_cognito_user_pools
-}
-
-type Subscription {
-  onCreateReminder(owner: String): Reminder @aws_subscribe(mutations: ["createReminder"]) @aws_api_key @aws_iam @aws_cognito_user_pools
-  onUpdateReminder(owner: String): Reminder @aws_subscribe(mutations: ["updateReminder"]) @aws_api_key @aws_iam @aws_cognito_user_pools
-  onDeleteReminder(owner: String): Reminder @aws_subscribe(mutations: ["deleteReminder"]) @aws_api_key @aws_iam @aws_cognito_user_pools
-  onCreateTag(owner: String): Tag @aws_subscribe(mutations: ["createTag"]) @aws_api_key @aws_iam @aws_cognito_user_pools
-  onUpdateTag(owner: String): Tag @aws_subscribe(mutations: ["updateTag"]) @aws_api_key @aws_iam @aws_cognito_user_pools
-  onDeleteTag(owner: String): Tag @aws_subscribe(mutations: ["deleteTag"]) @aws_api_key @aws_iam @aws_cognito_user_pools
-  onCreateProject(owner: String): Project @aws_subscribe(mutations: ["createProject"]) @aws_api_key @aws_iam @aws_cognito_user_pools
-  onUpdateProject(owner: String): Project @aws_subscribe(mutations: ["updateProject"]) @aws_api_key @aws_iam @aws_cognito_user_pools
-  onDeleteProject(owner: String): Project @aws_subscribe(mutations: ["deleteProject"]) @aws_api_key @aws_iam @aws_cognito_user_pools
-  onCreateTodo(owner: String): Todo @aws_subscribe(mutations: ["createTodo"]) @aws_api_key @aws_iam @aws_cognito_user_pools
-  onUpdateTodo(owner: String): Todo @aws_subscribe(mutations: ["updateTodo"]) @aws_api_key @aws_iam @aws_cognito_user_pools
-  onDeleteTodo(owner: String): Todo @aws_subscribe(mutations: ["deleteTodo"]) @aws_api_key @aws_iam @aws_cognito_user_pools
-  onCreateTodoTag(owner: String): TodoTag @aws_subscribe(mutations: ["createTodoTag"]) @aws_api_key @aws_iam @aws_cognito_user_pools
-  onUpdateTodoTag(owner: String): TodoTag @aws_subscribe(mutations: ["updateTodoTag"]) @aws_api_key @aws_iam @aws_cognito_user_pools
-  onDeleteTodoTag(owner: String): TodoTag @aws_subscribe(mutations: ["deleteTodoTag"]) @aws_api_key @aws_iam @aws_cognito_user_pools
 }
 
 type ModelTagConnection @aws_api_key @aws_iam @aws_cognito_user_pools {

@@ -77,52 +77,14 @@
       "service": "S3",
       "providerPlugin": "awscloudformation",
       "dependsOn": []
-    },
-    "Profilebufeecckhreqvjchbmynw7ux4qstaging": {
-      "service": "DynamoDB",
-      "serviceType": "imported",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": []
     }
   },
   "function": {
     "createProfilePostSignup": {
       "build": true,
       "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "test": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
       "service": "Lambda",
-      "dependsOn": [
-        {
-          "category": "storage",
-          "resourceName": "Profilebufeecckhreqvjchbmynw7ux4qstaging",
-          "attributes": [
-            "Name",
-            "Arn"
-          ],
-          "attributeEnvMap": {
-            "Name": "TABLE_NAME",
-            "Arn": "TABLE_ARN"
-          }
-        }
-      ]
-    },
-    "test2": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": [
-        {
-          "category": "storage",
-          "resourceName": "Profilebufeecckhreqvjchbmynw7ux4qstaging",
-          "attributes": [
-            "StreamArn"
-          ]
-        }
-      ]
+      "dependsOn": []
     }
   }
 }

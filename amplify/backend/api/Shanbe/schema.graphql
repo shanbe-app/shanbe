@@ -1,6 +1,10 @@
-type Profile @model @auth(rules: [{allow: owner, operations: [read]}, {allow: public, operations: [create, read, update], provider: iam}]) {
+type Profile @model @auth(rules: [{allow: owner, operations: [read]}]) {
   id: ID!
   premium_until: AWSDateTime
+  profile_url: String
+  timezone: String
+  calendar: String
+  language: String
 }
 
 enum ReminderStatus {

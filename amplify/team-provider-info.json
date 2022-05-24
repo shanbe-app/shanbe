@@ -15,18 +15,8 @@
       "auth": {
         "Shanbe": {}
       },
-      "storage": {
-        "Profilebufeecckhreqvjchbmynw7ux4qstaging": {
-          "tableName": "Profile-bufeecckhreqvjchbmynw7ux4q-staging",
-          "region": "eu-central-1",
-          "arn": "arn:aws:dynamodb:eu-central-1:906970155596:table/Profile-bufeecckhreqvjchbmynw7ux4q-staging",
-          "streamArn": "arn:aws:dynamodb:eu-central-1:906970155596:table/Profile-bufeecckhreqvjchbmynw7ux4q-staging/stream/2022-05-23T08:31:06.435",
-          "partitionKeyName": "id",
-          "partitionKeyType": "S"
-        }
-      },
       "function": {
-        "test2": {
+        "createProfilePostSignup": {
           "profileTableName": "Profile-bufeecckhreqvjchbmynw7ux4q-staging"
         }
       }

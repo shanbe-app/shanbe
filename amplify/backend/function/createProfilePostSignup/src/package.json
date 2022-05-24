@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "amplify:createProfilePostSignup": "cd amplify/backend/function/createProfilePostSignup && npm run compile && cd -",
-    "compile": "tsc -p ./tsconfig.json"
+    "compile": "tsc -p tsconfig.json"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.92",

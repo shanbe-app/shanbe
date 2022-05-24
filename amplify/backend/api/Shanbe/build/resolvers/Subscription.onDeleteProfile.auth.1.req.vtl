@@ -11,11 +11,7 @@ $util.qr($ctx.stash.put("hasAuth", true))
       #return($util.toJson({}))
     #end
   #end
-  #if( !$isAuthorized )
-    #if( $ctx.identity.userArn == $ctx.stash.unauthRole )
-      #set( $isAuthorized = true )
-    #end
-  #end
+$util.unauthorized()
 #end
 #if( $util.authType() == "User Pool Authorization" )
   #set( $ownerClaim0 = $util.defaultIfNull($ctx.identity.claims.get("sub"), "___xamznone____") )

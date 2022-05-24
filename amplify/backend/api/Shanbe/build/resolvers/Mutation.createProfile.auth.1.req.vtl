@@ -13,9 +13,7 @@ $util.unauthorized()
       #return($util.toJson({}))
     #end
   #end
-  #if( $ctx.identity.userArn == $ctx.stash.unauthRole )
-    #set( $isAuthorized = true )
-  #end
+$util.unauthorized()
 #end
 #if( $util.authType() == "User Pool Authorization" )
 

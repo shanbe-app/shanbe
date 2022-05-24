@@ -15,11 +15,17 @@
         },
         "s3Key": {
             "Type": "String"
-        },
+        }
+        
+        ,
         "profileTableName": {
             "Type": "String"
         }
         
+        
+        
+    
+    
     
     },
     "Conditions": {
@@ -83,13 +89,13 @@
                 "RoleName": {
                     "Fn::If": [
                         "ShouldNotCreateEnvResources",
-                        "shanbeLambdaRole7db7c0f7",
+                        "shanbeLambdaRolea864e768",
                         {
 
                             "Fn::Join": [
                                 "",
                                 [
-                                    "shanbeLambdaRole7db7c0f7",
+                                    "shanbeLambdaRolea864e768",
                                     "-",
                                     {
                                         "Ref": "env"

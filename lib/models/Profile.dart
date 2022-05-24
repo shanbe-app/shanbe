@@ -29,6 +29,10 @@ class Profile extends Model {
   static const classType = const _ProfileModelType();
   final String id;
   final TemporalDateTime? _premium_until;
+  final String? _profile_url;
+  final String? _timezone;
+  final String? _calendar;
+  final String? _language;
   final TemporalDateTime? _createdAt;
   final TemporalDateTime? _updatedAt;
 
@@ -44,6 +48,22 @@ class Profile extends Model {
     return _premium_until;
   }
   
+  String? get profile_url {
+    return _profile_url;
+  }
+  
+  String? get timezone {
+    return _timezone;
+  }
+  
+  String? get calendar {
+    return _calendar;
+  }
+  
+  String? get language {
+    return _language;
+  }
+  
   TemporalDateTime? get createdAt {
     return _createdAt;
   }
@@ -52,12 +72,16 @@ class Profile extends Model {
     return _updatedAt;
   }
   
-  const Profile._internal({required this.id, premium_until, createdAt, updatedAt}): _premium_until = premium_until, _createdAt = createdAt, _updatedAt = updatedAt;
+  const Profile._internal({required this.id, premium_until, profile_url, timezone, calendar, language, createdAt, updatedAt}): _premium_until = premium_until, _profile_url = profile_url, _timezone = timezone, _calendar = calendar, _language = language, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory Profile({String? id, TemporalDateTime? premium_until}) {
+  factory Profile({String? id, TemporalDateTime? premium_until, String? profile_url, String? timezone, String? calendar, String? language}) {
     return Profile._internal(
       id: id == null ? UUID.getUUID() : id,
-      premium_until: premium_until);
+      premium_until: premium_until,
+      profile_url: profile_url,
+      timezone: timezone,
+      calendar: calendar,
+      language: language);
   }
   
   bool equals(Object other) {
@@ -69,7 +93,11 @@ class Profile extends Model {
     if (identical(other, this)) return true;
     return other is Profile &&
       id == other.id &&
-      _premium_until == other._premium_until;
+      _premium_until == other._premium_until &&
+      _profile_url == other._profile_url &&
+      _timezone == other._timezone &&
+      _calendar == other._calendar &&
+      _language == other._language;
   }
   
   @override
@@ -82,6 +110,10 @@ class Profile extends Model {
     buffer.write("Profile {");
     buffer.write("id=" + "$id" + ", ");
     buffer.write("premium_until=" + (_premium_until != null ? _premium_until!.format() : "null") + ", ");
+    buffer.write("profile_url=" + "$_profile_url" + ", ");
+    buffer.write("timezone=" + "$_timezone" + ", ");
+    buffer.write("calendar=" + "$_calendar" + ", ");
+    buffer.write("language=" + "$_language" + ", ");
     buffer.write("createdAt=" + (_createdAt != null ? _createdAt!.format() : "null") + ", ");
     buffer.write("updatedAt=" + (_updatedAt != null ? _updatedAt!.format() : "null"));
     buffer.write("}");
@@ -89,24 +121,36 @@ class Profile extends Model {
     return buffer.toString();
   }
   
-  Profile copyWith({String? id, TemporalDateTime? premium_until}) {
+  Profile copyWith({String? id, TemporalDateTime? premium_until, String? profile_url, String? timezone, String? calendar, String? language}) {
     return Profile._internal(
       id: id ?? this.id,
-      premium_until: premium_until ?? this.premium_until);
+      premium_until: premium_until ?? this.premium_until,
+      profile_url: profile_url ?? this.profile_url,
+      timezone: timezone ?? this.timezone,
+      calendar: calendar ?? this.calendar,
+      language: language ?? this.language);
   }
   
   Profile.fromJson(Map<String, dynamic> json)  
     : id = json['id'],
       _premium_until = json['premium_until'] != null ? TemporalDateTime.fromString(json['premium_until']) : null,
+      _profile_url = json['profile_url'],
+      _timezone = json['timezone'],
+      _calendar = json['calendar'],
+      _language = json['language'],
       _createdAt = json['createdAt'] != null ? TemporalDateTime.fromString(json['createdAt']) : null,
       _updatedAt = json['updatedAt'] != null ? TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'premium_until': _premium_until?.format(), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
+    'id': id, 'premium_until': _premium_until?.format(), 'profile_url': _profile_url, 'timezone': _timezone, 'calendar': _calendar, 'language': _language, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
 
   static final QueryField ID = QueryField(fieldName: "profile.id");
   static final QueryField PREMIUM_UNTIL = QueryField(fieldName: "premium_until");
+  static final QueryField PROFILE_URL = QueryField(fieldName: "profile_url");
+  static final QueryField TIMEZONE = QueryField(fieldName: "timezone");
+  static final QueryField CALENDAR = QueryField(fieldName: "calendar");
+  static final QueryField LANGUAGE = QueryField(fieldName: "language");
   static var schema = Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
     modelSchemaDefinition.name = "Profile";
     modelSchemaDefinition.pluralName = "Profiles";
@@ -119,14 +163,6 @@ class Profile extends Model {
         provider: AuthRuleProvider.USERPOOLS,
         operations: [
           ModelOperation.READ
-        ]),
-      AuthRule(
-        authStrategy: AuthStrategy.PUBLIC,
-        provider: AuthRuleProvider.IAM,
-        operations: [
-          ModelOperation.CREATE,
-          ModelOperation.READ,
-          ModelOperation.UPDATE
         ])
     ];
     
@@ -136,6 +172,30 @@ class Profile extends Model {
       key: Profile.PREMIUM_UNTIL,
       isRequired: false,
       ofType: ModelFieldType(ModelFieldTypeEnum.dateTime)
+    ));
+    
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+      key: Profile.PROFILE_URL,
+      isRequired: false,
+      ofType: ModelFieldType(ModelFieldTypeEnum.string)
+    ));
+    
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+      key: Profile.TIMEZONE,
+      isRequired: false,
+      ofType: ModelFieldType(ModelFieldTypeEnum.string)
+    ));
+    
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+      key: Profile.CALENDAR,
+      isRequired: false,
+      ofType: ModelFieldType(ModelFieldTypeEnum.string)
+    ));
+    
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+      key: Profile.LANGUAGE,
+      isRequired: false,
+      ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.nonQueryField(

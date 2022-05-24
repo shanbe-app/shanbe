@@ -2,6 +2,10 @@
 type Profile @aws_iam @aws_cognito_user_pools {
   id: ID!
   premium_until: AWSDateTime
+  profile_url: String
+  timezone: String
+  calendar: String
+  language: String
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!
   _version: Int!
@@ -206,6 +210,10 @@ type ModelProfileConnection @aws_iam @aws_cognito_user_pools {
 input ModelProfileFilterInput {
   id: ModelIDInput
   premium_until: ModelStringInput
+  profile_url: ModelStringInput
+  timezone: ModelStringInput
+  calendar: ModelStringInput
+  language: ModelStringInput
   and: [ModelProfileFilterInput]
   or: [ModelProfileFilterInput]
   not: ModelProfileFilterInput
@@ -234,6 +242,10 @@ type Query {
 
 input ModelProfileConditionInput {
   premium_until: ModelStringInput
+  profile_url: ModelStringInput
+  timezone: ModelStringInput
+  calendar: ModelStringInput
+  language: ModelStringInput
   and: [ModelProfileConditionInput]
   or: [ModelProfileConditionInput]
   not: ModelProfileConditionInput
@@ -242,12 +254,20 @@ input ModelProfileConditionInput {
 input CreateProfileInput {
   id: ID
   premium_until: AWSDateTime
+  profile_url: String
+  timezone: String
+  calendar: String
+  language: String
   _version: Int
 }
 
 input UpdateProfileInput {
   id: ID!
   premium_until: AWSDateTime
+  profile_url: String
+  timezone: String
+  calendar: String
+  language: String
   _version: Int
 }
 
@@ -257,8 +277,8 @@ input DeleteProfileInput {
 }
 
 type Mutation {
-  createProfile(input: CreateProfileInput!, condition: ModelProfileConditionInput): Profile @aws_iam
-  updateProfile(input: UpdateProfileInput!, condition: ModelProfileConditionInput): Profile @aws_iam
+  createProfile(input: CreateProfileInput!, condition: ModelProfileConditionInput): Profile @aws_iam @aws_cognito_user_pools
+  updateProfile(input: UpdateProfileInput!, condition: ModelProfileConditionInput): Profile @aws_iam @aws_cognito_user_pools
   deleteProfile(input: DeleteProfileInput!, condition: ModelProfileConditionInput): Profile @aws_iam @aws_cognito_user_pools
   createReminder(input: CreateReminderInput!, condition: ModelReminderConditionInput): Reminder @aws_api_key @aws_iam @aws_cognito_user_pools
   updateReminder(input: UpdateReminderInput!, condition: ModelReminderConditionInput): Reminder @aws_api_key @aws_iam @aws_cognito_user_pools

@@ -237,7 +237,7 @@
             "Ref": "UnauthRoleName"
           },
           "S3DeploymentBucket": "amplify-shanbe-staging-115838-deployment",
-          "S3DeploymentRootKey": "amplify-appsync-files/c979a6cb59b75f90fd2fe5a5a1d65ec162ea141b",
+          "S3DeploymentRootKey": "amplify-appsync-files/97f2c614d1cc65e3e322b970f00ec478caf3e334",
           "env": "staging"
         }
       }

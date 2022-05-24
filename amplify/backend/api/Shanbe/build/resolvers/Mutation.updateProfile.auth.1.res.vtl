@@ -18,10 +18,7 @@ $util.unauthorized()
       #return($util.toJson({}))
     #end
   #end
-  #if( $ctx.identity.userArn == $ctx.stash.unauthRole )
-    #set( $allowedFields = ["id","premium_until","_version","_deleted","_lastChangedAt"] )
-    #set( $nullAllowedFields = [] )
-  #end
+$util.unauthorized()
 #end
 #if( $util.authType() == "User Pool Authorization" )
 

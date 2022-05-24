@@ -15,6 +15,9 @@
         },
         "s3Key": {
             "Type": "String"
+        },
+        "profileTableName": {
+            "Type": "String"
         }
         
     
@@ -66,7 +69,7 @@
                 ]
             },
             "Environment": {
-                "Variables" : {"ENV":{"Ref":"env"},"REGION":{"Ref":"AWS::Region"}}
+                "Variables" : {"ENV":{"Ref":"env"},"REGION":{"Ref":"AWS::Region"},"PROFILE_TABLE_NAME":{"Ref":"profileTableName"}}
             },
             "Role": { "Fn::GetAtt": ["LambdaExecutionRole", "Arn"] },
             "Runtime": "nodejs14.x",

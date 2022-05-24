@@ -73,6 +73,9 @@ class AuthBloc extends RxBloc {
 
   void fetchCurrentUser() {
     Stream.fromFuture(Amplify.Auth.fetchAuthSession()).listen((event) {
+      Stream.fromFuture(Amplify.Auth.fetchUserAttributes()).listen((event) {
+        
+      });
       // Amplify.Auth.fetchUserAttributes()
       // Amplify.Auth.getCurrentUser()
       event.isSignedIn;

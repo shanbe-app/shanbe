@@ -1,14 +1,13 @@
 import { Context, APIGatewayProxyCallback, APIGatewayEvent } from 'aws-lambda';
+import * as AWS from 'aws-sdk';
 
-export const handler = async (event: APIGatewayEvent) => {
-    console.log(`EVENT: ${JSON.stringify(event)}`);
-    return {
-        statusCode: 200,
-        //  Uncomment below to enable CORS requests
-        //  headers: {
-        //      "Access-Control-Allow-Origin": "*",
-        //      "Access-Control-Allow-Headers": "*"
-        //  },
-        body: JSON.stringify('Hello from Lambda!'),
-    };
+export const lambdaHandler = (event: APIGatewayEvent, context: Context, callback: APIGatewayProxyCallback): void => {
+    console.log(`Event: ${JSON.stringify(event, null, 2)}`);
+    console.log(`Context: ${JSON.stringify(context, null, 2)}`);
+    callback(null, {
+        statusCode:200,
+        body: JSON.stringify({
+            message: 'hello world',
+        }),
+    });
 };

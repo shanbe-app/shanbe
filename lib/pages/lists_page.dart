@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:client/components/today_icon.dart';
 import 'package:client/rx/services/app_service.dart';
 import 'package:client/shanbe_icons.dart';
 import 'package:client/utils/constants.dart';
@@ -61,24 +62,27 @@ class _ListsPageState extends State<ListsPage> {
         tabBuilder: (context, index) => CustomScrollView(
           primary: true,
           slivers: [
-            // SliverAppBar(
-            //   actions: [
-            //     ElevatedButton(child: Text('edit'),onPressed: ,)
-            //   ],
-            //   title: Text('Lists'),
-            //
-            // ),
-            CupertinoSliverNavigationBar(
-              largeTitle: PlatformText(t!.lists),
-              stretch: false,
-              automaticallyImplyLeading: true,
-              previousPageTitle: t!.today,
-              trailing: PlatformIconButton(
-                icon: const Icon(Shanbe.sliders_h),
-                padding: EdgeInsets.zero,
-                onPressed: () {
-                  Navigator.pushNamed(context, '/edit-lists');
-                },
+            PlatformWidget(
+              material: (_, __) => SliverAppBar(
+                actions: [
+                  PlatformIconButton(
+                      icon: const Icon(Shanbe.sliders_h), onPressed: () {
+                    Navigator.pushNamed(context, '/edit-lists');
+                  })
+                ],
+              ),
+              cupertino: (_, __) => CupertinoSliverNavigationBar(
+                largeTitle: PlatformText(t!.lists),
+                stretch: false,
+                automaticallyImplyLeading: true,
+                previousPageTitle: t!.today,
+                trailing: CupertinoButton(
+                  padding: EdgeInsets.zero,
+                  child: PlatformText(t!.edit),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/edit-lists');
+                  },
+                ),
               ),
             ),
             SliverToBoxAdapter(
@@ -100,7 +104,7 @@ class _ListsPageState extends State<ListsPage> {
                               onPressed: () {},
                               child: Row(
                                 children: [
-                                  Icon(Icons.today,),
+                                  TodayIcon(),
                                   SizedBox(
                                     width: 4,
                                   ),
@@ -110,13 +114,7 @@ class _ListsPageState extends State<ListsPage> {
                             ),
                         cupertino: (_, __) => CupertinoButton(
                               child: Row(
-                                children: [
-                                  Icon(Icons.calendar_today),
-                                  SizedBox(
-                                    width: 4,
-                                  ),
-                                  PlatformText(t!.today)
-                                ],
+                                children: [TodayIcon(), PlatformText(t!.today)],
                               ),
                               onPressed: () {},
                             )),

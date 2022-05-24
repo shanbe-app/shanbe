@@ -10,8 +10,11 @@ class TodayIcon extends StatelessWidget {
     return Stack(
       children: [
         const Icon(Icons.calendar_today_rounded),
-        Center(child: Text(dd(DateTime.now())),)
+        Text(
+          dd('shamsi', DateTime.now()),
+          style: TextStyle(color: Colors.black),
+        )
       ],
-    )
+    );
   }
 }

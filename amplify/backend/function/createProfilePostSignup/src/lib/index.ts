@@ -22,7 +22,8 @@ exports.handler = async (event: APIGatewayEvent, context: Context): Promise<Crea
             id: {S: event.requestContext.authorizer?.claims.sub},
             premium_until: null,
             createdAt: {S: new Date().toISOString()},
-            updatedAt: {S: new Date().toISOString()}
+            updatedAt: {S: new Date().toISOString()},
+            __typename:{S: 'Profile'}
         }
         try {
             const insertResult = await dynamodb.put({TableName: tableName, Item: item}).promise()

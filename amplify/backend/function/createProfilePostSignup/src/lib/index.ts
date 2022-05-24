@@ -6,31 +6,40 @@ AWS.config.update({region: process.env.AWS_REGION});
 const dynamodb: DocumentClient = new AWS.DynamoDB.DocumentClient();
 const tableName: string | undefined = process.env.PROFILE_TABLE_NAME;
 
-export const lambdaHandler = (event: APIGatewayEvent, context: Context, callback: APIGatewayProxyCallback): void => {
+interface CreateProfileResponse {
+    statusCode: number;
+    body: string;
+}
+
+exports.handler = async (event: APIGatewayEvent, context: Context): Promise<CreateProfileResponse> => {
     console.log(`Event: ${JSON.stringify(event, null, 2)}`);
     console.log(`Context: ${JSON.stringify(context, null, 2)}`);
     if (!tableName) {
-        callback(new Error('table name not defined'), {
+        throw new Error('table name not defined'), {
             statusCode: 500,
             body: JSON.stringify({
                 message: 'Table name not defined',
             }),
-        })
-        return
+        }
     }
-    dynamodb.put({TableName: tableName, Item: {premium_until: null}}, (err, data) => {
-        if (err)
-            callback(err, {
-                statusCode: 422,
+    if (event.requestContext.authorizer?.claims.sub) {
+        const item = {
+            id: {S: event.requestContext.authorizer?.claims.sub},
+            premium_until: null,
+            createdAt: {S: new Date().toISOString()},
+            updatedAt: {S: new Date().toISOString()}
+        }
+        try {
+            const insertResult = await dynamodb.put({TableName: tableName, Item: item}).promise()
+            return {
+                statusCode: 200,
                 body: JSON.stringify({
-                    message: err.message,
+                    message: 'User profile created successfully.',
                 }),
-            })
-        callback(null, {
-            statusCode: 200,
-            body: JSON.stringify({
-                message: 'User profile created successfully.',
-            }),
-        })
-    })
+            }
+        } catch (e) {
+            throw e
+        }
+    }
+    throw new Error('Claim not present in request')
 };

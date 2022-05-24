@@ -15,12 +15,7 @@ exports.handler = async (event: APIGatewayEvent, context: Context): Promise<Crea
     console.log(`Event: ${JSON.stringify(event, null, 2)}`);
     console.log(`Context: ${JSON.stringify(context, null, 2)}`);
     if (!tableName) {
-        throw new Error('table name not defined'), {
-            statusCode: 500,
-            body: JSON.stringify({
-                message: 'Table name not defined',
-            }),
-        }
+        throw new Error('table name not defined')
     }
     if (event.requestContext.authorizer?.claims.sub) {
         const item = {

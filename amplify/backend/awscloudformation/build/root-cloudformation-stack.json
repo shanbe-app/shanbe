@@ -211,7 +211,7 @@
           },
           "breakCircularDependency": true,
           "dependsOn": "",
-          "hostedUIProviderCreds": "[{\"ProviderName\":\"Google\",\"client_id\":\"641408115307-2fovlc3g514cdcrsh3aqpl3p93t8op4c.apps.googleusercontent.com\",\"client_secret\":\"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\"}]",
+          "hostedUIProviderCreds": "[{\"ProviderName\":\"Google\"}]",
           "env": "staging"
         }
       }
@@ -271,6 +271,18 @@
           "s3PermissionsAuthenticatedUploads": "s3:PutObject",
           "s3PermissionsGuestPublic": "s3:GetObject",
           "s3PermissionsGuestUploads": "DISALLOW",
+          "env": "staging"
+        }
+      }
+    },
+    "functioncreateProfilePostSignup": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": "https://s3.amazonaws.com/amplify-shanbe-staging-115838-deployment/amplify-cfn-templates/function/createProfilePostSignup-cloudformation-template.json",
+        "Parameters": {
+          "profileTableName": "Profile-bufeecckhreqvjchbmynw7ux4q-staging",
+          "deploymentBucketName": "amplify-shanbe-staging-115838-deployment",
+          "s3Key": "amplify-builds/createProfilePostSignup-2f4b77714976694e566d-build.zip",
           "env": "staging"
         }
       }
@@ -350,7 +362,7 @@
           }
         },
         "Handler": "index.handler",
-        "Runtime": "nodejs14.x",
+        "Runtime": "nodejs12.x",
         "Timeout": 300,
         "Role": {
           "Fn::GetAtt": [

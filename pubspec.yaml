@@ -82,6 +82,7 @@ flutter:
     - assets/images/
     - assets/fonts/
     - assets/sounds/
+    - assets/files/
   fonts:
     - family: Graphik
       fonts:

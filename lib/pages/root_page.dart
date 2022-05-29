@@ -1,5 +1,4 @@
 import 'package:client/pages/inbox_page.dart';
-import 'package:client/pages/lists_page.dart';
 import 'package:client/pages/loading_page.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +13,7 @@ class RootPage extends StatelessWidget {
       future: appInitFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          return const ListsPage();
+          return const InboxPage();
         }
         return const LoadingPage();
       },

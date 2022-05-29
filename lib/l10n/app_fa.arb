@@ -799,7 +799,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "loginOrRegister": "ورود / ثبت‌نام",
+  "loginOrRegister": "ورود یا ثبت‌نام",
   "@loginOrRegister": {
     "type": "text",
     "placeholders": {}
@@ -1680,6 +1680,11 @@
   },
   "focus": "تمرکز",
   "@focus": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginOrRegisterDesc": "پشتیبان‌گیری اطلاعات و بیشتر.",
+  "@loginOrRegisterDesc": {
     "type": "text",
     "placeholders": {}
   }

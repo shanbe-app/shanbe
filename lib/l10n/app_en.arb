@@ -799,7 +799,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "loginOrRegister": "Login / Register",
+  "loginOrRegister": "Sign in or Sign up",
   "@loginOrRegister": {
     "type": "text",
     "placeholders": {}
@@ -1680,6 +1680,11 @@
   },
   "focus": "Focus",
   "@focus": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginOrRegisterDesc": "Backup your content and more.",
+  "@loginOrRegisterDesc": {
     "type": "text",
     "placeholders": {}
   }

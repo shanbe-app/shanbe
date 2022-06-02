@@ -1,3 +1,4 @@
+import 'package:client/components/login_button.dart';
 import 'package:client/rx/services/app_service.dart';
 import 'package:client/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
@@ -43,79 +44,8 @@ class _SettingsPageState extends State<SettingsPage> {
           child: Padding(
             padding: Constants.PAGE_PADDING,
             child: Column(
-              children: [
-                PlatformWidget(
-                  material: (_, __) => Card(
-                      shape: Constants.CARD_SHAPE,
-                      child: Padding(
-                        padding: Constants.CARD_INNER_PADDING,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Icon(
-                              Icons.account_circle,
-                              color: Constants.LINE_COLOR_DARK,
-                              size: 64,
-                            ),
-                            const SizedBox(width: 4,),
-                            Column(
-                              children: [
-                                Text(
-                                  t!.loginOrRegister,
-                                )
-                              ],
-                            )
-                          ],
-                        ),
-                      )),
-                  cupertino: (_, __) => CupertinoButton(
-                    color: Colors.white,
-                    padding: EdgeInsets.zero,
-                    child: Padding(
-                      padding: Constants.CARD_INNER_PADDING,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const Icon(
-                            Icons.account_circle,
-                            color: Constants.PLACEHOLDER_COLOR,
-                            size: 64,
-                          ),
-                          const SizedBox(
-                            width: 4,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                t!.loginOrRegister,
-                                style: TextStyle(
-                                    fontSize: Constants.S1_FONT_SIZE,
-                                    color: Constants.PRIMARY_COLOR,
-                                    fontWeight: Constants.MEDIUM_FONT_WEIGHT),
-                              ),
-                              const SizedBox(
-                                height: 4,
-                              ),
-                              Text(
-                                t!.loginOrRegisterDesc,
-                                style: const TextStyle(
-                                    fontSize: Constants.CAPTION_FONT_SIZE,
-                                    fontWeight: Constants.REGULAR_FONT_WEIGHT,
-                                    color: Constants.PLACEHOLDER_COLOR),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/login');
-                    },
-                  ),
-                )
+              children: const [
+                LoginButton()
               ],
             ),
           ),

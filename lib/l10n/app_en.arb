@@ -454,38 +454,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "welcomeToShanbe": "Welcome to Shanbe!",
-  "@welcomeToShanbe": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "welcomeToShanbeDesc": "Keep your life organized & Get things done.",
-  "@welcomeToShanbeDesc": {
-    "type": "text",
-    "placeholders": {}
-  },
   "letsGo": "Let's Go",
   "@letsGo": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "projectsToOrganize": "Project to stay focused",
-  "@projectsToOrganize": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "projectsToOrganizeDesc": "Projects let you separate works into different workspaces so you stay focused.",
-  "@projectsToOrganizeDesc": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "toGenerateIdeasNotHavingThem": "To generate ideas not keeping them!",
-  "@toGenerateIdeasNotHavingThem": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "toGenerateIdeasNotHavingThemDesc": "Your mind is meant to generate ideas, week take care of keeping them and tracking your progress along the way.",
-  "@toGenerateIdeasNotHavingThemDesc": {
     "type": "text",
     "placeholders": {}
   },
@@ -1685,6 +1655,26 @@
   },
   "loginOrRegisterDesc": "Backup your content and more.",
   "@loginOrRegisterDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appIntroTitle1": "Welcome to Shanbe!",
+  "@appIntroTitle1": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appIntroDescription1": "Stay Focused through busy days.",
+  "@appIntroDescription1": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appIntroTitle2": "Mindful through the day",
+  "@appIntroTitle2": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appIntroDescription2": "",
+  "@appIntroDescription2": {
     "type": "text",
     "placeholders": {}
   }

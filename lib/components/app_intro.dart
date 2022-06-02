@@ -1,5 +1,7 @@
 import 'package:client/pages/colors.dart';
+import 'package:client/types/app_intro_Data.dart';
 import 'package:client/utils/constants.dart';
+import 'package:client/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -7,7 +9,11 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:lottie/lottie.dart';
 
 class AppIntro extends StatefulWidget {
-  const AppIntro({Key? key}) : super(key: key);
+  final List<AppIntroData> appIntroData;
+
+  const AppIntro({Key? key,
+    required this.appIntroData,})
+      : super(key: key);
 
   @override
   State<AppIntro> createState() => _AppIntroState();
@@ -15,7 +21,6 @@ class AppIntro extends StatefulWidget {
 
 class _AppIntroState extends State<AppIntro> {
   late PageController _controller;
-  AppLocalizations? _t;
 
   @override
   void initState() {
@@ -31,138 +36,43 @@ class _AppIntroState extends State<AppIntro> {
 
   @override
   Widget build(BuildContext context) {
-    _t ??= AppLocalizations.of(context);
-    return Stack(
-      alignment: Alignment.bottomCenter,
+    return Column(
       children: [
-        Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 32),
-            child: PageView(
-              controller: _controller,
-              allowImplicitScrolling: true,
-              children: [
-                SingleChildScrollView(
-                    child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Lottie.asset('assets/files/tasks.json',
-                        alignment: Alignment.center,
-                        height: 250,
-                        repeat: true,
-                        reverse: true,
-                        fit: BoxFit.cover),
-                    SizedBox(
-                      height: 32,
-                    ),
-                    Text(
-                      _t!.welcomeToShanbe,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: Constants.H5_FONT_SIZE,
-                          fontWeight: Constants.BOLD_FONT_WEIGHT,
-                          color: textColor(context)),
-                    ),
-                    SizedBox(
-                      height: 16,
-                    ),
-                    Text(
-                      _t!.welcomeToShanbeDesc,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: Constants.S2_FONT_SIZE,
-                          fontWeight: Constants.MEDIUM_FONT_WEIGHT,
-                          color: textColor(context)),
-                    )
-                  ],
-                )),
-                SingleChildScrollView(
-                    child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Lottie.asset('assets/files/idea.json',
-                        alignment: Alignment.center,
-                        height: 250,
-                        repeat: true,
-                        reverse: true,
-                        fit: BoxFit.cover),
-                    SizedBox(
-                      height: 32,
-                    ),
-                    Text(
-                      _t!.toGenerateIdeasNotHavingThem,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: Constants.H5_FONT_SIZE,
-                          fontWeight: Constants.BOLD_FONT_WEIGHT,
-                          color: textColor(context)),
-                    ),
-                    SizedBox(
-                      height: 16,
-                    ),
-                    Text(
-                      _t!.toGenerateIdeasNotHavingThemDesc,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: Constants.S2_FONT_SIZE,
-                          fontWeight: Constants.REGULAR_FONT_WEIGHT,
-                          color: textColor(context)),
-                    )
-                  ],
-                )),
-                SingleChildScrollView(
-                    child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Lottie.asset('assets/files/boy.json',
-                        alignment: Alignment.center,
-                        height: 250,
-                        repeat: true,
-                        reverse: false,
-                        fit: BoxFit.cover),
-                    SizedBox(
-                      height: 32,
-                    ),
-                    Text(
-                      _t!.projectsToOrganize,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: Constants.H5_FONT_SIZE,
-                          fontWeight: Constants.BOLD_FONT_WEIGHT,
-                          color: textColor(context)),
-                    ),
-                    SizedBox(
-                      height: 16,
-                    ),
-                    Text(
-                      _t!.projectsToOrganizeDesc,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: Constants.S2_FONT_SIZE,
-                          fontWeight: Constants.REGULAR_FONT_WEIGHT,
-                          color: textColor(context)),
-                    )
-                  ],
-                ))
-              ],
-            )),
-        Padding(
-          padding: EdgeInsets.only(bottom: 32, left: 16, right: 16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SmoothPageIndicator(
-                controller: _controller,
-                count: 3,
-                effect: ExpandingDotsEffect(
-                    dotWidth: 12,
-                    dotHeight: 12,
-                    activeDotColor: Constants.PRIMARY_COLOR),
-              ),
-            ],
-          ),
+        PageView(
+          controller: _controller,
+          children: widget.appIntroData.map((e) =>
+              Column(
+                children: [
+                  Lottie.asset(e.lottieDir,
+                      alignment: Alignment.center,
+                      height: null,
+                      repeat: true,
+                      reverse: false,
+                      width: 350,
+                      fit: BoxFit.cover),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  Text(e.title, style: TextStyle(
+                      color: headingColor(context),
+                      fontSize: Constants.S1_FONT_SIZE),),
+                  const SizedBox(height: 16,),
+                  Text(e.description, style: TextStyle(
+                      color: secondaryTextColor(context),
+                      fontSize: Constants.S2_FONT_SIZE))
+                ],
+              )
+          ).toList(),
+        ),
+        const SizedBox(height: 16,),
+        SmoothPageIndicator(
+          controller: _controller,
+          count: widget.appIntroData.length,
+          textDirection: isRtl(context) ? TextDirection.rtl : TextDirection.ltr,
+          effect: ExpandingDotsEffect(
+              dotWidth: 12,
+              dotHeight: 12,
+              activeDotColor: Constants.PRIMARY_COLOR),
         )
       ],
     );

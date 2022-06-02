@@ -1,5 +1,6 @@
 import 'package:client/components/app_intro.dart';
 import 'package:client/rx/services/app_service.dart';
+import 'package:client/types/app_intro_Data.dart';
 import 'package:client/utils/constants.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -30,7 +31,11 @@ class _LoginPageState extends State<LoginPage> {
         child: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
-              child: AppIntro(),
+              child: AppIntro(appIntroData: [
+                AppIntroData(t!.welcomeToShanbe, t!.welcomeToShanbeDesc, 'assets/files/tasks.json'),
+                AppIntroData(t!.toGenerateIdeasNotHavingThem, t!.toGenerateIdeasNotHavingThemDesc, 'assets/files/idea.json'),
+                AppIntroData(t!.projectsToOrganize, t!.projectsToOrganizeDesc, 'assets/files/boy.json')
+              ],),
             )
           ],
         ),

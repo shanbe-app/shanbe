@@ -114,7 +114,7 @@ class _ShanbeAppState extends State<ShanbeApp> {
           tabLabelTextStyle: const TextStyle(
               fontFamily: Constants.APPLICATION_DEFAULT_FONT,
               fontFamilyFallback: Constants.APPLICATION_FALLBACK_FONTS,
-              fontSize: Constants.S2_FONT_SIZE,
+              fontSize: Constants.CAPTION_FONT_SIZE,
               color: CupertinoColors.inactiveGray,
               fontWeight: Constants.MEDIUM_FONT_WEIGHT),
           navTitleTextStyle: const TextStyle(

@@ -5,7 +5,7 @@ import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:client/rx/blocs/rx_bloc.dart';
 import 'package:client/rx/services/amplify_service.dart';
 import 'package:client/rx/services/app_service.dart';
-import 'package:client/types/states/auth_state.dart';
+import 'package:client/types/auth_state.dart';
 import 'package:rxdart/rxdart.dart';
 
 class AuthBloc extends RxBloc {

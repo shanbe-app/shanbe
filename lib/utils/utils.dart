@@ -39,3 +39,22 @@ String timeTo2Digit(int? digit) {
   }
 }
 
+TextDirection correctDirection(String input) {
+  return input.startsWith(RegExp(r'[A-Za-z0-9]'))
+      ? TextDirection.ltr
+      : TextDirection.rtl;
+}
+
+TextAlign correctAlignment(String input) {
+  return input.startsWith(RegExp(r'[A-Za-z0-9]'))
+      ? TextAlign.left
+      : TextAlign.right;
+}
+
+String currentLocale(BuildContext context) {
+  return Localizations.localeOf(context).languageCode;
+}
+
+bool isRtl(BuildContext context) {
+  return currentLocale(context) == 'fa' ? true : false;
+}

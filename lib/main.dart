@@ -4,5 +4,6 @@ import 'flavors.dart';
 
 void main() {
   F.appFlavor = Flavor.production;
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const ShanbeApp());
 }

@@ -469,26 +469,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "projectsToOrganize": "هر سخن جایی و هر نکته مکانی دارد جدا!",
-  "@projectsToOrganize": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "projectsToOrganizeDesc": "با دسته‌بندی کارهات به پروژه‌های مختلف همیشه منظم میمونی و میدونی برای هر هدفی دقیقاً چیکار باید بکنی.",
-  "@projectsToOrganizeDesc": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "toGenerateIdeasNotHavingThem": "فراغ خاطر وسط یه زندگی شلوغ",
-  "@toGenerateIdeasNotHavingThem": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "toGenerateIdeasNotHavingThemDesc": "ذهنت رو برای ساختن ایده‌ها و خلاقیت آزاد نگه دار. ما حواسمون به کارا و اهداف روزمرت هست.",
-  "@toGenerateIdeasNotHavingThemDesc": {
-    "type": "text",
-    "placeholders": {}
-  },
   "skip": "پرش از این مرحله",
   "@skip": {
     "type": "text",

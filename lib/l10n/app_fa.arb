@@ -1667,5 +1667,45 @@
   "@loginOrRegisterDesc": {
     "type": "text",
     "placeholders": {}
+  },
+  "appIntroTitle1": "به شنبه خوش اومدی!",
+  "@appIntroTitle1": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appIntroDescription1": "تو روزهای شلوغ متمرکز بمون.",
+  "@appIntroDescription1": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appIntroTitle2": "متمرکز روی اهدافت",
+  "@appIntroTitle2": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appIntroDescription2": "دکمه تمرکز رو بزن و شروع به کار روی اهدافت کن.",
+  "@appIntroDescription2": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appIntroTitle3": "همه یک جا",
+  "@appIntroTitle3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appIntroDescription3": "تمام کارها، یادداشت‌ها و ملافات‌هات رو یک جا داشته باش.",
+  "@appIntroDescription3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appIntroTitle4": "اون یادداشتو بگیر",
+  "@appIntroTitle4": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appIntroDescription4": "یادداشت برداری آسان برای استفاده روزانه",
+  "@appIntroDescription4": {
+    "type": "text",
+    "placeholders": {}
   }
 }

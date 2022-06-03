@@ -1659,22 +1659,42 @@
     "placeholders": {}
   },
   "appIntroTitle1": "Welcome to Shanbe!",
-  "@appIntroTitle1": {
+  "@appIntroTitle1":
     "type": "text",
     "placeholders": {}
   },
-  "appIntroDescription1": "Stay Focused through busy days.",
+  "appIntroDescription1": "Stay focuesd in busy days.",
   "@appIntroDescription1": {
     "type": "text",
     "placeholders": {}
   },
-  "appIntroTitle2": "Mindful through the day",
+  "appIntroTitle2": "Focused on your goals",
   "@appIntroTitle2": {
     "type": "text",
     "placeholders": {}
   },
-  "appIntroDescription2": "",
+  "appIntroDescription2": "Hit the Focus button and start working on your goals.",
   "@appIntroDescription2": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appIntroTitle3": "All in one place",
+  "@appIntroTitle3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appIntroDescription3": "View all your tasks, events and notes in one place and get reminded just on time.",
+  "@appIntroDescription3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appIntroTitle4": "Catch that note!",
+  "@appIntroTitle4": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appIntroDescription4": "Easy note-taking for your everyday notes.",
+  "@appIntroDescription4": {
     "type": "text",
     "placeholders": {}
   }

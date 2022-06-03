@@ -474,108 +474,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "welcomeProject": "Welcome",
-  "@welcomeProject": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "welcomeProjectTask1": "Create a new todo with + button",
-  "@welcomeProjectTask1": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "welcomeProjectTask2": "To edit multiple todos just hold one of them to activate multiselect",
-  "@welcomeProjectTask2": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "welcomeProjectTask3": "Swipe a todo to left to set reminder on it!",
-  "@welcomeProjectTask3": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "welcomeProjectTask4": "Touch this todo to edit it's details",
-  "@welcomeProjectTask4": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "welcomeProjectTask5": "Welcome to Shanbe! Shanbe is your personal place to organize your tasks, set goals and track your progress",
-  "@welcomeProjectTask5": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "welcomeProjectTask6": "You can see all your overdue and due todos in this page",
-  "@welcomeProjectTask6": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "welcomeProjectTask7": "Check a todo when it's done!",
-  "@welcomeProjectTask7": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noShoppingTitle": "Nothing to shop!",
-  "@noShoppingTitle": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noWorkTitle": "No work todos!",
-  "@noWorkTitle": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noBirthDayTitle": "No birthday found!",
-  "@noBirthDayTitle": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noWishListTitle": "No Wishlist!",
-  "@noWishListTitle": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noLearningTitle": "Nothing to learn!",
-  "@noLearningTitle": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noFitnessTitle": "No fitness todo!",
-  "@noFitnessTitle": {
-    "type": "text",
-    "placeholders": {}
-  },
   "noTodoTitle": "No todo found!",
   "@noTodoTitle": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noShoppingDesc": "What you want to shop an coming days?",
-  "@noShoppingDesc": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noWorkDesc": "What things should get done in your work?",
-  "@noWorkDesc": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noBirthDayDesc": "Whose birthday should you remember?",
-  "@noBirthDayDesc": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noWishListDesc": "What you wish to have?",
-  "@noWishListDesc": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noLearningDesc": "What should you learn?",
-  "@noLearningDesc": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noFitnessDesc": "How should you get fit?",
-  "@noFitnessDesc": {
     "type": "text",
     "placeholders": {}
   },
@@ -1659,11 +1559,11 @@
     "placeholders": {}
   },
   "appIntroTitle1": "Welcome to Shanbe!",
-  "@appIntroTitle1":
+  "@appIntroTitle1": {
     "type": "text",
     "placeholders": {}
   },
-  "appIntroDescription1": "Stay focuesd in busy days.",
+  "appIntroDescription1": "Stay focused in busy days.",
   "@appIntroDescription1": {
     "type": "text",
     "placeholders": {}

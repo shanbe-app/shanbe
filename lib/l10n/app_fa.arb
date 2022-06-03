@@ -454,16 +454,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "welcomeToShanbe": "به شنبه خوش اومدی!",
-  "@welcomeToShanbe": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "welcomeToShanbeDesc": "همه هدف‌ها و برنامه‌هاتو یه جا داشته باش. سکان زندگی در دستت!",
-  "@welcomeToShanbeDesc": {
-    "type": "text",
-    "placeholders": {}
-  },
   "letsGo": "بزن بریم",
   "@letsGo": {
     "type": "text",
@@ -484,108 +474,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "welcomeProject": "خوش اومدی",
-  "@welcomeProject": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "welcomeProjectTask1": "کارای جدیدت رو با دکمه + بساز",
-  "@welcomeProjectTask1": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "welcomeProjectTask2": "اگه چند تا کارو با هم میخای ویرایش کنی کافیه روی یکیشون انگشتتو نگه داری.",
-  "@welcomeProjectTask2": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "welcomeProjectTask3": "اگه می‌خوای کاری بهت یاد‌آوری بشه کافیه اون کار رو به چپ بکشی!",
-  "@welcomeProjectTask3": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "welcomeProjectTask4": "همین کار رو لمس کن تا براش جزییات بیشتری وارد کنی",
-  "@welcomeProjectTask4": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "welcomeProjectTask5": "سلام به شنبه خوش اومدی! شنبه فضای اختصاصی تو برای همه برنامه‌ها، کارها و یادآوری‌هاته. با شنبه همیشه حساب کارا دستته!",
-  "@welcomeProjectTask5": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "welcomeProjectTask6": "توو این صفحه همه کارای انجام نشده که از قبل موندن یا کارایی که امروز می‌خوای انجام بدی رو می‌تونی ببینی.",
-  "@welcomeProjectTask6": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "welcomeProjectTask7": "هر موقع کاری رو انجام دادی تیکش رو بزن!",
-  "@welcomeProjectTask7": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noShoppingTitle": "لیست خرید خالیست!",
-  "@noShoppingTitle": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noWorkTitle": "لیست کاری خالیست!",
-  "@noWorkTitle": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noBirthDayTitle": "هیچ تولدی نیست!",
-  "@noBirthDayTitle": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noWishListTitle": "چه آرزویی داری؟",
-  "@noWishListTitle": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noLearningTitle": "چیز جدیدی برای یادگیری نیست!",
-  "@noLearningTitle": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noFitnessTitle": "کاری برای تناسب اندام نیست!",
-  "@noFitnessTitle": {
-    "type": "text",
-    "placeholders": {}
-  },
   "noTodoTitle": "چه چیزی به دست خواهی آورد؟",
   "@noTodoTitle": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noShoppingDesc": "چیا باید بخری؟",
-  "@noShoppingDesc": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noWorkDesc": "تو زمینه کاریت چه اتفاق مهمی باید بیفته؟ چه کاری باید انجام بدی؟",
-  "@noWorkDesc": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noBirthDayDesc": "تولد کدوم عزیزت رو نباید فراموشی کنی؟ اینجا وارد کن!",
-  "@noBirthDayDesc": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noWishListDesc": "به کدوم خواستت باید برسی؟",
-  "@noWishListDesc": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noLearningDesc": "چه چیز جدیدی باید یاد بگیری؟ کدوم کتاب رو باید بخونی؟",
-  "@noLearningDesc": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noFitnessDesc": "واسه سلامتی و تناسب اندامت چیکار باید بکنی؟",
-  "@noFitnessDesc": {
     "type": "text",
     "placeholders": {}
   },

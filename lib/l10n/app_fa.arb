@@ -1413,96 +1413,96 @@
     "type": "text",
     "placeholders": {}
   },
-     "authOnEnter": "احراز هویت هنگام ورود",
-     "@authOnEnter": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "authOnEnterDesc": "با استفاده از اثر انگشت هویت خود را احراز کنید.",
-     "@authOnEnterDesc": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "yourDeviceDoesntSupportThisFeature": "دستگاه شما از این قابلیت پشتیبانی نمی‌کند.",
-     "@yourDeviceDoesntSupportThisFeature": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "authorizationIsRequiredToChangeThisSetting": "احراز هویت برای تغییر این تنظیم نیاز است.",
-     "@authorizationIsRequiredToChangeThisSetting": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "authorizeToChangeThisSetting": "برای تغییر این تنظیم احراز هویت کنید.",
-     "@authorizeToChangeThisSetting": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "authorizationIsRequiredToAccessApplication": "احراز هویت برای دسترسی به برنامه نیاز است.",
-     "@authorizationIsRequiredToAccessApplication": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "authorizationWasNotSuccessful": "احراز هویت موفقی‌آمیز نبود.",
-     "@authorizationWasNotSuccessful": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "playSoundOnDone": "پخش صدا هنگام انجام کار",
-     "@playSoundOnDone": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "playSoundOnDoneDesc": "یک صدای کوتاه هنگامی که کاری را انجام می‌دهید پخش خواهد شد.",
-     "@playSoundOnDoneDesc": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "playSoundOnTaskCreate": "پخش صدا هنگام ایجاد کار",
-     "@playSoundOnTaskCreate": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "playSoundOnTaskCreateDesc": "یک صدای کوتاه هنگام ایجاد کار پخش خواهد شد.",
-     "@playSoundOnTaskCreateDesc": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "soundOnDone": "صدای انجام کار",
-     "@soundOnDone": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "soundOnCreate": "صدای ساخت کار",
-     "@soundOnCreate": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "none": "هیچی",
-     "@none": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "undo": "بازگردانی",
-     "@undo": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "completed": "کار انجام شد",
-     "@completed": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "uncompleted": "کار بازگشایی شد",
-     "@uncompleted": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "goToProject": "رفتن به پروژه این کار",
-     "@goToProject": {
-       "type": "text",
-       "placeholders": {}
-     },
+  "authOnEnter": "احراز هویت هنگام ورود",
+  "@authOnEnter": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "authOnEnterDesc": "با استفاده از اثر انگشت هویت خود را احراز کنید.",
+  "@authOnEnterDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourDeviceDoesntSupportThisFeature": "دستگاه شما از این قابلیت پشتیبانی نمی‌کند.",
+  "@yourDeviceDoesntSupportThisFeature": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "authorizationIsRequiredToChangeThisSetting": "احراز هویت برای تغییر این تنظیم نیاز است.",
+  "@authorizationIsRequiredToChangeThisSetting": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "authorizeToChangeThisSetting": "برای تغییر این تنظیم احراز هویت کنید.",
+  "@authorizeToChangeThisSetting": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "authorizationIsRequiredToAccessApplication": "احراز هویت برای دسترسی به برنامه نیاز است.",
+  "@authorizationIsRequiredToAccessApplication": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "authorizationWasNotSuccessful": "احراز هویت موفقی‌آمیز نبود.",
+  "@authorizationWasNotSuccessful": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playSoundOnDone": "پخش صدا هنگام انجام کار",
+  "@playSoundOnDone": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playSoundOnDoneDesc": "یک صدای کوتاه هنگامی که کاری را انجام می‌دهید پخش خواهد شد.",
+  "@playSoundOnDoneDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playSoundOnTaskCreate": "پخش صدا هنگام ایجاد کار",
+  "@playSoundOnTaskCreate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playSoundOnTaskCreateDesc": "یک صدای کوتاه هنگام ایجاد کار پخش خواهد شد.",
+  "@playSoundOnTaskCreateDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "soundOnDone": "صدای انجام کار",
+  "@soundOnDone": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "soundOnCreate": "صدای ساخت کار",
+  "@soundOnCreate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "none": "هیچی",
+  "@none": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "undo": "بازگردانی",
+  "@undo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "completed": "کار انجام شد",
+  "@completed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "uncompleted": "کار بازگشایی شد",
+  "@uncompleted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goToProject": "رفتن به پروژه این کار",
+  "@goToProject": {
+    "type": "text",
+    "placeholders": {}
+  },
   "backgroundColor": "رنگ زمینه",
   "@backgroundColor": {
     "type": "text",
@@ -1515,8 +1515,8 @@
   },
   "commentWithMyketApp": "لطفا نظر خود را از طریق اپلیکیشن مایکت به اشتراک بگذارید.",
   "@commentWithMyketApp": {
-     "type": "text",
-     "placeholders": {}
+    "type": "text",
+    "placeholders": {}
   },
   "voiceInitializationError": "خطا در ضبط صدا",
   "@voiceInitializationError": {
@@ -1558,22 +1558,22 @@
     "type": "text",
     "placeholders": {}
   },
-  "appIntroTitle1": "به شنبه خوش اومدی!",
+  "appIntroTitle1": "به شنبه خوش اومدی",
   "@appIntroTitle1": {
     "type": "text",
     "placeholders": {}
   },
-  "appIntroDescription1": "تو روزهای شلوغ متمرکز بمون.",
+  "appIntroDescription1": "فضای تمرکز تو",
   "@appIntroDescription1": {
     "type": "text",
     "placeholders": {}
   },
-  "appIntroTitle2": "متمرکز روی اهدافت",
+  "appIntroTitle2": "مترکز روی کار واقعی",
   "@appIntroTitle2": {
     "type": "text",
     "placeholders": {}
   },
-  "appIntroDescription2": "دکمه تمرکز رو بزن و شروع به کار روی اهدافت کن.",
+  "appIntroDescription2": "چون همه چیز سر جاشه.",
   "@appIntroDescription2": {
     "type": "text",
     "placeholders": {}
@@ -1583,18 +1583,33 @@
     "type": "text",
     "placeholders": {}
   },
-  "appIntroDescription3": "تمام کارها، یادداشت‌ها و ملافات‌هات رو یک جا داشته باش.",
+  "appIntroDescription3": "تمام کارها، یادداشت‌ها و ملاقات‌هات رو یکجا داری و سرموقع بهت یادآوری میشه.",
   "@appIntroDescription3": {
     "type": "text",
     "placeholders": {}
   },
-  "appIntroTitle4": "اون یادداشتو بگیر",
+  "appIntroTitle4": "اون یادداشتم کو؟!",
   "@appIntroTitle4": {
     "type": "text",
     "placeholders": {}
   },
-  "appIntroDescription4": "یادداشت برداری آسان برای استفاده روزانه",
+  "appIntroDescription4": "یادداشت‌ بردار زیبا برای استفاده روزانه.",
   "@appIntroDescription4": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appRegisterTitle1": "پشتیبان‌گیری و استفاده در چندین دستگاه",
+  "@appRegisterTitle1": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appRegisterTitle2": "ایجاد کارهای تکرار شونده",
+  "@appRegisterTitle2": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appRegisterTitle3": "جلدهای زیبا برای لیست‌ها و دفترچه‌ها",
+  "@appRegisterTitle3": {
     "type": "text",
     "placeholders": {}
   }

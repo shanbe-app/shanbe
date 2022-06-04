@@ -243,7 +243,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "projectLimitExceed": "Purchase Pro subscription to create more projects",
+  "projectLimitExceed": "Purchase Premium to create more projects",
   "@projectLimitExceed": {
     "type": "text",
     "placeholders": {}
@@ -958,7 +958,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "premiumAccountPurchase": "Shanbe Pro version",
+  "premiumAccountPurchase": "Shanbe Premium",
   "@premiumAccountPurchase": {
     "type": "text",
     "placeholders": {}
@@ -1033,7 +1033,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "subscriptionVerified": "Pro subscription purchased!",
+  "subscriptionVerified": "Premium subscription purchased!",
   "@subscriptionVerified": {
     "type": "text",
     "placeholders": {}
@@ -1103,7 +1103,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "premiumUserUntil": "Pro subscription until {date}",
+  "premiumUserUntil": "Premium subscription until {date}",
   "@premiumUserUntil": {
     "type": "text",
     "placeholders": {
@@ -1115,12 +1115,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "purchasePremiumToAddMoreSubTasks": "Purchase Pro to add more subtasks",
+  "purchasePremiumToAddMoreSubTasks": "Purchase Premium to add more subtasks",
   "@purchasePremiumToAddMoreSubTasks": {
     "type": "text",
     "placeholders": {}
   },
-  "purchasePremiumToAddMoreTodos": "Purchase Pro to add more todos",
+  "purchasePremiumToAddMoreTodos": "Purchase Premium to add more todos",
   "@purchasePremiumToAddMoreTodos": {
     "type": "text",
     "placeholders": {}
@@ -1145,7 +1145,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "tagsArePremiumOnly": "Purchase Pro to create Labels",
+  "tagsArePremiumOnly": "Purchase Premium to create Labels",
   "@tagsArePremiumOnly": {
     "type": "text",
     "placeholders": {}
@@ -1279,7 +1279,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "purchasePremiumToAddRepeatingTasks": "Purchase Pro to create recurring tasks.",
+  "purchasePremiumToAddRepeatingTasks": "Purchase Premium to create recurring tasks.",
   "@purchasePremiumToAddRepeatingTasks": {
     "type": "text",
     "placeholders": {}
@@ -1344,7 +1344,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "purchasePremiumToCustomizeProjects": "Purchase Pro subscription to customize projects",
+  "purchasePremiumToCustomizeProjects": "Purchase Premium to customize projects",
   "@purchasePremiumToCustomizeProjects": {
     "type": "text",
     "placeholders": {}
@@ -1413,105 +1413,105 @@
     "type": "text",
     "placeholders": {}
   },
-     "authOnEnter": "Authorize on App startup",
-     "@authOnEnter": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "authOnEnterDesc": "Use fingerprint to authorize access to Shanbe",
-     "@authOnEnterDesc": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "yourDeviceDoesntSupportThisFeature": "Your device doesn't support this feature.",
-     "@yourDeviceDoesntSupportThisFeature": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "authorizationIsRequiredToChangeThisSetting": "Authorization is required to change this setting.",
-     "@authorizationIsRequiredToChangeThisSetting": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "authorizeToChangeThisSetting": "Authorize to change this setting.",
-     "@authorizeToChangeThisSetting": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "authorizationIsRequiredToAccessApplication": "Authorization is required to access the application.",
-     "@authorizationIsRequiredToAccessApplication": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "authorizationWasNotSuccessful": "Authorization was not successful.",
-     "@authorizationWasNotSuccessful": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "playSoundOnDone": "Play sound one task done",
-     "@playSoundOnDone": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "playSoundOnDoneDesc": "A short sound will be played when you complete a task",
-     "@playSoundOnDoneDesc": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "playSoundOnTaskCreate": "Play sound on task creation",
-     "@playSoundOnTaskCreate": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "playSoundOnTaskCreateDesc": "A short sound will be played when you create a task",
-     "@playSoundOnTaskCreateDesc": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "soundOnDone": "Sound on task done",
-     "@soundOnDone": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "soundOnCreate": "Sound on task creation",
-     "@soundOnCreate": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "none": "None",
-     "@none": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "undo": "Undo",
-     "@undo": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "completed": "Task completed!",
-     "@completed": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "uncompleted": "Task reopened",
-     "@uncompleted": {
-       "type": "text",
-       "placeholders": {}
-     },
-     "goToProject": "Go to Project",
-     "@goToProject": {
-       "type": "text",
-       "placeholders": {}
-     },
+  "authOnEnter": "Authorize on App startup",
+  "@authOnEnter": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "authOnEnterDesc": "Use fingerprint to authorize access to Shanbe",
+  "@authOnEnterDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourDeviceDoesntSupportThisFeature": "Your device doesn't support this feature.",
+  "@yourDeviceDoesntSupportThisFeature": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "authorizationIsRequiredToChangeThisSetting": "Authorization is required to change this setting.",
+  "@authorizationIsRequiredToChangeThisSetting": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "authorizeToChangeThisSetting": "Authorize to change this setting.",
+  "@authorizeToChangeThisSetting": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "authorizationIsRequiredToAccessApplication": "Authorization is required to access the application.",
+  "@authorizationIsRequiredToAccessApplication": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "authorizationWasNotSuccessful": "Authorization was not successful.",
+  "@authorizationWasNotSuccessful": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playSoundOnDone": "Play sound one task done",
+  "@playSoundOnDone": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playSoundOnDoneDesc": "A short sound will be played when you complete a task",
+  "@playSoundOnDoneDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playSoundOnTaskCreate": "Play sound on task creation",
+  "@playSoundOnTaskCreate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "playSoundOnTaskCreateDesc": "A short sound will be played when you create a task",
+  "@playSoundOnTaskCreateDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "soundOnDone": "Sound on task done",
+  "@soundOnDone": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "soundOnCreate": "Sound on task creation",
+  "@soundOnCreate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "none": "None",
+  "@none": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "undo": "Undo",
+  "@undo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "completed": "Task completed!",
+  "@completed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "uncompleted": "Task reopened",
+  "@uncompleted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goToProject": "Go to Project",
+  "@goToProject": {
+    "type": "text",
+    "placeholders": {}
+  },
   "backgroundColor": "Background color",
   "@backgroundColor": {
     "type": "text",
     "placeholders": {}
   },
   "shareWithFriendsMessageMyket": "Checkout Shanbe on Myket. I use it to manage my goals and projects! https://myket.ir/app/io.shanbe.shanbe",
-     "@shareWithFriendsMessageMyket": {
-     "type": "text",
-     "placeholders": {}
+  "@shareWithFriendsMessageMyket": {
+    "type": "text",
+    "placeholders": {}
   },
   "commentWithMyketApp": "Please place your comment in Myket app.",
   "@commentWithMyketApp": {
@@ -1558,22 +1558,22 @@
     "type": "text",
     "placeholders": {}
   },
-  "appIntroTitle1": "Welcome to Shanbe!",
+  "appIntroTitle1": "Welcome to Shanbe",
   "@appIntroTitle1": {
     "type": "text",
     "placeholders": {}
   },
-  "appIntroDescription1": "Stay focused in busy days.",
+  "appIntroDescription1": "Your focus space",
   "@appIntroDescription1": {
     "type": "text",
     "placeholders": {}
   },
-  "appIntroTitle2": "Focused on your goals",
+  "appIntroTitle2": "Focused on real work",
   "@appIntroTitle2": {
     "type": "text",
     "placeholders": {}
   },
-  "appIntroDescription2": "Hit the Focus button and start working on your goals.",
+  "appIntroDescription2": "Because you are organized and arranged.",
   "@appIntroDescription2": {
     "type": "text",
     "placeholders": {}
@@ -1593,8 +1593,23 @@
     "type": "text",
     "placeholders": {}
   },
-  "appIntroDescription4": "Easy note-taking for your everyday notes.",
+  "appIntroDescription4": "Beautiful note taking for your everyday use.",
   "@appIntroDescription4": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appRegisterTitle1": "Backup to the cloud & Multi-device usage",
+  "@appRegisterTitle1": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appRegisterTitle2": "Set recurring tasks",
+  "@appRegisterTitle2": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appRegisterTitle3": "Beautiful covers for projects and notebooks",
+  "@appRegisterTitle3": {
     "type": "text",
     "placeholders": {}
   }

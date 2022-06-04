@@ -29,7 +29,6 @@ class _IntroPageState extends State<IntroPage> {
   @override
   Widget build(BuildContext context) {
     t ??= AppLocalizations.of(context);
-    appIntroData
 
     return PlatformScaffold(
       body: SingleChildScrollView(
@@ -37,7 +36,7 @@ class _IntroPageState extends State<IntroPage> {
           children: [
             PageView(
               controller: _controller,
-              children: [AppIntroData(t!.app, lottieDir, description)]
+              children: [AppIntroData(t!.appIntroTitle1, 'assets/images/files/', t!.appIntroDescription1)]
                   .map((e) => Column(
                         children: [
                           Lottie.asset(e.lottieDir,

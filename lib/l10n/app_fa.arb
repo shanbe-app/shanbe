@@ -1593,7 +1593,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "appIntroDescription4": "یادداشت‌ بردار زیبا برای استفاده روزانه.",
+  "appIntroDescription4": "یادداشت‌ بردار روان برای استفاده روزانه.",
   "@appIntroDescription4": {
     "type": "text",
     "placeholders": {}
@@ -1608,7 +1608,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "appRegisterTitle3": "جلدهای زیبا برای لیست‌ها و دفترچه‌ها",
+  "appRegisterTitle3": "جلد زیبا برای لیست‌ها و دفترچه‌ها",
   "@appRegisterTitle3": {
     "type": "text",
     "placeholders": {}

@@ -1,4 +1,4 @@
-import 'package:client/pages/colors.dart';
+import 'package:client/utils/colors.dart';
 import 'package:client/types/app_intro_Data.dart';
 import 'package:client/utils/constants.dart';
 import 'package:client/utils/utils.dart';

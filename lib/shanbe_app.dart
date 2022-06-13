@@ -75,7 +75,6 @@ class _ShanbeAppState extends State<ShanbeApp> {
       initialRoute: '/',
       onGenerateTitle: (context) => AppLocalizations.of(context).title,
       onGenerateRoute: (settings) {
-        print('ongenrateroute ${settings.name}');
         switch (settings.name) {
           case '/':
             return platformPageRoute(
@@ -172,6 +171,10 @@ class _ShanbeAppState extends State<ShanbeApp> {
               fontFamily: Constants.APPLICATION_DEFAULT_FONT,
               errorColor: Constants.ERROR_COLOR,
               dividerColor: Constants.LINE_COLOR_DARK,
+              cardTheme: CardTheme(shape: Constants.CARD_SHAPE, elevation: 4),
+              colorScheme: Theme.of(context)
+                  .colorScheme
+                  .copyWith(secondary: Constants.SECONDARY_COLOR),
               elevatedButtonTheme: ElevatedButtonThemeData(
                   style: ElevatedButton.styleFrom(
                       primary: Constants.PRIMARY_COLOR_DARK,
@@ -216,6 +219,7 @@ class _ShanbeAppState extends State<ShanbeApp> {
               colorScheme: Theme.of(context) // Todo Need consideration
                   .colorScheme
                   .copyWith(secondary: Constants.SECONDARY_COLOR),
+              cardTheme: CardTheme(shape: Constants.CARD_SHAPE, elevation: 4),
               elevatedButtonTheme: ElevatedButtonThemeData(
                   style: ElevatedButton.styleFrom(
                       primary: Constants.PRIMARY_COLOR_DARK,

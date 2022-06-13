@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:amplify_api/amplify_api.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_datastore/amplify_datastore.dart';
@@ -16,9 +18,15 @@ class AmplifyService extends RxService {
     AmplifyAuthCognito auth = AmplifyAuthCognito();
     AmplifyAPI api =
         AmplifyAPI(modelProvider: ModelProvider.instance, authProviders: []);
-    await Amplify.addPlugins([dataStore, auth, api]);
+    if (Platform.isAndroid || Platform.isIOS) {
+      await Amplify.addPlugin(dataStore);
+    }
+    await Amplify.addPlugins([auth, api]);
     await Amplify.configure(amplifyconfig);
-    await Amplify.DataStore.start();
+    if (Platform.isAndroid || Platform.isIOS) {
+      await Amplify.DataStore.start();
+    }
+
     // Amplify.Hub.listen([HubChannel.Auth, HubChannel.DataStore], (event) {
     //   print('event ${event.eventName} ${event.payload}');
     // });
@@ -26,6 +34,8 @@ class AmplifyService extends RxService {
 
   @override
   Future<void> onTerminate() async {
-    Amplify.DataStore.stop();
+    if (Platform.isAndroid || Platform.isIOS) {
+      Amplify.DataStore.stop();
+    }
   }
 }

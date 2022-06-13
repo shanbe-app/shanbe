@@ -6,9 +6,22 @@ import 'package:flutter/material.dart';
 class Constants {
   Constants._();
 
+  static const String INDEX_PROJECT_NAME = 'shanbe_todo_index_project';
   static const String ACCESS_TOKEN_PREFS = 'access_token';
   static const String REFRESH_TOKEN_PREFS = 'refresh_token';
   static const String SHOW_NOTIFICATIONS_PREFS = 'SHOW_NOTIFICATIONS_PREFS';
+  static const String FIRST_VISIT_PREFS = 'first_visit';
+  static const String USER_LOCALE_PREFS = 'user_locale';
+  static const String USER_CALENDAR_PREFS = 'user_calendar';
+  static const String USER_THEME_PREFS = 'user_theme';
+  static const String USER_DAILY_NOTIFICATION_TIME_PREFS =
+      'user_daily_notification_time';
+  static const String ENABLED_APP_AUTH_PREFS = 'enabled_app_auth';
+  static const String USER_DAILY_NOTIFICATION_SENT_TODAY_PREFS =
+      'user_daily_notification_sent_today';
+  static const String USER_QUICK_ADD_PREFS = 'user_quick_add';
+  static const String SOUND_ON_COMPLETE_PREFS = 'sound_on_complete';
+  static const String SOUND_ON_CREATE_PREFS = 'sound_on_create';
 
   static final Color PRIMARY_COLOR = Colors.blue.shade300;
   static final Color PRIMARY_COLOR_DARK = Colors.blue.shade500;
@@ -41,7 +54,8 @@ class Constants {
   static const Color BACKGROUND_COLOR = Color.fromRGBO(239, 243, 247, 1.0);
   static const Color BACKGROUND_COLOR_DARK = Color.fromRGBO(16, 12, 8, 1.0);
   static const Color INPUT_BACKGROUND_COLOR = Color.fromRGBO(239, 240, 246, 1);
-  static const Color INPUT_BACKGROUND_COLOR_DARK = Color.fromRGBO(16, 15, 9, 1.0);
+  static const Color INPUT_BACKGROUND_COLOR_DARK =
+      Color.fromRGBO(16, 15, 9, 1.0);
 
   static const double CAPTION_FONT_SIZE = 12;
   static const double S2_FONT_SIZE = 14;

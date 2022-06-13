@@ -32,9 +32,9 @@ class _LoginPageState extends State<LoginPage> {
           slivers: [
             SliverToBoxAdapter(
               child: AppIntro(appIntroData: [
-                AppIntroData(t!.welcomeToShanbe, t!.welcomeToShanbeDesc, 'assets/files/tasks.json'),
-                AppIntroData(t!.toGenerateIdeasNotHavingThem, t!.toGenerateIdeasNotHavingThemDesc, 'assets/files/idea.json'),
-                AppIntroData(t!.projectsToOrganize, t!.projectsToOrganizeDesc, 'assets/files/boy.json')
+                AppIntroData(t!.appRegisterTitle1, t!.appRegisterTitle1, 'assets/files/tasks.json'),
+                AppIntroData(t!.appRegisterTitle2, t!.appRegisterTitle2, 'assets/files/idea.json'),
+                AppIntroData(t!.appRegisterTitle3, t!.appRegisterTitle3, 'assets/files/boy.json')
               ],),
             )
           ],

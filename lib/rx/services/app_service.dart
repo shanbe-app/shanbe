@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:client/rx/services/amplify_service.dart';
 import 'package:client/rx/services/app_info_service.dart';
+import 'package:client/rx/services/background_service.dart';
 import 'package:client/rx/services/connectivity_service.dart';
 import 'package:client/rx/services/firebase_service.dart';
 import 'package:client/rx/services/notification_service.dart';
@@ -18,6 +19,7 @@ class AppService extends RxService {
   late final StorageService storageService;
   late final FirebaseService firebaseService;
   late final AmplifyService amplifyService;
+  late final BackgroundService backgroundService;
 
   AppService() {
     appInfoService = AppInfoService();
@@ -26,29 +28,33 @@ class AppService extends RxService {
     storageService = StorageService();
     firebaseService = FirebaseService();
     amplifyService = AmplifyService();
+    backgroundService = BackgroundService();
   }
+
+  static AppService getInstance() =>
+      GetIt.I.get<AppService>(instanceName: 'appService');
 
   @override
   Future<void> onCreate() async {
     await appInfoService.onCreate();
-    if(Platform.isAndroid || Platform.isIOS)
     await amplifyService.onCreate();
     await connectivityService.onCreate();
     await notificationService.onCreate();
     await storageService.onCreate();
     await firebaseService.onCreate();
+    await backgroundService.onCreate();
     _registerSingleton();
   }
 
   @override
   Future<void> onTerminate() async {
     await appInfoService.onTerminate();
-    if(Platform.isAndroid || Platform.isIOS)
-      await amplifyService.onTerminate();
+    await amplifyService.onTerminate();
     await connectivityService.onTerminate();
     await notificationService.onTerminate();
     await storageService.onTerminate();
     await firebaseService.onTerminate();
+    await backgroundService.onTerminate();
   }
 
   void _registerSingleton() {

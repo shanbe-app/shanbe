@@ -1,4 +1,4 @@
-import 'package:client/pages/colors.dart';
+import 'package:client/utils/colors.dart';
 import 'package:client/types/app_intro_Data.dart';
 import 'package:client/utils/constants.dart';
 import 'package:client/utils/utils.dart';
@@ -34,9 +34,40 @@ class _IntroPageState extends State<IntroPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/images/logo/logo.png',
+                  width: 120,
+                ),
+                const SizedBox(
+                  width: 8,
+                ),
+                Text(
+                  'Shanbe',
+                  style: TextStyle(
+                      color: headingColor(context),
+                      fontSize: Constants.S2_FONT_SIZE),
+                )
+              ],
+            ),
             PageView(
               controller: _controller,
-              children: [AppIntroData(t!.appIntroTitle1, 'assets/images/files/', t!.appIntroDescription1)]
+              children: [
+                AppIntroData(
+                    t!.appIntroTitle1,
+                    'assets/images/files/man_meditate.json',
+                    t!.appIntroDescription1),
+                AppIntroData(
+                    t!.appIntroTitle2,
+                    'assets/images/files/meditate.json',
+                    t!.appIntroDescription2),
+                AppIntroData(t!.appIntroTitle3, 'assets/images/files/yoga.json',
+                    t!.appIntroDescription3),
+                AppIntroData(t!.appIntroTitle4,
+                    'assets/images/files/breath.json', t!.appIntroDescription4),
+              ]
                   .map((e) => Column(
                         children: [
                           Lottie.asset(e.lottieDir,

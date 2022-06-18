@@ -1568,12 +1568,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "appIntroTitle2": "مترکز روی کار واقعی",
+  "appIntroTitle2": "متمرکز روی کار واقعی",
   "@appIntroTitle2": {
     "type": "text",
     "placeholders": {}
   },
-  "appIntroDescription2": "چون همه چیز سر جاشه.",
+  "appIntroDescription2": "چون همه چیز سر جای خودشه.",
   "@appIntroDescription2": {
     "type": "text",
     "placeholders": {}
@@ -1610,6 +1610,11 @@
   },
   "appRegisterTitle3": "جلد زیبا برای لیست‌ها و دفترچه‌ها",
   "@appRegisterTitle3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shanbe": "شنبه",
+  "@shanbe": {
     "type": "text",
     "placeholders": {}
   }

@@ -26,6 +26,18 @@ Color dividerColor(BuildContext context) {
   return isDark(context) ? Constants.LINE_COLOR_DARK : Constants.LINE_COLOR;
 }
 
+Color backgroundColor(BuildContext context) {
+  return isDark(context)
+      ? Constants.BACKGROUND_COLOR_DARK
+      : Constants.BACKGROUND_COLOR;
+}
+
+Color placeholderColor(BuildContext context) {
+  return isDark(context)
+      ? Constants.PLACEHOLDER_COLOR_DARK
+      : Constants.PLACEHOLDER_COLOR;
+}
+
 Color appbarBackIconColor(BuildContext context) {
   return isDark(context) ? Colors.white : Colors.black;
 }

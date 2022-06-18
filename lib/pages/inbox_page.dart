@@ -53,6 +53,7 @@ class _InboxPageState extends State<InboxPage> {
         key: widget.key ?? GlobalKey(debugLabel: 'lists'),
         controller: _controller,
         tabBar: CupertinoTabBar(
+          height: 54,
           items: [
             BottomNavigationBarItem(
                 icon: const Icon(CupertinoIcons.checkmark_square),

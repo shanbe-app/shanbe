@@ -9,7 +9,9 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class IntroPage extends StatefulWidget {
-  const IntroPage({Key? key}) : super(key: key);
+  final BuildContext context;
+
+  const IntroPage({Key? key, required this.context}) : super(key: key);
 
   @override
   State<IntroPage> createState() => _IntroPageState();
@@ -18,98 +20,101 @@ class IntroPage extends StatefulWidget {
 class _IntroPageState extends State<IntroPage> {
   late PageController _controller;
   late List<AppIntroData> appIntroData;
-  AppLocalizations? t;
+  late AppLocalizations t;
 
   @override
   void initState() {
     super.initState();
     _controller = PageController();
+    t = AppLocalizations.of(widget.context);
+    appIntroData = [
+      AppIntroData(t.appIntroTitle1, 'assets/files/meditate3.json',
+          t.appIntroDescription1),
+      AppIntroData(t.appIntroTitle2, 'assets/files/yoga2.json',
+          t.appIntroDescription2),
+      AppIntroData(
+          t.appIntroTitle3, 'assets/files/calendar.json', t.appIntroDescription3),
+      AppIntroData(t.appIntroTitle4, 'assets/files/book.json',
+          t.appIntroDescription4),
+    ];
   }
 
   @override
   Widget build(BuildContext context) {
-    t ??= AppLocalizations.of(context);
-
     return PlatformScaffold(
+      iosContentPadding: true,
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'assets/images/logo/logo.png',
-                  width: 120,
-                ),
-                const SizedBox(
-                  width: 8,
-                ),
-                Text(
-                  'Shanbe',
-                  style: TextStyle(
-                      color: headingColor(context),
-                      fontSize: Constants.S2_FONT_SIZE),
-                )
-              ],
+            const SizedBox(height: 32),
+            Image.asset(
+              'assets/images/logo_android.png',
+              width: 128,
+              fit: BoxFit.contain,
             ),
-            PageView(
-              controller: _controller,
-              children: [
-                AppIntroData(
-                    t!.appIntroTitle1,
-                    'assets/images/files/man_meditate.json',
-                    t!.appIntroDescription1),
-                AppIntroData(
-                    t!.appIntroTitle2,
-                    'assets/images/files/meditate.json',
-                    t!.appIntroDescription2),
-                AppIntroData(t!.appIntroTitle3, 'assets/images/files/yoga.json',
-                    t!.appIntroDescription3),
-                AppIntroData(t!.appIntroTitle4,
-                    'assets/images/files/breath.json', t!.appIntroDescription4),
-              ]
-                  .map((e) => Column(
-                        children: [
-                          Lottie.asset(e.lottieDir,
-                              alignment: Alignment.center,
-                              height: null,
-                              repeat: true,
-                              reverse: false,
-                              width: 350,
-                              fit: BoxFit.cover),
-                          const SizedBox(
-                            height: 40,
-                          ),
-                          Text(
-                            e.title,
-                            style: TextStyle(
-                                color: headingColor(context),
-                                fontSize: Constants.S1_FONT_SIZE),
-                          ),
-                          const SizedBox(
-                            height: 16,
-                          ),
-                          Text(e.description,
-                              style: TextStyle(
-                                  color: secondaryTextColor(context),
-                                  fontSize: Constants.S2_FONT_SIZE))
-                        ],
-                      ))
-                  .toList(),
+            Text(
+              t.shanbe,
+              style: TextStyle(
+                  color: headingColor(context),
+                  fontWeight: Constants.DEMI_BOLD_FONT_WEIGHT,
+                  fontSize: Constants.H3_FONT_SIZE),
             ),
             const SizedBox(
-              height: 16,
+              height: 32,
+            ),
+            Container(
+              height: 520,
+              child: PageView(
+                controller: _controller,
+                children: appIntroData
+                    .map((e) => Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Lottie.asset(e.lottieDir,
+                                alignment: Alignment.center,
+                                repeat: true,
+                                reverse: false,
+                                width: double.maxFinite,
+                                fit: BoxFit.cover),
+                            const SizedBox(
+                              height: 40,
+                            ),
+                            Text(
+                              e.title,
+                              style: TextStyle(
+                                  color: headingColor(context),
+                                  fontWeight: Constants.MEDIUM_FONT_WEIGHT,
+                                  fontSize: Constants.H6_FONT_SIZE),
+                            ),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            Text(e.description,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: secondaryTextColor(context),
+                                    fontWeight: Constants.REGULAR_FONT_WEIGHT,
+                                    fontSize: Constants.S2_FONT_SIZE))
+                          ],
+                        ))
+                    .toList(),
+              ),
+            ),
+            const SizedBox(
+              height: 32,
             ),
             SmoothPageIndicator(
               controller: _controller,
               count: appIntroData.length,
               textDirection:
                   isRtl(context) ? TextDirection.rtl : TextDirection.ltr,
-              effect: ExpandingDotsEffect(
-                  dotWidth: 12,
-                  dotHeight: 12,
+              effect: WormEffect(
+                  dotWidth: 8,
+                  dotHeight: 8,
+                  dotColor: placeholderColor(context),
                   activeDotColor: Constants.PRIMARY_COLOR),
-            )
+            ),
           ],
         ),
       ),

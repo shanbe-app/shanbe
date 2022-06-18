@@ -8,8 +8,6 @@ import 'package:client/rx/services/firebase_service.dart';
 import 'package:client/rx/services/notification_service.dart';
 import 'package:client/rx/services/rx_service.dart';
 import 'package:client/rx/services/storage_service.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
 
 class AppService extends RxService {

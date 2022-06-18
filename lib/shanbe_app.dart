@@ -34,7 +34,12 @@ class _ShanbeAppState extends State<ShanbeApp> {
 
   Future<void> bootstrapApp() async {
     appService = AppService();
-    await appService.onCreate();
+    try{
+      await appService.onCreate();
+    }
+    catch (e){
+      print(e);
+    }
   }
 
   @override
@@ -60,8 +65,7 @@ class _ShanbeAppState extends State<ShanbeApp> {
         Locale.fromSubtags(languageCode: 'en'),
         Locale.fromSubtags(languageCode: 'fa')
       ],
-      locale: Locale(languageCodeFromLocaleName(Platform.localeName),
-          countryFromLocaleName(Platform.localeName)),
+      locale: Locale('en'),
       localeResolutionCallback:
           (Locale? locale, Iterable<Locale> supportedLocales) {
         for (var element in supportedLocales) {

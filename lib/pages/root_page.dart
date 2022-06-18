@@ -15,17 +15,23 @@ class RootPage extends StatelessWidget {
     return FutureBuilder(
       future: appInitFuture,
       builder: (context, snapshot) {
+        print('done ${snapshot.connectionState == ConnectionState.done}');
         if (snapshot.connectionState == ConnectionState.done) {
-          SettingsBloc bloc = SettingsBloc(AppService
-              .getInstance()
-              .storageService);
-          StreamBuilder(builder: (context, snapshot) {
-            bool? isFirstVisit = snapshot.data as bool?;
-            if (isFirstVisit == null || !isFirstVisit) {
-              return const IntroPage();
-            }
-            return const InboxPage();
-          }, stream: bloc.isFirstVisit,);
+          SettingsBloc bloc =
+              SettingsBloc(AppService.getInstance().storageService);
+          return StreamBuilder(
+            builder: (context, snapshot) {
+              bool? isFirstVisit = snapshot.data as bool?;
+              print('isFirstVisit ${isFirstVisit}');
+              if (isFirstVisit == null || isFirstVisit) {
+                return IntroPage(
+                  context: context,
+                );
+              }
+              return const InboxPage();
+            },
+            stream: bloc.isFirstVisit,
+          );
         }
         return const LoadingPage();
       },

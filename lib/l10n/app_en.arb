@@ -1612,5 +1612,10 @@
   "@appRegisterTitle3": {
     "type": "text",
     "placeholders": {}
+  },
+  "shanbe": "Shanbe",
+  "@shanbe": {
+    "type": "text",
+    "placeholders": {}
   }
 }

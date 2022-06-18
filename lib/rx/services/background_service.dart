@@ -11,13 +11,13 @@ class BackgroundService extends RxService {
   
   @override
   Future<void> onCreate() async {
-    await Workmanager().initialize(
-        _callbackDispatcher,
-        isInDebugMode: true
-
-    );
-    Workmanager().registerOneOffTask("task-identifier", "simpleTask");
-    Workmanager().registerPeriodicTask("shanbe-notifications", "shanbe-notifications");
+    // await Workmanager().initialize(
+    //     _callbackDispatcher,
+    //     isInDebugMode: true
+    //
+    // );
+    // Workmanager().registerOneOffTask("task-identifier", "simpleTask");
+    // Workmanager().registerPeriodicTask("shanbe-notifications", "shanbe-notifications");
 
   }
   @override

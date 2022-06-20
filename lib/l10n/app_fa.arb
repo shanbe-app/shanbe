@@ -1617,5 +1617,20 @@
   "@shanbe": {
     "type": "text",
     "placeholders": {}
+  },
+  "skipSignup": "پرش از ثبت‌نام؟",
+  "@skipSignup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "skipSignupDesc": "بعدا از قسمت پروفایل می‌توانید ثبت‌نام کنید.",
+  "@skipSignupDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirm": "تایید",
+  "@confirm": {
+    "type": "text",
+    "placeholders": {}
   }
 }

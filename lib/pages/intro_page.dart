@@ -1,7 +1,8 @@
 import 'package:client/utils/colors.dart';
-import 'package:client/types/app_intro_Data.dart';
+import 'package:client/types/app_intro_data.dart';
 import 'package:client/utils/constants.dart';
 import 'package:client/utils/utils.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:lottie/lottie.dart';
@@ -32,8 +33,9 @@ class _IntroPageState extends State<IntroPage> {
           t.appIntroDescription1),
       AppIntroData(
           t.appIntroTitle2, 'assets/files/yoga2.json', t.appIntroDescription2),
-      AppIntroData(t.appIntroTitle3, 'assets/files/calendar.json',
-          t.appIntroDescription3),
+      AppIntroData(t.appIntroTitle3, 'assets/files/calendar2.json',
+          t.appIntroDescription3,
+          reverse: true),
       AppIntroData(
           t.appIntroTitle4, 'assets/files/book.json', t.appIntroDescription4),
     ];
@@ -43,93 +45,142 @@ class _IntroPageState extends State<IntroPage> {
   Widget build(BuildContext context) {
     return PlatformScaffold(
       iosContentPadding: true,
-      body: Padding(
-        padding: Constants.PAGE_PADDING,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(height: 32),
-            Image.asset(
-              'assets/images/logo_android.png',
-              width: 128,
-              fit: BoxFit.contain,
-            ),
-            Text(
-              t.shanbe,
-              style: TextStyle(
-                  color: headingColor(context),
-                  fontWeight: Constants.DEMI_BOLD_FONT_WEIGHT,
-                  fontSize: Constants.H3_FONT_SIZE),
-            ),
-            const SizedBox(
-              height: 32,
-            ),
-            Flexible(
-                flex: 10,
-                child: PageView(
-                  controller: _controller,
-                  children: appIntroData
-                      .map((e) => Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Expanded(
-                                  child: Lottie.asset(e.lottieDir,
-                                      alignment: Alignment.center,
-                                      repeat: true,
-                                      reverse: false,
-                                      width: double.maxFinite,
-                                      fit: BoxFit.contain)),
-                              const SizedBox(
-                                height: 24,
-                              ),
-                              Text(
-                                e.title,
-                                style: TextStyle(
-                                    color: headingColor(context),
-                                    fontWeight: Constants.MEDIUM_FONT_WEIGHT,
-                                    fontSize: Constants.H6_FONT_SIZE),
-                              ),
-                              const SizedBox(
-                                height: 16,
-                              ),
-                              Text(e.description,
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: secondaryTextColor(context),
-                                      fontWeight: Constants.REGULAR_FONT_WEIGHT,
-                                      fontSize: Constants.S2_FONT_SIZE))
-                            ],
-                          ))
-                      .toList(),
-                )),
-            const SizedBox(
-              height: 32,
-            ),
-            Flexible(
-              flex: 1,
-              child: Row(
+      body: SafeArea(
+        top: true,
+        bottom: false,
+        child: Padding(
+          padding: Constants.PAGE_PADDING,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  SmoothPageIndicator(
-                    controller: _controller,
-                    count: appIntroData.length,
-                    textDirection:
-                        isRtl(context) ? TextDirection.rtl : TextDirection.ltr,
-                    effect: WormEffect(
-                        dotWidth: 12,
-                        dotHeight: 12,
-                        dotColor: placeholderColor(context),
-                        activeDotColor: Constants.PRIMARY_COLOR),
-                  ),
-                  Spacer(),
-                  PlatformElevatedButton(
-                    child: Text('Let\'s go'),
-                    onPressed: (){},
+                  PlatformTextButton(
+                    child: Text(
+                      t.skip,
+                      style: TextStyle(color: placeholderColor(context)),
+                    ),
+                    onPressed: () {
+                      showPlatformDialog(
+                          context: context,
+                          builder: (context) => PlatformAlertDialog(
+                                title: Text(t.skipSignup),
+                                content: Text(t.skipSignupDesc),
+                                actions: [
+                                  PlatformDialogAction(
+                                    child: Text(t.cancel),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                  PlatformDialogAction(
+                                    child: Text(t.confirm),
+                                    onPressed: () {
+                                      Navigator.pushNamedAndRemoveUntil(
+                                          context, '/inbox', (route) => false);
+                                    },
+                                  ),
+                                ],
+                              ));
+                      // Navigator.pushNamedAndRemoveUntil(
+                      //     context, '/inbox', (route) => false);
+                    },
+                    padding: EdgeInsets.zero,
                   )
                 ],
               ),
-            ),
-            SizedBox(height: 32,)
-          ],
+              Image.asset(
+                'assets/images/logo_android.png',
+                width: 128,
+                fit: BoxFit.contain,
+              ),
+              Text(
+                t.shanbe,
+                style: TextStyle(
+                    color: headingColor(context),
+                    fontWeight: Constants.DEMI_BOLD_FONT_WEIGHT,
+                    fontSize: Constants.H3_FONT_SIZE),
+              ),
+              const SizedBox(
+                height: 32,
+              ),
+              Flexible(
+                  flex: 10,
+                  child: PageView(
+                    controller: _controller,
+                    children: appIntroData
+                        .map((e) => Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Expanded(
+                                    child: Lottie.asset(e.lottieDir,
+                                        alignment: Alignment.center,
+                                        repeat: true,
+                                        reverse: e.reverse,
+                                        width: double.maxFinite,
+                                        fit: BoxFit.contain)),
+                                const SizedBox(
+                                  height: 24,
+                                ),
+                                Text(
+                                  e.title,
+                                  style: TextStyle(
+                                      color: headingColor(context),
+                                      fontWeight: Constants.MEDIUM_FONT_WEIGHT,
+                                      fontSize: Constants.H6_FONT_SIZE),
+                                ),
+                                const SizedBox(
+                                  height: 16,
+                                ),
+                                Text(e.description,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: secondaryTextColor(context),
+                                        fontWeight:
+                                            Constants.REGULAR_FONT_WEIGHT,
+                                        fontSize: Constants.S2_FONT_SIZE))
+                              ],
+                            ))
+                        .toList(),
+                  )),
+              const SizedBox(
+                height: 32,
+              ),
+              PlatformElevatedButton(
+                child: Text(
+                  t.letsGo,
+                  style: const TextStyle(
+                      fontWeight: Constants.MEDIUM_FONT_WEIGHT,
+                      fontSize: Constants.S1_FONT_SIZE),
+                ),
+                onPressed: () {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/login', (route) => false);
+                },
+              ),
+              const SizedBox(
+                height: 32,
+              ),
+              Flexible(
+                flex: 1,
+                child: SmoothPageIndicator(
+                  controller: _controller,
+                  count: appIntroData.length,
+                  textDirection:
+                      isRtl(context) ? TextDirection.rtl : TextDirection.ltr,
+                  effect: WormEffect(
+                      dotWidth: 10,
+                      dotHeight: 10,
+                      dotColor: placeholderColor(context),
+                      activeDotColor: Constants.PRIMARY_COLOR),
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              )
+            ],
+          ),
         ),
       ),
     );

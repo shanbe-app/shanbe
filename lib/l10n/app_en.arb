@@ -1588,7 +1588,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "appIntroTitle4": "Catch that note!",
+  "appIntroTitle4": "Catchy notes!",
   "@appIntroTitle4": {
     "type": "text",
     "placeholders": {}
@@ -1615,6 +1615,21 @@
   },
   "shanbe": "Shanbe",
   "@shanbe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "skipSignup": "Skip Sign up?",
+  "@skipSignup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "skipSignupDesc": "You can sign up later through profile page.",
+  "@skipSignupDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirm": "Confirm",
+  "@confirm": {
     "type": "text",
     "placeholders": {}
   }

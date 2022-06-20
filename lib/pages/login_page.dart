@@ -1,6 +1,6 @@
 import 'package:client/components/app_intro.dart';
 import 'package:client/rx/services/app_service.dart';
-import 'package:client/types/app_intro_Data.dart';
+import 'package:client/types/app_intro_data.dart';
 import 'package:client/utils/constants.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

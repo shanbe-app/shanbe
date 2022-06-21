@@ -1632,5 +1632,10 @@
   "@confirm": {
     "type": "text",
     "placeholders": {}
+  },
+  "signup": "ثبت‌نام",
+  "@signup": {
+    "type": "text",
+    "placeholders": {}
   }
 }

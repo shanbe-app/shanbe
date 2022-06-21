@@ -9,7 +9,11 @@ import workmanager
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
     GeneratedPluginRegistrant.register(with: self)
-    WorkmanagerPlugin.registerTask(withIdentifier: "task-identifier")
+    UIApplication.shared.setMinimumBackgroundFetchInterval(TimeInterval(60*15))
+    WorkmanagerPlugin.registerTask(withIdentifier: "app.shanbe.notifications")
+    WorkmanagerPlugin.setPluginRegistrantCallback { registry in  
+      GeneratedPluginRegistrant.register(with: registry)
+    }
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 }

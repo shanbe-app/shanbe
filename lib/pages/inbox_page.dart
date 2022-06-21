@@ -4,6 +4,7 @@ import 'package:client/components/today_icon.dart';
 import 'package:client/pages/settings_page.dart';
 import 'package:client/rx/services/app_service.dart';
 import 'package:client/shanbe_icons.dart';
+import 'package:client/types/inbox_page_arguments.dart';
 import 'package:client/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,11 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
 
 class InboxPage extends StatefulWidget {
-  const InboxPage({Key? key}) : super(key: key);
+  final BuildContext context;
+  final InboxPageArguments? arguments;
+
+  const InboxPage({Key? key, this.arguments, required this.context})
+      : super(key: key);
 
   @override
   _InboxPageState createState() => _InboxPageState();
@@ -21,31 +26,33 @@ class InboxPage extends StatefulWidget {
 class _InboxPageState extends State<InboxPage> {
   late CupertinoTabController _controller;
   late AppService appService;
-  AppLocalizations? t;
+  late AppLocalizations t;
 
   @override
   void initState() {
     super.initState();
     _controller = CupertinoTabController(initialIndex: 0);
     appService = GetIt.I.get<AppService>(instanceName: 'appService');
+    t = AppLocalizations.of(widget.context);
   }
 
   @override
   Widget build(BuildContext context) {
-    t ??= AppLocalizations.of(context);
     return PlatformWidget(
       material: (context, platform) => Scaffold(
         bottomNavigationBar: BottomNavigationBar(
           items: [
             BottomNavigationBarItem(
-                icon: const Icon(Icons.check_box_outlined), label: t!.tasks),
+                icon: const Icon(Icons.check_box_outlined), label: t.tasks),
             BottomNavigationBarItem(
-                icon: const Icon(Icons.calendar_month_rounded), label: t!.calendar),
+                icon: const Icon(Icons.calendar_month_rounded),
+                label: t.calendar),
             BottomNavigationBarItem(
-                icon: const Icon(Shanbe.bullseye_1), label: t!.focus),
-            BottomNavigationBarItem(icon: const Icon(Icons.book), label: t!.notes),
+                icon: const Icon(Shanbe.bullseye_1), label: t.focus),
             BottomNavigationBarItem(
-                icon: const Icon(Icons.settings), label: t!.settings)
+                icon: const Icon(Icons.book), label: t.notes),
+            BottomNavigationBarItem(
+                icon: const Icon(Icons.settings), label: t.settings)
           ],
         ),
       ),
@@ -57,18 +64,18 @@ class _InboxPageState extends State<InboxPage> {
           items: [
             BottomNavigationBarItem(
                 icon: const Icon(CupertinoIcons.checkmark_square),
-                label: t!.tasks,
+                label: t.tasks,
                 activeIcon: const Icon(CupertinoIcons.checkmark_square_fill)),
             BottomNavigationBarItem(
-                icon: const Icon(CupertinoIcons.calendar), label: t!.calendar),
+                icon: const Icon(CupertinoIcons.calendar), label: t.calendar),
             BottomNavigationBarItem(
-                icon: const Icon(Shanbe.bullseye_1), label: t!.focus),
+                icon: const Icon(Shanbe.bullseye_1), label: t.focus),
             BottomNavigationBarItem(
                 icon: const Icon(CupertinoIcons.book),
-                label: t!.notes,
+                label: t.notes,
                 activeIcon: const Icon(CupertinoIcons.book_fill)),
             BottomNavigationBarItem(
-                icon: const Icon(CupertinoIcons.settings), label: t!.settings)
+                icon: const Icon(CupertinoIcons.settings), label: t.settings)
           ],
         ),
         tabBuilder: renderTabBody,
@@ -78,7 +85,7 @@ class _InboxPageState extends State<InboxPage> {
 
   Widget renderTabBody(BuildContext context, int index) {
     if (true) {
-      return const SettingsPage();
+      return SettingsPage(t);
     }
     return CustomScrollView(
       primary: true,
@@ -94,13 +101,13 @@ class _InboxPageState extends State<InboxPage> {
             ],
           ),
           cupertino: (_, __) => CupertinoSliverNavigationBar(
-            largeTitle: PlatformText(t!.lists),
+            largeTitle: PlatformText(t.lists),
             stretch: false,
             automaticallyImplyLeading: true,
-            previousPageTitle: t!.today,
+            previousPageTitle: t.today,
             trailing: CupertinoButton(
               padding: EdgeInsets.zero,
-              child: PlatformText(t!.edit),
+              child: PlatformText(t.edit),
               onPressed: () {
                 Navigator.pushNamed(context, '/edit-lists');
               },
@@ -130,13 +137,13 @@ class _InboxPageState extends State<InboxPage> {
                               SizedBox(
                                 width: 4,
                               ),
-                              PlatformText(t!.today)
+                              PlatformText(t.today)
                             ],
                           ),
                         ),
                     cupertino: (_, __) => CupertinoButton(
                           child: Row(
-                            children: [TodayIcon(), PlatformText(t!.today)],
+                            children: [TodayIcon(), PlatformText(t.today)],
                           ),
                           onPressed: () {},
                         )),

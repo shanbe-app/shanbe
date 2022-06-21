@@ -1,18 +1,15 @@
-import 'dart:io';
-
 import 'package:client/pages/edit_lists_page.dart';
 import 'package:client/pages/inbox_page.dart';
-import 'package:client/pages/login_page.dart';
+import 'package:client/pages/signup_page.dart';
+import 'package:client/pages/root_page.dart';
+import 'package:client/rx/services/app_service.dart';
+import 'package:client/types/inbox_page_arguments.dart';
 import 'package:client/utils/constants.dart';
-import 'package:client/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'package:get_it/get_it.dart';
-import 'package:client/pages/root_page.dart';
-import 'package:client/rx/services/app_service.dart';
 
 class ShanbeApp extends StatefulWidget {
   const ShanbeApp({Key? key}) : super(key: key);
@@ -34,10 +31,9 @@ class _ShanbeAppState extends State<ShanbeApp> {
 
   Future<void> bootstrapApp() async {
     appService = AppService();
-    try{
+    try {
       await appService.onCreate();
-    }
-    catch (e){
+    } catch (e) {
       print(e);
     }
   }
@@ -88,13 +84,21 @@ class _ShanbeAppState extends State<ShanbeApp> {
                     ));
           case '/inbox':
             return platformPageRoute(
-                context: context, builder: (context) => const InboxPage());
+                context: context,
+                builder: (context) => InboxPage(
+                      arguments: settings.arguments as InboxPageArguments?,
+                      context: context,
+                    ));
           case '/edit-lists':
             return platformPageRoute(
                 context: context, builder: (context) => const EditListsPage());
-          case '/login':
+          case '/signup':
             return platformPageRoute(
-                context: context, builder: (context) => const LoginPage());
+                context: context,
+                builder: (context) =>
+                    SignupPage(
+                      context: context,
+                    ));
           default:
             return null;
         }

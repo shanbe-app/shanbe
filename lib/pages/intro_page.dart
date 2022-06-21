@@ -1,3 +1,4 @@
+import 'package:client/types/inbox_page_arguments.dart';
 import 'package:client/utils/colors.dart';
 import 'package:client/types/app_intro_data.dart';
 import 'package:client/utils/constants.dart';
@@ -111,7 +112,7 @@ class _IntroPageState extends State<IntroPage> {
                     controller: _controller,
                     children: appIntroData
                         .map((e) => Column(
-                              mainAxisSize: MainAxisSize.min,
+                              mainAxisSize: MainAxisSize.max,
                               children: [
                                 Expanded(
                                     child: Lottie.asset(e.lottieDir,
@@ -156,7 +157,9 @@ class _IntroPageState extends State<IntroPage> {
                 ),
                 onPressed: () {
                   Navigator.pushNamedAndRemoveUntil(
-                      context, '/login', (route) => false);
+                      context, '/inbox', (route) => false,
+                      arguments: InboxPageArguments(initialPage: 'settings'));
+                  Navigator.pushNamed(context, '/signup');
                 },
               ),
               const SizedBox(

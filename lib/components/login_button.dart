@@ -26,7 +26,7 @@ class _LoginButtonState extends State<LoginButton> {
         padding: EdgeInsets.zero,
         child: child ?? Container(),
         onPressed: () {
-          Navigator.pushNamed(context, '/login');
+          Navigator.pushNamed(context, '/signup');
         },
       ),
       child: Padding(

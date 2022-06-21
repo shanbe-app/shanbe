@@ -70,7 +70,7 @@
 	<true/>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
     <array>
-        <string>shanbe-background</string>
+        <string>app.shanbe.notifications</string>
     </array>
 </dict>
 </plist>

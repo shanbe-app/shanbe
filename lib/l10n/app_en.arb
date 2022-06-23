@@ -1558,7 +1558,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "appIntroTitle1": "Welcome to Shanbe",
+  "appIntroTitle1": "Welcome to Shanbe!",
   "@appIntroTitle1": {
     "type": "text",
     "placeholders": {}
@@ -1598,18 +1598,28 @@
     "type": "text",
     "placeholders": {}
   },
-  "appRegisterTitle1": "Backup to the cloud & Multi-device usage",
+  "appRegisterTitle1": "Backup to the cloud & Sync across devices",
   "@appRegisterTitle1": {
     "type": "text",
     "placeholders": {}
   },
-  "appRegisterTitle2": "Set recurring tasks",
+  "appRegisterTitle2": "Get reminded on time!",
   "@appRegisterTitle2": {
     "type": "text",
     "placeholders": {}
   },
-  "appRegisterTitle3": "Beautiful covers for projects and notebooks",
+  "appRegisterTitle3": "Stay focused with the focus tool",
   "@appRegisterTitle3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appRegisterTitle4": "Organize your notes with notebooks and folders",
+  "@appRegisterTitle4": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appRegisterTitle5": "Beautiful covers for notebooks and lists",
+  "@appRegisterTitle5": {
     "type": "text",
     "placeholders": {}
   },

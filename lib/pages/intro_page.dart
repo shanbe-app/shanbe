@@ -176,7 +176,7 @@ class _IntroPageState extends State<IntroPage> {
                       dotWidth: 10,
                       dotHeight: 10,
                       dotColor: placeholderColor(context),
-                      activeDotColor: Constants.PRIMARY_COLOR),
+                      activeDotColor: Constants.SECONDARY_COLOR_LIGHT),
                 ),
               ),
               const SizedBox(

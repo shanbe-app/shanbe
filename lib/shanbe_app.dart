@@ -127,7 +127,7 @@ class _ShanbeAppState extends State<ShanbeApp> {
           navTitleTextStyle: const TextStyle(
               fontFamily: Constants.APPLICATION_DEFAULT_FONT,
               fontFamilyFallback: Constants.APPLICATION_FALLBACK_FONTS,
-              fontSize: Constants.H6_FONT_SIZE,
+              fontSize: Constants.H5_FONT_SIZE,
               color: Constants.TEXT_BLACK_COLOR,
               fontWeight: Constants.DEMI_BOLD_FONT_WEIGHT),
           actionTextStyle: const TextStyle(

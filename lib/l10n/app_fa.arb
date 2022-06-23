@@ -1598,18 +1598,28 @@
     "type": "text",
     "placeholders": {}
   },
-  "appRegisterTitle1": "پشتیبان‌گیری و استفاده در چندین دستگاه",
+  "appRegisterTitle1": "پشتیبان‌گیری اطلاعات و استفاده همزمان در چندین دستگاه",
   "@appRegisterTitle1": {
     "type": "text",
     "placeholders": {}
   },
-  "appRegisterTitle2": "ایجاد کارهای تکرار شونده",
+  "appRegisterTitle2": "یادآوری کارهات سر موقع!",
   "@appRegisterTitle2": {
     "type": "text",
     "placeholders": {}
   },
-  "appRegisterTitle3": "جلد زیبا برای لیست‌ها و دفترچه‌ها",
+  "appRegisterTitle3": "با ابزار تمرکز متمرکز بمون",
   "@appRegisterTitle3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appRegisterTitle4": "یادداشت‌های خودت رو با استفاده از دفتر و پوشه‌ مرتب کن.",
+  "@appRegisterTitle4": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appRegisterTitle5": "کاورهای زیبا برای لیست‌ها و دفترها",
+  "@appRegisterTitle5": {
     "type": "text",
     "placeholders": {}
   },
@@ -1623,7 +1633,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "skipSignupDesc": "بعدا از قسمت پروفایل می‌توانید ثبت‌نام کنید.",
+  "skipSignupDesc": "بعدا از قسمت تنظیمات می‌تونی ثبت‌نام کنی.",
   "@skipSignupDesc": {
     "type": "text",
     "placeholders": {}

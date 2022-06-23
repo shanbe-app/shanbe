@@ -1,3 +1,4 @@
+import 'package:client/types/signup_intro_data.dart';
 import 'package:client/utils/colors.dart';
 import 'package:client/types/app_intro_data.dart';
 import 'package:client/utils/constants.dart';
@@ -8,11 +9,11 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:lottie/lottie.dart';
 
 class SignupIntro extends StatefulWidget {
-  final List<AppIntroData> appIntroData;
+  final List<SignupData> signupData;
 
   const SignupIntro({
     Key? key,
-    required this.appIntroData,
+    required this.signupData,
   }) : super(key: key);
 
   @override
@@ -38,22 +39,23 @@ class _SignupIntroState extends State<SignupIntro> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          height: 220,
+        SizedBox(height: 24,),
+        SizedBox(
+          height: 256,
           child: PageView(
             controller: _controller,
-            children: widget.appIntroData
+            children: widget.signupData
                 .map((e) => Column(
                       children: [
                         Lottie.asset(e.lottieDir,
                             alignment: Alignment.center,
-                            height: null,
                             repeat: true,
-                            reverse: false,
-                            width: 350,
-                            fit: BoxFit.cover),
+                            reverse: e.reverse,
+                            width: double.maxFinite,
+                            height: 220,
+                            fit: BoxFit.contain),
                         const SizedBox(
-                          height: 40,
+                          height: 16,
                         ),
                         Text(
                           e.title,
@@ -61,13 +63,6 @@ class _SignupIntroState extends State<SignupIntro> {
                               color: headingColor(context),
                               fontSize: Constants.S1_FONT_SIZE),
                         ),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        Text(e.description,
-                            style: TextStyle(
-                                color: secondaryTextColor(context),
-                                fontSize: Constants.S2_FONT_SIZE))
                       ],
                     ))
                 .toList(),
@@ -78,9 +73,13 @@ class _SignupIntroState extends State<SignupIntro> {
         ),
         SmoothPageIndicator(
           controller: _controller,
-          count: widget.appIntroData.length,
+          count: widget.signupData.length,
           textDirection: isRtl(context) ? TextDirection.rtl : TextDirection.ltr,
-          effect: ColorTransitionEffect(
+          effect: SlideEffect(
+            dotHeight: 8,
+            dotWidth: 8,
+            dotColor: dividerColor(context),
+            activeDotColor: Constants.SECONDARY_COLOR
           ),
         )
       ],

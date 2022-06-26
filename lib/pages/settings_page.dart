@@ -1,4 +1,4 @@
-import 'package:client/components/login_button.dart';
+import 'package:client/components/signup_button.dart';
 import 'package:client/components/profile_button.dart';
 import 'package:client/rx/blocs/auth_bloc.dart';
 import 'package:client/rx/services/app_service.dart';

@@ -20,9 +20,10 @@ class ProfileAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      clipBehavior: Clip.none,
+      clipBehavior: Clip.antiAlias,
       width: 64,
       height: 64,
+      padding: const EdgeInsets.all(4),
       decoration:
           const BoxDecoration(shape: BoxShape.circle, color: Colors.white),
       child: Stack(
@@ -38,6 +39,8 @@ class ProfileAvatar extends StatelessWidget {
                 ? Image.network(
                     picture!,
                     fit: BoxFit.contain,
+              width: 64,
+              height: 64,
                   )
                 : SvgPicture.string(
                     Jdenticon.toSvg(email, size: 64),

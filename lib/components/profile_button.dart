@@ -1,27 +1,19 @@
-import 'package:client/components/login_button.dart';
+import 'package:client/components/signup_button.dart';
 import 'package:client/components/profile_avatar.dart';
+import 'package:client/components/upgrade_button.dart';
 import 'package:client/rx/blocs/auth_bloc.dart';
 import 'package:client/types/user.dart';
-import 'package:client/utils/colors.dart';
 import 'package:client/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class ProfileButton extends StatefulWidget {
+class ProfileButton extends StatelessWidget {
   final AppLocalizations t;
   final AuthBloc authBloc;
 
   const ProfileButton(this.authBloc, this.t, {Key? key}) : super(key: key);
-
-  @override
-  State<ProfileButton> createState() => _ProfileButtonState();
-}
-
-class _ProfileButtonState extends State<ProfileButton> {
-  AppLocalizations? t;
 
   @override
   Widget build(BuildContext context) {
@@ -43,20 +35,20 @@ class _ProfileButtonState extends State<ProfileButton> {
         },
       ),
       child: StreamBuilder(
-        stream: widget.authBloc.user,
+        stream: authBloc.user,
         builder: (context, snapshot) {
           User? user = snapshot.data as User?;
           if (user == null) return const SignupButton();
           return Padding(
-            padding: Constants.PAGE_PADDING,
+            padding: Constants.CARD_INNER_PADDING,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Icon(
-                  Icons.account_circle,
-                  color: Constants.PLACEHOLDER_COLOR,
-                  size: 64,
+                ProfileAvatar(
+                  email: user.email,
+                  picture: user.picture,
+                  isPremium: user.isPremium,
                 ),
                 const SizedBox(
                   width: 4,
@@ -80,4 +72,5 @@ class _ProfileButtonState extends State<ProfileButton> {
       ),
     );
   }
+
 }

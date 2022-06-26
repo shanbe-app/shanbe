@@ -61,10 +61,10 @@ dependencies:
   cafebazaar_flutter: ^1.0.1
   flutter_platform_widgets: ^1.20.0
   crypto: ^3.0.2
-  amplify_flutter: ^0.4.5
-  amplify_datastore: ^0.4.5
-  amplify_auth_cognito: ^0.4.5
-  amplify_api: ^0.4.5
+  amplify_flutter: ^0.6.0
+  amplify_datastore: ^0.6.0
+  amplify_auth_cognito: ^0.6.0
+  amplify_api: ^0.6.0
   salomon_bottom_bar: ^3.3.1
   workmanager: ^0.5.0
   flutter_signin_button: ^2.0.0

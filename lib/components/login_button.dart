@@ -5,14 +5,14 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class LoginButton extends StatefulWidget {
-  const LoginButton({Key? key}) : super(key: key);
+class SignupButton extends StatefulWidget {
+  const SignupButton({Key? key}) : super(key: key);
 
   @override
-  State<LoginButton> createState() => _LoginButtonState();
+  State<SignupButton> createState() => _SignupButtonState();
 }
 
-class _LoginButtonState extends State<LoginButton> {
+class _SignupButtonState extends State<SignupButton> {
   AppLocalizations? t;
 
   @override

@@ -6,14 +6,23 @@ import 'package:client/rx/blocs/rx_bloc.dart';
 import 'package:client/rx/services/amplify_service.dart';
 import 'package:client/rx/services/app_service.dart';
 import 'package:client/types/enums.dart';
+import 'package:client/types/user.dart';
 import 'package:rxdart/rxdart.dart';
 
 class AuthBloc extends RxBloc {
-  final AmplifyService amplifyService;
+  final AppService appService;
   final _authState = BehaviorSubject<AuthState>();
+  final _authErrors = BehaviorSubject<String>();
+  final _user = BehaviorSubject<User?>();
 
-  AuthBloc(AppService service) : amplifyService = service.amplifyService {
-/*    Amplify.Hub.listen([HubChannel.Auth], (event) {
+  Stream<AuthState> get authState => _authState.stream;
+
+  Stream<String> get authErrors => _authErrors.stream;
+
+  Stream<User?> get user => _user.stream;
+
+  AuthBloc(this.appService) {
+    Amplify.Hub.listen([HubChannel.Auth], (event) {
       switch (event.eventName) {
         case 'SIGNED_IN':
           _authState.add(AuthState.authenticated);
@@ -28,7 +37,26 @@ class AuthBloc extends RxBloc {
           _authState.add(AuthState.notAuthenticated);
           break;
       }
-    });*/
+    });
+    checkAuth();
+  }
+
+  void checkAuth() {
+    Stream.fromFuture(Amplify.Auth.fetchAuthSession()).listen((event) {
+      print('event.isSignedIn ${event.isSignedIn}');
+      if (event.isSignedIn) {
+        Stream.fromFuture(Amplify.Auth.fetchUserAttributes()).listen((event) {
+          _user.add(User.fromUserAttributes(event));
+          _authState.add(AuthState.authenticated);
+        }).onError((e) {
+          _authState.add(AuthState.notAuthenticated);
+        });
+      } else {
+        _authState.add(AuthState.notAuthenticated);
+      }
+    }).onError((e) {
+      _authState.add(AuthState.notAuthenticated);
+    });
   }
 
   void authenticate(String username, String password) {
@@ -67,15 +95,21 @@ class AuthBloc extends RxBloc {
     _authState.add(AuthState.authenticating);
     Stream.fromFuture(Amplify.Auth.signInWithWebUI(provider: provider))
         .listen((event) {
-      print('event ${event.isSignedIn} ${event.nextStep}');
+      if (event.isSignedIn) {
+        checkAuth();
+      } else {
+        _authState.add(AuthState.notAuthenticated);
+      }
+    }).onError((e) {
+      print(e.toString());
+      _authState.add(AuthState.notAuthenticated);
+      _authErrors.add(e.toString());
     });
   }
 
   void fetchCurrentUser() {
     Stream.fromFuture(Amplify.Auth.fetchAuthSession()).listen((event) {
-      Stream.fromFuture(Amplify.Auth.fetchUserAttributes()).listen((event) {
-        
-      });
+      Stream.fromFuture(Amplify.Auth.fetchUserAttributes()).listen((event) {});
       // Amplify.Auth.fetchUserAttributes()
       // Amplify.Auth.getCurrentUser()
       event.isSignedIn;

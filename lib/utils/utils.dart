@@ -20,16 +20,19 @@ bool strNotEmpty(String? str) {
 bool strEmpty(String? str) {
   return str == null || str.isEmpty;
 }
+
 String randString(int len) {
   var random = Random.secure();
   var values = List<int>.generate(len, (i) => random.nextInt(255));
   return base64UrlEncode(values);
 }
+
 String toSHA256(String input) {
   var bytes = utf8.encode(input);
   var digest = sha256.convert(bytes);
   return digest.toString();
 }
+
 String timeTo2Digit(int? digit) {
   if (digit == null) return '';
   if (digit.toString().length == 1) {
@@ -57,4 +60,12 @@ String currentLocale(BuildContext context) {
 
 bool isRtl(BuildContext context) {
   return currentLocale(context) == 'fa' ? true : false;
+}
+
+T? firstOrNull<T>(Iterable<T> items, callback) {
+  try {
+    return items.firstWhere(callback);
+  } catch (e) {
+    return null;
+  }
 }

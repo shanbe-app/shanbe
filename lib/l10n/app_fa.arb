@@ -454,7 +454,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "letsGo": "بزن بریم",
+  "letsGo": "ایجاد حساب‌ کاربری",
   "@letsGo": {
     "type": "text",
     "placeholders": {}
@@ -1583,7 +1583,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "appIntroDescription3": "تمام کارها، یادداشت‌ها و ملاقات‌هات رو یکجا داری و سرموقع بهت یادآوری میشه.",
+  "appIntroDescription3": "تمام کارها، رویدادها و ملاقات‌هات رو یکجا داری.",
   "@appIntroDescription3": {
     "type": "text",
     "placeholders": {}
@@ -1598,22 +1598,22 @@
     "type": "text",
     "placeholders": {}
   },
-  "appRegisterTitle1": "پشتیبان‌گیری اطلاعات و استفاده همزمان در چندین دستگاه",
+  "appRegisterTitle1": "پشتیبان‌گیری اطلاعات و استفاده همزمان در چند دستگاه",
   "@appRegisterTitle1": {
     "type": "text",
     "placeholders": {}
   },
-  "appRegisterTitle2": "یادآوری کارهات سر موقع!",
+  "appRegisterTitle2": "یادآوری سرموقع کارهات",
   "@appRegisterTitle2": {
     "type": "text",
     "placeholders": {}
   },
-  "appRegisterTitle3": "با ابزار تمرکز متمرکز بمون",
+  "appRegisterTitle3": "مترکز در طول روز",
   "@appRegisterTitle3": {
     "type": "text",
     "placeholders": {}
   },
-  "appRegisterTitle4": "یادداشت‌های خودت رو با استفاده از دفتر و پوشه‌ مرتب کن.",
+  "appRegisterTitle4": "کارهات رو با لیست‌ها، پوشه‌ها و دفترها مرتب کن.",
   "@appRegisterTitle4": {
     "type": "text",
     "placeholders": {}
@@ -1633,7 +1633,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "skipSignupDesc": "بعدا از قسمت تنظیمات می‌تونی ثبت‌نام کنی.",
+  "skipSignupDesc": "بعدا از صفحه تنظیمات می‌تونی ثبت‌نام کنی.",
   "@skipSignupDesc": {
     "type": "text",
     "placeholders": {}
@@ -1645,6 +1645,21 @@
   },
   "signup": "ثبت‌نام",
   "@signup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "continueWithGoogle": "ادامه با گوگل",
+  "@continueWithGoogle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "continueWithEmail": "ادامه با ایمیل",
+  "@continueWithEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "licenseAgreement": "با کلیک \"ادامه با گوگل/ایمیل\" تصدیق می‌کنید که شرایط و مقررات و سیاست‌های حریم خصوصی شنبه را مطالعه و پذیرفته‌اید.",
+  "@licenseAgreement": {
     "type": "text",
     "placeholders": {}
   }

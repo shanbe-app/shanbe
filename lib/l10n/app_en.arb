@@ -454,7 +454,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "letsGo": "Let's Go",
+  "letsGo": "Create account",
   "@letsGo": {
     "type": "text",
     "placeholders": {}
@@ -1583,7 +1583,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "appIntroDescription3": "View all your tasks, events and notes in one place and get reminded just on time.",
+  "appIntroDescription3": "Have all your tasks, events and meetings in one place.",
   "@appIntroDescription3": {
     "type": "text",
     "placeholders": {}
@@ -1593,27 +1593,27 @@
     "type": "text",
     "placeholders": {}
   },
-  "appIntroDescription4": "Easy note taking for your everyday use.",
+  "appIntroDescription4": "Easy note taking for everyday use.",
   "@appIntroDescription4": {
     "type": "text",
     "placeholders": {}
   },
-  "appRegisterTitle1": "Backup to the cloud & Sync across devices",
+  "appRegisterTitle1": "Synced across your devices.",
   "@appRegisterTitle1": {
     "type": "text",
     "placeholders": {}
   },
-  "appRegisterTitle2": "Get reminded on time!",
+  "appRegisterTitle2": "Get reminded on time.",
   "@appRegisterTitle2": {
     "type": "text",
     "placeholders": {}
   },
-  "appRegisterTitle3": "Stay focused with the focus tool",
+  "appRegisterTitle3": "Focused through the day.",
   "@appRegisterTitle3": {
     "type": "text",
     "placeholders": {}
   },
-  "appRegisterTitle4": "Organize your notes with notebooks and folders",
+  "appRegisterTitle4": "Organize your work with lists, notebooks and folders.",
   "@appRegisterTitle4": {
     "type": "text",
     "placeholders": {}
@@ -1633,7 +1633,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "skipSignupDesc": "You can sign up later through profile page.",
+  "skipSignupDesc": "You can sign up later from Settings page.",
   "@skipSignupDesc": {
     "type": "text",
     "placeholders": {}
@@ -1643,8 +1643,23 @@
     "type": "text",
     "placeholders": {}
   },
-  "signup": "Signup",
+  "signup": "Sign up",
   "@signup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "continueWithGoogle": "Continue with Google",
+  "@continueWithGoogle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "continueWithEmail": "Continue with Email",
+  "@continueWithEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "licenseAgreement": "By clicking \"Continue with Google/Email\" above, you acknowledge that you have read and agree to Shanbe's Terms & Conditions and Privacy Policy.",
+  "@licenseAgreement": {
     "type": "text",
     "placeholders": {}
   }

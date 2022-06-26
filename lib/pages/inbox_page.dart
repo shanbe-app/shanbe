@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class InboxPage extends StatefulWidget {
   final BuildContext context;
@@ -27,6 +28,7 @@ class _InboxPageState extends State<InboxPage> {
   late CupertinoTabController _controller;
   late AppService appService;
   late AppLocalizations t;
+  int _currentIndex = 0;
 
   @override
   void initState() {
@@ -40,19 +42,36 @@ class _InboxPageState extends State<InboxPage> {
   Widget build(BuildContext context) {
     return PlatformWidget(
       material: (context, platform) => Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
+        body: renderTabBody(context, _currentIndex),
+        bottomNavigationBar: SalomonBottomBar(
+          currentIndex: _currentIndex,
+          onTap: (i) => setState(() => _currentIndex = i),
           items: [
-            BottomNavigationBarItem(
-                icon: const Icon(Icons.check_box_outlined), label: t.tasks),
-            BottomNavigationBarItem(
-                icon: const Icon(Icons.calendar_month_rounded),
-                label: t.calendar),
-            BottomNavigationBarItem(
-                icon: const Icon(Shanbe.bullseye_1), label: t.focus),
-            BottomNavigationBarItem(
-                icon: const Icon(Icons.book), label: t.notes),
-            BottomNavigationBarItem(
-                icon: const Icon(Icons.settings), label: t.settings)
+            SalomonBottomBarItem(
+              icon: const Icon(Icons.check_box_outlined),
+              title: Text(t.tasks),
+              selectedColor: Colors.purple,
+            ),
+            SalomonBottomBarItem(
+              icon: const Icon(Icons.calendar_month_rounded),
+              title: Text(t.calendar),
+              selectedColor: Colors.purple,
+            ),
+            SalomonBottomBarItem(
+              icon: const Icon(Shanbe.bullseye_1),
+              title: Text(t.focus),
+              selectedColor: Colors.purple,
+            ),
+            SalomonBottomBarItem(
+              icon: const Icon(Icons.book),
+              title: Text(t.notes),
+              selectedColor: Colors.purple,
+            ),
+            SalomonBottomBarItem(
+              icon: const Icon(Icons.settings),
+              title: Text(t.settings),
+              selectedColor: Colors.purple,
+            ),
           ],
         ),
       ),
@@ -133,8 +152,8 @@ class _InboxPageState extends State<InboxPage> {
                           onPressed: () {},
                           child: Row(
                             children: [
-                              TodayIcon(),
-                              SizedBox(
+                              const TodayIcon(),
+                              const SizedBox(
                                 width: 4,
                               ),
                               PlatformText(t.today)
@@ -143,15 +162,18 @@ class _InboxPageState extends State<InboxPage> {
                         ),
                     cupertino: (_, __) => CupertinoButton(
                           child: Row(
-                            children: [TodayIcon(), PlatformText(t.today)],
+                            children: [
+                              const TodayIcon(),
+                              PlatformText(t.today)
+                            ],
                           ),
                           onPressed: () {},
                         )),
-                Text('Today'),
-                Text('All'),
-                Text('Completed'),
-                Text('Next 7 Days'),
-                Text('Inbox'),
+                const Text('Today'),
+                const Text('All'),
+                const Text('Completed'),
+                const Text('Next 7 Days'),
+                const Text('Inbox'),
               ],
             ),
           ),

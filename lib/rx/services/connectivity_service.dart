@@ -10,7 +10,13 @@ class ConnectivityService extends RxService {
 
   @override
   Future<void> onCreate() async {
-    _connectedToInternet.add(await InternetConnectionChecker().hasConnection);
+    ConnectivityResult result = await Connectivity().checkConnectivity();
+    if (result == ConnectivityResult.wifi ||
+        result == ConnectivityResult.mobile) {
+      _connectedToInternet.add(true);
+    } else {
+      _connectedToInternet.add(false);
+    }
     Connectivity()
         .onConnectivityChanged
         .listen((ConnectivityResult result) async {

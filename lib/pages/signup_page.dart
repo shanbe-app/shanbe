@@ -1,14 +1,22 @@
+import 'dart:async';
+
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:client/components/signup_intro.dart';
+import 'package:client/rx/blocs/auth_bloc.dart';
 import 'package:client/rx/services/app_service.dart';
 import 'package:client/types/app_intro_data.dart';
+import 'package:client/types/enums.dart';
 import 'package:client/types/signup_intro_data.dart';
 import 'package:client/utils/colors.dart';
 import 'package:client/utils/constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:get_it/get_it.dart';
 
 class SignupPage extends StatefulWidget {
   final BuildContext context;
@@ -20,26 +28,36 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
-  late AppService appService;
-  late AppLocalizations t;
-  late List<SignupData> signupData;
+  late final AppLocalizations t;
+  late final List<SignupData> signupData;
+  late final AuthBloc authBloc;
+  late final StreamSubscription _subscription;
 
   @override
   void initState() {
     super.initState();
+    t = AppLocalizations.of(widget.context);
+    signupData = [
+      SignupData(t.appRegisterTitle1, 'assets/files/sync.json', reverse: true),
+      SignupData(t.appRegisterTitle2, 'assets/files/notification.json'),
+      SignupData(t.appRegisterTitle3, 'assets/files/clock.json'),
+      SignupData(t.appRegisterTitle4, 'assets/files/folder.json',
+          reverse: true),
+      SignupData(t.appRegisterTitle5, 'assets/files/images.json')
+    ];
+    authBloc = AuthBloc(AppService.getInstance());
+    _subscription = authBloc.authState.listen((event) {
+      print('state2 ${event}');
+      if (event == AuthState.authenticated) {
+        Navigator.pushNamedAndRemoveUntil(context, '/inbox', (route) => false);
+      }
+    });
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    t = AppLocalizations.of(context);
-    signupData = [
-      SignupData(t.appRegisterTitle1, 'assets/files/sync.json', reverse: true),
-      SignupData(t.appRegisterTitle2, 'assets/files/notepad.json'),
-      SignupData(t.appRegisterTitle3, 'assets/files/notepad.json'),
-      SignupData(t.appRegisterTitle4, 'assets/files/yoga3.json')
-      SignupData(t.appRegisterTitle5, 'assets/files/yoga3.json')
-    ];
+  void dispose() {
+    super.dispose();
+    _subscription.cancel();
   }
 
   @override
@@ -47,10 +65,10 @@ class _SignupPageState extends State<SignupPage> {
     return PlatformScaffold(
       appBar: PlatformAppBar(
         cupertino: (_, __) => CupertinoNavigationBarData(
-            previousPageTitle: t.settings,
-            border: Border.all(width: 0, color: backgroundColor(context)),
-            backgroundColor: backgroundColor(context),
-        automaticallyImplyMiddle: false,
+          previousPageTitle: t.settings,
+          border: Border.all(width: 0, color: backgroundColor(context)),
+          backgroundColor: backgroundColor(context),
+          automaticallyImplyMiddle: true,
         ),
         material: (_, __) => MaterialAppBarData(
             elevation: 0, backgroundColor: backgroundColor(context)),
@@ -63,55 +81,85 @@ class _SignupPageState extends State<SignupPage> {
         padding: Constants.PAGE_PADDING,
         child: Column(
           mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SignupIntro(
               signupData: signupData,
             ),
-            PlatformElevatedButton(
-              onPressed: () {},
-              padding: EdgeInsets.zero,
-              child: Row(
-                children: [
-                  ClipRRect(
-                    child: Image(
-                      image: AssetImage(
-                        'assets/images/google_light.png',
-                      ),
-                      height: 36.0,
-                    ),
-                  ),
-                  Text('Sign in with Google')
-                ],
+            const SizedBox(
+              height: 32,
+            ),
+            Center(
+              child: SignInButton(
+                isDark(context) ? Buttons.GoogleDark : Buttons.Google,
+                elevation: 4,
+                text: t.continueWithGoogle,
+                onPressed: () {
+                  authBloc.socialSignIn(AuthProvider.google);
+                },
               ),
             ),
-            SignInButton(
-              isDark(context) ? Buttons.GoogleDark : Buttons.Google,
-              elevation: 0,
-              onPressed: () {},
+            const SizedBox(
+              height: 8,
             ),
-            SignInButton(
-              Buttons.Facebook,
-              onPressed: () {},
+            Center(
+              child: SignInButtonBuilder(
+                text: t.continueWithEmail,
+                icon: Icons.email,
+                elevation: 4,
+                onPressed: () {},
+                backgroundColor: Colors.blueGrey[700]!,
+              ),
             ),
-            SignInButton(
-              Buttons.Quora,
-              onPressed: () {},
+            const Spacer(),
+            Text(
+              t.licenseAgreement,
+              style: TextStyle(
+                  height: 1.5,
+                  color: placeholderColor(context),
+                  fontSize: Constants.S2_FONT_SIZE),
             ),
-            SignInButton(
-              Buttons.Apple,
-              onPressed: () {},
+            Row(
+              children: [
+                PlatformTextButton(
+                  child: Text(
+                    'Privacy Policy',
+                    style: TextStyle(
+                      color: secondaryTextColor(context),
+                      fontSize: Constants.S2_FONT_SIZE,
+                    ),
+                  ),
+                  onPressed: () {},
+                  padding: EdgeInsets.zero,
+                ),
+                SizedBox(
+                  width: 8,
+                ),
+                PlatformTextButton(
+                  child: Text(
+                    'Terms & Conditions',
+                    style: TextStyle(
+                      color: secondaryTextColor(context),
+                      fontSize: Constants.S2_FONT_SIZE,
+                    ),
+                  ),
+                  onPressed: () {},
+                ),
+              ],
             ),
-            SignInButton(
-              Buttons.Facebook,
-              mini: true,
-              onPressed: () {},
+            const SizedBox(
+              height: 16,
             ),
-            SignInButtonBuilder(
-              text: 'Sign in with Email',
-              icon: Icons.email,
-              onPressed: () {},
-              backgroundColor: Colors.blueGrey[700]!,
-            )
+            Text(
+              '© 2022 Shanbe',
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                  color: secondaryTextColor(context),
+                  fontSize: Constants.S2_FONT_SIZE),
+            ),
+            const SizedBox(
+              height: 64,
+            ),
           ],
         ),
       ),

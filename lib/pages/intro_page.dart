@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:client/types/inbox_page_arguments.dart';
 import 'package:client/utils/colors.dart';
 import 'package:client/types/app_intro_data.dart';
@@ -22,6 +24,7 @@ class IntroPage extends StatefulWidget {
 class _IntroPageState extends State<IntroPage> {
   late PageController _controller;
   late List<AppIntroData> appIntroData;
+  late Timer _timer;
   late AppLocalizations t;
 
   @override
@@ -38,8 +41,25 @@ class _IntroPageState extends State<IntroPage> {
           t.appIntroDescription3,
           reverse: true),
       AppIntroData(
-          t.appIntroTitle4, 'assets/files/book.json', t.appIntroDescription4),
+          t.appIntroTitle4, 'assets/files/fly.json', t.appIntroDescription4),
     ];
+    _timer = Timer.periodic(const Duration(seconds: 7), (timer) {
+      if (_controller.page == null) return;
+      if (_controller.page!.toInt() + 1 == appIntroData.length) {
+        _controller.animateToPage(0,
+            duration: const Duration(milliseconds: 500), curve: Curves.easeOut);
+      } else {
+        _controller.animateToPage(_controller.page!.toInt() + 1,
+            duration: const Duration(milliseconds: 500), curve: Curves.easeOut);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _timer.cancel();
+    _controller.dispose();
   }
 
   @override
@@ -122,7 +142,7 @@ class _IntroPageState extends State<IntroPage> {
                                         width: double.maxFinite,
                                         fit: BoxFit.contain)),
                                 const SizedBox(
-                                  height: 24,
+                                  height: 16,
                                 ),
                                 Text(
                                   e.title,
@@ -146,24 +166,7 @@ class _IntroPageState extends State<IntroPage> {
                         .toList(),
                   )),
               const SizedBox(
-                height: 32,
-              ),
-              PlatformElevatedButton(
-                child: Text(
-                  t.letsGo,
-                  style: const TextStyle(
-                      fontWeight: Constants.MEDIUM_FONT_WEIGHT,
-                      fontSize: Constants.S1_FONT_SIZE),
-                ),
-                onPressed: () {
-                  Navigator.pushNamedAndRemoveUntil(
-                      context, '/inbox', (route) => false,
-                      arguments: InboxPageArguments(initialPage: 'settings'));
-                  Navigator.pushNamed(context, '/signup');
-                },
-              ),
-              const SizedBox(
-                height: 32,
+                height: 24,
               ),
               Flexible(
                 flex: 1,
@@ -180,8 +183,25 @@ class _IntroPageState extends State<IntroPage> {
                 ),
               ),
               const SizedBox(
-                height: 16,
-              )
+                height: 32,
+              ),
+              Flexible(
+                flex: 2,
+                child: PlatformElevatedButton(
+                  child: Text(
+                    t.letsGo,
+                    style: const TextStyle(
+                        fontWeight: Constants.MEDIUM_FONT_WEIGHT,
+                        fontSize: Constants.S1_FONT_SIZE),
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, '/inbox', (route) => false,
+                        arguments: InboxPageArguments(initialPage: 'settings'));
+                    Navigator.pushNamed(context, '/signup');
+                  },
+                ),
+              ),
             ],
           ),
         ),

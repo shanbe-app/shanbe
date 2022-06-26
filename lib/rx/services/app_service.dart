@@ -29,11 +29,9 @@ class AppService extends RxService {
     backgroundService = BackgroundService();
   }
 
-  static AppService getInstance() =>
-      GetIt.I.get<AppService>(instanceName: 'appService');
-
   @override
   Future<void> onCreate() async {
+    _registerSingleton();
     await appInfoService.onCreate();
     await amplifyService.onCreate();
     await connectivityService.onCreate();
@@ -41,7 +39,7 @@ class AppService extends RxService {
     await storageService.onCreate();
     await firebaseService.onCreate();
     await backgroundService.onCreate();
-    _registerSingleton();
+    print('call register');
   }
 
   @override
@@ -58,4 +56,6 @@ class AppService extends RxService {
   void _registerSingleton() {
     GetIt.I.registerSingleton<AppService>(this, instanceName: 'appService');
   }
+  static AppService getInstance() =>
+      GetIt.I.get<AppService>(instanceName: 'appService');
 }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:client/types/signup_intro_data.dart';
 import 'package:client/utils/colors.dart';
 import 'package:client/types/app_intro_data.dart';
@@ -22,26 +24,39 @@ class SignupIntro extends StatefulWidget {
 
 class _SignupIntroState extends State<SignupIntro> {
   late PageController _controller;
+  late Timer _timer;
 
   @override
   void initState() {
     super.initState();
     _controller = PageController();
+    _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
+      if (_controller.page == null) return;
+      _controller.nextPage(duration: const Duration(milliseconds: 500), curve: Curves.easeOut);
+      if (_controller.page!.toInt() + 1 == widget.signupData.length) {
+        _controller.animateToPage(0,
+            duration: const Duration(milliseconds: 500), curve: Curves.easeOut);
+      } else {
+        _controller.animateToPage(_controller.page!.toInt() + 1,
+            duration: const Duration(milliseconds: 500), curve: Curves.easeOut);
+      }
+    });
   }
 
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
+    _controller.dispose;
+    _timer.cancel();
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: 24,),
         SizedBox(
-          height: 256,
+          height: 272,
           child: PageView(
             controller: _controller,
             children: widget.signupData
@@ -59,6 +74,7 @@ class _SignupIntroState extends State<SignupIntro> {
                         ),
                         Text(
                           e.title,
+                          textAlign: TextAlign.center,
                           style: TextStyle(
                               color: headingColor(context),
                               fontSize: Constants.S1_FONT_SIZE),
@@ -69,18 +85,17 @@ class _SignupIntroState extends State<SignupIntro> {
           ),
         ),
         const SizedBox(
-          height: 16,
+          height: 8,
         ),
         SmoothPageIndicator(
           controller: _controller,
           count: widget.signupData.length,
           textDirection: isRtl(context) ? TextDirection.rtl : TextDirection.ltr,
           effect: SlideEffect(
-            dotHeight: 8,
-            dotWidth: 8,
-            dotColor: dividerColor(context),
-            activeDotColor: Constants.SECONDARY_COLOR
-          ),
+              dotHeight: 8,
+              dotWidth: 8,
+              dotColor: dividerColor(context),
+              activeDotColor: Constants.SECONDARY_COLOR_LIGHT),
         )
       ],
     );

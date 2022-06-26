@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:amplify_api/amplify_api.dart';
@@ -26,7 +27,6 @@ class AmplifyService extends RxService {
     if (Platform.isAndroid || Platform.isIOS) {
       await Amplify.DataStore.start();
     }
-
     // Amplify.Hub.listen([HubChannel.Auth, HubChannel.DataStore], (event) {
     //   print('event ${event.eventName} ${event.payload}');
     // });

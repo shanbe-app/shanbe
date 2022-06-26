@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:client/rx/blocs/rx_bloc.dart';
 import 'package:client/rx/services/storage_service.dart';
 import 'package:client/types/enums.dart';
@@ -7,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
 class SettingsBloc extends RxBloc {
+  final CompositeSubscription _compositeSubscription = CompositeSubscription();
   final StorageService storageService;
   final _isFirstVisit = BehaviorSubject<bool>();
   final _calendar = BehaviorSubject<CalendarType>();
@@ -43,8 +47,18 @@ class SettingsBloc extends RxBloc {
         .getString(Constants.USER_DAILY_NOTIFICATION_TIME_PREFS));
   }
 
+  void updateCalendar(CalendarType calendarType) {
+    _calendar.add(calendarType);
+    storageService.sharedPreferences.setString(Constants.USER_CALENDAR_PREFS,
+        EnumToString.convertToString(calendarType));
+
+    Amplify.Auth.updateUserAttribute(
+        userAttributeKey: Constants.USER_PREFERENCES_COGNITO_KEY,
+        value: json.encode({'calendar': calendarType}));
+  }
+
   @override
   void dispose() {
-    compositeSubscription.dispose();
+    _compositeSubscription.dispose();
   }
 }

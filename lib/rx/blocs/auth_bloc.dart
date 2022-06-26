@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
@@ -7,9 +8,12 @@ import 'package:client/rx/services/amplify_service.dart';
 import 'package:client/rx/services/app_service.dart';
 import 'package:client/types/enums.dart';
 import 'package:client/types/user.dart';
+import 'package:client/utils/constants.dart';
+import 'package:client/utils/utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 class AuthBloc extends RxBloc {
+  final CompositeSubscription _compositeSubscription = CompositeSubscription();
   final AppService appService;
   final _authState = BehaviorSubject<AuthState>();
   final _authErrors = BehaviorSubject<String>();
@@ -22,6 +26,7 @@ class AuthBloc extends RxBloc {
   Stream<User?> get user => _user.stream;
 
   AuthBloc(this.appService) {
+    checkAuth();
     Amplify.Hub.listen([HubChannel.Auth], (event) {
       switch (event.eventName) {
         case 'SIGNED_IN':
@@ -38,7 +43,11 @@ class AuthBloc extends RxBloc {
           break;
       }
     });
-    checkAuth();
+  }
+
+  @override
+  void dispose() {
+    _compositeSubscription.dispose();
   }
 
   void checkAuth() {
@@ -70,7 +79,7 @@ class AuthBloc extends RxBloc {
         _authState.add(AuthState.notAuthenticated);
       }
     });
-    compositeSubscription.add(subscription);
+    _compositeSubscription.add(subscription);
   }
 
   void logout() {
@@ -78,7 +87,7 @@ class AuthBloc extends RxBloc {
     StreamSubscription subscription = Stream.fromFuture(Amplify.Auth.signOut(
             options: const SignOutOptions(globalSignOut: false)))
         .listen((event) {});
-    compositeSubscription.add(subscription);
+    _compositeSubscription.add(subscription);
   }
 
   void register(String name, String email, String password) {
@@ -93,14 +102,32 @@ class AuthBloc extends RxBloc {
 
   void socialSignIn(AuthProvider provider) {
     _authState.add(AuthState.authenticating);
-    Stream.fromFuture(Amplify.Auth.signInWithWebUI(provider: provider))
-        .listen((event) {
+    _compositeSubscription
+        .add(Stream.fromFuture(Amplify.Auth.signInWithWebUI(provider: provider))
+            .listen((event) {
       if (event.isSignedIn) {
-        checkAuth();
+        _compositeSubscription
+            .add(Stream.fromFuture(Amplify.Auth.fetchUserAttributes())
+                .listen((attributes) {
+          String? preferencesString = firstOrNull(
+                  attributes, (e) => e.userAttributeKey.key == 'preferences')
+              ?.value;
+          Map preferences = preferencesString != null
+              ? jsonDecode(preferencesString)
+              : Constants.USER_PREFERENCES_COGNITO_DEFAULT;
+
+          _user.add(User.fromUserAttributes(attributes));
+
+          _authState.add(AuthState.authenticated);
+        }))
+            .onError((e) {
+          _authState.add(AuthState.notAuthenticated);
+        });
       } else {
         _authState.add(AuthState.notAuthenticated);
       }
-    }).onError((e) {
+    }))
+        .onError((e) {
       print(e.toString());
       _authState.add(AuthState.notAuthenticated);
       _authErrors.add(e.toString());
@@ -116,8 +143,8 @@ class AuthBloc extends RxBloc {
     });
   }
 
-  @override
-  void dispose() {
-    compositeSubscription.dispose();
+  void updateCalendar(CalendarType calendarType) {
+    Stream.fromFuture(Amplify.Auth.fetchUserAttributes())
+        .listen((attributes) {});
   }
 }

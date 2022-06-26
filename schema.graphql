@@ -1,0 +1,67 @@
+type Profile @model @auth(rules: [{allow: owner, operations: [read]}]) {
+  id: ID!
+  premium_until: AWSDateTime
+  profile_url: String
+  timezone: String
+  calendar: String
+  language: String
+}
+
+enum ReminderStatus {
+  INITIALIZED
+  SHOWN
+  SNOOZED
+  DONE
+}
+
+enum RepeatType {
+  DAILY
+  WEEKLY
+  MONTHLY
+  YEARLY
+}
+
+type Reminder @model @auth(rules: [{allow: public}, {allow: owner}]) {
+  id: ID!
+  date: AWSDate!
+  time: AWSTime!
+  status: ReminderStatus!
+  todoID: ID! @index(name: "byTodo")
+  todo: Todo @belongsTo
+}
+
+type Tag @model @auth(rules: [{allow: public}, {allow: owner}]) {
+  id: ID!
+  name: String!
+  color: String
+  todos: [Todo] @manyToMany(relationName: "TodoTag")
+}
+
+type Project @model @auth(rules: [{allow: public}, {allow: owner}]) {
+  id: ID!
+  name: String!
+  emoji: String
+  color: String
+  cover: String
+  todos: [Todo] @hasMany(indexName: "byProject", fields: ["id"])
+}
+
+type Todo @model @auth(rules: [{allow: public}, {allow: owner}]) {
+  id: ID!
+  title: String!
+  description: String
+  done: AWSDateTime
+  dueDate: AWSDate
+  dueTime: AWSTime
+  endDate: AWSDate
+  createdAt: AWSDateTime!
+  priority: Int
+  repeatType: RepeatType
+  repeatInterval: Int
+  doneRepeat: [AWSJSON]
+  deletedAt: AWSDateTime
+  reminders: [Reminder] @hasMany(indexName: "byTodo", fields: ["id"])
+  projectID: ID! @index(name: "byProject")
+  project: Project @belongsTo
+  tags: [Tag] @manyToMany(relationName: "TodoTag")
+}

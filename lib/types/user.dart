@@ -1,27 +1,48 @@
+import 'dart:convert';
+
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+import 'package:client/types/enums.dart';
 import 'package:client/utils/utils.dart';
+import 'package:enum_to_string/enum_to_string.dart';
 
 class User {
   final String email;
   final String name;
   final String? picture;
   final bool isPremium;
+  final CalendarType calendarType;
 
-  User._(this.email, this.name, this.picture, this.isPremium);
+  User._(
+      {required this.email,
+      required this.name,
+      this.picture,
+      required this.calendarType,
+      required this.isPremium});
 
   factory User.fromUserAttributes(List<AuthUserAttribute> attributes) {
+    attributes.forEach((element) {
+      print('${element.userAttributeKey} ${element.value}');
+    });
     int? isPremium = firstOrNull(attributes,
             (element) => element.userAttributeKey.key == 'is_premium')?.value
         as int?;
+    Map preferences = json.decode(firstOrNull(attributes,
+                (element) => element.userAttributeKey.key == 'preferences')
+            ?.value ??
+        '{}');
     return User._(
-        attributes
+        email: attributes
             .firstWhere((element) => element.userAttributeKey.key == 'email')
             .value,
-        attributes
+        name: attributes
             .firstWhere((element) => element.userAttributeKey.key == 'name')
             .value,
-        firstOrNull(attributes,
+        picture: firstOrNull(attributes,
             (element) => element.userAttributeKey.key == 'picture')?.value,
-        isPremium == 0);
+        calendarType: preferences['calendar'] != null
+            ? EnumToString.fromString(
+                CalendarType.values, preferences['calendar'])!
+            : CalendarType.gregorian,
+        isPremium: isPremium == 0);
   }
 }

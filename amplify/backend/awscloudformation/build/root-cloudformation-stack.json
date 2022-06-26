@@ -230,12 +230,6 @@
               "Outputs.UserPoolId"
             ]
           },
-          "authRoleName": {
-            "Ref": "AuthRoleName"
-          },
-          "unauthRoleName": {
-            "Ref": "UnauthRoleName"
-          },
           "S3DeploymentBucket": "amplify-shanbe-staging-115838-deployment",
           "S3DeploymentRootKey": "amplify-appsync-files/97f2c614d1cc65e3e322b970f00ec478caf3e334",
           "env": "staging"
@@ -271,18 +265,6 @@
           "s3PermissionsAuthenticatedUploads": "s3:PutObject",
           "s3PermissionsGuestPublic": "s3:GetObject",
           "s3PermissionsGuestUploads": "DISALLOW",
-          "env": "staging"
-        }
-      }
-    },
-    "functioncreateProfilePostSignup": {
-      "Type": "AWS::CloudFormation::Stack",
-      "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-shanbe-staging-115838-deployment/amplify-cfn-templates/function/createProfilePostSignup-cloudformation-template.json",
-        "Parameters": {
-          "profileTableName": "Profile-bufeecckhreqvjchbmynw7ux4q-staging",
-          "deploymentBucketName": "amplify-shanbe-staging-115838-deployment",
-          "s3Key": "amplify-builds/createProfilePostSignup-2f4b77714976694e566d-build.zip",
           "env": "staging"
         }
       }
@@ -362,7 +344,7 @@
           }
         },
         "Handler": "index.handler",
-        "Runtime": "nodejs12.x",
+        "Runtime": "nodejs14.x",
         "Timeout": 300,
         "Role": {
           "Fn::GetAtt": [

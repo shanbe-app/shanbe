@@ -14,13 +14,6 @@
     "categories": {
       "auth": {
         "Shanbe": {}
-      },
-      "function": {
-        "createProfilePostSignup": {
-          "deploymentBucketName": "amplify-shanbe-staging-115838-deployment",
-          "s3Key": "amplify-builds/createProfilePostSignup-2f4b77714976694e566d-build.zip",
-          "profileTableName": "Profile-bufeecckhreqvjchbmynw7ux4q-staging"
-        }
       }
     }
   }

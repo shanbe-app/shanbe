@@ -1,5 +1,8 @@
 // ignore_for_file: constant_identifier_names
 
+import 'package:amplify_flutter/amplify_flutter.dart';
+import 'package:client/types/enums.dart';
+import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -84,6 +87,17 @@ class Constants {
       EdgeInsets.symmetric(horizontal: 8, vertical: 4);
   static final ShapeBorder CARD_SHAPE =
       RoundedRectangleBorder(borderRadius: BorderRadius.circular(8));
+
+  static final Map USER_PREFERENCES_EN = {
+    'locale': 'fa',
+    'calendar': EnumToString.convertToString(CalendarType.gregorian)
+  };
+  static final Map USER_PREFERENCES_FA = {
+    'locale': 'fa',
+    'calendar': EnumToString.convertToString(CalendarType.shamsi)
+  };
+  static final Map USER_PREFERENCES_COGNITO_DEFAULT = USER_PREFERENCES_EN;
+  static const UserAttributeKey USER_PREFERENCES_COGNITO_KEY = CognitoUserAttributeKey.custom('preferences');
 
   static const List<List<Color>> AVATAR_GRADIENT_COLORS = [
     [

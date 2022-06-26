@@ -79,12 +79,5 @@
       "dependsOn": []
     }
   },
-  "function": {
-    "createProfilePostSignup": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": []
-    }
-  }
+  "function": {}
 }

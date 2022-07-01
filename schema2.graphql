@@ -1,0 +1,65 @@
+type Section @model @auth(rules: [{allow: public}]) {
+    id: ID!
+    title: String!
+    projectID: ID! @index(name: "byProject")
+    Todos: [Todo] @hasMany(indexName: "bySection", fields: ["id"])
+    Project: Project @belongsTo
+}
+
+enum ReminderStatus {
+    INITIALIZED
+    SHOWN
+    SNOOZED
+    DONE
+}
+
+type Reminder @model @auth(rules: [{allow: public}]) {
+    id: ID!
+    date: AWSDateTime
+    status: ReminderStatus
+    todoID: ID! @index(name: "byTodo")
+}
+
+type Tag @model @auth(rules: [{allow: public}]) {
+    id: ID!
+    name: String
+    color: String
+    Todos: [Todo] @hasMany(indexName: "byTag", fields: ["id"])
+    todos: [Todo] @manyToMany(relationName: "TodoTag")
+}
+
+type Project @model @auth(rules: [{allow: public}]) {
+    id: ID!
+    name: String!
+    emoji: String
+    color: String
+    cover: String
+    Todos: [Todo] @hasMany(indexName: "byProject", fields: ["id"])
+    Sections: [Section] @hasMany(indexName: "byProject", fields: ["id"])
+}
+
+type Todo @model @auth(rules: [{allow: public}]) {
+    id: ID!
+    title: String!
+    content: String
+    doneAt: AWSDateTime
+    startAt: AWSDateTime
+    endAt: AWSDateTime
+    dueDate: AWSDateTime
+    createdAt: AWSDateTime!
+    updatedAt: AWSDateTime!
+    priority: Int
+    timezone: String!
+    isFloating: Boolean
+    isAllDay: Boolean
+    projectID: ID! @index(name: "byProject")
+    Project: Project @belongsTo
+    tagID: ID! @index(name: "byTag")
+    Reminders: [Reminder] @hasMany(indexName: "byTodo", fields: ["id"])
+    Tags: [Tag] @manyToMany(relationName: "TodoTag")
+    subTasks: [ID]
+    nextItem: ID
+    rrule: String
+    sectionID: ID! @index(name: "bySection")
+    Section: Section @belongsTo
+}

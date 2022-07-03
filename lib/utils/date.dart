@@ -1,4 +1,3 @@
-import 'package:client/models/RepeatType.dart';
 import 'package:client/models/Todo.dart';
 import 'package:client/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -135,6 +134,7 @@ int diffInMinutes(TimeOfDay source, TimeOfDay dest) {
   return (dest.hour * 60 + dest.minute) - (source.hour * 60 + source.minute);
 }
 
+/*
 bool hasOccurrence(DateTime source, Todo todo, {String? calendar}) {
   calendar ??= 'shamsi';
   DateTime? dueDate = todo.dueDate?.getDateTime();
@@ -151,10 +151,14 @@ bool hasOccurrence(DateTime source, Todo todo, {String? calendar}) {
   Date destDate = dateFromDateTime(calendar, destZero);
   switch (todo.repeatType) {
     case RepeatType.DAILY:
-      return /*!isSameDay(source, todo.dueDate) &&*/
+      return */
+/*!isSameDay(source, todo.dueDate) &&*//*
+
           diffInDays(source, dueDate) % todo.repeatInterval! == 0;
     case RepeatType.WEEKLY:
-      return /*!isSameDay(source, todo.dueDate) &&*/
+      return */
+/*!isSameDay(source, todo.dueDate) &&*//*
+
           diffInDays(source, dueDate) % 7 * todo.repeatInterval! == 0;
     case RepeatType.MONTHLY:
       return diffInMonth(sourceDate, destDate) != 0 &&
@@ -169,7 +173,9 @@ bool hasOccurrence(DateTime source, Todo todo, {String? calendar}) {
       return false;
   }
 }
+*/
 
+/*
 int repeatCount(String calendar, DateTime source, Todo todo) {
   DateTime? dueDate = todo.dueDate?.getDateTime();
   if (todo.repeatType == null) return -1;
@@ -193,6 +199,7 @@ int repeatCount(String calendar, DateTime source, Todo todo) {
       return -1;
   }
 }
+*/
 
 /*
 * Date formatting functions

@@ -1,0 +1,71 @@
+type Todo @model @auth(rules: [{allow: private}, {allow: owner}]) {
+  id: ID!
+  title: String!
+  content: String
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+  startDate: AWSDateTime
+  dueDate: AWSDateTime
+  endDate: AWSDateTime
+  doneAt: AWSDateTime
+  priority: Int
+  timezone: String
+  isFloating: Boolean
+  isAllDay: Boolean
+  rrule: String
+  subTasks: [ID]
+  nextItem: ID
+  projectID: ID! @index(name: "byProject")
+  sectionID: ID! @index(name: "bySection")
+  project: Project @belongsTo
+  section: Section @belongsTo
+  reminders: [Reminder] @hasMany(indexName: "byTodo", fields: ["id"])
+  tags: [Tag] @manyToMany(relationName: "TodoTag")
+}
+
+type Preferences @model @auth(rules: [{allow: owner}]) {
+  id: ID!
+  theme: String
+  calendar: String
+}
+
+type Section @model @auth(rules: [{allow: owner}]) {
+  id: ID!
+  name: String!
+  projectID: ID! @index(name: "byProject")
+  project: Project @belongsTo
+  todos: [Todo] @hasMany(indexName: "bySection", fields: ["id"])
+}
+
+type Project @model @auth(rules: [{allow: owner}]) {
+  id: ID!
+  name: String!
+  cover: String
+  emoji: String
+  color: String
+  todos: [Todo] @hasMany(indexName: "byProject", fields: ["id"])
+  sections: [Section] @hasMany(indexName: "byProject", fields: ["id"])
+}
+
+enum ReminderStatus {
+  INITIALIZED
+  SHOWN
+  SNOOZED
+  DONE
+}
+
+type Reminder @model @auth(rules: [{allow: owner}]) {
+  id: ID!
+  trigger: String!
+  status: ReminderStatus
+  todoID: ID! @index(name: "byTodo")
+  todo: Todo @belongsTo
+}
+
+type Tag @model @auth(rules: [{allow: owner}]) {
+  id: ID!
+  name: String!
+  color: String
+  todos: [Todo] @manyToMany(relationName: "TodoTag")
+}
+ 

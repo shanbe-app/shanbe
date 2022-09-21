@@ -1,4 +1,3 @@
-import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:client/pages/inbox_page.dart';
 import 'package:client/pages/intro_page.dart';
 import 'package:client/pages/loading_page.dart';

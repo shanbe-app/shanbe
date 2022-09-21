@@ -14,12 +14,18 @@ class SettingsBloc extends RxBloc {
   final StorageService storageService;
   final _isFirstVisit = BehaviorSubject<bool>();
   final _calendar = BehaviorSubject<CalendarType>();
-  final _language = BehaviorSubject<Locale>();
-  final _theme = BehaviorSubject<ThemeType>();
+  final _locale = BehaviorSubject<Locale>();
+  final _theme = BehaviorSubject<ThemeMode>();
   final _quickAddNotificationEnabled = BehaviorSubject<bool>();
   final _dailyNotificationTimeOfDay = BehaviorSubject<String?>();
 
   Stream<bool> get isFirstVisit => _isFirstVisit.stream;
+
+  Stream<CalendarType> get calendar => _calendar.stream;
+
+  Stream<Locale> get locale => _locale.stream;
+
+  Stream<ThemeMode> get theme => _theme.stream;
 
   SettingsBloc(this.storageService) {
     _isFirstVisit.add(
@@ -31,15 +37,15 @@ class SettingsBloc extends RxBloc {
                     .getString(Constants.USER_CALENDAR_PREFS) ??
                 '') ??
         CalendarType.gregorian);
-    _language.add(Locale(storageService.sharedPreferences
+    _locale.add(Locale(storageService.sharedPreferences
             .getString(Constants.USER_LOCALE_PREFS) ??
         'en'));
     _theme.add(EnumToString.fromString(
-            ThemeType.values,
+        ThemeMode.values,
             storageService.sharedPreferences
                     .getString(Constants.USER_THEME_PREFS) ??
                 '') ??
-        ThemeType.systemDefault);
+        ThemeMode.system);
     _quickAddNotificationEnabled.add(storageService.sharedPreferences
             .getBool(Constants.USER_QUICK_ADD_PREFS) ??
         false);

@@ -20,9 +20,6 @@ class User {
       required this.isPremium});
 
   factory User.fromUserAttributes(List<AuthUserAttribute> attributes) {
-    attributes.forEach((element) {
-      print('${element.userAttributeKey} ${element.value}');
-    });
     int? isPremium = firstOrNull(attributes,
             (element) => element.userAttributeKey.key == 'is_premium')?.value
         as int?;

@@ -9,7 +9,8 @@ class PremiumCrown extends StatelessWidget {
   final double? rotate;
 
   const PremiumCrown(
-      {required this.alignment, this.crownSize = 40, this.rotate});
+      {required this.alignment, this.crownSize = 40, this.rotate, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class PremiumCrown extends StatelessWidget {
               Container(
                 width: crownSize / 2.5,
                 height: crownSize / 2.5,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.black,
                   shape: BoxShape.circle,
                 ),

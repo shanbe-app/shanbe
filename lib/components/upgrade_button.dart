@@ -6,7 +6,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class UpgradeButton extends StatelessWidget {
   final AppLocalizations t;
 
-  UpgradeButton(this.t);
+  const UpgradeButton(this.t, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class UpgradeButton extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       children: [
         Expanded(
-          child: Container(
+          child: SizedBox(
             height: 40,
             child: Stack(
               alignment: Alignment.topLeft,
@@ -32,12 +32,12 @@ class UpgradeButton extends StatelessWidget {
                   style: ElevatedButton.styleFrom(elevation: 4),
                   child: Text(
                     t.upgradeToPremium,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontWeight: Constants.BOLD_FONT_WEIGHT,
                         fontSize: Constants.S2_FONT_SIZE),
                   ),
                 )),
-                PremiumCrown(
+                const PremiumCrown(
                   alignment: Alignment.topLeft,
                 )
               ],

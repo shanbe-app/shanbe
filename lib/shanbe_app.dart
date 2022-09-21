@@ -1,10 +1,15 @@
+import 'dart:io';
+
 import 'package:client/pages/edit_lists_page.dart';
 import 'package:client/pages/inbox_page.dart';
-import 'package:client/pages/signup_page.dart';
 import 'package:client/pages/root_page.dart';
+import 'package:client/pages/signup_page.dart';
+import 'package:client/rx/blocs/settings_bloc.dart';
 import 'package:client/rx/services/app_service.dart';
 import 'package:client/types/inbox_page_arguments.dart';
 import 'package:client/utils/constants.dart';
+import 'package:client/utils/utils.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -21,11 +26,18 @@ class ShanbeApp extends StatefulWidget {
 class _ShanbeAppState extends State<ShanbeApp> {
   late Future<void> appInitFuture;
   late AppService appService;
+  late SettingsBloc settingsBloc;
+  late Locale locale;
+  late Brightness brightness;
+  late ThemeMode theme;
 
   @override
   void initState() {
     super.initState();
-    WidgetsFlutterBinding.ensureInitialized();
+    locale = Locale.fromSubtags(
+        languageCode: languageCodeFromLocaleName(Platform.localeName));
+    brightness = Brightness.light;
+    theme = ThemeMode.system;
     appInitFuture = bootstrapApp();
   }
 
@@ -33,9 +45,34 @@ class _ShanbeAppState extends State<ShanbeApp> {
     appService = AppService();
     try {
       await appService.onCreate();
-    } catch (e) {
-      print(e);
+    } catch (e, stack) {
+      FirebaseCrashlytics.instance.recordError(e, stack);
     }
+    settingsBloc = SettingsBloc(appService.storageService);
+    settingsBloc.locale.listen((event) {
+      setState(() {
+        locale = event;
+      });
+    });
+    settingsBloc.theme.listen((event) {
+      setState(() {
+        theme = event;
+      });
+      if (event == ThemeMode.dark) {
+        setState(() {
+          brightness = Brightness.dark;
+        });
+      } else if (event == ThemeMode.light) {
+        setState(() {
+          brightness = Brightness.light;
+        });
+      } else {
+        setState(() {
+          brightness =
+              WidgetsBinding.instance.platformDispatcher.platformBrightness;
+        });
+      }
+    });
   }
 
   @override
@@ -61,7 +98,7 @@ class _ShanbeAppState extends State<ShanbeApp> {
         Locale.fromSubtags(languageCode: 'en'),
         Locale.fromSubtags(languageCode: 'fa')
       ],
-      locale: Locale('en'),
+      locale: locale,
       localeResolutionCallback:
           (Locale? locale, Iterable<Locale> supportedLocales) {
         for (var element in supportedLocales) {
@@ -73,7 +110,7 @@ class _ShanbeAppState extends State<ShanbeApp> {
       },
       navigatorObservers: const [],
       initialRoute: '/',
-      onGenerateTitle: (context) => AppLocalizations.of(context).title,
+      onGenerateTitle: (context) => AppLocalizations.of(context)!.title,
       onGenerateRoute: (settings) {
         switch (settings.name) {
           case '/':
@@ -95,8 +132,7 @@ class _ShanbeAppState extends State<ShanbeApp> {
           case '/signup':
             return platformPageRoute(
                 context: context,
-                builder: (context) =>
-                    SignupPage(
+                builder: (context) => SignupPage(
                       context: context,
                     ));
           default:
@@ -105,7 +141,7 @@ class _ShanbeAppState extends State<ShanbeApp> {
       },
       cupertino: (context, target) => CupertinoAppData(
           theme: CupertinoThemeData(
-        brightness: Brightness.light,
+        brightness: brightness,
         primaryColor: Constants.PRIMARY_COLOR,
         primaryContrastingColor: Colors.white,
         scaffoldBackgroundColor: Constants.BACKGROUND_COLOR,
@@ -168,6 +204,7 @@ class _ShanbeAppState extends State<ShanbeApp> {
         ),
       )),
       material: (context, target) => MaterialAppData(
+          themeMode: theme,
           darkTheme: ThemeData(
               brightness: Brightness.dark,
               toggleableActiveColor: Constants.SECONDARY_COLOR,

@@ -1,4 +1,3 @@
-import 'package:client/models/Todo.dart';
 import 'package:client/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:shamsi_date/shamsi_date.dart';
@@ -229,7 +228,7 @@ String yyyy(String calendar, DateTime d) {
 }
 
 List<String> _weekDays(String calendar, BuildContext context) {
-  AppLocalizations t = AppLocalizations.of(context);
+  AppLocalizations t = AppLocalizations.of(context)!;
 
   if (calendar == 'shamsi') {
     return [
@@ -301,7 +300,7 @@ List<String> _weekDaysWithCalendar(String calendar, String locale) {
 }
 
 List<String> _weekDaysShort(String calendar, BuildContext context) {
-  AppLocalizations t = AppLocalizations.of(context);
+  AppLocalizations t = AppLocalizations.of(context)!;
   if (calendar == 'shamsi') {
     return [
       t.jWeekDay1,
@@ -333,7 +332,7 @@ String weekName(DateTime d, String calendar, BuildContext context) {
 
 String wdMnMd(DateTime d, BuildContext c, String calendar, String locale) {
   Date date = getDate(calendar, d);
-  AppLocalizations t = AppLocalizations.of(c);
+  AppLocalizations t = AppLocalizations.of(c)!;
   final formatter = date.formatter;
   return '${weekName(d, calendar, c)}${t.separator} ${formatter.d} ${correctMonthName(formatter.mN, locale)}';
 }
@@ -345,7 +344,7 @@ String mnYYYY(Date d, String locale) {
 }
 
 String formatDayRelativelyShort(DateTime d, BuildContext c, String calendar) {
-  AppLocalizations localizations = AppLocalizations.of(c);
+  AppLocalizations localizations = AppLocalizations.of(c)!;
   DateTime now = DateTime.now();
   DateTime nowZero = zeroDateTime(now);
   DateTime thenZero = zeroDateTime(d);
@@ -363,7 +362,7 @@ String formatDayRelativelyShort(DateTime d, BuildContext c, String calendar) {
 
 String formatDayRelatively(DateTime d, BuildContext c, String calendar,
     [bool withYear = false]) {
-  AppLocalizations t = AppLocalizations.of(c);
+  AppLocalizations t = AppLocalizations.of(c)!;
   DateTime now = DateTime.now();
   DateTime nowZero = DateTime(now.year, now.month, now.day);
   DateTime thenZero = DateTime(d.year, d.month, d.day);
@@ -381,7 +380,7 @@ String formatDayRelatively(DateTime d, BuildContext c, String calendar,
 }
 
 String timeAt(TimeOfDay time, BuildContext context) {
-  AppLocalizations t = AppLocalizations.of(context);
+  AppLocalizations t = AppLocalizations.of(context)!;
   return t.timeAt('${timeTo2Digit(time.hour)}:${timeTo2Digit(time.minute)}');
 }
 
@@ -398,7 +397,7 @@ String wnMdMnYyyy(
     [includeSeparator = true, includeTime = true, withYear = false]) {
   Date date = getDate(calendar, selectedDate);
   DateFormatter formatter = date.formatter;
-  AppLocalizations localizations = AppLocalizations.of(c);
+  AppLocalizations localizations = AppLocalizations.of(c)!;
   String time =
       '${timeTo2Digit(selectedDate.hour)}:${timeTo2Digit(selectedDate.minute)}';
   return '${_weekDays(calendar, c)[date.weekDay - 1]}${includeSeparator ? localizations.separator : ' '}${formatter.d} ${correctMonthName(formatter.mN, locale)} ${withYear || includeYear(calendar, selectedDate) ? formatter.y : ''} ${includeTime ? time : ''}';
@@ -406,7 +405,7 @@ String wnMdMnYyyy(
 
 String upcomingHeaderTitle(
     DateTime selectedDate, BuildContext c, String calendar, String locale) {
-  AppLocalizations localizations = AppLocalizations.of(c);
+  AppLocalizations localizations = AppLocalizations.of(c)!;
   DateTime nowZero = zeroDateTime(DateTime.now());
   DateTime zeroSelectedDate = zeroDateTime(selectedDate);
   switch (zeroSelectedDate.difference(nowZero).inDays) {
@@ -567,7 +566,7 @@ String correctMonthNameWithLocale(String monthName, String locale) {
 
 String wnMdMn(
     DateTime selectedDate, BuildContext c, String calendar, String locale) {
-  AppLocalizations t = AppLocalizations.of(c);
+  AppLocalizations t = AppLocalizations.of(c)!;
   Date date = getDate(calendar, selectedDate);
   DateFormatter formatter = date.formatter;
   return '${_weekDays(calendar, c)[date.weekDay - 1]}${t.separator} ${formatter.d} ${(correctMonthName(formatter.mN, locale))}';
@@ -581,7 +580,7 @@ String wnMdMnWithCalendar(
 }
 
 String greetings(TimeOfDay timeOfDay, BuildContext context, {String? name}) {
-  AppLocalizations t = AppLocalizations.of(context);
+  AppLocalizations t = AppLocalizations.of(context)!;
   String greeting = '';
   if (timeOfDay.hour < 5 || timeOfDay.hour >= 21) {
     greeting = t.goodNight;

@@ -1,6 +1,5 @@
 import 'package:client/utils/date.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class TodayIcon extends StatelessWidget {
   const TodayIcon({Key? key}) : super(key: key);
@@ -12,7 +11,7 @@ class TodayIcon extends StatelessWidget {
         const Icon(Icons.calendar_today_rounded),
         Text(
           dd('shamsi', DateTime.now()),
-          style: TextStyle(color: Colors.black),
+          style: const TextStyle(color: Colors.black),
         )
       ],
     );

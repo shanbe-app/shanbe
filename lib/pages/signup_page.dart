@@ -5,18 +5,14 @@ import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:client/components/signup_intro.dart';
 import 'package:client/rx/blocs/auth_bloc.dart';
 import 'package:client/rx/services/app_service.dart';
-import 'package:client/types/app_intro_data.dart';
 import 'package:client/types/enums.dart';
 import 'package:client/types/signup_intro_data.dart';
 import 'package:client/utils/colors.dart';
 import 'package:client/utils/constants.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
-import 'package:get_it/get_it.dart';
 
 class SignupPage extends StatefulWidget {
   final BuildContext context;
@@ -36,7 +32,7 @@ class _SignupPageState extends State<SignupPage> {
   @override
   void initState() {
     super.initState();
-    t = AppLocalizations.of(widget.context);
+    t = AppLocalizations.of(widget.context)!;
     signupData = [
       SignupData(t.appRegisterTitle1, 'assets/files/sync.json', reverse: true),
       SignupData(t.appRegisterTitle2, 'assets/files/notification.json'),
@@ -47,9 +43,8 @@ class _SignupPageState extends State<SignupPage> {
     ];
     authBloc = AuthBloc(AppService.getInstance());
     _subscription = authBloc.authState.listen((event) {
-      print('state2 ${event}');
       if (event == AuthState.authenticated) {
-        Navigator.pushNamedAndRemoveUntil(context, '/inbox', (route) => false);
+        Navigator.pushNamedAndRemoveUntil(widget.context, '/inbox', (route) => false);
       }
     });
   }
@@ -132,7 +127,7 @@ class _SignupPageState extends State<SignupPage> {
                   onPressed: () {},
                   padding: EdgeInsets.zero,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 8,
                 ),
                 PlatformTextButton(

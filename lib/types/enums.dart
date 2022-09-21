@@ -8,5 +8,3 @@ enum AuthState {
 enum CalendarType { gregorian, shamsi }
 
 enum HttpRequestState { requesting, resolved, rejected }
-
-enum ThemeType { systemDefault, dark, light}

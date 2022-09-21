@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:client/rx/blocs/rx_bloc.dart';
-import 'package:client/rx/services/amplify_service.dart';
 import 'package:client/rx/services/app_service.dart';
 import 'package:client/types/enums.dart';
 import 'package:client/types/user.dart';
@@ -52,7 +51,6 @@ class AuthBloc extends RxBloc {
 
   void checkAuth() {
     Stream.fromFuture(Amplify.Auth.fetchAuthSession()).listen((event) {
-      print('event.isSignedIn ${event.isSignedIn}');
       if (event.isSignedIn) {
         Stream.fromFuture(Amplify.Auth.fetchUserAttributes()).listen((event) {
           _user.add(User.fromUserAttributes(event));
@@ -128,7 +126,6 @@ class AuthBloc extends RxBloc {
       }
     }))
         .onError((e) {
-      print(e.toString());
       _authState.add(AuthState.notAuthenticated);
       _authErrors.add(e.toString());
     });

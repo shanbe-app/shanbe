@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:client/components/today_icon.dart';
 import 'package:client/pages/settings_page.dart';
 import 'package:client/rx/services/app_service.dart';
@@ -28,24 +26,24 @@ class _InboxPageState extends State<InboxPage> {
   late CupertinoTabController _controller;
   late AppService appService;
   late AppLocalizations t;
-  int _currentIndex = 0;
+  int _currentPageIndex = 0;
 
   @override
   void initState() {
     super.initState();
     _controller = CupertinoTabController(initialIndex: 0);
     appService = GetIt.I.get<AppService>(instanceName: 'appService');
-    t = AppLocalizations.of(widget.context);
+    t = AppLocalizations.of(widget.context)!;
   }
 
   @override
   Widget build(BuildContext context) {
     return PlatformWidget(
       material: (context, platform) => Scaffold(
-        body: renderTabBody(context, _currentIndex),
+        body: renderTabBody(context, _currentPageIndex),
         bottomNavigationBar: SalomonBottomBar(
-          currentIndex: _currentIndex,
-          onTap: (i) => setState(() => _currentIndex = i),
+          currentIndex: _currentPageIndex,
+          onTap: (i) => setState(() => _currentPageIndex = i),
           items: [
             SalomonBottomBarItem(
               icon: const Icon(Icons.check_box_outlined),

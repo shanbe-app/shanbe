@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:client/rx/services/amplify_service.dart';
 import 'package:client/rx/services/app_info_service.dart';
 import 'package:client/rx/services/background_service.dart';
@@ -39,7 +37,6 @@ class AppService extends RxService {
     await storageService.onCreate();
     await firebaseService.onCreate();
     await backgroundService.onCreate();
-    print('call register');
   }
 
   @override

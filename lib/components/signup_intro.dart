@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:client/types/signup_intro_data.dart';
 import 'package:client/utils/colors.dart';
-import 'package:client/types/app_intro_data.dart';
 import 'package:client/utils/constants.dart';
 import 'package:client/utils/utils.dart';
 import 'package:flutter/material.dart';

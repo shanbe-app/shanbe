@@ -13,8 +13,8 @@ class _EditListsPageState extends State<EditListsPage> {
   @override
   Widget build(BuildContext context) {
     return PlatformWidget(
-      material: (_, __) => Scaffold(),
-      cupertino: (_, __) => CupertinoPageScaffold(child: Text('body'),),
+      material: (_, __) => const Scaffold(),
+      cupertino: (_, __) => const CupertinoPageScaffold(child: Text('body'),),
     );
   }
 }

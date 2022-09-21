@@ -31,7 +31,7 @@ class _IntroPageState extends State<IntroPage> {
   void initState() {
     super.initState();
     _controller = PageController();
-    t = AppLocalizations.of(widget.context);
+    t = AppLocalizations.of(widget.context)!;
     appIntroData = [
       AppIntroData(t.appIntroTitle1, 'assets/files/meditate3.json',
           t.appIntroDescription1),

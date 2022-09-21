@@ -13,14 +13,15 @@ type Todo @model @auth(rules: [{allow: private}, {allow: owner}]) {
   isFloating: Boolean
   isAllDay: Boolean
   rrule: String
-  subTasks: [ID]
   nextItem: ID
   projectID: ID! @index(name: "byProject")
   sectionID: ID! @index(name: "bySection")
+  parentTodo: ID @index(name: "byParent")
   project: Project @belongsTo
   section: Section @belongsTo
   reminders: [Reminder] @hasMany(indexName: "byTodo", fields: ["id"])
   tags: [Tag] @manyToMany(relationName: "TodoTag")
+  todos: [Todo] @hasMany(indexName: "byParent", fields: ["id"])
 }
 
 type Preferences @model @auth(rules: [{allow: owner}]) {

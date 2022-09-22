@@ -13,7 +13,6 @@ type Todo @model @auth(rules: [{allow: private}, {allow: owner}]) {
   isFloating: Boolean
   isAllDay: Boolean
   rrule: String
-  nextItem: ID
   projectID: ID! @index(name: "byProject")
   sectionID: ID! @index(name: "bySection")
   parentTodo: ID @index(name: "byParent")
@@ -22,6 +21,7 @@ type Todo @model @auth(rules: [{allow: private}, {allow: owner}]) {
   reminders: [Reminder] @hasMany(indexName: "byTodo", fields: ["id"])
   tags: [Tag] @manyToMany(relationName: "TodoTag")
   todos: [Todo] @hasMany(indexName: "byParent", fields: ["id"])
+  nextItem: Todo @hasOne
 }
 
 type Preferences @model @auth(rules: [{allow: owner}]) {
@@ -69,4 +69,4 @@ type Tag @model @auth(rules: [{allow: owner}]) {
   color: String
   todos: [Todo] @manyToMany(relationName: "TodoTag")
 }
- 
+  

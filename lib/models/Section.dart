@@ -31,9 +31,8 @@ class Section extends Model {
   static const classType = const _SectionModelType();
   final String id;
   final String? _name;
-  final String? _projectID;
-  final Project? _project;
   final List<Todo>? _todos;
+  final String? _listID;
   final TemporalDateTime? _createdAt;
   final TemporalDateTime? _updatedAt;
 
@@ -58,9 +57,13 @@ class Section extends Model {
     }
   }
   
-  String get projectID {
+  List<Todo>? get todos {
+    return _todos;
+  }
+  
+  String get listID {
     try {
-      return _projectID!;
+      return _listID!;
     } catch(e) {
       throw new AmplifyCodeGenModelException(
           AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
@@ -71,14 +74,6 @@ class Section extends Model {
     }
   }
   
-  Project? get project {
-    return _project;
-  }
-  
-  List<Todo>? get todos {
-    return _todos;
-  }
-  
   TemporalDateTime? get createdAt {
     return _createdAt;
   }
@@ -87,15 +82,14 @@ class Section extends Model {
     return _updatedAt;
   }
   
-  const Section._internal({required this.id, required name, required projectID, project, todos, createdAt, updatedAt}): _name = name, _projectID = projectID, _project = project, _todos = todos, _createdAt = createdAt, _updatedAt = updatedAt;
+  const Section._internal({required this.id, required name, todos, required listID, createdAt, updatedAt}): _name = name, _todos = todos, _listID = listID, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory Section({String? id, required String name, required String projectID, Project? project, List<Todo>? todos}) {
+  factory Section({String? id, required String name, List<Todo>? todos, required String listID}) {
     return Section._internal(
       id: id == null ? UUID.getUUID() : id,
       name: name,
-      projectID: projectID,
-      project: project,
-      todos: todos != null ? List<Todo>.unmodifiable(todos) : todos);
+      todos: todos != null ? List<Todo>.unmodifiable(todos) : todos,
+      listID: listID);
   }
   
   bool equals(Object other) {
@@ -108,9 +102,8 @@ class Section extends Model {
     return other is Section &&
       id == other.id &&
       _name == other._name &&
-      _projectID == other._projectID &&
-      _project == other._project &&
-      DeepCollectionEquality().equals(_todos, other._todos);
+      DeepCollectionEquality().equals(_todos, other._todos) &&
+      _listID == other._listID;
   }
   
   @override
@@ -123,8 +116,7 @@ class Section extends Model {
     buffer.write("Section {");
     buffer.write("id=" + "$id" + ", ");
     buffer.write("name=" + "$_name" + ", ");
-    buffer.write("projectID=" + "$_projectID" + ", ");
-    buffer.write("project=" + (_project != null ? _project!.toString() : "null") + ", ");
+    buffer.write("listID=" + "$_listID" + ", ");
     buffer.write("createdAt=" + (_createdAt != null ? _createdAt!.format() : "null") + ", ");
     buffer.write("updatedAt=" + (_updatedAt != null ? _updatedAt!.format() : "null"));
     buffer.write("}");
@@ -132,44 +124,37 @@ class Section extends Model {
     return buffer.toString();
   }
   
-  Section copyWith({String? id, String? name, String? projectID, Project? project, List<Todo>? todos}) {
+  Section copyWith({String? id, String? name, List<Todo>? todos, String? listID}) {
     return Section._internal(
       id: id ?? this.id,
       name: name ?? this.name,
-      projectID: projectID ?? this.projectID,
-      project: project ?? this.project,
-      todos: todos ?? this.todos);
+      todos: todos ?? this.todos,
+      listID: listID ?? this.listID);
   }
   
   Section.fromJson(Map<String, dynamic> json)  
     : id = json['id'],
       _name = json['name'],
-      _projectID = json['projectID'],
-      _project = json['project']?['serializedData'] != null
-        ? Project.fromJson(new Map<String, dynamic>.from(json['project']['serializedData']))
-        : null,
       _todos = json['todos'] is List
         ? (json['todos'] as List)
           .where((e) => e?['serializedData'] != null)
           .map((e) => Todo.fromJson(new Map<String, dynamic>.from(e['serializedData'])))
           .toList()
         : null,
+      _listID = json['listID'],
       _createdAt = json['createdAt'] != null ? TemporalDateTime.fromString(json['createdAt']) : null,
       _updatedAt = json['updatedAt'] != null ? TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'name': _name, 'projectID': _projectID, 'project': _project?.toJson(), 'todos': _todos?.map((Todo? e) => e?.toJson()).toList(), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
+    'id': id, 'name': _name, 'todos': _todos?.map((Todo? e) => e?.toJson()).toList(), 'listID': _listID, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
 
-  static final QueryField ID = QueryField(fieldName: "section.id");
+  static final QueryField ID = QueryField(fieldName: "id");
   static final QueryField NAME = QueryField(fieldName: "name");
-  static final QueryField PROJECTID = QueryField(fieldName: "projectID");
-  static final QueryField PROJECT = QueryField(
-    fieldName: "project",
-    fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Project).toString()));
   static final QueryField TODOS = QueryField(
     fieldName: "todos",
     fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Todo).toString()));
+  static final QueryField LISTID = QueryField(fieldName: "listID");
   static var schema = Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
     modelSchemaDefinition.name = "Section";
     modelSchemaDefinition.pluralName = "Sections";
@@ -188,6 +173,10 @@ class Section extends Model {
         ])
     ];
     
+    modelSchemaDefinition.indexes = [
+      ModelIndex(fields: const ["listID"], name: "byList")
+    ];
+    
     modelSchemaDefinition.addField(ModelFieldDefinition.id());
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
@@ -196,24 +185,17 @@ class Section extends Model {
       ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
-    modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Section.PROJECTID,
-      isRequired: true,
-      ofType: ModelFieldType(ModelFieldTypeEnum.string)
-    ));
-    
-    modelSchemaDefinition.addField(ModelFieldDefinition.belongsTo(
-      key: Section.PROJECT,
-      isRequired: false,
-      targetName: "projectSectionsId",
-      ofModelName: (Project).toString()
-    ));
-    
     modelSchemaDefinition.addField(ModelFieldDefinition.hasMany(
       key: Section.TODOS,
       isRequired: false,
       ofModelName: (Todo).toString(),
       associatedKey: Todo.SECTIONID
+    ));
+    
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+      key: Section.LISTID,
+      isRequired: true,
+      ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.nonQueryField(

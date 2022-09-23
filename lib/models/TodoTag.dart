@@ -138,7 +138,7 @@ class TodoTag extends Model {
     'id': id, 'todo': _todo?.toJson(), 'tag': _tag?.toJson(), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
 
-  static final QueryField ID = QueryField(fieldName: "todoTag.id");
+  static final QueryField ID = QueryField(fieldName: "id");
   static final QueryField TODO = QueryField(
     fieldName: "todo",
     fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Todo).toString()));
@@ -148,6 +148,11 @@ class TodoTag extends Model {
   static var schema = Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
     modelSchemaDefinition.name = "TodoTag";
     modelSchemaDefinition.pluralName = "TodoTags";
+    
+    modelSchemaDefinition.indexes = [
+      ModelIndex(fields: const ["todoID"], name: "byTodo"),
+      ModelIndex(fields: const ["tagID"], name: "byTag")
+    ];
     
     modelSchemaDefinition.addField(ModelFieldDefinition.id());
     

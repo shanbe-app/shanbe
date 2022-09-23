@@ -1,3 +1,21 @@
+enum CalendarType {
+  GREGORIAN
+  SHAMSI
+}
+
+enum ThemeType {
+  DARK
+  LIGHT
+  SYSTEM
+}
+
+type Space @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  name: String
+  emoji: String
+  color: String
+}
+
 type Todo @model @auth(rules: [{allow: private}, {allow: owner}]) {
   id: ID!
   title: String!
@@ -13,10 +31,8 @@ type Todo @model @auth(rules: [{allow: private}, {allow: owner}]) {
   isFloating: Boolean
   isAllDay: Boolean
   rrule: String
-  projectID: ID! @index(name: "byProject")
   sectionID: ID! @index(name: "bySection")
   parentTodo: ID @index(name: "byParent")
-  project: Project @belongsTo
   section: Section @belongsTo
   reminders: [Reminder] @hasMany(indexName: "byTodo", fields: ["id"])
   tags: [Tag] @manyToMany(relationName: "TodoTag")
@@ -26,26 +42,14 @@ type Todo @model @auth(rules: [{allow: private}, {allow: owner}]) {
 
 type Preferences @model @auth(rules: [{allow: owner}]) {
   id: ID!
-  theme: String
-  calendar: String
+  theme: ThemeType
+  calendar: CalendarType
 }
 
 type Section @model @auth(rules: [{allow: owner}]) {
   id: ID!
   name: String!
-  projectID: ID! @index(name: "byProject")
-  project: Project @belongsTo
   todos: [Todo] @hasMany(indexName: "bySection", fields: ["id"])
-}
-
-type Project @model @auth(rules: [{allow: owner}]) {
-  id: ID!
-  name: String!
-  cover: String
-  emoji: String
-  color: String
-  todos: [Todo] @hasMany(indexName: "byProject", fields: ["id"])
-  sections: [Section] @hasMany(indexName: "byProject", fields: ["id"])
 }
 
 enum ReminderStatus {
@@ -69,4 +73,4 @@ type Tag @model @auth(rules: [{allow: owner}]) {
   color: String
   todos: [Todo] @manyToMany(relationName: "TodoTag")
 }
-  
+ 

@@ -19,20 +19,18 @@
 
 // ignore_for_file: public_member_api_docs, annotate_overrides, dead_code, dead_codepublic_member_api_docs, depend_on_referenced_packages, file_names, library_private_types_in_public_api, no_leading_underscores_for_library_prefixes, no_leading_underscores_for_local_identifiers, non_constant_identifier_names, null_check_on_nullable_type_parameter, prefer_adjacent_string_concatenation, prefer_const_constructors, prefer_if_null_operators, prefer_interpolation_to_compose_strings, slash_for_doc_comments, sort_child_properties_last, unnecessary_const, unnecessary_constructor_name, unnecessary_late, unnecessary_new, unnecessary_null_aware_assignments, unnecessary_nullable_for_final_variable_declarations, unnecessary_string_interpolations, use_build_context_synchronously
 
-import 'ModelProvider.dart';
 import 'package:amplify_core/amplify_core.dart';
 import 'package:flutter/foundation.dart';
 
 
-/** This is an auto generated class representing the Reminder type in your schema. */
+/** This is an auto generated class representing the Space type in your schema. */
 @immutable
-class Reminder extends Model {
-  static const classType = const _ReminderModelType();
+class Space extends Model {
+  static const classType = const _SpaceModelType();
   final String id;
-  final String? _trigger;
-  final ReminderStatus? _status;
-  final String? _todoID;
-  final Todo? _todo;
+  final String? _name;
+  final String? _emoji;
+  final String? _color;
   final TemporalDateTime? _createdAt;
   final TemporalDateTime? _updatedAt;
 
@@ -44,38 +42,16 @@ class Reminder extends Model {
     return id;
   }
   
-  String get trigger {
-    try {
-      return _trigger!;
-    } catch(e) {
-      throw new AmplifyCodeGenModelException(
-          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
-          recoverySuggestion:
-            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
-          underlyingException: e.toString()
-          );
-    }
+  String? get name {
+    return _name;
   }
   
-  ReminderStatus? get status {
-    return _status;
+  String? get emoji {
+    return _emoji;
   }
   
-  String get todoID {
-    try {
-      return _todoID!;
-    } catch(e) {
-      throw new AmplifyCodeGenModelException(
-          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
-          recoverySuggestion:
-            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
-          underlyingException: e.toString()
-          );
-    }
-  }
-  
-  Todo? get todo {
-    return _todo;
+  String? get color {
+    return _color;
   }
   
   TemporalDateTime? get createdAt {
@@ -86,15 +62,14 @@ class Reminder extends Model {
     return _updatedAt;
   }
   
-  const Reminder._internal({required this.id, required trigger, status, required todoID, todo, createdAt, updatedAt}): _trigger = trigger, _status = status, _todoID = todoID, _todo = todo, _createdAt = createdAt, _updatedAt = updatedAt;
+  const Space._internal({required this.id, name, emoji, color, createdAt, updatedAt}): _name = name, _emoji = emoji, _color = color, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory Reminder({String? id, required String trigger, ReminderStatus? status, required String todoID, Todo? todo}) {
-    return Reminder._internal(
+  factory Space({String? id, String? name, String? emoji, String? color}) {
+    return Space._internal(
       id: id == null ? UUID.getUUID() : id,
-      trigger: trigger,
-      status: status,
-      todoID: todoID,
-      todo: todo);
+      name: name,
+      emoji: emoji,
+      color: color);
   }
   
   bool equals(Object other) {
@@ -104,12 +79,11 @@ class Reminder extends Model {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Reminder &&
+    return other is Space &&
       id == other.id &&
-      _trigger == other._trigger &&
-      _status == other._status &&
-      _todoID == other._todoID &&
-      _todo == other._todo;
+      _name == other._name &&
+      _emoji == other._emoji &&
+      _color == other._color;
   }
   
   @override
@@ -119,12 +93,11 @@ class Reminder extends Model {
   String toString() {
     var buffer = new StringBuffer();
     
-    buffer.write("Reminder {");
+    buffer.write("Space {");
     buffer.write("id=" + "$id" + ", ");
-    buffer.write("trigger=" + "$_trigger" + ", ");
-    buffer.write("status=" + (_status != null ? enumToString(_status)! : "null") + ", ");
-    buffer.write("todoID=" + "$_todoID" + ", ");
-    buffer.write("todo=" + (_todo != null ? _todo!.toString() : "null") + ", ");
+    buffer.write("name=" + "$_name" + ", ");
+    buffer.write("emoji=" + "$_emoji" + ", ");
+    buffer.write("color=" + "$_color" + ", ");
     buffer.write("createdAt=" + (_createdAt != null ? _createdAt!.format() : "null") + ", ");
     buffer.write("updatedAt=" + (_updatedAt != null ? _updatedAt!.format() : "null"));
     buffer.write("}");
@@ -132,47 +105,37 @@ class Reminder extends Model {
     return buffer.toString();
   }
   
-  Reminder copyWith({String? id, String? trigger, ReminderStatus? status, String? todoID, Todo? todo}) {
-    return Reminder._internal(
+  Space copyWith({String? id, String? name, String? emoji, String? color}) {
+    return Space._internal(
       id: id ?? this.id,
-      trigger: trigger ?? this.trigger,
-      status: status ?? this.status,
-      todoID: todoID ?? this.todoID,
-      todo: todo ?? this.todo);
+      name: name ?? this.name,
+      emoji: emoji ?? this.emoji,
+      color: color ?? this.color);
   }
   
-  Reminder.fromJson(Map<String, dynamic> json)  
+  Space.fromJson(Map<String, dynamic> json)  
     : id = json['id'],
-      _trigger = json['trigger'],
-      _status = enumFromString<ReminderStatus>(json['status'], ReminderStatus.values),
-      _todoID = json['todoID'],
-      _todo = json['todo']?['serializedData'] != null
-        ? Todo.fromJson(new Map<String, dynamic>.from(json['todo']['serializedData']))
-        : null,
+      _name = json['name'],
+      _emoji = json['emoji'],
+      _color = json['color'],
       _createdAt = json['createdAt'] != null ? TemporalDateTime.fromString(json['createdAt']) : null,
       _updatedAt = json['updatedAt'] != null ? TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'trigger': _trigger, 'status': enumToString(_status), 'todoID': _todoID, 'todo': _todo?.toJson(), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
+    'id': id, 'name': _name, 'emoji': _emoji, 'color': _color, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
 
   static final QueryField ID = QueryField(fieldName: "id");
-  static final QueryField TRIGGER = QueryField(fieldName: "trigger");
-  static final QueryField STATUS = QueryField(fieldName: "status");
-  static final QueryField TODOID = QueryField(fieldName: "todoID");
-  static final QueryField TODO = QueryField(
-    fieldName: "todo",
-    fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Todo).toString()));
+  static final QueryField NAME = QueryField(fieldName: "name");
+  static final QueryField EMOJI = QueryField(fieldName: "emoji");
+  static final QueryField COLOR = QueryField(fieldName: "color");
   static var schema = Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
-    modelSchemaDefinition.name = "Reminder";
-    modelSchemaDefinition.pluralName = "Reminders";
+    modelSchemaDefinition.name = "Space";
+    modelSchemaDefinition.pluralName = "Spaces";
     
     modelSchemaDefinition.authRules = [
       AuthRule(
-        authStrategy: AuthStrategy.OWNER,
-        ownerField: "owner",
-        identityClaim: "cognito:username",
-        provider: AuthRuleProvider.USERPOOLS,
+        authStrategy: AuthStrategy.PRIVATE,
         operations: [
           ModelOperation.CREATE,
           ModelOperation.UPDATE,
@@ -181,35 +144,24 @@ class Reminder extends Model {
         ])
     ];
     
-    modelSchemaDefinition.indexes = [
-      ModelIndex(fields: const ["todoID"], name: "byTodo")
-    ];
-    
     modelSchemaDefinition.addField(ModelFieldDefinition.id());
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Reminder.TRIGGER,
-      isRequired: true,
+      key: Space.NAME,
+      isRequired: false,
       ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Reminder.STATUS,
+      key: Space.EMOJI,
       isRequired: false,
-      ofType: ModelFieldType(ModelFieldTypeEnum.enumeration)
-    ));
-    
-    modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Reminder.TODOID,
-      isRequired: true,
       ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
-    modelSchemaDefinition.addField(ModelFieldDefinition.belongsTo(
-      key: Reminder.TODO,
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+      key: Space.COLOR,
       isRequired: false,
-      targetName: "todoRemindersId",
-      ofModelName: (Todo).toString()
+      ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.nonQueryField(
@@ -228,11 +180,11 @@ class Reminder extends Model {
   });
 }
 
-class _ReminderModelType extends ModelType<Reminder> {
-  const _ReminderModelType();
+class _SpaceModelType extends ModelType<Space> {
+  const _SpaceModelType();
   
   @override
-  Reminder fromJson(Map<String, dynamic> jsonData) {
-    return Reminder.fromJson(jsonData);
+  Space fromJson(Map<String, dynamic> jsonData) {
+    return Space.fromJson(jsonData);
   }
 }

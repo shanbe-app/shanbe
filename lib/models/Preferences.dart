@@ -19,6 +19,7 @@
 
 // ignore_for_file: public_member_api_docs, annotate_overrides, dead_code, dead_codepublic_member_api_docs, depend_on_referenced_packages, file_names, library_private_types_in_public_api, no_leading_underscores_for_library_prefixes, no_leading_underscores_for_local_identifiers, non_constant_identifier_names, null_check_on_nullable_type_parameter, prefer_adjacent_string_concatenation, prefer_const_constructors, prefer_if_null_operators, prefer_interpolation_to_compose_strings, slash_for_doc_comments, sort_child_properties_last, unnecessary_const, unnecessary_constructor_name, unnecessary_late, unnecessary_new, unnecessary_null_aware_assignments, unnecessary_nullable_for_final_variable_declarations, unnecessary_string_interpolations, use_build_context_synchronously
 
+import 'ModelProvider.dart';
 import 'package:amplify_core/amplify_core.dart';
 import 'package:flutter/foundation.dart';
 
@@ -28,8 +29,8 @@ import 'package:flutter/foundation.dart';
 class Preferences extends Model {
   static const classType = const _PreferencesModelType();
   final String id;
-  final String? _theme;
-  final String? _calendar;
+  final ThemeType? _theme;
+  final CalendarType? _calendar;
   final TemporalDateTime? _createdAt;
   final TemporalDateTime? _updatedAt;
 
@@ -41,11 +42,11 @@ class Preferences extends Model {
     return id;
   }
   
-  String? get theme {
+  ThemeType? get theme {
     return _theme;
   }
   
-  String? get calendar {
+  CalendarType? get calendar {
     return _calendar;
   }
   
@@ -59,7 +60,7 @@ class Preferences extends Model {
   
   const Preferences._internal({required this.id, theme, calendar, createdAt, updatedAt}): _theme = theme, _calendar = calendar, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory Preferences({String? id, String? theme, String? calendar}) {
+  factory Preferences({String? id, ThemeType? theme, CalendarType? calendar}) {
     return Preferences._internal(
       id: id == null ? UUID.getUUID() : id,
       theme: theme,
@@ -88,8 +89,8 @@ class Preferences extends Model {
     
     buffer.write("Preferences {");
     buffer.write("id=" + "$id" + ", ");
-    buffer.write("theme=" + "$_theme" + ", ");
-    buffer.write("calendar=" + "$_calendar" + ", ");
+    buffer.write("theme=" + (_theme != null ? enumToString(_theme)! : "null") + ", ");
+    buffer.write("calendar=" + (_calendar != null ? enumToString(_calendar)! : "null") + ", ");
     buffer.write("createdAt=" + (_createdAt != null ? _createdAt!.format() : "null") + ", ");
     buffer.write("updatedAt=" + (_updatedAt != null ? _updatedAt!.format() : "null"));
     buffer.write("}");
@@ -97,7 +98,7 @@ class Preferences extends Model {
     return buffer.toString();
   }
   
-  Preferences copyWith({String? id, String? theme, String? calendar}) {
+  Preferences copyWith({String? id, ThemeType? theme, CalendarType? calendar}) {
     return Preferences._internal(
       id: id ?? this.id,
       theme: theme ?? this.theme,
@@ -106,16 +107,16 @@ class Preferences extends Model {
   
   Preferences.fromJson(Map<String, dynamic> json)  
     : id = json['id'],
-      _theme = json['theme'],
-      _calendar = json['calendar'],
+      _theme = enumFromString<ThemeType>(json['theme'], ThemeType.values),
+      _calendar = enumFromString<CalendarType>(json['calendar'], CalendarType.values),
       _createdAt = json['createdAt'] != null ? TemporalDateTime.fromString(json['createdAt']) : null,
       _updatedAt = json['updatedAt'] != null ? TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'theme': _theme, 'calendar': _calendar, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
+    'id': id, 'theme': enumToString(_theme), 'calendar': enumToString(_calendar), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
 
-  static final QueryField ID = QueryField(fieldName: "preferences.id");
+  static final QueryField ID = QueryField(fieldName: "id");
   static final QueryField THEME = QueryField(fieldName: "theme");
   static final QueryField CALENDAR = QueryField(fieldName: "calendar");
   static var schema = Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
@@ -141,13 +142,13 @@ class Preferences extends Model {
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
       key: Preferences.THEME,
       isRequired: false,
-      ofType: ModelFieldType(ModelFieldTypeEnum.string)
+      ofType: ModelFieldType(ModelFieldTypeEnum.enumeration)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
       key: Preferences.CALENDAR,
       isRequired: false,
-      ofType: ModelFieldType(ModelFieldTypeEnum.string)
+      ofType: ModelFieldType(ModelFieldTypeEnum.enumeration)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.nonQueryField(

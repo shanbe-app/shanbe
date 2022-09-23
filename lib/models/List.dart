@@ -25,14 +25,14 @@ import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 
 
-/** This is an auto generated class representing the Tag type in your schema. */
+/** This is an auto generated class representing the List type in your schema. */
 @immutable
-class Tag extends Model {
-  static const classType = const _TagModelType();
+class List extends Model {
+  static const classType = const _ListModelType();
   final String id;
   final String? _name;
-  final String? _color;
-  final List<TodoTag>? _todos;
+  final List<Section>? _Sections;
+  final String? _emoji;
   final TemporalDateTime? _createdAt;
   final TemporalDateTime? _updatedAt;
 
@@ -44,25 +44,16 @@ class Tag extends Model {
     return id;
   }
   
-  String get name {
-    try {
-      return _name!;
-    } catch(e) {
-      throw new AmplifyCodeGenModelException(
-          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
-          recoverySuggestion:
-            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
-          underlyingException: e.toString()
-          );
-    }
+  String? get name {
+    return _name;
   }
   
-  String? get color {
-    return _color;
+  List<Section>? get Sections {
+    return _Sections;
   }
   
-  List<TodoTag>? get todos {
-    return _todos;
+  String? get emoji {
+    return _emoji;
   }
   
   TemporalDateTime? get createdAt {
@@ -73,14 +64,14 @@ class Tag extends Model {
     return _updatedAt;
   }
   
-  const Tag._internal({required this.id, required name, color, todos, createdAt, updatedAt}): _name = name, _color = color, _todos = todos, _createdAt = createdAt, _updatedAt = updatedAt;
+  const List._internal({required this.id, name, Sections, emoji, createdAt, updatedAt}): _name = name, _Sections = Sections, _emoji = emoji, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory Tag({String? id, required String name, String? color, List<TodoTag>? todos}) {
-    return Tag._internal(
+  factory List({String? id, String? name, List<Section>? Sections, String? emoji}) {
+    return List._internal(
       id: id == null ? UUID.getUUID() : id,
       name: name,
-      color: color,
-      todos: todos != null ? List<TodoTag>.unmodifiable(todos) : todos);
+      Sections: Sections != null ? List<Section>.unmodifiable(Sections) : Sections,
+      emoji: emoji);
   }
   
   bool equals(Object other) {
@@ -90,11 +81,11 @@ class Tag extends Model {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Tag &&
+    return other is List &&
       id == other.id &&
       _name == other._name &&
-      _color == other._color &&
-      DeepCollectionEquality().equals(_todos, other._todos);
+      DeepCollectionEquality().equals(_Sections, other._Sections) &&
+      _emoji == other._emoji;
   }
   
   @override
@@ -104,10 +95,10 @@ class Tag extends Model {
   String toString() {
     var buffer = new StringBuffer();
     
-    buffer.write("Tag {");
+    buffer.write("List {");
     buffer.write("id=" + "$id" + ", ");
     buffer.write("name=" + "$_name" + ", ");
-    buffer.write("color=" + "$_color" + ", ");
+    buffer.write("emoji=" + "$_emoji" + ", ");
     buffer.write("createdAt=" + (_createdAt != null ? _createdAt!.format() : "null") + ", ");
     buffer.write("updatedAt=" + (_updatedAt != null ? _updatedAt!.format() : "null"));
     buffer.write("}");
@@ -115,47 +106,44 @@ class Tag extends Model {
     return buffer.toString();
   }
   
-  Tag copyWith({String? id, String? name, String? color, List<TodoTag>? todos}) {
-    return Tag._internal(
+  List copyWith({String? id, String? name, List<Section>? Sections, String? emoji}) {
+    return List._internal(
       id: id ?? this.id,
       name: name ?? this.name,
-      color: color ?? this.color,
-      todos: todos ?? this.todos);
+      Sections: Sections ?? this.Sections,
+      emoji: emoji ?? this.emoji);
   }
   
-  Tag.fromJson(Map<String, dynamic> json)  
+  List.fromJson(Map<String, dynamic> json)  
     : id = json['id'],
       _name = json['name'],
-      _color = json['color'],
-      _todos = json['todos'] is List
-        ? (json['todos'] as List)
+      _Sections = json['Sections'] is List
+        ? (json['Sections'] as List)
           .where((e) => e?['serializedData'] != null)
-          .map((e) => TodoTag.fromJson(new Map<String, dynamic>.from(e['serializedData'])))
+          .map((e) => Section.fromJson(new Map<String, dynamic>.from(e['serializedData'])))
           .toList()
         : null,
+      _emoji = json['emoji'],
       _createdAt = json['createdAt'] != null ? TemporalDateTime.fromString(json['createdAt']) : null,
       _updatedAt = json['updatedAt'] != null ? TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'name': _name, 'color': _color, 'todos': _todos?.map((TodoTag? e) => e?.toJson()).toList(), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
+    'id': id, 'name': _name, 'Sections': _Sections?.map((Section? e) => e?.toJson()).toList(), 'emoji': _emoji, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
 
   static final QueryField ID = QueryField(fieldName: "id");
   static final QueryField NAME = QueryField(fieldName: "name");
-  static final QueryField COLOR = QueryField(fieldName: "color");
-  static final QueryField TODOS = QueryField(
-    fieldName: "todos",
-    fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (TodoTag).toString()));
+  static final QueryField SECTIONS = QueryField(
+    fieldName: "Sections",
+    fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Section).toString()));
+  static final QueryField EMOJI = QueryField(fieldName: "emoji");
   static var schema = Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
-    modelSchemaDefinition.name = "Tag";
-    modelSchemaDefinition.pluralName = "Tags";
+    modelSchemaDefinition.name = "List";
+    modelSchemaDefinition.pluralName = "Lists";
     
     modelSchemaDefinition.authRules = [
       AuthRule(
-        authStrategy: AuthStrategy.OWNER,
-        ownerField: "owner",
-        identityClaim: "cognito:username",
-        provider: AuthRuleProvider.USERPOOLS,
+        authStrategy: AuthStrategy.PRIVATE,
         operations: [
           ModelOperation.CREATE,
           ModelOperation.UPDATE,
@@ -167,22 +155,22 @@ class Tag extends Model {
     modelSchemaDefinition.addField(ModelFieldDefinition.id());
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Tag.NAME,
-      isRequired: true,
-      ofType: ModelFieldType(ModelFieldTypeEnum.string)
-    ));
-    
-    modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Tag.COLOR,
+      key: List.NAME,
       isRequired: false,
       ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.hasMany(
-      key: Tag.TODOS,
+      key: List.SECTIONS,
       isRequired: false,
-      ofModelName: (TodoTag).toString(),
-      associatedKey: TodoTag.TAG
+      ofModelName: (Section).toString(),
+      associatedKey: Section.LISTID
+    ));
+    
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+      key: List.EMOJI,
+      isRequired: false,
+      ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.nonQueryField(
@@ -201,11 +189,11 @@ class Tag extends Model {
   });
 }
 
-class _TagModelType extends ModelType<Tag> {
-  const _TagModelType();
+class _ListModelType extends ModelType<List> {
+  const _ListModelType();
   
   @override
-  Tag fromJson(Map<String, dynamic> jsonData) {
-    return Tag.fromJson(jsonData);
+  List fromJson(Map<String, dynamic> jsonData) {
+    return List.fromJson(jsonData);
   }
 }

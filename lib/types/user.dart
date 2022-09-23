@@ -10,13 +10,11 @@ class User {
   final String name;
   final String? picture;
   final bool isPremium;
-  final CalendarType calendarType;
 
   User._(
       {required this.email,
       required this.name,
       this.picture,
-      required this.calendarType,
       required this.isPremium});
 
   factory User.fromUserAttributes(List<AuthUserAttribute> attributes) {
@@ -36,10 +34,6 @@ class User {
             .value,
         picture: firstOrNull(attributes,
             (element) => element.userAttributeKey.key == 'picture')?.value,
-        calendarType: preferences['calendar'] != null
-            ? EnumToString.fromString(
-                CalendarType.values, preferences['calendar'])!
-            : CalendarType.gregorian,
         isPremium: isPremium == 0);
   }
 }

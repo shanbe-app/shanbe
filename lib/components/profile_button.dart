@@ -34,7 +34,7 @@ class ProfileButton extends StatelessWidget {
         },
       ),
       child: StreamBuilder(
-        stream: authBloc.user,
+        stream: authBloc.authUser,
         builder: (context, snapshot) {
           User? user = snapshot.data as User?;
           if (user == null) return const SignupButton();
@@ -71,5 +71,4 @@ class ProfileButton extends StatelessWidget {
       ),
     );
   }
-
 }

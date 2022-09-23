@@ -19,12 +19,10 @@ class AmplifyService extends RxService {
     AmplifyAuthCognito auth = AmplifyAuthCognito();
     AmplifyAPI api =
         AmplifyAPI(modelProvider: ModelProvider.instance, authProviders: []);
+    await Amplify.configure(amplifyconfig);
+    await Amplify.addPlugins([auth, api]);
     if (Platform.isAndroid || Platform.isIOS) {
       await Amplify.addPlugin(dataStore);
-    }
-    await Amplify.addPlugins([auth, api]);
-    await Amplify.configure(amplifyconfig);
-    if (Platform.isAndroid || Platform.isIOS) {
       await Amplify.DataStore.start();
     }
     // Amplify.Hub.listen([HubChannel.Auth, HubChannel.DataStore], (event) {

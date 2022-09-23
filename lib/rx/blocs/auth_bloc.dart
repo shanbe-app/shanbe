@@ -12,17 +12,16 @@ import 'package:client/utils/utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 class AuthBloc extends RxBloc {
-  final CompositeSubscription _compositeSubscription = CompositeSubscription();
   final AppService appService;
   final _authState = BehaviorSubject<AuthState>();
   final _authErrors = BehaviorSubject<String>();
-  final _user = BehaviorSubject<User?>();
+  final _authUser = BehaviorSubject<User?>();
 
   Stream<AuthState> get authState => _authState.stream;
 
   Stream<String> get authErrors => _authErrors.stream;
 
-  Stream<User?> get user => _user.stream;
+  Stream<User?> get authUser => _authUser.stream;
 
   AuthBloc(this.appService) {
     checkAuth();
@@ -45,68 +44,70 @@ class AuthBloc extends RxBloc {
   }
 
   @override
-  void dispose() {
-    _compositeSubscription.dispose();
-  }
+  void dispose() {}
 
   void checkAuth() {
-    Stream.fromFuture(Amplify.Auth.fetchAuthSession()).listen((event) {
+    _authState.add(AuthState.authenticating);
+    addFutureSubscription(Amplify.Auth.fetchAuthSession(), (AuthSession event) {
       if (event.isSignedIn) {
-        Stream.fromFuture(Amplify.Auth.fetchUserAttributes()).listen((event) {
-          _user.add(User.fromUserAttributes(event));
-          _authState.add(AuthState.authenticated);
-        }).onError((e) {
-          _authState.add(AuthState.notAuthenticated);
-        });
+        fetchAttributes();
       } else {
         _authState.add(AuthState.notAuthenticated);
       }
-    }).onError((e) {
+    }, (e) {
+      _authState.add(AuthState.notAuthenticated);
+    });
+  }
+
+  void fetchAttributes() {
+    addFutureSubscription(Amplify.Auth.fetchUserAttributes(),
+        (List<AuthUserAttribute> event) {
+      _authUser.add(User.fromUserAttributes(event));
+      _authState.add(AuthState.authenticated);
+    }, (e) {
       _authState.add(AuthState.notAuthenticated);
     });
   }
 
   void authenticate(String username, String password) {
     _authState.add(AuthState.authenticating);
-    StreamSubscription subscription = Stream.fromFuture(
-            Amplify.Auth.signIn(username: username, password: password))
-        .listen((event) {
+    addFutureSubscription(
+        Amplify.Auth.signIn(username: username, password: password),
+        (SignInResult event) {
       if (event.isSignedIn) {
         _authState.add(AuthState.authenticated);
       } else {
         _authState.add(AuthState.notAuthenticated);
       }
-    });
-    _compositeSubscription.add(subscription);
+    }, (e) => _authState.add(AuthState.notAuthenticated));
   }
 
   void logout() {
     _authState.add(AuthState.authenticating);
-    StreamSubscription subscription = Stream.fromFuture(Amplify.Auth.signOut(
-            options: const SignOutOptions(globalSignOut: false)))
-        .listen((event) {});
-    _compositeSubscription.add(subscription);
+    addFutureSubscription(
+        Amplify.Auth.signOut(
+            options: const SignOutOptions(globalSignOut: false)), (event) {
+      _authState.add(AuthState.notAuthenticated);
+    });
   }
 
   void register(String name, String email, String password) {
-    Stream.fromFuture(Amplify.Auth.signUp(
+    addFutureSubscription(Amplify.Auth.signUp(
         username: email,
         password: password,
         options: CognitoSignUpOptions(userAttributes: {
           CognitoUserAttributeKey.name: name,
           CognitoUserAttributeKey.email: email
-        }))).listen((event) {});
+        })));
   }
 
   void socialSignIn(AuthProvider provider) {
     _authState.add(AuthState.authenticating);
-    _compositeSubscription
-        .add(Stream.fromFuture(Amplify.Auth.signInWithWebUI(provider: provider))
-            .listen((event) {
+    addFutureSubscription(Amplify.Auth.signInWithWebUI(provider: provider),
+        (SignInResult event) {
       if (event.isSignedIn) {
-        _compositeSubscription
-            .add(Stream.fromFuture(Amplify.Auth.fetchUserAttributes())
-                .listen((attributes) {
+        addFutureSubscription(Amplify.Auth.fetchUserAttributes(),
+            (List<AuthUserAttribute> attributes) {
           String? preferencesString = firstOrNull(
                   attributes, (e) => e.userAttributeKey.key == 'preferences')
               ?.value;
@@ -114,29 +115,17 @@ class AuthBloc extends RxBloc {
               ? jsonDecode(preferencesString)
               : Constants.USER_PREFERENCES_COGNITO_DEFAULT;
 
-          _user.add(User.fromUserAttributes(attributes));
-
+          _authUser.add(User.fromUserAttributes(attributes));
           _authState.add(AuthState.authenticated);
-        }))
-            .onError((e) {
+        }, (e) {
           _authState.add(AuthState.notAuthenticated);
         });
       } else {
         _authState.add(AuthState.notAuthenticated);
       }
-    }))
-        .onError((e) {
+    }, (e) {
       _authState.add(AuthState.notAuthenticated);
       _authErrors.add(e.toString());
-    });
-  }
-
-  void fetchCurrentUser() {
-    Stream.fromFuture(Amplify.Auth.fetchAuthSession()).listen((event) {
-      Stream.fromFuture(Amplify.Auth.fetchUserAttributes()).listen((event) {});
-      // Amplify.Auth.fetchUserAttributes()
-      // Amplify.Auth.getCurrentUser()
-      event.isSignedIn;
     });
   }
 

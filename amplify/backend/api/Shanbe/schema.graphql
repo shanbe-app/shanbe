@@ -14,6 +14,9 @@ type Space @model @auth(rules: [{allow: private}]) {
   name: String
   emoji: String
   color: String
+  todos: [Todo] @hasMany(indexName: "bySpace", fields: ["id"])
+  parentSpace: ID @index(name: "byParent")
+  spaces: [Todo] @hasMany(indexName: "byParent", fields: ["id"])
 }
 
 type Todo @model @auth(rules: [{allow: private}, {allow: owner}]) {
@@ -33,11 +36,13 @@ type Todo @model @auth(rules: [{allow: private}, {allow: owner}]) {
   rrule: String
   sectionID: ID! @index(name: "bySection")
   parentTodo: ID @index(name: "byParent")
+  spaceId: ID! @index(name: "bySpace")
   section: Section @belongsTo
   reminders: [Reminder] @hasMany(indexName: "byTodo", fields: ["id"])
   tags: [Tag] @manyToMany(relationName: "TodoTag")
   todos: [Todo] @hasMany(indexName: "byParent", fields: ["id"])
   nextItem: Todo @hasOne
+  space: Space @belongsTo
 }
 
 type Preferences @model @auth(rules: [{allow: owner}]) {

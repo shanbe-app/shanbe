@@ -17,6 +17,7 @@ type Space @model @auth(rules: [{allow: private}]) {
   todos: [Todo] @hasMany(indexName: "bySpace", fields: ["id"])
   parentSpace: ID @index(name: "byParent")
   spaces: [Todo] @hasMany(indexName: "byParent", fields: ["id"])
+  sections: [Section] @hasMany(indexName: "bySpace", fields: ["id"])
 }
 
 type Todo @model @auth(rules: [{allow: private}, {allow: owner}]) {
@@ -55,6 +56,8 @@ type Section @model @auth(rules: [{allow: owner}]) {
   id: ID!
   name: String!
   todos: [Todo] @hasMany(indexName: "bySection", fields: ["id"])
+  spaceID: ID! @index(name: "bySpace")
+  space: Space @belongsTo
 }
 
 enum ReminderStatus {

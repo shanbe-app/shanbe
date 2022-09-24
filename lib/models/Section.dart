@@ -32,7 +32,8 @@ class Section extends Model {
   final String id;
   final String? _name;
   final List<Todo>? _todos;
-  final String? _listID;
+  final String? _spaceID;
+  final Space? _space;
   final TemporalDateTime? _createdAt;
   final TemporalDateTime? _updatedAt;
 
@@ -61,9 +62,9 @@ class Section extends Model {
     return _todos;
   }
   
-  String get listID {
+  String get spaceID {
     try {
-      return _listID!;
+      return _spaceID!;
     } catch(e) {
       throw new AmplifyCodeGenModelException(
           AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
@@ -74,6 +75,10 @@ class Section extends Model {
     }
   }
   
+  Space? get space {
+    return _space;
+  }
+  
   TemporalDateTime? get createdAt {
     return _createdAt;
   }
@@ -82,14 +87,15 @@ class Section extends Model {
     return _updatedAt;
   }
   
-  const Section._internal({required this.id, required name, todos, required listID, createdAt, updatedAt}): _name = name, _todos = todos, _listID = listID, _createdAt = createdAt, _updatedAt = updatedAt;
+  const Section._internal({required this.id, required name, todos, required spaceID, space, createdAt, updatedAt}): _name = name, _todos = todos, _spaceID = spaceID, _space = space, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory Section({String? id, required String name, List<Todo>? todos, required String listID}) {
+  factory Section({String? id, required String name, List<Todo>? todos, required String spaceID, Space? space}) {
     return Section._internal(
       id: id == null ? UUID.getUUID() : id,
       name: name,
       todos: todos != null ? List<Todo>.unmodifiable(todos) : todos,
-      listID: listID);
+      spaceID: spaceID,
+      space: space);
   }
   
   bool equals(Object other) {
@@ -103,7 +109,8 @@ class Section extends Model {
       id == other.id &&
       _name == other._name &&
       DeepCollectionEquality().equals(_todos, other._todos) &&
-      _listID == other._listID;
+      _spaceID == other._spaceID &&
+      _space == other._space;
   }
   
   @override
@@ -116,7 +123,8 @@ class Section extends Model {
     buffer.write("Section {");
     buffer.write("id=" + "$id" + ", ");
     buffer.write("name=" + "$_name" + ", ");
-    buffer.write("listID=" + "$_listID" + ", ");
+    buffer.write("spaceID=" + "$_spaceID" + ", ");
+    buffer.write("space=" + (_space != null ? _space!.toString() : "null") + ", ");
     buffer.write("createdAt=" + (_createdAt != null ? _createdAt!.format() : "null") + ", ");
     buffer.write("updatedAt=" + (_updatedAt != null ? _updatedAt!.format() : "null"));
     buffer.write("}");
@@ -124,12 +132,13 @@ class Section extends Model {
     return buffer.toString();
   }
   
-  Section copyWith({String? id, String? name, List<Todo>? todos, String? listID}) {
+  Section copyWith({String? id, String? name, List<Todo>? todos, String? spaceID, Space? space}) {
     return Section._internal(
       id: id ?? this.id,
       name: name ?? this.name,
       todos: todos ?? this.todos,
-      listID: listID ?? this.listID);
+      spaceID: spaceID ?? this.spaceID,
+      space: space ?? this.space);
   }
   
   Section.fromJson(Map<String, dynamic> json)  
@@ -141,12 +150,15 @@ class Section extends Model {
           .map((e) => Todo.fromJson(new Map<String, dynamic>.from(e['serializedData'])))
           .toList()
         : null,
-      _listID = json['listID'],
+      _spaceID = json['spaceID'],
+      _space = json['space']?['serializedData'] != null
+        ? Space.fromJson(new Map<String, dynamic>.from(json['space']['serializedData']))
+        : null,
       _createdAt = json['createdAt'] != null ? TemporalDateTime.fromString(json['createdAt']) : null,
       _updatedAt = json['updatedAt'] != null ? TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'name': _name, 'todos': _todos?.map((Todo? e) => e?.toJson()).toList(), 'listID': _listID, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
+    'id': id, 'name': _name, 'todos': _todos?.map((Todo? e) => e?.toJson()).toList(), 'spaceID': _spaceID, 'space': _space?.toJson(), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
 
   static final QueryField ID = QueryField(fieldName: "id");
@@ -154,7 +166,10 @@ class Section extends Model {
   static final QueryField TODOS = QueryField(
     fieldName: "todos",
     fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Todo).toString()));
-  static final QueryField LISTID = QueryField(fieldName: "listID");
+  static final QueryField SPACEID = QueryField(fieldName: "spaceID");
+  static final QueryField SPACE = QueryField(
+    fieldName: "space",
+    fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Space).toString()));
   static var schema = Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
     modelSchemaDefinition.name = "Section";
     modelSchemaDefinition.pluralName = "Sections";
@@ -174,7 +189,7 @@ class Section extends Model {
     ];
     
     modelSchemaDefinition.indexes = [
-      ModelIndex(fields: const ["listID"], name: "byList")
+      ModelIndex(fields: const ["spaceID"], name: "bySpace")
     ];
     
     modelSchemaDefinition.addField(ModelFieldDefinition.id());
@@ -193,9 +208,16 @@ class Section extends Model {
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Section.LISTID,
+      key: Section.SPACEID,
       isRequired: true,
       ofType: ModelFieldType(ModelFieldTypeEnum.string)
+    ));
+    
+    modelSchemaDefinition.addField(ModelFieldDefinition.belongsTo(
+      key: Section.SPACE,
+      isRequired: false,
+      targetName: "spaceSectionsId",
+      ofModelName: (Space).toString()
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.nonQueryField(

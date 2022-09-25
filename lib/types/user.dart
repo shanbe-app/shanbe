@@ -17,14 +17,11 @@ class User {
       this.picture,
       required this.isPremium});
 
-  factory User.fromUserAttributes(List<AuthUserAttribute> attributes) {
+  factory User.fromCognitoUserAttributes(List<AuthUserAttribute> attributes) {
+    print('attributes ${attributes}');
     int? isPremium = firstOrNull(attributes,
             (element) => element.userAttributeKey.key == 'is_premium')?.value
         as int?;
-    Map preferences = json.decode(firstOrNull(attributes,
-                (element) => element.userAttributeKey.key == 'preferences')
-            ?.value ??
-        '{}');
     return User._(
         email: attributes
             .firstWhere((element) => element.userAttributeKey.key == 'email')

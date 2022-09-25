@@ -62,7 +62,7 @@ class AuthBloc extends RxBloc {
   void fetchAttributes() {
     addFutureSubscription(Amplify.Auth.fetchUserAttributes(),
         (List<AuthUserAttribute> event) {
-      _authUser.add(User.fromUserAttributes(event));
+      _authUser.add(User.fromCognitoUserAttributes(event));
       _authState.add(AuthState.authenticated);
     }, (e) {
       _authState.add(AuthState.notAuthenticated);
@@ -115,7 +115,7 @@ class AuthBloc extends RxBloc {
               ? jsonDecode(preferencesString)
               : Constants.USER_PREFERENCES_COGNITO_DEFAULT;
 
-          _authUser.add(User.fromUserAttributes(attributes));
+          _authUser.add(User.fromCognitoUserAttributes(attributes));
           _authState.add(AuthState.authenticated);
         }, (e) {
           _authState.add(AuthState.notAuthenticated);

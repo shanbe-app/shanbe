@@ -9,14 +9,11 @@ class FirebaseService extends RxService {
   Future<void> onCreate() async {
     firebaseApp = await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform);
-    firebaseApp.setAutomaticResourceManagementEnabled(true);
     firebaseApp.setAutomaticDataCollectionEnabled(true);
-    // setAnalyticsCollectionEnabled(true); set on analytics
   }
 
   @override
   Future<void> onTerminate() async {
     await firebaseApp.delete();
   }
-
 }

@@ -1,8 +1,10 @@
+import 'package:client/components/organisms/space_list.dart';
 import 'package:client/components/today_icon.dart';
 import 'package:client/pages/settings_page.dart';
 import 'package:client/rx/services/app_service.dart';
 import 'package:client/shanbe_icons.dart';
 import 'package:client/types/inbox_page_arguments.dart';
+import 'package:client/utils/colors.dart';
 import 'package:client/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -107,6 +109,7 @@ class _InboxPageState extends State<InboxPage> {
       slivers: [
         PlatformWidget(
           material: (_, __) => SliverAppBar(
+            title: Text(t.spaces),
             actions: [
               PlatformIconButton(
                   icon: const Icon(Shanbe.sliders_h),
@@ -116,7 +119,10 @@ class _InboxPageState extends State<InboxPage> {
             ],
           ),
           cupertino: (_, __) => CupertinoSliverNavigationBar(
-            largeTitle: PlatformText(t.lists),
+            largeTitle: Text(
+              t.spaces,
+              style: const TextStyle(fontSize: Constants.H1_FONT_SIZE),
+            ),
             stretch: false,
             automaticallyImplyLeading: true,
             previousPageTitle: t.today,
@@ -131,48 +137,61 @@ class _InboxPageState extends State<InboxPage> {
         ),
         SliverToBoxAdapter(
           child: Container(
-            padding: Constants.PAGE_PADDING,
             margin: const EdgeInsets.symmetric(vertical: 16),
-            child: const CupertinoSearchTextField(
-              placeholder: 'Search',
+            padding: Constants.PAGE_PADDING,
+            child: PlatformWidget(
+              cupertino: (_, __) => CupertinoSearchTextField(
+                placeholder: t.search,
+                style: TextStyle(
+                    color: textColor(context),
+                    fontWeight: Constants.MEDIUM_FONT_WEIGHT,
+                    fontSize: Constants.S1_FONT_SIZE),
+                onTap: () {},
+                autocorrect: false,
+              ),
+              material: (_, __) => Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    color: inputBackgroundColor(context)),
+                child: TextField(
+                  expands: false,
+                  minLines: null,
+                  maxLines: null,
+                  style: TextStyle(
+                      color: textColor(context),
+                      fontWeight: Constants.MEDIUM_FONT_WEIGHT,
+                      fontSize: Constants.S1_FONT_SIZE),
+                  decoration: InputDecoration(
+                    isDense: true,
+                    isCollapsed: true,
+                    prefixIcon: Icon(
+                      Icons.search,
+                      color: appbarBackIconColor(context),
+                      size: Constants.ICON_MEDIUM_SIZE,
+                    ),
+                    prefixIconConstraints: const BoxConstraints(
+                      minWidth: 32,
+                    ),
+                    contentPadding: EdgeInsets.zero,
+                    hintStyle: TextStyle(
+                        color: placeholderColor(context),
+                        fontWeight: Constants.MEDIUM_FONT_WEIGHT,
+                        fontSize: Constants.S1_FONT_SIZE),
+                    hintText: t.search,
+                    border: InputBorder.none,
+                  ),
+                  textInputAction: TextInputAction.search,
+                  onTap: () {},
+                  autocorrect: false,
+                ),
+              ),
             ),
           ),
         ),
         SliverToBoxAdapter(
-          child: Card(
-            margin: Constants.PAGE_PADDING,
-            child: Column(
-              children: [
-                PlatformWidget(
-                    material: (_, __) => MaterialButton(
-                          onPressed: () {},
-                          child: Row(
-                            children: [
-                              const TodayIcon(),
-                              const SizedBox(
-                                width: 4,
-                              ),
-                              PlatformText(t.today)
-                            ],
-                          ),
-                        ),
-                    cupertino: (_, __) => CupertinoButton(
-                          child: Row(
-                            children: [
-                              const TodayIcon(),
-                              PlatformText(t.today)
-                            ],
-                          ),
-                          onPressed: () {},
-                        )),
-                const Text('Today'),
-                const Text('All'),
-                const Text('Completed'),
-                const Text('Next 7 Days'),
-                const Text('Inbox'),
-              ],
-            ),
-          ),
+          child: SpaceList(t: t),
         ),
         //  Projects
         //  Tags

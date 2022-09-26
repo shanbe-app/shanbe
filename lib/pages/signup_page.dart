@@ -45,7 +45,7 @@ class _SignupPageState extends State<SignupPage> {
     _subscription = authBloc.authState.listen((event) {
       if (event == AuthState.authenticated) {
         Navigator.pushNamedAndRemoveUntil(
-            widget.context, '/inbox', (route) => false);
+            widget.context, '/spaces', (route) => false);
       }
     });
   }

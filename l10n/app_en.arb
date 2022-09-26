@@ -1662,5 +1662,15 @@
   "@licenseAgreement": {
     "type": "text",
     "placeholders": {}
+  },
+  "spaces": "Spaces",
+  "@spaces": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "searchSpacePlaceholder": "Search all spaces",
+  "@searchSpacePlaceholder": {
+    "type": "text",
+    "placeholders": {}
   }
 }

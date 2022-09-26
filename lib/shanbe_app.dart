@@ -2,6 +2,7 @@ import 'package:client/pages/edit_lists_page.dart';
 import 'package:client/pages/inbox_page.dart';
 import 'package:client/pages/init_page.dart';
 import 'package:client/pages/signup_page.dart';
+import 'package:client/pages/spaces_page.dart';
 import 'package:client/rx/blocs/settings_bloc.dart';
 import 'package:client/rx/services/app_service.dart';
 import 'package:client/types/inbox_page_arguments.dart';
@@ -101,6 +102,12 @@ class _ShanbeAppState extends State<ShanbeApp> {
                 context: context,
                 builder: (context) => InboxPage(
                       arguments: settings.arguments as InboxPageArguments?,
+                      context: context,
+                    ));
+          case '/spaces':
+            return platformPageRoute(
+                context: context,
+                builder: (context) => SpacesPage(
                       context: context,
                     ));
           case '/edit-lists':

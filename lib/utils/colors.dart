@@ -48,3 +48,9 @@ bool isDark(BuildContext context) {
   }
   return Theme.of(context).brightness == Brightness.dark;
 }
+
+Color inputBackgroundColor(BuildContext context) {
+  return isDark(context)
+      ? Constants.INPUT_BACKGROUND_COLOR_DARK
+      : Constants.INPUT_BACKGROUND_COLOR;
+}

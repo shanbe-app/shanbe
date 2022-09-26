@@ -99,7 +99,7 @@ class _IntroPageState extends State<IntroPage> {
                                     child: Text(t.confirm),
                                     onPressed: () {
                                       Navigator.pushNamedAndRemoveUntil(
-                                          context, '/inbox', (route) => false);
+                                          context, '/spaces', (route) => false);
                                     },
                                   ),
                                 ],
@@ -196,8 +196,7 @@ class _IntroPageState extends State<IntroPage> {
                   ),
                   onPressed: () {
                     Navigator.pushNamedAndRemoveUntil(
-                        context, '/inbox', (route) => false,
-                        arguments: InboxPageArguments(initialPage: 'settings'));
+                        context, '/spaces', (route) => false);
                     Navigator.pushNamed(context, '/signup');
                   },
                 ),

@@ -1,8 +1,6 @@
-import 'dart:io';
-
 import 'package:client/pages/edit_lists_page.dart';
 import 'package:client/pages/inbox_page.dart';
-import 'package:client/pages/root_page.dart';
+import 'package:client/pages/init_page.dart';
 import 'package:client/pages/signup_page.dart';
 import 'package:client/rx/blocs/settings_bloc.dart';
 import 'package:client/rx/services/app_service.dart';
@@ -13,7 +11,6 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 class ShanbeApp extends StatefulWidget {
@@ -25,60 +22,48 @@ class ShanbeApp extends StatefulWidget {
 
 class _ShanbeAppState extends State<ShanbeApp> {
   late Future<void> appInitFuture;
-  late AppService appService;
+  late ServiceProvider serviceProvider;
   late SettingsBloc settingsBloc;
-  late Locale locale;
-  late Brightness brightness;
-  late ThemeMode theme;
+
+  Locale locale = Constants.DEFAULT_LOCALE;
+  ThemeMode theme = Constants.DEFAULT_THEME;
 
   @override
   void initState() {
     super.initState();
-    locale = Locale.fromSubtags(
-        languageCode: languageCodeFromLocaleName(Platform.localeName));
-    brightness = Brightness.light;
-    theme = ThemeMode.system;
     appInitFuture = bootstrapApp();
   }
 
   Future<void> bootstrapApp() async {
-    appService = AppService();
+    serviceProvider = ServiceProvider();
     try {
-      await appService.onCreate();
+      await serviceProvider.onCreate();
+      serviceProvider.setThemeChangeListener((event) {
+        setState(() {
+          theme = event;
+        });
+      });
+      serviceProvider.setLocaleChangeListener((event) {
+        setState(() {
+          locale = event;
+        });
+      });
+      settingsBloc = SettingsBloc(serviceProvider.storageService);
+      setState(() {
+        theme = settingsBloc.currentTheme();
+        locale = settingsBloc.currentLocale();
+      });
     } catch (e, stack) {
+      print('error');
+      print(e);
       FirebaseCrashlytics.instance.recordError(e, stack);
     }
-    settingsBloc = SettingsBloc(appService.storageService);
-    settingsBloc.locale.listen((event) {
-      setState(() {
-        locale = event;
-      });
-    });
-    settingsBloc.theme.listen((event) {
-      setState(() {
-        theme = event;
-      });
-      if (event == ThemeMode.dark) {
-        setState(() {
-          brightness = Brightness.dark;
-        });
-      } else if (event == ThemeMode.light) {
-        setState(() {
-          brightness = Brightness.light;
-        });
-      } else {
-        setState(() {
-          brightness =
-              WidgetsBinding.instance.platformDispatcher.platformBrightness;
-        });
-      }
-    });
   }
 
   @override
   void dispose() {
     super.dispose();
-    appService.onTerminate();
+    serviceProvider.onTerminate();
   }
 
   @override
@@ -88,16 +73,8 @@ class _ShanbeAppState extends State<ShanbeApp> {
       showSemanticsDebugger: false,
       debugShowCheckedModeBanner: false,
       showPerformanceOverlay: false,
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        Locale.fromSubtags(languageCode: 'en'),
-        Locale.fromSubtags(languageCode: 'fa')
-      ],
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       locale: locale,
       localeResolutionCallback:
           (Locale? locale, Iterable<Locale> supportedLocales) {
@@ -116,7 +93,7 @@ class _ShanbeAppState extends State<ShanbeApp> {
           case '/':
             return platformPageRoute(
                 context: context,
-                builder: (context) => RootPage(
+                builder: (context) => InitPage(
                       appInitFuture: appInitFuture,
                     ));
           case '/inbox':
@@ -141,7 +118,7 @@ class _ShanbeAppState extends State<ShanbeApp> {
       },
       cupertino: (context, target) => CupertinoAppData(
           theme: CupertinoThemeData(
-        brightness: brightness,
+        brightness: themeModeToBrightness(theme),
         primaryColor: Constants.PRIMARY_COLOR,
         primaryContrastingColor: Colors.white,
         scaffoldBackgroundColor: Constants.BACKGROUND_COLOR,

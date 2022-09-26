@@ -45,7 +45,7 @@ android {
 
     defaultConfig {
         applicationId "app.shanbe.client"
-        minSdkVersion 22
+        minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName

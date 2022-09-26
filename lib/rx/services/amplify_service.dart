@@ -14,20 +14,18 @@ class AmplifyService extends RxService {
 
   @override
   Future<void> onCreate() async {
-    AmplifyDataStore dataStore =
-        AmplifyDataStore(modelProvider: ModelProvider.instance);
     AmplifyAuthCognito auth = AmplifyAuthCognito();
-    AmplifyAPI api =
-        AmplifyAPI(modelProvider: ModelProvider.instance, authProviders: []);
-    await Amplify.configure(amplifyconfig);
+    AmplifyAPI api = AmplifyAPI(modelProvider: ModelProvider.instance);
     await Amplify.addPlugins([auth, api]);
     if (Platform.isAndroid || Platform.isIOS) {
+      AmplifyDataStore dataStore =
+          AmplifyDataStore(modelProvider: ModelProvider.instance);
       await Amplify.addPlugin(dataStore);
-      await Amplify.DataStore.start();
     }
-    // Amplify.Hub.listen([HubChannel.Auth, HubChannel.DataStore], (event) {
-    //   print('event ${event.eventName} ${event.payload}');
-    // });
+    await Amplify.configure(amplifyconfig);
+    Amplify.Hub.listen([HubChannel.Auth, HubChannel.DataStore], (event) {
+      print('event ${event.eventName} ${event.payload}');
+    });
   }
 
   @override

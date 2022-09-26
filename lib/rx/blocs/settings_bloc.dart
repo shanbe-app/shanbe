@@ -5,6 +5,7 @@ import 'package:client/rx/blocs/rx_bloc.dart';
 import 'package:client/rx/services/storage_service.dart';
 import 'package:client/types/enums.dart';
 import 'package:client/utils/constants.dart';
+import 'package:client/utils/utils.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
@@ -41,7 +42,7 @@ class SettingsBloc extends RxBloc {
             .getString(Constants.USER_LOCALE_PREFS) ??
         'en'));
     _theme.add(EnumToString.fromString(
-        ThemeMode.values,
+            ThemeMode.values,
             storageService.sharedPreferences
                     .getString(Constants.USER_THEME_PREFS) ??
                 '') ??
@@ -61,6 +62,23 @@ class SettingsBloc extends RxBloc {
     Amplify.Auth.updateUserAttribute(
         userAttributeKey: Constants.USER_PREFERENCES_COGNITO_KEY,
         value: json.encode({'calendar': calendarType}));
+  }
+
+  ThemeMode currentTheme() {
+    String? themeMode =
+        storageService.sharedPreferences.getString(Constants.USER_THEME_PREFS);
+    return strNotEmpty(themeMode)
+        ? EnumToString.fromString(ThemeMode.values, themeMode!) ??
+            Constants.DEFAULT_THEME
+        : Constants.DEFAULT_THEME;
+  }
+
+  Locale currentLocale() {
+    String? localePrefs =
+        storageService.sharedPreferences.getString(Constants.USER_LOCALE_PREFS);
+    return strNotEmpty(localePrefs)
+        ? Locale.fromSubtags(languageCode: localePrefs!)
+        : Constants.DEFAULT_LOCALE;
   }
 
   @override

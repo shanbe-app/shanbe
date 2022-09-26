@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 
 class Constants {
   Constants._();
-
+  static const Locale DEFAULT_LOCALE = Locale('en');
+  static const ThemeMode DEFAULT_THEME = ThemeMode.system;
   static const String INDEX_PROJECT_NAME = 'shanbe_todo_index_project';
   static const String ACCESS_TOKEN_PREFS = 'access_token';
   static const String REFRESH_TOKEN_PREFS = 'refresh_token';
@@ -75,7 +76,6 @@ class Constants {
   static const String APPLICATION_DEFAULT_FONT = 'Graphik';
   static const List<String> APPLICATION_FALLBACK_FONTS = [
     'IranSans',
-    'Dana',
     'sans-serif'
   ];
 
@@ -96,7 +96,8 @@ class Constants {
     'calendar': EnumToString.convertToString(CalendarType.shamsi)
   };
   static final Map USER_PREFERENCES_COGNITO_DEFAULT = USER_PREFERENCES_EN;
-  static const UserAttributeKey USER_PREFERENCES_COGNITO_KEY = CognitoUserAttributeKey.custom('preferences');
+  static const UserAttributeKey USER_PREFERENCES_COGNITO_KEY =
+      CognitoUserAttributeKey.custom('preferences');
 
   static const List<List<Color>> AVATAR_GRADIENT_COLORS = [
     [

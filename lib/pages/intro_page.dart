@@ -43,7 +43,7 @@ class _IntroPageState extends State<IntroPage> {
       AppIntroData(
           t.appIntroTitle4, 'assets/files/fly.json', t.appIntroDescription4),
     ];
-    _timer = Timer.periodic(const Duration(seconds: 7), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 10), (timer) {
       if (_controller.page == null) return;
       if (_controller.page!.toInt() + 1 == appIntroData.length) {
         _controller.animateToPage(0,
@@ -120,8 +120,8 @@ class _IntroPageState extends State<IntroPage> {
                 t.shanbe,
                 style: TextStyle(
                     color: headingColor(context),
-                    fontWeight: Constants.DEMI_BOLD_FONT_WEIGHT,
-                    fontSize: Constants.H3_FONT_SIZE),
+                    fontWeight: Constants.MEDIUM_FONT_WEIGHT,
+                    fontSize: Constants.H2_FONT_SIZE),
               ),
               const SizedBox(
                 height: 32,
@@ -149,7 +149,7 @@ class _IntroPageState extends State<IntroPage> {
                                   style: TextStyle(
                                       color: headingColor(context),
                                       fontWeight: Constants.MEDIUM_FONT_WEIGHT,
-                                      fontSize: Constants.H6_FONT_SIZE),
+                                      fontSize: Constants.H5_FONT_SIZE),
                                 ),
                                 const SizedBox(
                                   height: 16,
@@ -160,7 +160,7 @@ class _IntroPageState extends State<IntroPage> {
                                         color: secondaryTextColor(context),
                                         fontWeight:
                                             Constants.REGULAR_FONT_WEIGHT,
-                                        fontSize: Constants.S2_FONT_SIZE))
+                                        fontSize: Constants.H6_FONT_SIZE))
                               ],
                             ))
                         .toList(),

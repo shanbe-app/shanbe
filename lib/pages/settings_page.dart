@@ -24,7 +24,7 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   void initState() {
     super.initState();
-    authBloc = AuthBloc(AppService.getInstance());
+    authBloc = AuthBloc(ServiceProvider.getInstance());
   }
 
   @override

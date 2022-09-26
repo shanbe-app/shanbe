@@ -12,7 +12,7 @@ import 'package:client/utils/utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 class AuthBloc extends RxBloc {
-  final AppService appService;
+  final ServiceProvider appService;
   final _authState = BehaviorSubject<AuthState>();
   final _authErrors = BehaviorSubject<String>();
   final _authUser = BehaviorSubject<User?>();

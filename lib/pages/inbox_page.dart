@@ -24,7 +24,7 @@ class InboxPage extends StatefulWidget {
 
 class _InboxPageState extends State<InboxPage> {
   late CupertinoTabController _controller;
-  late AppService appService;
+  late ServiceProvider appService;
   late AppLocalizations t;
   int _currentPageIndex = 0;
 
@@ -32,7 +32,7 @@ class _InboxPageState extends State<InboxPage> {
   void initState() {
     super.initState();
     _controller = CupertinoTabController(initialIndex: 0);
-    appService = GetIt.I.get<AppService>(instanceName: 'appService');
+    appService = GetIt.I.get<ServiceProvider>(instanceName: 'appService');
     t = AppLocalizations.of(widget.context)!;
   }
 
@@ -101,9 +101,7 @@ class _InboxPageState extends State<InboxPage> {
   }
 
   Widget renderTabBody(BuildContext context, int index) {
-    if (true) {
-      return SettingsPage(t);
-    }
+    // return SettingsPage(t);
     return CustomScrollView(
       primary: true,
       slivers: [

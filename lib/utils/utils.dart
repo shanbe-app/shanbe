@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:crypto/crypto.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 String languageCodeFromLocaleName(String localeName) =>
     localeName.split('_').first;
@@ -67,5 +68,16 @@ T? firstOrNull<T>(Iterable<T> items, callback) {
     return items.firstWhere(callback);
   } catch (e) {
     return null;
+  }
+}
+
+Brightness themeModeToBrightness(ThemeMode themeMode) {
+  switch (themeMode) {
+    case ThemeMode.light:
+      return Brightness.light;
+    case ThemeMode.dark:
+      return Brightness.dark;
+    case ThemeMode.system:
+      return WidgetsBinding.instance.window.platformBrightness;
   }
 }

@@ -41,10 +41,11 @@ class _SignupPageState extends State<SignupPage> {
           reverse: true),
       SignupData(t.appRegisterTitle5, 'assets/files/images.json')
     ];
-    authBloc = AuthBloc(AppService.getInstance());
+    authBloc = AuthBloc(ServiceProvider.getInstance());
     _subscription = authBloc.authState.listen((event) {
       if (event == AuthState.authenticated) {
-        Navigator.pushNamedAndRemoveUntil(widget.context, '/inbox', (route) => false);
+        Navigator.pushNamedAndRemoveUntil(
+            widget.context, '/inbox', (route) => false);
       }
     });
   }

@@ -41,6 +41,8 @@ post_install do |installer|
             '$(inherited)',
             'PERMISSION_CAMERA=1',
           ]
+#           config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
+#           config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
     end
   end
 end

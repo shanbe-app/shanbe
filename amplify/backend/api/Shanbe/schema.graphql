@@ -11,7 +11,7 @@ enum ThemeType {
 
 type Space @model @auth(rules: [{allow: private}]) {
   id: ID!
-  name: String
+  name: String!
   emoji: String
   color: String
   todos: [Todo] @hasMany(indexName: "bySpace", fields: ["id"])

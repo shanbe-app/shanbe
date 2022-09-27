@@ -15,9 +15,10 @@ type Space @model @auth(rules: [{allow: private}]) {
   emoji: String
   color: String
   todos: [Todo] @hasMany(indexName: "bySpace", fields: ["id"])
-  parentSpace: ID @index(name: "byParent")
-  spaces: [Todo] @hasMany(indexName: "byParent", fields: ["id"])
+  parentID: ID @index(name: "byParent")
+  spaces: [Space] @hasMany(indexName: "byParent", fields: ["id"])
   sections: [Section] @hasMany(indexName: "bySpace", fields: ["id"])
+  parent: Space @belongsTo(fields: ["parentID"])
 }
 
 type Todo @model @auth(rules: [{allow: private}, {allow: owner}]) {
@@ -36,14 +37,15 @@ type Todo @model @auth(rules: [{allow: private}, {allow: owner}]) {
   isAllDay: Boolean
   rrule: String
   sectionID: ID! @index(name: "bySection")
-  parentTodo: ID @index(name: "byParent")
-  spaceId: ID! @index(name: "bySpace")
-  section: Section @belongsTo
+  parentTodoID: ID @index(name: "byParent")
+  spaceID: ID! @index(name: "bySpace")
+  section: Section @belongsTo(fields: ["bySection"])
   reminders: [Reminder] @hasMany(indexName: "byTodo", fields: ["id"])
   tags: [Tag] @manyToMany(relationName: "TodoTag")
   todos: [Todo] @hasMany(indexName: "byParent", fields: ["id"])
   nextItem: Todo @hasOne
-  space: Space @belongsTo
+  space: Space! @belongsTo(fields: ["spaceID"])
+  parentTodo: Todo @belongsTo(fields: ["parentTodoID"])
 }
 
 type Preferences @model @auth(rules: [{allow: owner}]) {
@@ -57,7 +59,7 @@ type Section @model @auth(rules: [{allow: owner}]) {
   name: String!
   todos: [Todo] @hasMany(indexName: "bySection", fields: ["id"])
   spaceID: ID! @index(name: "bySpace")
-  space: Space @belongsTo
+  space: Space @belongsTo(fields: ["spaceID"])
 }
 
 enum ReminderStatus {

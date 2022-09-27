@@ -1,3 +1,4 @@
+import 'package:client/components/atoms/magical_floating_action_button.dart';
 import 'package:client/components/atoms/search_field.dart';
 import 'package:client/components/organisms/space_list.dart';
 import 'package:client/shanbe_icons.dart';
@@ -41,6 +42,7 @@ class _SpacesPageState extends State<SpacesPage> {
   Widget renderTabBody(BuildContext context) {
     return Stack(
       alignment: Alignment.bottomRight,
+      fit: StackFit.expand,
       children: [
         CustomScrollView(
           primary: true,
@@ -90,6 +92,11 @@ class _SpacesPageState extends State<SpacesPage> {
             //  Projects
             //  Tags
           ],
+        ),
+        const Positioned(
+          child: MagicalFloatingActionButton(),
+          right: 16,
+          bottom: 16,
         )
       ],
     );

@@ -34,9 +34,9 @@ class Space extends Model {
   final String? _emoji;
   final String? _color;
   final List<Todo>? _todos;
-  final String? _parentSpace;
-  final List<Todo>? _spaces;
   final List<Section>? _sections;
+  final String? _parentID;
+  final List<Space>? _spaces;
   final TemporalDateTime? _createdAt;
   final TemporalDateTime? _updatedAt;
 
@@ -73,16 +73,16 @@ class Space extends Model {
     return _todos;
   }
   
-  String? get parentSpace {
-    return _parentSpace;
-  }
-  
-  List<Todo>? get spaces {
-    return _spaces;
-  }
-  
   List<Section>? get sections {
     return _sections;
+  }
+  
+  String? get parentID {
+    return _parentID;
+  }
+  
+  List<Space>? get spaces {
+    return _spaces;
   }
   
   TemporalDateTime? get createdAt {
@@ -93,18 +93,18 @@ class Space extends Model {
     return _updatedAt;
   }
   
-  const Space._internal({required this.id, required name, emoji, color, todos, parentSpace, spaces, sections, createdAt, updatedAt}): _name = name, _emoji = emoji, _color = color, _todos = todos, _parentSpace = parentSpace, _spaces = spaces, _sections = sections, _createdAt = createdAt, _updatedAt = updatedAt;
+  const Space._internal({required this.id, required name, emoji, color, todos, sections, parentID, spaces, createdAt, updatedAt}): _name = name, _emoji = emoji, _color = color, _todos = todos, _sections = sections, _parentID = parentID, _spaces = spaces, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory Space({String? id, required String name, String? emoji, String? color, List<Todo>? todos, String? parentSpace, List<Todo>? spaces, List<Section>? sections}) {
+  factory Space({String? id, required String name, String? emoji, String? color, List<Todo>? todos, List<Section>? sections, String? parentID, List<Space>? spaces}) {
     return Space._internal(
       id: id == null ? UUID.getUUID() : id,
       name: name,
       emoji: emoji,
       color: color,
       todos: todos != null ? List<Todo>.unmodifiable(todos) : todos,
-      parentSpace: parentSpace,
-      spaces: spaces != null ? List<Todo>.unmodifiable(spaces) : spaces,
-      sections: sections != null ? List<Section>.unmodifiable(sections) : sections);
+      sections: sections != null ? List<Section>.unmodifiable(sections) : sections,
+      parentID: parentID,
+      spaces: spaces != null ? List<Space>.unmodifiable(spaces) : spaces);
   }
   
   bool equals(Object other) {
@@ -120,9 +120,9 @@ class Space extends Model {
       _emoji == other._emoji &&
       _color == other._color &&
       DeepCollectionEquality().equals(_todos, other._todos) &&
-      _parentSpace == other._parentSpace &&
-      DeepCollectionEquality().equals(_spaces, other._spaces) &&
-      DeepCollectionEquality().equals(_sections, other._sections);
+      DeepCollectionEquality().equals(_sections, other._sections) &&
+      _parentID == other._parentID &&
+      DeepCollectionEquality().equals(_spaces, other._spaces);
   }
   
   @override
@@ -137,7 +137,7 @@ class Space extends Model {
     buffer.write("name=" + "$_name" + ", ");
     buffer.write("emoji=" + "$_emoji" + ", ");
     buffer.write("color=" + "$_color" + ", ");
-    buffer.write("parentSpace=" + "$_parentSpace" + ", ");
+    buffer.write("parentID=" + "$_parentID" + ", ");
     buffer.write("createdAt=" + (_createdAt != null ? _createdAt!.format() : "null") + ", ");
     buffer.write("updatedAt=" + (_updatedAt != null ? _updatedAt!.format() : "null"));
     buffer.write("}");
@@ -145,16 +145,16 @@ class Space extends Model {
     return buffer.toString();
   }
   
-  Space copyWith({String? id, String? name, String? emoji, String? color, List<Todo>? todos, String? parentSpace, List<Todo>? spaces, List<Section>? sections}) {
+  Space copyWith({String? id, String? name, String? emoji, String? color, List<Todo>? todos, List<Section>? sections, String? parentID, List<Space>? spaces}) {
     return Space._internal(
       id: id ?? this.id,
       name: name ?? this.name,
       emoji: emoji ?? this.emoji,
       color: color ?? this.color,
       todos: todos ?? this.todos,
-      parentSpace: parentSpace ?? this.parentSpace,
-      spaces: spaces ?? this.spaces,
-      sections: sections ?? this.sections);
+      sections: sections ?? this.sections,
+      parentID: parentID ?? this.parentID,
+      spaces: spaces ?? this.spaces);
   }
   
   Space.fromJson(Map<String, dynamic> json)  
@@ -168,24 +168,24 @@ class Space extends Model {
           .map((e) => Todo.fromJson(new Map<String, dynamic>.from(e['serializedData'])))
           .toList()
         : null,
-      _parentSpace = json['parentSpace'],
-      _spaces = json['spaces'] is List
-        ? (json['spaces'] as List)
-          .where((e) => e?['serializedData'] != null)
-          .map((e) => Todo.fromJson(new Map<String, dynamic>.from(e['serializedData'])))
-          .toList()
-        : null,
       _sections = json['sections'] is List
         ? (json['sections'] as List)
           .where((e) => e?['serializedData'] != null)
           .map((e) => Section.fromJson(new Map<String, dynamic>.from(e['serializedData'])))
           .toList()
         : null,
+      _parentID = json['parentID'],
+      _spaces = json['spaces'] is List
+        ? (json['spaces'] as List)
+          .where((e) => e?['serializedData'] != null)
+          .map((e) => Space.fromJson(new Map<String, dynamic>.from(e['serializedData'])))
+          .toList()
+        : null,
       _createdAt = json['createdAt'] != null ? TemporalDateTime.fromString(json['createdAt']) : null,
       _updatedAt = json['updatedAt'] != null ? TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'name': _name, 'emoji': _emoji, 'color': _color, 'todos': _todos?.map((Todo? e) => e?.toJson()).toList(), 'parentSpace': _parentSpace, 'spaces': _spaces?.map((Todo? e) => e?.toJson()).toList(), 'sections': _sections?.map((Section? e) => e?.toJson()).toList(), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
+    'id': id, 'name': _name, 'emoji': _emoji, 'color': _color, 'todos': _todos?.map((Todo? e) => e?.toJson()).toList(), 'sections': _sections?.map((Section? e) => e?.toJson()).toList(), 'parentID': _parentID, 'spaces': _spaces?.map((Space? e) => e?.toJson()).toList(), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
 
   static final QueryField ID = QueryField(fieldName: "id");
@@ -195,13 +195,13 @@ class Space extends Model {
   static final QueryField TODOS = QueryField(
     fieldName: "todos",
     fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Todo).toString()));
-  static final QueryField PARENTSPACE = QueryField(fieldName: "parentSpace");
-  static final QueryField SPACES = QueryField(
-    fieldName: "spaces",
-    fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Todo).toString()));
   static final QueryField SECTIONS = QueryField(
     fieldName: "sections",
     fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Section).toString()));
+  static final QueryField PARENTID = QueryField(fieldName: "parentID");
+  static final QueryField SPACES = QueryField(
+    fieldName: "spaces",
+    fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Space).toString()));
   static var schema = Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
     modelSchemaDefinition.name = "Space";
     modelSchemaDefinition.pluralName = "Spaces";
@@ -218,7 +218,7 @@ class Space extends Model {
     ];
     
     modelSchemaDefinition.indexes = [
-      ModelIndex(fields: const ["parentSpace"], name: "byParent")
+      ModelIndex(fields: const ["parentID"], name: "byParent")
     ];
     
     modelSchemaDefinition.addField(ModelFieldDefinition.id());
@@ -245,11 +245,18 @@ class Space extends Model {
       key: Space.TODOS,
       isRequired: false,
       ofModelName: (Todo).toString(),
-      associatedKey: Todo.SPACEID
+      associatedKey: Todo.SPACE
+    ));
+    
+    modelSchemaDefinition.addField(ModelFieldDefinition.hasMany(
+      key: Space.SECTIONS,
+      isRequired: false,
+      ofModelName: (Section).toString(),
+      associatedKey: Section.SPACE
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Space.PARENTSPACE,
+      key: Space.PARENTID,
       isRequired: false,
       ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
@@ -257,15 +264,8 @@ class Space extends Model {
     modelSchemaDefinition.addField(ModelFieldDefinition.hasMany(
       key: Space.SPACES,
       isRequired: false,
-      ofModelName: (Todo).toString(),
-      associatedKey: Todo.PARENTTODO
-    ));
-    
-    modelSchemaDefinition.addField(ModelFieldDefinition.hasMany(
-      key: Space.SECTIONS,
-      isRequired: false,
-      ofModelName: (Section).toString(),
-      associatedKey: Section.SPACEID
+      ofModelName: (Space).toString(),
+      associatedKey: Space.PARENTID
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.nonQueryField(

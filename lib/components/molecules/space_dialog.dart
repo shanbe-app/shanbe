@@ -41,7 +41,7 @@ class _SpaceDialogState extends State<SpaceDialog>
     animation = CurvedAnimation(
         parent: animationController!, curve: Curves.fastOutSlowIn);
     if (widget.defaultProject != null) {
-      projectName = widget.defaultProject!.name!;
+      projectName = widget.defaultProject!.name;
       pickedEmoji = widget.defaultProject!.emoji;
       textController = TextEditingController(text: widget.defaultProject!.name);
     } else {

@@ -23,9 +23,14 @@ class AmplifyService extends RxService {
       await Amplify.addPlugin(dataStore);
     }
     await Amplify.configure(amplifyconfig);
-    Amplify.Hub.listen([HubChannel.Auth, HubChannel.DataStore], (event) {
-      print('event ${event.eventName} ${event.payload}');
-    });
+    print('done setup');
+    try {
+      List<Space> spaces = await Amplify.DataStore.query(Space.classType);
+      print('spaces: ${spaces.length}');
+    } catch (e, stack) {
+      print(e);
+      print(stack);
+    }
   }
 
   @override

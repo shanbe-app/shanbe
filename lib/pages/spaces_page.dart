@@ -133,8 +133,9 @@ class _SpacesPageState extends State<SpacesPage> {
           child: MagicalFloatingActionButton(onPress: () {
             showPlatformDialog(
                 context: context,
-                builder: (context) => SpaceDialog(t,
-                    onCreate: (Space space) {spaceBloc.}, onUpdate: (Space space) {}));
+                builder: (context) => SpaceDialog(t, onCreate: (Space space) {
+                      spaceBloc.createSpace(newSpace: space);
+                    }, onUpdate: (Space space) {}));
           }),
           right: 16,
           bottom: 32,

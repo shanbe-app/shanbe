@@ -5,8 +5,13 @@ import 'package:client/rx/blocs/rx_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 
 class SpaceBloc extends RxBloc {
-  final _spaces = BehaviorSubject<List<Space>>();
 
   Stream<QuerySnapshot<Space>> get spaces =>
       Amplify.DataStore.observeQuery(Space.classType);
+
+  void createSpace({Space? parentSpace, required Space newSpace}) {
+    if (parentSpace!=null) {
+      newSpace.
+    }
+  }
 }

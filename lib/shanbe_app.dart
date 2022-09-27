@@ -1,4 +1,5 @@
 import 'package:client/pages/edit_lists_page.dart';
+import 'package:client/pages/settings_page.dart';
 import 'package:client/pages/space_page.dart';
 import 'package:client/pages/init_page.dart';
 import 'package:client/pages/signup_page.dart';
@@ -107,6 +108,12 @@ class _ShanbeAppState extends State<ShanbeApp> {
             return platformPageRoute(
                 context: context,
                 builder: (context) => SpacesPage(
+                      context: context,
+                    ));
+          case '/settings':
+            return platformPageRoute(
+                context: context,
+                builder: (context) => SettingsPage(
                       context: context,
                     ));
           case '/edit-lists':

@@ -2,12 +2,15 @@ import 'package:client/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class MagicalFloatingActionButton extends StatelessWidget {
-  const MagicalFloatingActionButton({Key? key}) : super(key: key);
+  final Function onPress;
+
+  const MagicalFloatingActionButton({Key? key, required this.onPress})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      onPressed: () {},
+      onPressed: onPress,
       backgroundColor: Constants.PRIMARY_COLOR,
       child: const Icon(
         Icons.add,

@@ -1,9 +1,6 @@
-import 'package:client/components/organisms/space_list.dart';
 import 'package:client/rx/service_provider.dart';
 import 'package:client/shanbe_icons.dart';
 import 'package:client/types/space_page_arguments.dart';
-import 'package:client/utils/colors.dart';
-import 'package:client/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

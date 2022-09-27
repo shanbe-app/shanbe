@@ -1,28 +1,30 @@
+import 'package:client/models/Space.dart';
+import 'package:client/shanbe_icons.dart';
+import 'package:client/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_emoji/flutter_emoji.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:flutter_redux/flutter_redux.dart';
-import 'package:redux/redux.dart';
-import 'package:shanbe/l10n/app_localizations.dart';
-import 'package:shanbe/redux/actions/actions.dart';
-import 'package:shanbe/redux/app_state.dart';
-import 'package:shanbe/redux/models/project.dart';
-import 'package:shanbe/utils/colors.dart';
-import 'package:shanbe/utils/constants.dart';
-import 'package:shanbe/utils/utils.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class ProjectDialog extends StatefulWidget {
+class SpaceDialog extends StatefulWidget {
   final AppLocalizations t;
   final EmojiParser parser;
-  final Project? defaultProject;
+  final Space? defaultProject;
+  final Function(Space) onCreate;
+  final Function(Space) onUpdate;
 
-  ProjectDialog(this.t, {this.defaultProject}) : parser = EmojiParser();
+  SpaceDialog(this.t,
+      {Key? key,
+      this.defaultProject,
+      required this.onCreate,
+      required this.onUpdate})
+      : parser = EmojiParser(),
+        super(key: key);
 
   @override
-  _ProjectDialogState createState() => _ProjectDialogState();
+  _SpaceDialogState createState() => _SpaceDialogState();
 }
 
-class _ProjectDialogState extends State<ProjectDialog>
+class _SpaceDialogState extends State<SpaceDialog>
     with SingleTickerProviderStateMixin {
   String projectName = '';
   String? pickedEmoji;
@@ -34,8 +36,8 @@ class _ProjectDialogState extends State<ProjectDialog>
   @override
   void initState() {
     super.initState();
-    animationController =
-        AnimationController(duration: Duration(milliseconds: 300), vsync: this);
+    animationController = AnimationController(
+        duration: const Duration(milliseconds: 300), vsync: this);
     animation = CurvedAnimation(
         parent: animationController!, curve: Curves.fastOutSlowIn);
     if (widget.defaultProject != null) {
@@ -73,10 +75,9 @@ class _ProjectDialogState extends State<ProjectDialog>
               children: [
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.all(8),
-                    shape: CircleBorder(),
+                    padding: const EdgeInsets.all(8),
+                    shape: const CircleBorder(),
                     elevation: 4,
-                    primary: surfaceOnCardColor(context),
                   ),
                   onPressed: () {
                     setState(() {
@@ -97,13 +98,13 @@ class _ProjectDialogState extends State<ProjectDialog>
                             textAlign: TextAlign.center,
                           )
                         : Icon(
-                            FlutterIcons.sticker_emoji_mco,
+                            Shanbe.bullseye_1,
                             size: 36,
-                            color: Constants.ACCENT_COLOR,
+                            color: Constants.SECONDARY_COLOR,
                           ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 Expanded(
@@ -113,8 +114,7 @@ class _ProjectDialogState extends State<ProjectDialog>
                     controller: textController,
                     decoration: InputDecoration(
                         hintText: widget.t.enterProjectName,
-                        counterStyle:
-                            TextStyle(fontFamily: currentFontName(context))),
+                        counterStyle: TextStyle()),
                     textInputAction: TextInputAction.done,
                     onChanged: (name) {
                       if (name.length <= 40) {
@@ -158,7 +158,7 @@ class _ProjectDialogState extends State<ProjectDialog>
                                       widget.parser
                                           .emojify(Constants.emojis[i * 5 + j]),
                                       style: TextStyle(
-                                          fontSize: Constants.LARGE_FONT),
+                                          fontSize: Constants.S1_FONT_SIZE),
                                       textAlign: TextAlign.center,
                                     ),
                                   ),
@@ -194,44 +194,28 @@ class _ProjectDialogState extends State<ProjectDialog>
             },
             child: Text(widget.t.cancel),
           ),
-          StoreConnector<AppState, _ProjectViewModel>(
-            converter: (Store<AppState> store) => _ProjectViewModel(
-                onUpdate: (project) =>
-                    store.dispatch(EditProjectAction(project)),
-                onCreate: (Project project) =>
-                    store.dispatch(NewProjectAction(project))),
-            builder: (BuildContext context, _ProjectViewModel vm) =>
-                ElevatedButton(
-              onPressed: projectName == ''
-                  ? null
-                  : () {
-                      Project? p = widget.defaultProject;
-                      if (p != null) {
-                        widget.defaultProject!.name = projectName;
-                        widget.defaultProject!.emoji = pickedEmoji!;
-                        vm.onUpdate(p);
-                      } else {
-                        vm.onCreate(Project(
-                          name: projectName,
-                          emoji: pickedEmoji ?? '',
-                        ));
-                      }
-                      Navigator.of(context).pop();
-                    },
-              child: Text(widget.defaultProject != null
-                  ? widget.t.edit
-                  : widget.t.create),
-            ),
+          ElevatedButton(
+            onPressed: projectName == ''
+                ? null
+                : () {
+                    Space? p = widget.defaultProject;
+                    if (p != null) {
+                      widget.onUpdate(
+                          p.copyWith(name: projectName, emoji: pickedEmoji));
+                    } else {
+                      widget.onCreate(Space(
+                        name: projectName,
+                        emoji: pickedEmoji ?? '',
+                      ));
+                    }
+                    Navigator.of(context).pop();
+                  },
+            child: Text(widget.defaultProject != null
+                ? widget.t.edit
+                : widget.t.create),
           )
         ]
       ],
     );
   }
-}
-
-class _ProjectViewModel {
-  final Function(Project) onCreate;
-  final Function(Project) onUpdate;
-
-  _ProjectViewModel({required this.onCreate, required this.onUpdate});
 }

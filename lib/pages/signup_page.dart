@@ -41,7 +41,7 @@ class _SignupPageState extends State<SignupPage> {
           reverse: true),
       SignupData(t.appRegisterTitle5, 'assets/files/images.json')
     ];
-    authBloc = AuthBloc(ServiceProvider.getInstance());
+    authBloc = AuthBloc();
     _subscription = authBloc.authState.listen((event) {
       if (event == AuthState.authenticated) {
         Navigator.pushNamedAndRemoveUntil(

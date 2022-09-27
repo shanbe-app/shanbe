@@ -1,7 +1,7 @@
+import 'package:client/utils/constants.dart';
+import 'package:client/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hubber/utils/constants.dart';
-import 'package:hubber/utils/utils.dart';
 
 class UserAvatar extends StatelessWidget {
   final String? avatar;
@@ -104,7 +104,7 @@ class UserAvatar extends StatelessWidget {
                         ),
                         name != null
                             ? Text(
-                                name!,
+                                name!.characters.first.toUpperCase(),
                                 style: TextStyle(
                                     color: gradientColors![2],
                                     fontSize: Constants.S2_FONT_SIZE),

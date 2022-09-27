@@ -1,7 +1,13 @@
 import 'package:client/components/atoms/magical_floating_action_button.dart';
 import 'package:client/components/atoms/search_field.dart';
+import 'package:client/components/atoms/user_avatar.dart';
+import 'package:client/components/molecules/space_dialog.dart';
 import 'package:client/components/organisms/space_list.dart';
+import 'package:client/models/Space.dart';
+import 'package:client/rx/blocs/auth_bloc.dart';
+import 'package:client/rx/blocs/space_bloc.dart';
 import 'package:client/shanbe_icons.dart';
+import 'package:client/types/user.dart';
 import 'package:client/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,10 +25,14 @@ class SpacesPage extends StatefulWidget {
 
 class _SpacesPageState extends State<SpacesPage> {
   late AppLocalizations t;
+  late AuthBloc authBloc;
+  late SpaceBloc spaceBloc;
 
   @override
   void initState() {
     super.initState();
+    authBloc = AuthBloc();
+    spaceBloc = SpaceBloc();
     t = AppLocalizations.of(widget.context)!;
   }
 
@@ -65,6 +75,32 @@ class _SpacesPageState extends State<SpacesPage> {
                 stretch: false,
                 automaticallyImplyLeading: true,
                 previousPageTitle: t.today,
+                leading: StreamBuilder(
+                  stream: authBloc.authUser,
+                  builder: (context, snapshot) {
+                    User? user = snapshot.data as User?;
+                    return PlatformIconButton(
+                      icon: Icon(
+                        PlatformIcons(context).settings,
+                        size: Constants.ICON_LARGE_SIZE,
+                      ),
+                      padding: EdgeInsets.zero,
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/settings');
+                      },
+                    );
+                    if (user != null) {
+                      return UserAvatar(
+                          avatar: user.picture,
+                          name: user.name,
+                          isOnline: true);
+                    }
+                    return UserAvatar(
+                      avatar: null,
+                      name: 'S',
+                    );
+                  },
+                ),
                 trailing: CupertinoButton(
                   padding: EdgeInsets.zero,
                   child: PlatformText(
@@ -93,8 +129,13 @@ class _SpacesPageState extends State<SpacesPage> {
             //  Tags
           ],
         ),
-        const Positioned(
-          child: MagicalFloatingActionButton(),
+        Positioned(
+          child: MagicalFloatingActionButton(onPress: () {
+            showPlatformDialog(
+                context: context,
+                builder: (context) => SpaceDialog(t,
+                    onCreate: (Space space) {spaceBloc.}, onUpdate: (Space space) {}));
+          }),
           right: 16,
           bottom: 32,
         )

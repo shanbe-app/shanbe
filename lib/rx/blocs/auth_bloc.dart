@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:client/rx/blocs/rx_bloc.dart';
-import 'package:client/rx/service_provider.dart';
 import 'package:client/types/enums.dart';
 import 'package:client/types/user.dart';
 import 'package:client/utils/constants.dart';
@@ -12,7 +11,6 @@ import 'package:client/utils/utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 class AuthBloc extends RxBloc {
-  final ServiceProvider appService;
   final _authState = BehaviorSubject<AuthState>();
   final _authErrors = BehaviorSubject<String>();
   final _authUser = BehaviorSubject<User?>();
@@ -23,7 +21,7 @@ class AuthBloc extends RxBloc {
 
   Stream<User?> get authUser => _authUser.stream;
 
-  AuthBloc(this.appService) {
+  AuthBloc() {
     checkAuth();
     Amplify.Hub.listen([HubChannel.Auth], (event) {
       switch (event.eventName) {
@@ -127,10 +125,5 @@ class AuthBloc extends RxBloc {
       _authState.add(AuthState.notAuthenticated);
       _authErrors.add(e.toString());
     });
-  }
-
-  void updateCalendar(CalendarType calendarType) {
-    Stream.fromFuture(Amplify.Auth.fetchUserAttributes())
-        .listen((attributes) {});
   }
 }

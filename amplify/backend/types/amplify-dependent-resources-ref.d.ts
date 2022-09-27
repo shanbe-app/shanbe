@@ -9,7 +9,8 @@ export type AmplifyDependentResourcesAttributes = {
             "UserPoolArn": "string",
             "UserPoolName": "string",
             "AppClientIDWeb": "string",
-            "AppClientID": "string"
+            "AppClientID": "string",
+            "GoogleWebClient": "string"
         }
     },
     "api": {
@@ -21,6 +22,14 @@ export type AmplifyDependentResourcesAttributes = {
     "storage": {
         "s3shanbestagingstorage37e5c4dd": {
             "BucketName": "string",
+            "Region": "string"
+        }
+    },
+    "function": {
+        "ShanbeCustomMessage": {
+            "Name": "string",
+            "Arn": "string",
+            "LambdaExecutionRole": "string",
             "Region": "string"
         }
     }

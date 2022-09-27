@@ -13,7 +13,16 @@
     },
     "categories": {
       "auth": {
-        "Shanbe": {}
+        "Shanbe": {
+          "googleClientId": "641408115307-6ejhv5e2sfe1jgqtvj0b00m3ad02814c.apps.googleusercontent.com"
+        }
+      },
+      "function": {
+        "ShanbeCustomMessage": {
+          "REDIRECTURL": "app.shanbe.auth://",
+          "EMAILSUBJECT": "Your verification code",
+          "EMAILMESSAGE": "Your verification code is {####}"
+        }
       }
     }
   }

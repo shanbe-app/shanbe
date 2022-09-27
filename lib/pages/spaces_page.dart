@@ -96,7 +96,7 @@ class _SpacesPageState extends State<SpacesPage> {
         const Positioned(
           child: MagicalFloatingActionButton(),
           right: 16,
-          bottom: 16,
+          bottom: 32,
         )
       ],
     );

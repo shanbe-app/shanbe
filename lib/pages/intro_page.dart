@@ -1,5 +1,8 @@
 import 'dart:async';
 
+import 'package:client/rx/blocs/settings_bloc.dart';
+import 'package:client/rx/service_provider.dart';
+import 'package:client/rx/services/app_info_service.dart';
 import 'package:client/types/app_intro_data.dart';
 import 'package:client/utils/colors.dart';
 import 'package:client/utils/constants.dart';
@@ -23,6 +26,7 @@ class IntroPage extends StatefulWidget {
 class _IntroPageState extends State<IntroPage> {
   late PageController _controller;
   late List<AppIntroData> appIntroData;
+  late SettingsBloc settingsBloc;
   Timer? _timer;
   late AppLocalizations t;
 
@@ -31,6 +35,7 @@ class _IntroPageState extends State<IntroPage> {
     super.initState();
     _controller = PageController();
     t = AppLocalizations.of(widget.context)!;
+    settingsBloc = SettingsBloc(ServiceProvider.getInstance().storageService);
     appIntroData = [
       AppIntroData(t.appIntroTitle1, 'assets/files/meditate3.json',
           t.appIntroDescription1),
@@ -103,6 +108,7 @@ class _IntroPageState extends State<IntroPage> {
                                   PlatformDialogAction(
                                     child: Text(t.confirm),
                                     onPressed: () {
+                                      settingsBloc.onFirstVisit();
                                       Navigator.pushNamedAndRemoveUntil(
                                           context, '/spaces', (route) => false);
                                     },
@@ -208,6 +214,7 @@ class _IntroPageState extends State<IntroPage> {
                         fontSize: Constants.S1_FONT_SIZE),
                   ),
                   onPressed: () {
+                    settingsBloc.onFirstVisit();
                     Navigator.pushNamedAndRemoveUntil(
                         context, '/spaces', (route) => false);
                     Navigator.pushNamed(context, '/signup');

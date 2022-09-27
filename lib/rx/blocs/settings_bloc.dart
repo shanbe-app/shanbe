@@ -54,6 +54,11 @@ class SettingsBloc extends RxBloc {
         .getString(Constants.USER_DAILY_NOTIFICATION_TIME_PREFS));
   }
 
+  void onFirstVisit() {
+    storageService.sharedPreferences
+        .setBool(Constants.FIRST_VISIT_PREFS, false);
+  }
+
   void updateCalendar(CalendarType calendarType) {
     _calendar.add(calendarType);
     storageService.sharedPreferences.setString(Constants.USER_CALENDAR_PREFS,

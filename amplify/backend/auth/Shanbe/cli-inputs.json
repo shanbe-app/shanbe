@@ -17,7 +17,7 @@
     "emailVerificationSubject": "Your verification code",
     "emailVerificationMessage": "Your verification code is {####}",
     "defaultPasswordPolicy": true,
-    "passwordPolicyMinLength": "8",
+    "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [
       "Requires Lowercase",
       "Requires Uppercase",
@@ -95,27 +95,18 @@
       ]
     },
     "breakCircularDependency": true,
-    "dependsOn": [
-      {
-        "category": "function",
-        "resourceName": "ShanbeCustomMessage",
-        "triggerProvider": "Cognito",
-        "attributes": [
-          "Arn",
-          "Name"
-        ]
-      }
-    ],
+    "dependsOn": [],
+    "triggers": {},
+    "verificationBucketName": "shanbeverificationbucket",
+    "parentStack": {
+      "Ref": "AWS::StackId"
+    },
+    "permissions": [],
     "authProviders": [
       "accounts.google.com"
     ],
     "thirdPartyAuth": true,
-    "triggers": {
-      "CustomMessage": [
-        "verification-link"
-      ]
-    },
-    "hostedUIDomainName": "shanbef3bf14c6-f3bf14c6",
+    "hostedUIDomainName": "shanbe1adcd2b4-1adcd2b4",
     "authProvidersUserPool": [
       "Google"
     ],
@@ -123,12 +114,6 @@
       "641408115307-6ejhv5e2sfe1jgqtvj0b00m3ad02814c.apps.googleusercontent.com"
     ],
     "hostedUIProviderMeta": "[{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid profile email\",\"AttributeMapping\":{\"name\":\"name\",\"email\":\"email\",\"username\":\"sub\"}}]",
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"app.shanbe.auth://\"],\"LogoutURLs\":[\"app.shanbe.auth://\"]}",
-    "verificationBucketName": "shanbeverificationbucket",
-    "parentStack": {
-      "Ref": "AWS::StackId"
-    },
-    "authTriggerConnections": "[\n  {\n    \"triggerType\": \"CustomMessage\",\n    \"lambdaFunctionName\": \"ShanbeCustomMessage\"\n  }\n]",
-    "permissions": []
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"app.shanbe.auth://\"],\"LogoutURLs\":[\"app.shanbe.auth://\"]}"
   }
 }

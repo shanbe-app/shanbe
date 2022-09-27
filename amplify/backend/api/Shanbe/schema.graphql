@@ -39,7 +39,7 @@ type Todo @model @auth(rules: [{allow: private}, {allow: owner}]) {
   sectionID: ID! @index(name: "bySection")
   parentTodoID: ID @index(name: "byParent")
   spaceID: ID! @index(name: "bySpace")
-  section: Section @belongsTo(fields: ["bySection"])
+  section: Section @belongsTo(fields: ["sectionID"])
   reminders: [Reminder] @hasMany(indexName: "byTodo", fields: ["id"])
   tags: [Tag] @manyToMany(relationName: "TodoTag")
   todos: [Todo] @hasMany(indexName: "byParent", fields: ["id"])

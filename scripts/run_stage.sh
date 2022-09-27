@@ -1,1 +1,1 @@
-flutter run --flavor stage -t lib/main-stage.dart
+flutter run -t lib/main_stage.dart

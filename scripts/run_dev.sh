@@ -1,1 +1,1 @@
-flutter run --flavor dev -t lib/main-dev.dart
+flutter run -t lib/main_dev.dart

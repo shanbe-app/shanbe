@@ -1,1 +1,1 @@
-flutter run --flavor production -t lib/main-production.dart
+flutter run -t lib/main_production.dart

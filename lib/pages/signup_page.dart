@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
-import 'package:client/components/signup_intro.dart';
+import 'package:client/components/molecules/signup_intro.dart';
 import 'package:client/rx/blocs/auth_bloc.dart';
-import 'package:client/rx/services/app_service.dart';
+import 'package:client/rx/service_provider.dart';
 import 'package:client/types/enums.dart';
 import 'package:client/types/signup_intro_data.dart';
 import 'package:client/utils/colors.dart';

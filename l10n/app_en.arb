@@ -1558,7 +1558,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "appIntroTitle1": "Welcome to Shanbe!",
+  "appIntroTitle1": "Welcome to Shanbe",
   "@appIntroTitle1": {
     "type": "text",
     "placeholders": {}
@@ -1568,22 +1568,22 @@
     "type": "text",
     "placeholders": {}
   },
-  "appIntroTitle2": "There's an space for that!",
+  "appIntroTitle2": "Your space",
   "@appIntroTitle2": {
     "type": "text",
     "placeholders": {}
   },
-  "appIntroDescription2": "Create spaces to categorize your life",
+  "appIntroDescription2": "Categorize things into spaces to stay organized.",
   "@appIntroDescription2": {
     "type": "text",
     "placeholders": {}
   },
-  "appIntroTitle3": "All in one place",
+  "appIntroTitle3": "Spaces inside Spaces",
   "@appIntroTitle3": {
     "type": "text",
     "placeholders": {}
   },
-  "appIntroDescription3": "Have all your tasks, events and meetings in one place.",
+  "appIntroDescription3": "Create new spaces inside another spaces to stay focused.",
   "@appIntroDescription3": {
     "type": "text",
     "placeholders": {}
@@ -1593,7 +1593,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "appIntroDescription4": "Easy note taking for everyday use.",
+  "appIntroDescription4": "Easy note taking for everyday use",
   "@appIntroDescription4": {
     "type": "text",
     "placeholders": {}
@@ -1670,6 +1670,21 @@
   },
   "searchSpacePlaceholder": "Search all spaces",
   "@searchSpacePlaceholder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newTodo": "New Todo",
+  "@newTodo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "allSpaces": "All Spaces",
+  "@allSpaces": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nextSevenDays": "Next 7 Days",
+  "@nextSevenDays": {
     "type": "text",
     "placeholders": {}
   }

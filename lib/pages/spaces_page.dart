@@ -1,8 +1,6 @@
 import 'package:client/components/atoms/search_field.dart';
 import 'package:client/components/organisms/space_list.dart';
 import 'package:client/shanbe_icons.dart';
-import 'package:client/types/inbox_page_arguments.dart';
-import 'package:client/utils/colors.dart';
 import 'package:client/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,10 +9,8 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 class SpacesPage extends StatefulWidget {
   final BuildContext context;
-  final InboxPageArguments? arguments;
 
-  const SpacesPage({Key? key, this.arguments, required this.context})
-      : super(key: key);
+  const SpacesPage({Key? key, required this.context}) : super(key: key);
 
   @override
   _SpacesPageState createState() => _SpacesPageState();
@@ -63,7 +59,6 @@ class _SpacesPageState extends State<SpacesPage> {
               cupertino: (_, __) => CupertinoSliverNavigationBar(
                 largeTitle: Text(
                   t.spaces,
-                  style: const TextStyle(fontSize: Constants.H1_FONT_SIZE),
                 ),
                 stretch: false,
                 automaticallyImplyLeading: true,

@@ -1,8 +1,8 @@
-import 'package:client/pages/inbox_page.dart';
 import 'package:client/pages/intro_page.dart';
 import 'package:client/pages/loading_page.dart';
+import 'package:client/pages/spaces_page.dart';
 import 'package:client/rx/blocs/settings_bloc.dart';
-import 'package:client/rx/services/app_service.dart';
+import 'package:client/rx/service_provider.dart';
 import 'package:flutter/material.dart';
 
 class InitPage extends StatelessWidget {
@@ -16,7 +16,6 @@ class InitPage extends StatelessWidget {
       future: appInitFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          print('here');
           SettingsBloc bloc =
               SettingsBloc(ServiceProvider.getInstance().storageService);
           return StreamBuilder(
@@ -27,7 +26,7 @@ class InitPage extends StatelessWidget {
                   context: context,
                 );
               }
-              return InboxPage(
+              return SpacesPage(
                 context: context,
               );
             },

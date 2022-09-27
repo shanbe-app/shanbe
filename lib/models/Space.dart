@@ -48,8 +48,17 @@ class Space extends Model {
     return id;
   }
   
-  String? get name {
-    return _name;
+  String get name {
+    try {
+      return _name!;
+    } catch(e) {
+      throw new AmplifyCodeGenModelException(
+          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+          recoverySuggestion:
+            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+          underlyingException: e.toString()
+          );
+    }
   }
   
   String? get emoji {
@@ -84,9 +93,9 @@ class Space extends Model {
     return _updatedAt;
   }
   
-  const Space._internal({required this.id, name, emoji, color, todos, parentSpace, spaces, sections, createdAt, updatedAt}): _name = name, _emoji = emoji, _color = color, _todos = todos, _parentSpace = parentSpace, _spaces = spaces, _sections = sections, _createdAt = createdAt, _updatedAt = updatedAt;
+  const Space._internal({required this.id, required name, emoji, color, todos, parentSpace, spaces, sections, createdAt, updatedAt}): _name = name, _emoji = emoji, _color = color, _todos = todos, _parentSpace = parentSpace, _spaces = spaces, _sections = sections, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory Space({String? id, String? name, String? emoji, String? color, List<Todo>? todos, String? parentSpace, List<Todo>? spaces, List<Section>? sections}) {
+  factory Space({String? id, required String name, String? emoji, String? color, List<Todo>? todos, String? parentSpace, List<Todo>? spaces, List<Section>? sections}) {
     return Space._internal(
       id: id == null ? UUID.getUUID() : id,
       name: name,
@@ -216,7 +225,7 @@ class Space extends Model {
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
       key: Space.NAME,
-      isRequired: false,
+      isRequired: true,
       ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     

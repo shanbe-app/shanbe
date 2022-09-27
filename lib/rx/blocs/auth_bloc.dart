@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:client/rx/blocs/rx_bloc.dart';
-import 'package:client/rx/services/app_service.dart';
+import 'package:client/rx/service_provider.dart';
 import 'package:client/types/enums.dart';
 import 'package:client/types/user.dart';
 import 'package:client/utils/constants.dart';

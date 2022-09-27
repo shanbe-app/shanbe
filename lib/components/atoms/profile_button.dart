@@ -1,5 +1,5 @@
-import 'package:client/components/signup_button.dart';
-import 'package:client/components/profile_avatar.dart';
+import 'package:client/components/atoms/signup_button.dart';
+import 'package:client/components/atoms/profile_avatar.dart';
 import 'package:client/rx/blocs/auth_bloc.dart';
 import 'package:client/types/user.dart';
 import 'package:client/utils/constants.dart';

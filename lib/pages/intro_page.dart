@@ -1,16 +1,15 @@
 import 'dart:async';
 
-import 'package:client/types/inbox_page_arguments.dart';
-import 'package:client/utils/colors.dart';
 import 'package:client/types/app_intro_data.dart';
+import 'package:client/utils/colors.dart';
 import 'package:client/utils/constants.dart';
 import 'package:client/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:lottie/lottie.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class IntroPage extends StatefulWidget {
   final BuildContext context;
@@ -24,7 +23,7 @@ class IntroPage extends StatefulWidget {
 class _IntroPageState extends State<IntroPage> {
   late PageController _controller;
   late List<AppIntroData> appIntroData;
-  late Timer _timer;
+  Timer? _timer;
   late AppLocalizations t;
 
   @override
@@ -35,15 +34,18 @@ class _IntroPageState extends State<IntroPage> {
     appIntroData = [
       AppIntroData(t.appIntroTitle1, 'assets/files/meditate3.json',
           t.appIntroDescription1),
-      AppIntroData(
-          t.appIntroTitle2, 'assets/files/yoga2.json', t.appIntroDescription2),
-      AppIntroData(t.appIntroTitle3, 'assets/files/calendar2.json',
-          t.appIntroDescription3,
+      AppIntroData(t.appIntroTitle2, 'assets/files/calendar2.json',
+          t.appIntroDescription2,
           reverse: true),
+      AppIntroData(
+          t.appIntroTitle3, 'assets/files/yoga2.json', t.appIntroDescription3),
       AppIntroData(
           t.appIntroTitle4, 'assets/files/fly.json', t.appIntroDescription4),
     ];
-    _timer = Timer.periodic(const Duration(seconds: 10), (timer) {
+  }
+
+  void setupTimer() {
+    _timer = Timer.periodic(const Duration(seconds: 15), (timer) {
       if (_controller.page == null) return;
       if (_controller.page!.toInt() + 1 == appIntroData.length) {
         _controller.animateToPage(0,
@@ -58,7 +60,7 @@ class _IntroPageState extends State<IntroPage> {
   @override
   void dispose() {
     super.dispose();
-    _timer.cancel();
+    _timer?.cancel();
     _controller.dispose();
   }
 
@@ -80,7 +82,10 @@ class _IntroPageState extends State<IntroPage> {
                   PlatformTextButton(
                     child: Text(
                       t.skip,
-                      style: TextStyle(color: placeholderColor(context)),
+                      style: TextStyle(
+                          color: placeholderColor(context),
+                          fontWeight: Constants.MEDIUM_FONT_WEIGHT,
+                          fontSize: Constants.S1_FONT_SIZE),
                     ),
                     onPressed: () {
                       showPlatformDialog(
@@ -130,6 +135,10 @@ class _IntroPageState extends State<IntroPage> {
                   flex: 10,
                   child: PageView(
                     controller: _controller,
+                    onPageChanged: (page) {
+                      _timer?.cancel();
+                      setupTimer();
+                    },
                     children: appIntroData
                         .map((e) => Column(
                               mainAxisSize: MainAxisSize.max,
@@ -154,19 +163,23 @@ class _IntroPageState extends State<IntroPage> {
                                 const SizedBox(
                                   height: 16,
                                 ),
-                                Text(e.description,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: secondaryTextColor(context),
-                                        fontWeight:
-                                            Constants.REGULAR_FONT_WEIGHT,
-                                        fontSize: Constants.H6_FONT_SIZE))
+                                SizedBox(
+                                  height: 64,
+                                  child: Text(e.description,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: secondaryTextColor(context),
+                                          height: 1.6,
+                                          fontWeight:
+                                              Constants.REGULAR_FONT_WEIGHT,
+                                          fontSize: Constants.H6_FONT_SIZE)),
+                                )
                               ],
                             ))
                         .toList(),
                   )),
               const SizedBox(
-                height: 24,
+                height: 16,
               ),
               Flexible(
                 flex: 1,
@@ -178,7 +191,7 @@ class _IntroPageState extends State<IntroPage> {
                   effect: WormEffect(
                       dotWidth: 10,
                       dotHeight: 10,
-                      dotColor: placeholderColor(context),
+                      dotColor: dividerColor(context),
                       activeDotColor: Constants.SECONDARY_COLOR_LIGHT),
                 ),
               ),
@@ -186,7 +199,7 @@ class _IntroPageState extends State<IntroPage> {
                 height: 32,
               ),
               Flexible(
-                flex: 2,
+                flex: 1,
                 child: PlatformElevatedButton(
                   child: Text(
                     t.letsGo,

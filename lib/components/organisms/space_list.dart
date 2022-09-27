@@ -1,12 +1,10 @@
 import 'package:amplify_datastore/amplify_datastore.dart';
 import 'package:client/components/atoms/space_item.dart';
-import 'package:client/components/today_icon.dart';
 import 'package:client/models/Space.dart';
 import 'package:client/rx/blocs/space_bloc.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:client/rx/managers/smart_spaces.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 class SpaceList extends StatefulWidget {
   final AppLocalizations t;
@@ -19,11 +17,13 @@ class SpaceList extends StatefulWidget {
 
 class _SpaceListState extends State<SpaceList> {
   late SpaceBloc spaceBloc;
+  late SmartSpaceManager smartSpaceManager;
 
   @override
   void initState() {
     super.initState();
     spaceBloc = SpaceBloc();
+    smartSpaceManager = SmartSpaceManager(widget.t);
   }
 
   @override
@@ -37,16 +37,20 @@ class _SpaceListState extends State<SpaceList> {
             if (querySnapshot != null) {
               return Column(
                 children: [
-                  SpaceItem(space: Space(name: 'Today')),
+                  ...smartSpaceManager.smartSpaces
+                      .map((e) => SpaceItem(
+                            space: e,
+                          ))
+                      .toList(),
                   ...querySnapshot.items
-                      .map((e) => PlatformTextButton(
-                            child: Text(e.name ?? ''),
+                      .map((e) => SpaceItem(
+                            space: e,
                           ))
                       .toList()
                 ],
               );
             }
-            return Text('loading');
+            return const Text('loading');
           },
           stream: spaceBloc.spaces,
         ));

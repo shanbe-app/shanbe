@@ -1,4 +1,4 @@
-import 'package:client/components/premium_crown.dart';
+import 'package:client/components/atoms/premium_crown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jdenticon_dart/jdenticon_dart.dart';
@@ -39,8 +39,8 @@ class ProfileAvatar extends StatelessWidget {
                 ? Image.network(
                     picture!,
                     fit: BoxFit.contain,
-              width: 64,
-              height: 64,
+                    width: 64,
+                    height: 64,
                   )
                 : SvgPicture.string(
                     Jdenticon.toSvg(email, size: 64),

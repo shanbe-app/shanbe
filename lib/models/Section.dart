@@ -169,7 +169,7 @@ class Section extends Model {
     ];
     
     modelSchemaDefinition.indexes = [
-      ModelIndex(fields: const ["spaceID"], name: "bySpace")
+      ModelIndex(fields: const ["spaceID"], name: "bySectionSpace")
     ];
     
     modelSchemaDefinition.addField(ModelFieldDefinition.id());

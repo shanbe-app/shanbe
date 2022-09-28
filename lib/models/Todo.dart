@@ -384,8 +384,8 @@ class Todo extends Model {
     
     modelSchemaDefinition.indexes = [
       ModelIndex(fields: const ["sectionID"], name: "bySection"),
-      ModelIndex(fields: const ["parentID"], name: "byParent"),
-      ModelIndex(fields: const ["spaceID"], name: "bySpace"),
+      ModelIndex(fields: const ["parentID"], name: "byParentTodo"),
+      ModelIndex(fields: const ["spaceID"], name: "byTodoSpace"),
       ModelIndex(fields: const ["nextItemID"], name: "byNextItem")
     ];
     

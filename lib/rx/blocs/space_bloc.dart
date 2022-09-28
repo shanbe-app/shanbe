@@ -9,6 +9,6 @@ class SpaceBloc extends RxBloc {
       Amplify.DataStore.observeQuery(Space.classType);
 
   void createSpace({Space? parentSpace, required Space newSpace}) {
-    Amplify.DataStore.save(newSpace);
+    Amplify.DataStore.save(newSpace.copyWith());
   }
 }

@@ -14,11 +14,11 @@ type Space @model @auth(rules: [{allow: private}]) {
   name: String!
   emoji: String
   color: String
-  todos: [Todo] @hasMany(indexName: "bySpace", fields: ["id"])
-  sections: [Section] @hasMany(indexName: "bySpace", fields: ["id"])
-  parentID: ID @index(name: "byParent")
-  spaces: [Space] @hasMany(indexName: "byParent", fields: ["id"])
-  parent: Space @hasOne(fields: ["parentID"])
+  todos: [Todo] @hasMany(indexName: "byTodoSpace", fields: ["id"])
+  sections: [Section] @hasMany(indexName: "bySectionSpace", fields: ["id"])
+  parentID: ID @index(name: "byParentSpace")
+  spaces: [Space] @hasMany(indexName: "byParentSpace", fields: ["id"])
+  parent: Space @belongsTo(fields: ["parentID"])
 }
 
 type Todo @model @auth(rules: [{allow: private}, {allow: owner}]) {
@@ -38,10 +38,10 @@ type Todo @model @auth(rules: [{allow: private}, {allow: owner}]) {
   rrule: String
   sectionID: ID! @index(name: "bySection")
   section: Section @belongsTo(fields: ["sectionID"])
-  parentID: ID @index(name: "byParent")
+  parentID: ID @index(name: "byParentTodo")
   parent: Todo @belongsTo(fields: ["parentID"])
-  todos: [Todo] @hasMany(indexName: "byParent", fields: ["id"])
-  spaceID: ID! @index(name: "bySpace")
+  todos: [Todo] @hasMany(indexName: "byParentTodo", fields: ["id"])
+  spaceID: ID! @index(name: "byTodoSpace")
   space: Space! @belongsTo(fields: ["spaceID"])
   reminders: [Reminder] @hasMany(indexName: "byTodo", fields: ["id"])
   tags: [Tag] @manyToMany(relationName: "TodoTag")
@@ -59,7 +59,7 @@ type Section @model @auth(rules: [{allow: owner}]) {
   id: ID!
   name: String!
   todos: [Todo] @hasMany(indexName: "bySection", fields: ["id"])
-  spaceID: ID! @index(name: "bySpace")
+  spaceID: ID! @index(name: "bySectionSpace")
   space: Space @belongsTo(fields: ["spaceID"])
 }
 

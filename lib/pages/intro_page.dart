@@ -123,7 +123,7 @@ class _IntroPageState extends State<IntroPage> {
                 ],
               ),
               Image.asset(
-                'assets/images/logo_android.png',
+                'assets/images/logo.png',
                 width: 128,
                 fit: BoxFit.contain,
               ),

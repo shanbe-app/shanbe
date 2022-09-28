@@ -18,7 +18,7 @@ type Space @model @auth(rules: [{allow: private}]) {
   sections: [Section] @hasMany(indexName: "bySpace", fields: ["id"])
   parentID: ID @index(name: "byParent")
   spaces: [Space] @hasMany(indexName: "byParent", fields: ["id"])
-  parent: Space @belongsTo(fields: ["parentID"])
+  parent: Space @hasOne(fields: ["parentID"])
 }
 
 type Todo @model @auth(rules: [{allow: private}, {allow: owner}]) {

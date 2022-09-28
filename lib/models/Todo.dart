@@ -44,13 +44,13 @@ class Todo extends Model {
   final bool? _isAllDay;
   final String? _rrule;
   final Section? _section;
+  final Todo? _parent;
+  final List<Todo>? _todos;
+  final Space? _space;
   final List<Reminder>? _reminders;
   final List<TodoTag>? _tags;
-  final List<Todo>? _todos;
+  final String? _nextItemID;
   final Todo? _nextItem;
-  final Space? _space;
-  final Todo? _parentTodo;
-  final String? _todoNextItemId;
 
   @override
   getInstanceType() => classType;
@@ -125,20 +125,12 @@ class Todo extends Model {
     return _section;
   }
   
-  List<Reminder>? get reminders {
-    return _reminders;
-  }
-  
-  List<TodoTag>? get tags {
-    return _tags;
+  Todo? get parent {
+    return _parent;
   }
   
   List<Todo>? get todos {
     return _todos;
-  }
-  
-  Todo? get nextItem {
-    return _nextItem;
   }
   
   Space get space {
@@ -154,17 +146,25 @@ class Todo extends Model {
     }
   }
   
-  Todo? get parentTodo {
-    return _parentTodo;
+  List<Reminder>? get reminders {
+    return _reminders;
   }
   
-  String? get todoNextItemId {
-    return _todoNextItemId;
+  List<TodoTag>? get tags {
+    return _tags;
   }
   
-  const Todo._internal({required this.id, required title, content, createdAt, updatedAt, startDate, dueDate, endDate, doneAt, priority, timezone, isFloating, isAllDay, rrule, section, reminders, tags, todos, nextItem, required space, parentTodo, todoNextItemId}): _title = title, _content = content, _createdAt = createdAt, _updatedAt = updatedAt, _startDate = startDate, _dueDate = dueDate, _endDate = endDate, _doneAt = doneAt, _priority = priority, _timezone = timezone, _isFloating = isFloating, _isAllDay = isAllDay, _rrule = rrule, _section = section, _reminders = reminders, _tags = tags, _todos = todos, _nextItem = nextItem, _space = space, _parentTodo = parentTodo, _todoNextItemId = todoNextItemId;
+  String? get nextItemID {
+    return _nextItemID;
+  }
   
-  factory Todo({String? id, required String title, String? content, TemporalDateTime? createdAt, TemporalDateTime? updatedAt, TemporalDateTime? startDate, TemporalDateTime? dueDate, TemporalDateTime? endDate, TemporalDateTime? doneAt, int? priority, String? timezone, bool? isFloating, bool? isAllDay, String? rrule, Section? section, List<Reminder>? reminders, List<TodoTag>? tags, List<Todo>? todos, Todo? nextItem, required Space space, Todo? parentTodo, String? todoNextItemId}) {
+  Todo? get nextItem {
+    return _nextItem;
+  }
+  
+  const Todo._internal({required this.id, required title, content, createdAt, updatedAt, startDate, dueDate, endDate, doneAt, priority, timezone, isFloating, isAllDay, rrule, section, parent, todos, required space, reminders, tags, nextItemID, nextItem}): _title = title, _content = content, _createdAt = createdAt, _updatedAt = updatedAt, _startDate = startDate, _dueDate = dueDate, _endDate = endDate, _doneAt = doneAt, _priority = priority, _timezone = timezone, _isFloating = isFloating, _isAllDay = isAllDay, _rrule = rrule, _section = section, _parent = parent, _todos = todos, _space = space, _reminders = reminders, _tags = tags, _nextItemID = nextItemID, _nextItem = nextItem;
+  
+  factory Todo({String? id, required String title, String? content, TemporalDateTime? createdAt, TemporalDateTime? updatedAt, TemporalDateTime? startDate, TemporalDateTime? dueDate, TemporalDateTime? endDate, TemporalDateTime? doneAt, int? priority, String? timezone, bool? isFloating, bool? isAllDay, String? rrule, Section? section, Todo? parent, List<Todo>? todos, required Space space, List<Reminder>? reminders, List<TodoTag>? tags, String? nextItemID, Todo? nextItem}) {
     return Todo._internal(
       id: id == null ? UUID.getUUID() : id,
       title: title,
@@ -181,13 +181,13 @@ class Todo extends Model {
       isAllDay: isAllDay,
       rrule: rrule,
       section: section,
+      parent: parent,
+      todos: todos != null ? List<Todo>.unmodifiable(todos) : todos,
+      space: space,
       reminders: reminders != null ? List<Reminder>.unmodifiable(reminders) : reminders,
       tags: tags != null ? List<TodoTag>.unmodifiable(tags) : tags,
-      todos: todos != null ? List<Todo>.unmodifiable(todos) : todos,
-      nextItem: nextItem,
-      space: space,
-      parentTodo: parentTodo,
-      todoNextItemId: todoNextItemId);
+      nextItemID: nextItemID,
+      nextItem: nextItem);
   }
   
   bool equals(Object other) {
@@ -213,13 +213,13 @@ class Todo extends Model {
       _isAllDay == other._isAllDay &&
       _rrule == other._rrule &&
       _section == other._section &&
+      _parent == other._parent &&
+      DeepCollectionEquality().equals(_todos, other._todos) &&
+      _space == other._space &&
       DeepCollectionEquality().equals(_reminders, other._reminders) &&
       DeepCollectionEquality().equals(_tags, other._tags) &&
-      DeepCollectionEquality().equals(_todos, other._todos) &&
-      _nextItem == other._nextItem &&
-      _space == other._space &&
-      _parentTodo == other._parentTodo &&
-      _todoNextItemId == other._todoNextItemId;
+      _nextItemID == other._nextItemID &&
+      _nextItem == other._nextItem;
   }
   
   @override
@@ -245,15 +245,15 @@ class Todo extends Model {
     buffer.write("isAllDay=" + (_isAllDay != null ? _isAllDay!.toString() : "null") + ", ");
     buffer.write("rrule=" + "$_rrule" + ", ");
     buffer.write("section=" + (_section != null ? _section!.toString() : "null") + ", ");
+    buffer.write("parent=" + (_parent != null ? _parent!.toString() : "null") + ", ");
     buffer.write("space=" + (_space != null ? _space!.toString() : "null") + ", ");
-    buffer.write("parentTodo=" + (_parentTodo != null ? _parentTodo!.toString() : "null") + ", ");
-    buffer.write("todoNextItemId=" + "$_todoNextItemId");
+    buffer.write("nextItemID=" + "$_nextItemID");
     buffer.write("}");
     
     return buffer.toString();
   }
   
-  Todo copyWith({String? id, String? title, String? content, TemporalDateTime? createdAt, TemporalDateTime? updatedAt, TemporalDateTime? startDate, TemporalDateTime? dueDate, TemporalDateTime? endDate, TemporalDateTime? doneAt, int? priority, String? timezone, bool? isFloating, bool? isAllDay, String? rrule, Section? section, List<Reminder>? reminders, List<TodoTag>? tags, List<Todo>? todos, Todo? nextItem, Space? space, Todo? parentTodo, String? todoNextItemId}) {
+  Todo copyWith({String? id, String? title, String? content, TemporalDateTime? createdAt, TemporalDateTime? updatedAt, TemporalDateTime? startDate, TemporalDateTime? dueDate, TemporalDateTime? endDate, TemporalDateTime? doneAt, int? priority, String? timezone, bool? isFloating, bool? isAllDay, String? rrule, Section? section, Todo? parent, List<Todo>? todos, Space? space, List<Reminder>? reminders, List<TodoTag>? tags, String? nextItemID, Todo? nextItem}) {
     return Todo._internal(
       id: id ?? this.id,
       title: title ?? this.title,
@@ -270,13 +270,13 @@ class Todo extends Model {
       isAllDay: isAllDay ?? this.isAllDay,
       rrule: rrule ?? this.rrule,
       section: section ?? this.section,
+      parent: parent ?? this.parent,
+      todos: todos ?? this.todos,
+      space: space ?? this.space,
       reminders: reminders ?? this.reminders,
       tags: tags ?? this.tags,
-      todos: todos ?? this.todos,
-      nextItem: nextItem ?? this.nextItem,
-      space: space ?? this.space,
-      parentTodo: parentTodo ?? this.parentTodo,
-      todoNextItemId: todoNextItemId ?? this.todoNextItemId);
+      nextItemID: nextItemID ?? this.nextItemID,
+      nextItem: nextItem ?? this.nextItem);
   }
   
   Todo.fromJson(Map<String, dynamic> json)  
@@ -297,6 +297,18 @@ class Todo extends Model {
       _section = json['section']?['serializedData'] != null
         ? Section.fromJson(new Map<String, dynamic>.from(json['section']['serializedData']))
         : null,
+      _parent = json['parent']?['serializedData'] != null
+        ? Todo.fromJson(new Map<String, dynamic>.from(json['parent']['serializedData']))
+        : null,
+      _todos = json['todos'] is List
+        ? (json['todos'] as List)
+          .where((e) => e?['serializedData'] != null)
+          .map((e) => Todo.fromJson(new Map<String, dynamic>.from(e['serializedData'])))
+          .toList()
+        : null,
+      _space = json['space']?['serializedData'] != null
+        ? Space.fromJson(new Map<String, dynamic>.from(json['space']['serializedData']))
+        : null,
       _reminders = json['reminders'] is List
         ? (json['reminders'] as List)
           .where((e) => e?['serializedData'] != null)
@@ -309,25 +321,13 @@ class Todo extends Model {
           .map((e) => TodoTag.fromJson(new Map<String, dynamic>.from(e['serializedData'])))
           .toList()
         : null,
-      _todos = json['todos'] is List
-        ? (json['todos'] as List)
-          .where((e) => e?['serializedData'] != null)
-          .map((e) => Todo.fromJson(new Map<String, dynamic>.from(e['serializedData'])))
-          .toList()
-        : null,
+      _nextItemID = json['nextItemID'],
       _nextItem = json['nextItem']?['serializedData'] != null
         ? Todo.fromJson(new Map<String, dynamic>.from(json['nextItem']['serializedData']))
-        : null,
-      _space = json['space']?['serializedData'] != null
-        ? Space.fromJson(new Map<String, dynamic>.from(json['space']['serializedData']))
-        : null,
-      _parentTodo = json['parentTodo']?['serializedData'] != null
-        ? Todo.fromJson(new Map<String, dynamic>.from(json['parentTodo']['serializedData']))
-        : null,
-      _todoNextItemId = json['todoNextItemId'];
+        : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'title': _title, 'content': _content, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format(), 'startDate': _startDate?.format(), 'dueDate': _dueDate?.format(), 'endDate': _endDate?.format(), 'doneAt': _doneAt?.format(), 'priority': _priority, 'timezone': _timezone, 'isFloating': _isFloating, 'isAllDay': _isAllDay, 'rrule': _rrule, 'section': _section?.toJson(), 'reminders': _reminders?.map((Reminder? e) => e?.toJson()).toList(), 'tags': _tags?.map((TodoTag? e) => e?.toJson()).toList(), 'todos': _todos?.map((Todo? e) => e?.toJson()).toList(), 'nextItem': _nextItem?.toJson(), 'space': _space?.toJson(), 'parentTodo': _parentTodo?.toJson(), 'todoNextItemId': _todoNextItemId
+    'id': id, 'title': _title, 'content': _content, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format(), 'startDate': _startDate?.format(), 'dueDate': _dueDate?.format(), 'endDate': _endDate?.format(), 'doneAt': _doneAt?.format(), 'priority': _priority, 'timezone': _timezone, 'isFloating': _isFloating, 'isAllDay': _isAllDay, 'rrule': _rrule, 'section': _section?.toJson(), 'parent': _parent?.toJson(), 'todos': _todos?.map((Todo? e) => e?.toJson()).toList(), 'space': _space?.toJson(), 'reminders': _reminders?.map((Reminder? e) => e?.toJson()).toList(), 'tags': _tags?.map((TodoTag? e) => e?.toJson()).toList(), 'nextItemID': _nextItemID, 'nextItem': _nextItem?.toJson()
   };
 
   static final QueryField ID = QueryField(fieldName: "id");
@@ -347,25 +347,25 @@ class Todo extends Model {
   static final QueryField SECTION = QueryField(
     fieldName: "section",
     fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Section).toString()));
+  static final QueryField PARENT = QueryField(
+    fieldName: "parent",
+    fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Todo).toString()));
+  static final QueryField TODOS = QueryField(
+    fieldName: "todos",
+    fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Todo).toString()));
+  static final QueryField SPACE = QueryField(
+    fieldName: "space",
+    fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Space).toString()));
   static final QueryField REMINDERS = QueryField(
     fieldName: "reminders",
     fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Reminder).toString()));
   static final QueryField TAGS = QueryField(
     fieldName: "tags",
     fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (TodoTag).toString()));
-  static final QueryField TODOS = QueryField(
-    fieldName: "todos",
-    fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Todo).toString()));
+  static final QueryField NEXTITEMID = QueryField(fieldName: "nextItemID");
   static final QueryField NEXTITEM = QueryField(
     fieldName: "nextItem",
     fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Todo).toString()));
-  static final QueryField SPACE = QueryField(
-    fieldName: "space",
-    fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Space).toString()));
-  static final QueryField PARENTTODO = QueryField(
-    fieldName: "parentTodo",
-    fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Todo).toString()));
-  static final QueryField TODONEXTITEMID = QueryField(fieldName: "todoNextItemId");
   static var schema = Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
     modelSchemaDefinition.name = "Todo";
     modelSchemaDefinition.pluralName = "Todos";
@@ -394,8 +394,9 @@ class Todo extends Model {
     
     modelSchemaDefinition.indexes = [
       ModelIndex(fields: const ["sectionID"], name: "bySection"),
-      ModelIndex(fields: const ["parentTodoID"], name: "byParent"),
-      ModelIndex(fields: const ["spaceID"], name: "bySpace")
+      ModelIndex(fields: const ["parentID"], name: "byParent"),
+      ModelIndex(fields: const ["spaceID"], name: "bySpace"),
+      ModelIndex(fields: const ["nextItemID"], name: "byNextItem")
     ];
     
     modelSchemaDefinition.addField(ModelFieldDefinition.id());
@@ -485,32 +486,18 @@ class Todo extends Model {
       ofModelName: (Section).toString()
     ));
     
-    modelSchemaDefinition.addField(ModelFieldDefinition.hasMany(
-      key: Todo.REMINDERS,
+    modelSchemaDefinition.addField(ModelFieldDefinition.belongsTo(
+      key: Todo.PARENT,
       isRequired: false,
-      ofModelName: (Reminder).toString(),
-      associatedKey: Reminder.TODOID
-    ));
-    
-    modelSchemaDefinition.addField(ModelFieldDefinition.hasMany(
-      key: Todo.TAGS,
-      isRequired: false,
-      ofModelName: (TodoTag).toString(),
-      associatedKey: TodoTag.TODO
+      targetName: "parentID",
+      ofModelName: (Todo).toString()
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.hasMany(
       key: Todo.TODOS,
       isRequired: false,
       ofModelName: (Todo).toString(),
-      associatedKey: Todo.PARENTTODO
-    ));
-    
-    modelSchemaDefinition.addField(ModelFieldDefinition.hasOne(
-      key: Todo.NEXTITEM,
-      isRequired: false,
-      ofModelName: (Todo).toString(),
-      associatedKey: Todo.PARENTTODO
+      associatedKey: Todo.PARENT
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.belongsTo(
@@ -520,17 +507,31 @@ class Todo extends Model {
       ofModelName: (Space).toString()
     ));
     
-    modelSchemaDefinition.addField(ModelFieldDefinition.belongsTo(
-      key: Todo.PARENTTODO,
+    modelSchemaDefinition.addField(ModelFieldDefinition.hasMany(
+      key: Todo.REMINDERS,
       isRequired: false,
-      targetName: "parentTodoID",
-      ofModelName: (Todo).toString()
+      ofModelName: (Reminder).toString(),
+      associatedKey: Reminder.TODO
+    ));
+    
+    modelSchemaDefinition.addField(ModelFieldDefinition.hasMany(
+      key: Todo.TAGS,
+      isRequired: false,
+      ofModelName: (TodoTag).toString(),
+      associatedKey: TodoTag.TODO
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Todo.TODONEXTITEMID,
+      key: Todo.NEXTITEMID,
       isRequired: false,
       ofType: ModelFieldType(ModelFieldTypeEnum.string)
+    ));
+    
+    modelSchemaDefinition.addField(ModelFieldDefinition.hasOne(
+      key: Todo.NEXTITEM,
+      isRequired: false,
+      ofModelName: (Todo).toString(),
+      associatedKey: Todo.PARENT
     ));
   });
 }

@@ -31,7 +31,6 @@ class Reminder extends Model {
   final String id;
   final String? _trigger;
   final ReminderStatus? _status;
-  final String? _todoID;
   final Todo? _todo;
   final TemporalDateTime? _createdAt;
   final TemporalDateTime? _updatedAt;
@@ -61,19 +60,6 @@ class Reminder extends Model {
     return _status;
   }
   
-  String get todoID {
-    try {
-      return _todoID!;
-    } catch(e) {
-      throw new AmplifyCodeGenModelException(
-          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
-          recoverySuggestion:
-            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
-          underlyingException: e.toString()
-          );
-    }
-  }
-  
   Todo? get todo {
     return _todo;
   }
@@ -86,14 +72,13 @@ class Reminder extends Model {
     return _updatedAt;
   }
   
-  const Reminder._internal({required this.id, required trigger, status, required todoID, todo, createdAt, updatedAt}): _trigger = trigger, _status = status, _todoID = todoID, _todo = todo, _createdAt = createdAt, _updatedAt = updatedAt;
+  const Reminder._internal({required this.id, required trigger, status, todo, createdAt, updatedAt}): _trigger = trigger, _status = status, _todo = todo, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory Reminder({String? id, required String trigger, ReminderStatus? status, required String todoID, Todo? todo}) {
+  factory Reminder({String? id, required String trigger, ReminderStatus? status, Todo? todo}) {
     return Reminder._internal(
       id: id == null ? UUID.getUUID() : id,
       trigger: trigger,
       status: status,
-      todoID: todoID,
       todo: todo);
   }
   
@@ -108,7 +93,6 @@ class Reminder extends Model {
       id == other.id &&
       _trigger == other._trigger &&
       _status == other._status &&
-      _todoID == other._todoID &&
       _todo == other._todo;
   }
   
@@ -123,7 +107,6 @@ class Reminder extends Model {
     buffer.write("id=" + "$id" + ", ");
     buffer.write("trigger=" + "$_trigger" + ", ");
     buffer.write("status=" + (_status != null ? enumToString(_status)! : "null") + ", ");
-    buffer.write("todoID=" + "$_todoID" + ", ");
     buffer.write("todo=" + (_todo != null ? _todo!.toString() : "null") + ", ");
     buffer.write("createdAt=" + (_createdAt != null ? _createdAt!.format() : "null") + ", ");
     buffer.write("updatedAt=" + (_updatedAt != null ? _updatedAt!.format() : "null"));
@@ -132,12 +115,11 @@ class Reminder extends Model {
     return buffer.toString();
   }
   
-  Reminder copyWith({String? id, String? trigger, ReminderStatus? status, String? todoID, Todo? todo}) {
+  Reminder copyWith({String? id, String? trigger, ReminderStatus? status, Todo? todo}) {
     return Reminder._internal(
       id: id ?? this.id,
       trigger: trigger ?? this.trigger,
       status: status ?? this.status,
-      todoID: todoID ?? this.todoID,
       todo: todo ?? this.todo);
   }
   
@@ -145,7 +127,6 @@ class Reminder extends Model {
     : id = json['id'],
       _trigger = json['trigger'],
       _status = enumFromString<ReminderStatus>(json['status'], ReminderStatus.values),
-      _todoID = json['todoID'],
       _todo = json['todo']?['serializedData'] != null
         ? Todo.fromJson(new Map<String, dynamic>.from(json['todo']['serializedData']))
         : null,
@@ -153,13 +134,12 @@ class Reminder extends Model {
       _updatedAt = json['updatedAt'] != null ? TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'trigger': _trigger, 'status': enumToString(_status), 'todoID': _todoID, 'todo': _todo?.toJson(), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
+    'id': id, 'trigger': _trigger, 'status': enumToString(_status), 'todo': _todo?.toJson(), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
 
   static final QueryField ID = QueryField(fieldName: "id");
   static final QueryField TRIGGER = QueryField(fieldName: "trigger");
   static final QueryField STATUS = QueryField(fieldName: "status");
-  static final QueryField TODOID = QueryField(fieldName: "todoID");
   static final QueryField TODO = QueryField(
     fieldName: "todo",
     fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Todo).toString()));
@@ -199,16 +179,10 @@ class Reminder extends Model {
       ofType: ModelFieldType(ModelFieldTypeEnum.enumeration)
     ));
     
-    modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Reminder.TODOID,
-      isRequired: true,
-      ofType: ModelFieldType(ModelFieldTypeEnum.string)
-    ));
-    
     modelSchemaDefinition.addField(ModelFieldDefinition.belongsTo(
       key: Reminder.TODO,
       isRequired: false,
-      targetName: "todoRemindersId",
+      targetName: "todoID",
       ofModelName: (Todo).toString()
     ));
     

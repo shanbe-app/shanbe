@@ -16,7 +16,7 @@
         tools:replace="android:label"
         android:label="Shanbe"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/launcher_icon"
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_rules">
        <activity

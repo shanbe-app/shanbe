@@ -70,8 +70,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0
-#  flutter_flavorizr: ^2.1.2
   flutter_launcher_icons: ^0.9.2
+  flutter_native_splash: ^2.2.10+1
 
 flutter:
   uses-material-design: true
@@ -106,44 +106,3 @@ flutter:
     - family: Shanbe
       fonts:
         - asset: assets/fonts/icons/Shanbe.ttf
-
-flutter_icons:
-  android: "launcher_icon"
-  ios: true
-  image_path: "assets/images/logo_ios.png"
-  adaptive_icon_background: "#00c8ff"
-  adaptive_icon_foreground: "assets/images/logo_android.png"
-
-#flavorizr:
-#  app:
-#    android:
-#      flavorDimensions: "flavor-type"
-#    ios:
-#  flavors:
-#    dev:
-#      app:
-#        name: "Shanbe dev"
-#      android:
-#        applicationId: "app.shanbe.client"
-#        icon: "assets/images/logo_android.png"
-#      ios:
-#        bundleId: "app.shanbe.client"
-#        icon: "assets/images/logo_ios.png"
-#    stage:
-#      app:
-#        name: "Shanbe stage"
-#      android:
-#        applicationId: "app.shanbe.client"
-#        icon: "assets/images/logo_android.png"
-#      ios:
-#        bundleId: "app.shanbe.client"
-#        icon: "assets/images/logo_ios.png"
-#    production:
-#      app:
-#        name: "Shanbe"
-#      android:
-#        applicationId: "app.shanbe.client"
-#        icon: "assets/images/logo_android.png"
-#      ios:
-#        bundleId: "app.shanbe.client"
-#        icon: "assets/images/logo_ios.png"

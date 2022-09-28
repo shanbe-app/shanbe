@@ -1,4 +1,5 @@
 import 'package:client/components/atoms/magical_floating_action_button.dart';
+import 'package:client/components/atoms/profile_avatar.dart';
 import 'package:client/components/atoms/search_field.dart';
 import 'package:client/components/atoms/user_avatar.dart';
 import 'package:client/components/molecules/space_dialog.dart';
@@ -80,9 +81,9 @@ class _SpacesPageState extends State<SpacesPage> {
                   builder: (context, snapshot) {
                     User? user = snapshot.data as User?;
                     return PlatformIconButton(
-                      icon: Icon(
-                        PlatformIcons(context).settings,
-                        size: Constants.ICON_LARGE_SIZE,
+                      icon: UserAvatar(
+                        avatar: user?.picture,
+                        name: user?.name,
                       ),
                       padding: EdgeInsets.zero,
                       onPressed: () {

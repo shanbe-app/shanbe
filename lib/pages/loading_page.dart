@@ -10,8 +10,7 @@ class LoadingPage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset('assets/images/logo_android.png',
-              width: double.maxFinite),
+          Image.asset('assets/images/logo.png', width: double.maxFinite),
           PlatformCircularProgressIndicator()
         ],
       ),

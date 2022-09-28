@@ -41,7 +41,7 @@ export 'TodoTag.dart';
 
 class ModelProvider implements ModelProviderInterface {
   @override
-  String version = "7a988c99335ebc49328189b17486a9be";
+  String version = "f9ca6b397b230ba327a1385213bc9d21";
   @override
   List<ModelSchema> modelSchemas = [Preferences.schema, Reminder.schema, Section.schema, Space.schema, Tag.schema, Todo.schema, TodoTag.schema];
   static final ModelProvider _instance = ModelProvider();

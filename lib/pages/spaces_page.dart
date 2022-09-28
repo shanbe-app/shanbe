@@ -90,16 +90,6 @@ class _SpacesPageState extends State<SpacesPage> {
                         Navigator.pushNamed(context, '/settings');
                       },
                     );
-                    if (user != null) {
-                      return UserAvatar(
-                          avatar: user.picture,
-                          name: user.name,
-                          isOnline: true);
-                    }
-                    return UserAvatar(
-                      avatar: null,
-                      name: 'S',
-                    );
                   },
                 ),
                 trailing: CupertinoButton(

@@ -19,12 +19,20 @@ class MagicalFloatingActionButton extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-        feedback: Container(
-          width: 32,
-          height: 32,
+        feedback: FloatingActionButton(
+          onPressed: onPress,
+          backgroundColor: Constants.PRIMARY_COLOR,
+          child: const Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
+        ),
+        childWhenDragging: Container(
+          width: 60,
+          height: 60,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(45),
-              color: placeholderColor(context)),
+              color: dividerColor(context)),
         ));
   }
 }

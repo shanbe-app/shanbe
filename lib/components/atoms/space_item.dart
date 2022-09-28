@@ -28,6 +28,7 @@ class _SpaceItemState extends State<SpaceItem> {
   Widget build(BuildContext context) {
     var parser = EmojiParser();
     return PlatformTextButton(
+      padding: EdgeInsets.zero,
       onPressed: () {
         Navigator.of(context).pushNamed('/space',
             arguments: SpacePageArguments(space: widget.space));

@@ -21,7 +21,10 @@ class InitPage extends StatelessWidget {
           return StreamBuilder(
             builder: (context, snapshot) {
               bool? isFirstVisit = snapshot.data as bool?;
-              if (isFirstVisit == null || isFirstVisit) {
+              if (isFirstVisit == null) {
+                return const LoadingPage();
+              }
+              if (isFirstVisit) {
                 return IntroPage(
                   context: context,
                 );

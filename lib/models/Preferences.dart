@@ -21,6 +21,7 @@
 
 import 'ModelProvider.dart';
 import 'package:amplify_core/amplify_core.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 
 
@@ -31,6 +32,7 @@ class Preferences extends Model {
   final String id;
   final ThemeType? _theme;
   final CalendarType? _calendar;
+  final List<SmartSpaceType>? _visibleSmartSpaces;
   final TemporalDateTime? _createdAt;
   final TemporalDateTime? _updatedAt;
 
@@ -50,6 +52,10 @@ class Preferences extends Model {
     return _calendar;
   }
   
+  List<SmartSpaceType>? get visibleSmartSpaces {
+    return _visibleSmartSpaces;
+  }
+  
   TemporalDateTime? get createdAt {
     return _createdAt;
   }
@@ -58,13 +64,14 @@ class Preferences extends Model {
     return _updatedAt;
   }
   
-  const Preferences._internal({required this.id, theme, calendar, createdAt, updatedAt}): _theme = theme, _calendar = calendar, _createdAt = createdAt, _updatedAt = updatedAt;
+  const Preferences._internal({required this.id, theme, calendar, visibleSmartSpaces, createdAt, updatedAt}): _theme = theme, _calendar = calendar, _visibleSmartSpaces = visibleSmartSpaces, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory Preferences({String? id, ThemeType? theme, CalendarType? calendar}) {
+  factory Preferences({String? id, ThemeType? theme, CalendarType? calendar, List<SmartSpaceType>? visibleSmartSpaces}) {
     return Preferences._internal(
       id: id == null ? UUID.getUUID() : id,
       theme: theme,
-      calendar: calendar);
+      calendar: calendar,
+      visibleSmartSpaces: visibleSmartSpaces != null ? List<SmartSpaceType>.unmodifiable(visibleSmartSpaces) : visibleSmartSpaces);
   }
   
   bool equals(Object other) {
@@ -77,7 +84,8 @@ class Preferences extends Model {
     return other is Preferences &&
       id == other.id &&
       _theme == other._theme &&
-      _calendar == other._calendar;
+      _calendar == other._calendar &&
+      DeepCollectionEquality().equals(_visibleSmartSpaces, other._visibleSmartSpaces);
   }
   
   @override
@@ -91,6 +99,7 @@ class Preferences extends Model {
     buffer.write("id=" + "$id" + ", ");
     buffer.write("theme=" + (_theme != null ? enumToString(_theme)! : "null") + ", ");
     buffer.write("calendar=" + (_calendar != null ? enumToString(_calendar)! : "null") + ", ");
+    buffer.write("visibleSmartSpaces=" + (_visibleSmartSpaces != null ? _visibleSmartSpaces!.map((e) => enumToString(e)).toString() : "null") + ", ");
     buffer.write("createdAt=" + (_createdAt != null ? _createdAt!.format() : "null") + ", ");
     buffer.write("updatedAt=" + (_updatedAt != null ? _updatedAt!.format() : "null"));
     buffer.write("}");
@@ -98,27 +107,34 @@ class Preferences extends Model {
     return buffer.toString();
   }
   
-  Preferences copyWith({String? id, ThemeType? theme, CalendarType? calendar}) {
+  Preferences copyWith({String? id, ThemeType? theme, CalendarType? calendar, List<SmartSpaceType>? visibleSmartSpaces}) {
     return Preferences._internal(
       id: id ?? this.id,
       theme: theme ?? this.theme,
-      calendar: calendar ?? this.calendar);
+      calendar: calendar ?? this.calendar,
+      visibleSmartSpaces: visibleSmartSpaces ?? this.visibleSmartSpaces);
   }
   
   Preferences.fromJson(Map<String, dynamic> json)  
     : id = json['id'],
       _theme = enumFromString<ThemeType>(json['theme'], ThemeType.values),
       _calendar = enumFromString<CalendarType>(json['calendar'], CalendarType.values),
+      _visibleSmartSpaces = json['visibleSmartSpaces'] is List
+        ? (json['visibleSmartSpaces'] as List)
+          .map((e) => enumFromString<SmartSpaceType>(e, SmartSpaceType.values)!)
+          .toList()
+        : null,
       _createdAt = json['createdAt'] != null ? TemporalDateTime.fromString(json['createdAt']) : null,
       _updatedAt = json['updatedAt'] != null ? TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'theme': enumToString(_theme), 'calendar': enumToString(_calendar), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
+    'id': id, 'theme': enumToString(_theme), 'calendar': enumToString(_calendar), 'visibleSmartSpaces': _visibleSmartSpaces?.map((e) => enumToString(e)).toList(), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
 
   static final QueryField ID = QueryField(fieldName: "id");
   static final QueryField THEME = QueryField(fieldName: "theme");
   static final QueryField CALENDAR = QueryField(fieldName: "calendar");
+  static final QueryField VISIBLESMARTSPACES = QueryField(fieldName: "visibleSmartSpaces");
   static var schema = Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
     modelSchemaDefinition.name = "Preferences";
     modelSchemaDefinition.pluralName = "Preferences";
@@ -149,6 +165,13 @@ class Preferences extends Model {
       key: Preferences.CALENDAR,
       isRequired: false,
       ofType: ModelFieldType(ModelFieldTypeEnum.enumeration)
+    ));
+    
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+      key: Preferences.VISIBLESMARTSPACES,
+      isRequired: false,
+      isArray: true,
+      ofType: ModelFieldType(ModelFieldTypeEnum.collection, ofModelName: describeEnum(ModelFieldTypeEnum.enumeration))
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.nonQueryField(

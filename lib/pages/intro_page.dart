@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:client/rx/blocs/settings_bloc.dart';
 import 'package:client/rx/service_provider.dart';
-import 'package:client/rx/services/app_info_service.dart';
 import 'package:client/types/app_intro_data.dart';
 import 'package:client/utils/colors.dart';
 import 'package:client/utils/constants.dart';

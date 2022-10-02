@@ -2,7 +2,7 @@ import 'package:amplify_datastore/amplify_datastore.dart';
 import 'package:client/components/atoms/space_item.dart';
 import 'package:client/models/Space.dart';
 import 'package:client/rx/blocs/space_bloc.dart';
-import 'package:client/rx/managers/smart_spaces.dart';
+import 'package:client/rx/managers/smart_space_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
@@ -32,7 +32,7 @@ class _SpaceListState extends State<SpaceList> {
     return Card(
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
           child: StreamBuilder(
             builder: (context, snapshot) {
               QuerySnapshot<Space>? querySnapshot =

@@ -1,5 +1,4 @@
 import 'package:client/components/atoms/magical_floating_action_button.dart';
-import 'package:client/components/atoms/profile_avatar.dart';
 import 'package:client/components/atoms/search_field.dart';
 import 'package:client/components/atoms/user_avatar.dart';
 import 'package:client/components/molecules/space_dialog.dart';

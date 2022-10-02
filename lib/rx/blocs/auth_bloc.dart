@@ -1,13 +1,10 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:client/rx/blocs/rx_bloc.dart';
 import 'package:client/types/enums.dart';
 import 'package:client/types/user.dart';
-import 'package:client/utils/constants.dart';
-import 'package:client/utils/utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 class AuthBloc extends RxBloc {
@@ -22,7 +19,7 @@ class AuthBloc extends RxBloc {
   Stream<User?> get authUser => _authUser.stream;
 
   AuthBloc() {
-    checkAuth();
+    autoLogin();
     Amplify.Hub.listen([HubChannel.Auth], (event) {
       switch (event.eventName) {
         case 'SIGNED_IN':
@@ -44,11 +41,11 @@ class AuthBloc extends RxBloc {
   @override
   void dispose() {}
 
-  void checkAuth() {
+  void autoLogin() {
     _authState.add(AuthState.authenticating);
     addFutureSubscription(Amplify.Auth.fetchAuthSession(), (AuthSession event) {
       if (event.isSignedIn) {
-        fetchAttributes();
+        authenticate();
       } else {
         _authState.add(AuthState.notAuthenticated);
       }
@@ -57,7 +54,7 @@ class AuthBloc extends RxBloc {
     });
   }
 
-  void fetchAttributes() {
+  void authenticate() {
     addFutureSubscription(Amplify.Auth.fetchUserAttributes(),
         (List<AuthUserAttribute> event) {
       _authUser.add(User.fromCognitoUserAttributes(event));
@@ -67,7 +64,7 @@ class AuthBloc extends RxBloc {
     });
   }
 
-  void authenticate(String username, String password) {
+  void login(String username, String password) {
     _authState.add(AuthState.authenticating);
     addFutureSubscription(
         Amplify.Auth.signIn(username: username, password: password),
@@ -90,13 +87,16 @@ class AuthBloc extends RxBloc {
   }
 
   void register(String name, String email, String password) {
-    addFutureSubscription(Amplify.Auth.signUp(
-        username: email,
-        password: password,
-        options: CognitoSignUpOptions(userAttributes: {
-          CognitoUserAttributeKey.name: name,
-          CognitoUserAttributeKey.email: email
-        })));
+    addFutureSubscription(
+        Amplify.Auth.signUp(
+            username: email,
+            password: password,
+            options: CognitoSignUpOptions(userAttributes: {
+              CognitoUserAttributeKey.name: name,
+              CognitoUserAttributeKey.email: email
+            })),
+        (SignUpResult result) {},
+        (e) {});
   }
 
   void socialSignIn(AuthProvider provider) {
@@ -104,20 +104,7 @@ class AuthBloc extends RxBloc {
     addFutureSubscription(Amplify.Auth.signInWithWebUI(provider: provider),
         (SignInResult event) {
       if (event.isSignedIn) {
-        addFutureSubscription(Amplify.Auth.fetchUserAttributes(),
-            (List<AuthUserAttribute> attributes) {
-          String? preferencesString = firstOrNull(
-                  attributes, (e) => e.userAttributeKey.key == 'preferences')
-              ?.value;
-          Map preferences = preferencesString != null
-              ? jsonDecode(preferencesString)
-              : Constants.USER_PREFERENCES_COGNITO_DEFAULT;
-
-          _authUser.add(User.fromCognitoUserAttributes(attributes));
-          _authState.add(AuthState.authenticated);
-        }, (e) {
-          _authState.add(AuthState.notAuthenticated);
-        });
+        authenticate();
       } else {
         _authState.add(AuthState.notAuthenticated);
       }

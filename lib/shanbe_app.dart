@@ -56,8 +56,6 @@ class _ShanbeAppState extends State<ShanbeApp> {
         locale = settingsBloc.currentLocale();
       });
     } catch (e, stack) {
-      print('error');
-      print(e);
       FirebaseCrashlytics.instance.recordError(e, stack);
     }
   }

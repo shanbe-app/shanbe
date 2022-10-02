@@ -9,6 +9,70 @@ enum ThemeType {
   SYSTEM
 }
 
+enum PriorityType {
+  URGENT
+  HIGH
+  NORMAL
+}
+
+enum ReminderStatus {
+  INITIALIZED
+  SHOWN
+  SNOOZED
+  DONE
+}
+
+enum SmartSpaceType {
+  TODAY
+  TOMORROW
+  DONE
+  TRASH
+  WONTDO
+  ALL
+  NEXT7DAYS
+  OVERDUE
+}
+
+enum SpaceFilterLogic {
+  AND
+  NOT
+  OR
+}
+
+enum QueryPredicateLogic {
+  AND
+  OR
+}
+
+enum SpaceFilterType {
+  TAGS
+  SPACES
+  KEYWORD
+  PRIORITY
+  DATE
+}
+
+type SpaceQueryPredicate @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  filterLogic: SpaceFilterLogic
+  filterType: SpaceFilterType
+  filterValue: [String]
+  parentID: ID @index(name: "byParent")
+  childPredicates: [SpaceQueryPredicate] @hasMany(indexName: "byParent", fields: ["id"])
+  childLogic: QueryPredicateLogic
+}
+
+type SmartSpace @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  name: String!
+  emoji: String
+  color: String
+  queryPredicate: SpaceQueryPredicate
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+
+
 type Space @model @auth(rules: [{allow: private}]) {
   id: ID!
   name: String!
@@ -18,6 +82,9 @@ type Space @model @auth(rules: [{allow: private}]) {
   sections: [Section] @hasMany(indexName: "bySpace", fields: ["id"])
   parentID: ID @index(name: "byParent")
   spaces: [Space] @hasMany(indexName: "byParent", fields: ["id"])
+  showOverDue: Boolean
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
 }
 
 type Todo @model @auth(rules: [{allow: private}, {allow: owner}]) {
@@ -50,6 +117,9 @@ type Preferences @model @auth(rules: [{allow: owner}]) {
   id: ID!
   theme: ThemeType
   calendar: CalendarType
+  visibleSmartSpaces: [SmartSpaceType]
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
 }
 
 type Section @model @auth(rules: [{allow: owner}]) {
@@ -58,13 +128,6 @@ type Section @model @auth(rules: [{allow: owner}]) {
   todos: [Todo] @hasMany(indexName: "bySection", fields: ["id"])
   spaceID: ID! @index(name: "bySpace")
   space: Space @belongsTo(fields: ["spaceID"])
-}
-
-enum ReminderStatus {
-  INITIALIZED
-  SHOWN
-  SNOOZED
-  DONE
 }
 
 type Reminder @model @auth(rules: [{allow: owner}]) {

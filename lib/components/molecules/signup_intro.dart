@@ -10,7 +10,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:lottie/lottie.dart';
 
 class SignupIntro extends StatefulWidget {
-  final List<SignupData> signupData;
+  final List<SignupIntroData> signupData;
 
   const SignupIntro({
     Key? key,
@@ -23,7 +23,7 @@ class SignupIntro extends StatefulWidget {
 
 class _SignupIntroState extends State<SignupIntro> {
   late PageController _controller;
-  late Timer _timer;
+  Timer? _timer;
 
   @override
   void initState() {
@@ -31,7 +31,21 @@ class _SignupIntroState extends State<SignupIntro> {
     _controller = PageController();
     _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
       if (_controller.page == null) return;
-      _controller.nextPage(duration: const Duration(milliseconds: 500), curve: Curves.easeOut);
+      _controller.nextPage(
+          duration: const Duration(milliseconds: 500), curve: Curves.easeOut);
+      if (_controller.page!.toInt() + 1 == widget.signupData.length) {
+        _controller.animateToPage(0,
+            duration: const Duration(milliseconds: 500), curve: Curves.easeOut);
+      } else {
+        _controller.animateToPage(_controller.page!.toInt() + 1,
+            duration: const Duration(milliseconds: 500), curve: Curves.easeOut);
+      }
+    });
+  }
+
+  void setupTimer() {
+    _timer = Timer.periodic(const Duration(seconds: 15), (timer) {
+      if (_controller.page == null) return;
       if (_controller.page!.toInt() + 1 == widget.signupData.length) {
         _controller.animateToPage(0,
             duration: const Duration(milliseconds: 500), curve: Curves.easeOut);
@@ -44,10 +58,9 @@ class _SignupIntroState extends State<SignupIntro> {
 
   @override
   void dispose() {
-    _controller.dispose();
     super.dispose();
     _controller.dispose;
-    _timer.cancel();
+    _timer?.cancel();
   }
 
   @override
@@ -58,6 +71,10 @@ class _SignupIntroState extends State<SignupIntro> {
           height: 272,
           child: PageView(
             controller: _controller,
+            onPageChanged: (page) {
+              _timer?.cancel();
+              setupTimer();
+            },
             children: widget.signupData
                 .map((e) => Column(
                       children: [

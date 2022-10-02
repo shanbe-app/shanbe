@@ -29,19 +29,26 @@ class _SpaceItemState extends State<SpaceItem> {
     var parser = EmojiParser();
     return PlatformTextButton(
       padding: EdgeInsets.zero,
+      alignment: Alignment.center,
       onPressed: () {
         Navigator.of(context).pushNamed('/space',
             arguments: SpacePageArguments(space: widget.space));
       },
-      child: Row(children: [
+      child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
         if (widget.space.emoji != null)
           Text(
             parser.emojify(widget.space.emoji!),
+            style: const TextStyle(fontSize: Constants.ICON_SMALL_SIZE),
           ),
+        const SizedBox(
+          width: 4,
+        ),
         Text(
           widget.space.name,
           style: TextStyle(
-              fontSize: Constants.S1_FONT_SIZE, color: textColor(context)),
+              fontSize: Constants.S1_FONT_SIZE,
+              fontWeight: Constants.MEDIUM_FONT_WEIGHT,
+              color: textColor(context)),
         )
       ]),
     );

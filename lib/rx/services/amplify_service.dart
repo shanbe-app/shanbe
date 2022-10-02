@@ -23,14 +23,14 @@ class AmplifyService extends RxService {
       await Amplify.addPlugin(dataStore);
     }
     await Amplify.configure(amplifyconfig);
-    print('done setup');
-    try {
-      List<Space> spaces = await Amplify.DataStore.query(Space.classType);
-      print('spaces: ${spaces.length}');
-    } catch (e, stack) {
-      print(e);
-      print(stack);
-    }
+    await initializeModels();
+  }
+
+  Future<void> initializeModels() async {
+    List<Preferences> prefs = await Amplify.DataStore.query(
+      Preferences.classType,
+    );
+    if (prefs.isEmpty || prefs.length > 1) {}
   }
 
   @override

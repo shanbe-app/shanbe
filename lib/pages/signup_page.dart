@@ -4,7 +4,6 @@ import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:client/components/molecules/signup_intro.dart';
 import 'package:client/rx/blocs/auth_bloc.dart';
-import 'package:client/rx/service_provider.dart';
 import 'package:client/types/enums.dart';
 import 'package:client/types/signup_intro_data.dart';
 import 'package:client/utils/colors.dart';
@@ -25,7 +24,7 @@ class SignupPage extends StatefulWidget {
 
 class _SignupPageState extends State<SignupPage> {
   late final AppLocalizations t;
-  late final List<SignupData> signupData;
+  late final List<SignupIntroData> signupData;
   late final AuthBloc authBloc;
   late final StreamSubscription _subscription;
 
@@ -34,12 +33,13 @@ class _SignupPageState extends State<SignupPage> {
     super.initState();
     t = AppLocalizations.of(widget.context)!;
     signupData = [
-      SignupData(t.appRegisterTitle1, 'assets/files/sync.json', reverse: true),
-      SignupData(t.appRegisterTitle2, 'assets/files/notification.json'),
-      SignupData(t.appRegisterTitle3, 'assets/files/clock.json'),
-      SignupData(t.appRegisterTitle4, 'assets/files/folder.json',
+      SignupIntroData(t.appRegisterTitle1, 'assets/files/sync.json',
           reverse: true),
-      SignupData(t.appRegisterTitle5, 'assets/files/images.json')
+      SignupIntroData(t.appRegisterTitle2, 'assets/files/notification.json'),
+      SignupIntroData(t.appRegisterTitle3, 'assets/files/clock.json'),
+      SignupIntroData(t.appRegisterTitle4, 'assets/files/folder.json',
+          reverse: true),
+      SignupIntroData(t.appRegisterTitle5, 'assets/files/images.json')
     ];
     authBloc = AuthBloc();
     _subscription = authBloc.authState.listen((event) {

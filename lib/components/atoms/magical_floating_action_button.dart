@@ -26,7 +26,15 @@ class MagicalFloatingActionButton extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(45),
-            color: Constants.PRIMARY_COLOR),
+            color: Constants.PRIMARY_COLOR,
+            boxShadow: [
+              BoxShadow(
+                color: isDark(context) ? Colors.grey.shade900 : Colors.grey,
+                offset: const Offset(0.0, 1),
+                spreadRadius: 2,
+                blurRadius: 4.0,
+              ),
+            ]),
         child: PlatformIconButton(
           padding: EdgeInsets.zero,
           icon: const Icon(

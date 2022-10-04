@@ -114,11 +114,14 @@ class _SpacePageState extends State<SpacePage> {
               },
               child: Row(
                 mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SpaceItem(
-                    space: widget.arguments.space,
-                    spaceNameColor: headingColor(context),
-                  ),
+                  Wrap(children: [
+                    SpaceItem(
+                      space: widget.arguments.space,
+                      spaceNameColor: headingColor(context),
+                    )
+                  ]),
                   const SizedBox(
                     width: 4,
                   ),

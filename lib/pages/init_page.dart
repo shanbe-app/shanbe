@@ -1,6 +1,6 @@
 import 'package:client/pages/intro_page.dart';
 import 'package:client/pages/loading_page.dart';
-import 'package:client/pages/spaces_page.dart';
+import 'package:client/pages/inbox_page.dart';
 import 'package:client/rx/blocs/settings_bloc.dart';
 import 'package:client/rx/service_provider.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +29,7 @@ class InitPage extends StatelessWidget {
                   context: context,
                 );
               }
-              return SpacesPage(
+              return InboxPage(
                 context: context,
               );
             },

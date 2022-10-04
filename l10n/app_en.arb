@@ -1687,5 +1687,15 @@
   "@nextSevenDays": {
     "type": "text",
     "placeholders": {}
+  },
+  "yourSpaces": "Your Spaces",
+  "@yourSpaces": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newSpace": "new Space",
+  "@newSpace": {
+    "type": "text",
+    "placeholders": {}
   }
 }

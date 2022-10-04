@@ -1,12 +1,19 @@
-import 'package:client/rx/service_provider.dart';
-import 'package:client/shanbe_icons.dart';
+import 'package:client/components/atoms/bottom_sheet_scroll_indicator.dart';
+import 'package:client/components/atoms/new_space_item.dart';
+import 'package:client/components/atoms/space_item.dart';
+import 'package:client/components/molecules/space_dialog.dart';
+import 'package:client/components/organisms/space_list.dart';
+import 'package:client/models/Space.dart';
+import 'package:client/rx/blocs/space_bloc.dart';
 import 'package:client/types/space_page_arguments.dart';
+import 'package:client/utils/colors.dart';
+import 'package:client/utils/constants.dart';
+import 'package:client/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'package:get_it/get_it.dart';
-import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class SpacePage extends StatefulWidget {
   final SpacePageArguments arguments;
@@ -20,16 +27,13 @@ class SpacePage extends StatefulWidget {
 }
 
 class _SpacePageState extends State<SpacePage> {
-  late CupertinoTabController _controller;
-  late ServiceProvider appService;
   late AppLocalizations t;
-  int _currentPageIndex = 0;
+  late SpaceBloc spaceBloc;
 
   @override
   void initState() {
     super.initState();
-    _controller = CupertinoTabController(initialIndex: 0);
-    appService = GetIt.I.get<ServiceProvider>(instanceName: 'appService');
+    spaceBloc = SpaceBloc();
     t = AppLocalizations.of(widget.context)!;
   }
 
@@ -37,82 +41,96 @@ class _SpacePageState extends State<SpacePage> {
   Widget build(BuildContext context) {
     return PlatformWidget(
       material: (context, platform) => Scaffold(
-        body: renderTabBody(context, _currentPageIndex),
-        bottomNavigationBar: SalomonBottomBar(
-          currentIndex: _currentPageIndex,
-          onTap: (i) => setState(() => _currentPageIndex = i),
-          items: [
-            SalomonBottomBarItem(
-              icon: const Icon(Icons.check_box_outlined),
-              title: Text(t.tasks),
-              selectedColor: Colors.purple,
-            ),
-            SalomonBottomBarItem(
-              icon: const Icon(Icons.calendar_month_rounded),
-              title: Text(t.calendar),
-              selectedColor: Colors.purple,
-            ),
-            SalomonBottomBarItem(
-              icon: const Icon(Shanbe.bullseye_1),
-              title: Text(t.focus),
-              selectedColor: Colors.purple,
-            ),
-            SalomonBottomBarItem(
-              icon: const Icon(Icons.book),
-              title: Text(t.notes),
-              selectedColor: Colors.purple,
-            ),
-            SalomonBottomBarItem(
-              icon: const Icon(Icons.settings),
-              title: Text(t.settings),
-              selectedColor: Colors.purple,
-            ),
-          ],
-        ),
+        body: renderTabBody(context),
       ),
-      cupertino: (context, platform) => CupertinoTabScaffold(
+      cupertino: (context, platform) => CupertinoPageScaffold(
         key: widget.key ?? GlobalKey(debugLabel: 'lists'),
-        controller: _controller,
-        tabBar: CupertinoTabBar(
-          height: 54,
-          items: [
-            BottomNavigationBarItem(
-                icon: const Icon(CupertinoIcons.checkmark_square),
-                label: t.tasks,
-                activeIcon: const Icon(CupertinoIcons.checkmark_square_fill)),
-            BottomNavigationBarItem(
-                icon: const Icon(CupertinoIcons.calendar), label: t.calendar),
-            BottomNavigationBarItem(
-                icon: const Icon(Shanbe.bullseye_1), label: t.focus),
-            BottomNavigationBarItem(
-                icon: const Icon(CupertinoIcons.book),
-                label: t.notes,
-                activeIcon: const Icon(CupertinoIcons.book_fill)),
-            BottomNavigationBarItem(
-                icon: const Icon(CupertinoIcons.settings), label: t.settings)
-          ],
-        ),
-        tabBuilder: renderTabBody,
+        child: renderTabBody(context),
       ),
     );
   }
 
-  Widget renderTabBody(BuildContext context, int index) {
+  Widget renderTabBody(BuildContext context) {
     return SingleChildScrollView(
       primary: true,
       child: Column(
         children: [
           PlatformAppBar(
-            title: Text(widget.arguments.space.name),
+            title: PlatformTextButton(
+              padding: EdgeInsets.zero,
+              onPressed: () {
+                showPlatformContentSheet(
+                    context: context,
+                    builder: (context) {
+                      return SingleChildScrollView(
+                        controller: ModalScrollController.of(context),
+                        child: Container(
+                          margin: const EdgeInsets.only(bottom: 32, top: 8),
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Column(
+                            children: [
+                              const BottomSheetScrollIndicator(),
+                              Center(
+                                child: Text(
+                                  t.yourSpaces,
+                                  style: TextStyle(
+                                      fontSize: Constants.H6_FONT_SIZE,
+                                      color: headingColor(context),
+                                      fontWeight: Constants.MEDIUM_FONT_WEIGHT),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              SpaceList(
+                                t: t,
+                                onPress: (space) {
+                                  if (space.id != widget.arguments.space.id) {
+                                    Navigator.of(context).pushNamed('/space',
+                                        arguments:
+                                            SpacePageArguments(space: space));
+                                  } else {
+                                    Navigator.pop(context);
+                                  }
+                                },
+                              ),
+                              NewSpaceItem(
+                                t: t,
+                                onPress: () {
+                                  showPlatformDialog(
+                                      context: context,
+                                      builder: (context) => SpaceDialog(t,
+                                              onCreate: (Space space) {
+                                            spaceBloc.createSpace(
+                                                newSpace: space);
+                                          }, onUpdate: (Space space) {}));
+                                },
+                              )
+                            ],
+                          ),
+                        ),
+                      );
+                    });
+              },
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SpaceItem(
+                    space: widget.arguments.space,
+                    spaceNameColor: headingColor(context),
+                  ),
+                  const SizedBox(
+                    width: 4,
+                  ),
+                  Icon(
+                    Icons.arrow_drop_down,
+                    color: grayColor(context),
+                  )
+                ],
+              ),
+            ),
             cupertino: (context, _) => CupertinoNavigationBarData(
               previousPageTitle: t.spaces,
-              trailing: CupertinoButton(
-                padding: EdgeInsets.zero,
-                child: PlatformText(t.newTodo),
-                onPressed: () {
-                  Navigator.pushNamed(context, '/edit-lists');
-                },
-              ),
             ),
           )
         ],

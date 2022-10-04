@@ -1,8 +1,13 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:client/utils/colors.dart';
+import 'package:client/utils/constants.dart';
 import 'package:crypto/crypto.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 String languageCodeFromLocaleName(String localeName) =>
     localeName.split('_').first;
@@ -78,5 +83,95 @@ Brightness themeModeToBrightness(ThemeMode themeMode) {
       return Brightness.dark;
     case ThemeMode.system:
       return WidgetsBinding.instance.window.platformBrightness;
+  }
+}
+
+void showPlatformActionSheet<T>(
+    {required BuildContext context,
+    required List<T> items,
+    required Stream<T> value,
+    required Function(T) onSelect,
+    required Function(T) translateItem,
+    required String title,
+    required String cancelText}) {
+  if (isCupertino(context)) {
+    showCupertinoModalPopup(
+        context: context,
+        barrierColor: Constants.BARRIER_COLOR,
+        barrierDismissible: true,
+        builder: (context) => CupertinoActionSheet(
+              title: Text(title),
+              actions: items
+                  .map((e) => CupertinoActionSheetAction(
+                      onPressed: () {
+                        onSelect(e);
+                        Navigator.pop(context);
+                      },
+                      child: Text(translateItem(e))))
+                  .toList(),
+            ));
+  } else {
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              title: Text(title),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      cancelText,
+                    ))
+                //  where is ol button?
+              ],
+              contentPadding: const EdgeInsets.only(top: 16),
+              content: StreamBuilder(
+                stream: value,
+                builder: (context, snapshot) {
+                  T? val = snapshot.data as T?;
+                  if (val == null) return Container();
+                  return ListView(
+                    shrinkWrap: true,
+                    children: items
+                        .map((e) => RadioListTile(
+                              onChanged: (_) {
+                                onSelect(e);
+                                Navigator.pop(context);
+                              },
+                              groupValue: val.toString(),
+                              title: Text(translateItem(e)),
+                              value: e.toString(),
+                            ))
+                        .toList(),
+                  );
+                },
+              ),
+            ));
+  }
+}
+
+void showPlatformContentSheet<T>(
+    {required BuildContext context, required WidgetBuilder builder}) {
+  if (isCupertino(context)) {
+    showCupertinoModalBottomSheet(
+        context: context,
+        expand: false,
+        isDismissible: true,
+        useRootNavigator: true,
+        enableDrag: true,
+        backgroundColor: modalSheetBackgroundColor(context),
+        barrierColor: Constants.BARRIER_COLOR,
+        topRadius: const Radius.circular(24),
+        builder: builder);
+  } else {
+    showMaterialModalBottomSheet(
+        barrierColor: Constants.BARRIER_COLOR,
+        backgroundColor: modalSheetBackgroundColor(context),
+        useRootNavigator: true,
+        isDismissible: true,
+        expand: false,
+        context: context,
+        builder: builder);
   }
 }

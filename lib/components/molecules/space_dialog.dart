@@ -98,7 +98,7 @@ class _SpaceDialogState extends State<SpaceDialog>
                             textAlign: TextAlign.center,
                           )
                         : Icon(
-                            Shanbe.bullseye_1,
+                            Shanbe.bullseye,
                             size: 36,
                             color: Constants.SECONDARY_COLOR,
                           ),

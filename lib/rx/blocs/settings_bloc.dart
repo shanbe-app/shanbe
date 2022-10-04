@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:amplify_flutter/amplify_flutter.dart';
+import 'package:client/models/CalendarType.dart';
 import 'package:client/rx/blocs/rx_bloc.dart';
 import 'package:client/rx/services/storage_service.dart';
-import 'package:client/types/enums.dart';
 import 'package:client/utils/constants.dart';
 import 'package:client/utils/utils.dart';
 import 'package:enum_to_string/enum_to_string.dart';
@@ -37,7 +37,7 @@ class SettingsBloc extends RxBloc {
             storageService.sharedPreferences
                     .getString(Constants.USER_CALENDAR_PREFS) ??
                 '') ??
-        CalendarType.gregorian);
+        CalendarType.GREGORIAN);
     _locale.add(Locale(storageService.sharedPreferences
             .getString(Constants.USER_LOCALE_PREFS) ??
         'en'));
@@ -63,7 +63,7 @@ class SettingsBloc extends RxBloc {
     _calendar.add(calendarType);
     storageService.sharedPreferences.setString(Constants.USER_CALENDAR_PREFS,
         EnumToString.convertToString(calendarType));
-
+/*TODO: THIS IS WRONG UPDATE USER PREFERENCES*/
     Amplify.Auth.updateUserAttribute(
         userAttributeKey: Constants.USER_PREFERENCES_COGNITO_KEY,
         value: json.encode({'calendar': calendarType}));

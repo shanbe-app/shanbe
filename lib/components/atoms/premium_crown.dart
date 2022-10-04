@@ -32,7 +32,7 @@ class PremiumCrown extends StatelessWidget {
                 ),
               ),
               Icon(
-                Shanbe.sliders,
+                Shanbe.crown,
                 color: Colors.yellow.shade700,
                 size: crownSize,
               )

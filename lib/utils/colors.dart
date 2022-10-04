@@ -26,6 +26,16 @@ Color dividerColor(BuildContext context) {
   return isDark(context) ? Constants.LINE_COLOR_DARK : Constants.LINE_COLOR;
 }
 
+Color grayColor(BuildContext context) {
+  return isDark(context) ? Constants.GRAY_COLOR_DARK : Constants.GRAY_COLOR;
+}
+
+Color grayLighterColor(BuildContext context) {
+  return isDark(context)
+      ? Constants.GRAY_LIGHTER_COLOR_DARK
+      : Constants.GRAY_LIGHTER_COLOR;
+}
+
 Color backgroundColor(BuildContext context) {
   return isDark(context)
       ? Constants.BACKGROUND_COLOR_DARK
@@ -53,4 +63,9 @@ Color inputBackgroundColor(BuildContext context) {
   return isDark(context)
       ? Constants.INPUT_BACKGROUND_COLOR_DARK
       : Constants.INPUT_BACKGROUND_COLOR;
+}
+Color modalSheetBackgroundColor(BuildContext context) {
+  return isDark(context)
+      ? Constants.BACKGROUND_COLOR_MODAL_SHEET_DARK
+      : Constants.BACKGROUND_COLOR_MODAL_SHEET;
 }

@@ -3,7 +3,7 @@ import 'package:client/pages/settings_page.dart';
 import 'package:client/pages/space_page.dart';
 import 'package:client/pages/init_page.dart';
 import 'package:client/pages/signup_page.dart';
-import 'package:client/pages/spaces_page.dart';
+import 'package:client/pages/inbox_page.dart';
 import 'package:client/rx/blocs/settings_bloc.dart';
 import 'package:client/rx/service_provider.dart';
 import 'package:client/types/space_page_arguments.dart';
@@ -105,7 +105,7 @@ class _ShanbeAppState extends State<ShanbeApp> {
           case '/spaces':
             return platformPageRoute(
                 context: context,
-                builder: (context) => SpacesPage(
+                builder: (context) => InboxPage(
                       context: context,
                     ));
           case '/settings':

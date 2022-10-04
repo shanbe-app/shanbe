@@ -8,8 +8,10 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 class SpaceList extends StatefulWidget {
   final AppLocalizations t;
+  final Function(Space) onPress;
 
-  const SpaceList({Key? key, required this.t}) : super(key: key);
+  const SpaceList({Key? key, required this.t, required this.onPress})
+      : super(key: key);
 
   @override
   State<SpaceList> createState() => _SpaceListState();
@@ -26,29 +28,27 @@ class _SpaceListState extends State<SpaceList> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
-          child: StreamBuilder(
-            builder: (context, snapshot) {
-              QuerySnapshot<Space>? querySnapshot =
-                  snapshot.data as QuerySnapshot<Space>?;
-              if (querySnapshot != null) {
-                return Column(
-                  children: [
-                    ...querySnapshot.items
-                        .map((e) => SpaceItem(
-                              space: e,
-                            ))
-                        .toList()
-                  ],
-                );
-              }
-              return PlatformCircularProgressIndicator();
-            },
-            stream: spaceBloc.spaces,
-          ),
-        ));
+    return StreamBuilder(
+      builder: (context, snapshot) {
+        QuerySnapshot<Space>? querySnapshot =
+            snapshot.data as QuerySnapshot<Space>?;
+        if (querySnapshot != null) {
+          return Column(
+            children: [
+              ...querySnapshot.items
+                  .map((e) => SpaceItem(
+                        space: e,
+                        onPress: () {
+                          widget.onPress(e);
+                        },
+                      ))
+                  .toList()
+            ],
+          );
+        }
+        return PlatformCircularProgressIndicator();
+      },
+      stream: spaceBloc.spaces,
+    );
   }
 }

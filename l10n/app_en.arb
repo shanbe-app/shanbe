@@ -1573,17 +1573,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "appIntroDescription2": "Categorize things into spaces to stay organized.",
+  "appIntroDescription2": "Organize work into spaces to stay organized.",
   "@appIntroDescription2": {
     "type": "text",
     "placeholders": {}
   },
-  "appIntroTitle3": "Spaces inside Spaces",
+  "appIntroTitle3": "Spaces inside Spaces!",
   "@appIntroTitle3": {
     "type": "text",
     "placeholders": {}
   },
-  "appIntroDescription3": "Create new spaces inside another spaces to stay focused.",
+  "appIntroDescription3": "Create spaces inside another spaces to stay focused.",
   "@appIntroDescription3": {
     "type": "text",
     "placeholders": {}
@@ -1598,27 +1598,27 @@
     "type": "text",
     "placeholders": {}
   },
-  "appRegisterTitle1": "Synced across your devices.",
+  "appRegisterTitle1": "Synced across devices",
   "@appRegisterTitle1": {
     "type": "text",
     "placeholders": {}
   },
-  "appRegisterTitle2": "Get reminded on time.",
+  "appRegisterTitle2": "Get reminded on time",
   "@appRegisterTitle2": {
     "type": "text",
     "placeholders": {}
   },
-  "appRegisterTitle3": "Focused through the day.",
+  "appRegisterTitle3": "Focused through the day",
   "@appRegisterTitle3": {
     "type": "text",
     "placeholders": {}
   },
-  "appRegisterTitle4": "Organize your work with lists, notebooks and folders.",
+  "appRegisterTitle4": "Tasks, Notes, Calendars, Reminders, Folders. You're covered",
   "@appRegisterTitle4": {
     "type": "text",
     "placeholders": {}
   },
-  "appRegisterTitle5": "Beautiful covers for notebooks and lists",
+  "appRegisterTitle5": "Beautiful covers for notes and spaces",
   "@appRegisterTitle5": {
     "type": "text",
     "placeholders": {}

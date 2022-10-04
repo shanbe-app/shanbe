@@ -22,7 +22,7 @@ enum ReminderStatus {
   DONE
 }
 
-enum SmartSpaceType {
+enum StaticSpaceType {
   TODAY
   TOMORROW
   DONE
@@ -58,8 +58,8 @@ type SpaceQueryPredicate @model @auth(rules: [{allow: private}]) {
   filterType: SpaceFilterType
   filterValue: [String]
   parentID: ID @index(name: "byParent")
-  childPredicates: [SpaceQueryPredicate] @hasMany(indexName: "byParent", fields: ["id"])
-  childLogic: QueryPredicateLogic
+  childQuerPredicates: [SpaceQueryPredicate] @hasMany(indexName: "byParent", fields: ["id"])
+  childQueryLogic: QueryPredicateLogic
 }
 
 type SmartSpace @model @auth(rules: [{allow: private}]) {
@@ -68,6 +68,7 @@ type SmartSpace @model @auth(rules: [{allow: private}]) {
   emoji: String
   color: String
   queryPredicate: SpaceQueryPredicate
+  folderId: ID @index(name: "byFolder")
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
 }
@@ -82,9 +83,19 @@ type Space @model @auth(rules: [{allow: private}]) {
   sections: [Section] @hasMany(indexName: "bySpace", fields: ["id"])
   parentID: ID @index(name: "byParent")
   spaces: [Space] @hasMany(indexName: "byParent", fields: ["id"])
+  folderId: ID @index(name: "byFolder")
   showOverDue: Boolean
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
+}
+
+type Folder @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  name: String!
+  emoji: String
+  color: String
+  spaces: [Space] @hasMany(indexName: "byFolder", fields: ["id"])
+  smartSpaces: [SmartSpace] @hasMany(indexName: "byFolder", fields: ["id"])
 }
 
 type Todo @model @auth(rules: [{allow: private}, {allow: owner}]) {
@@ -117,7 +128,7 @@ type Preferences @model @auth(rules: [{allow: owner}]) {
   id: ID!
   theme: ThemeType
   calendar: CalendarType
-  visibleSmartSpaces: [SmartSpaceType]
+  visibleSmartSpaces: [StaticSpaceType]
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
 }

@@ -23,18 +23,26 @@ import 'package:amplify_core/amplify_core.dart';
 import 'Preferences.dart';
 import 'Reminder.dart';
 import 'Section.dart';
+import 'SmartSpace.dart';
 import 'Space.dart';
+import 'SpaceQueryPredicate.dart';
 import 'Tag.dart';
 import 'Todo.dart';
 import 'TodoTag.dart';
 
 export 'CalendarType.dart';
 export 'Preferences.dart';
+export 'PriorityType.dart';
+export 'QueryPredicateLogic.dart';
 export 'Reminder.dart';
 export 'ReminderStatus.dart';
 export 'Section.dart';
-export 'SmartSpaceType.dart';
+export 'SmartSpace.dart';
 export 'Space.dart';
+export 'SpaceFilterLogic.dart';
+export 'SpaceFilterType.dart';
+export 'SpaceQueryPredicate.dart';
+export 'StaticSpaceType.dart';
 export 'Tag.dart';
 export 'ThemeType.dart';
 export 'Todo.dart';
@@ -42,9 +50,9 @@ export 'TodoTag.dart';
 
 class ModelProvider implements ModelProviderInterface {
   @override
-  String version = "5f24b4e3a46c9acb0a6ede8a12ea064c";
+  String version = "4c82ce2648521c33bd8d422a29f6ccb6";
   @override
-  List<ModelSchema> modelSchemas = [Preferences.schema, Reminder.schema, Section.schema, Space.schema, Tag.schema, Todo.schema, TodoTag.schema];
+  List<ModelSchema> modelSchemas = [Preferences.schema, Reminder.schema, Section.schema, SmartSpace.schema, Space.schema, SpaceQueryPredicate.schema, Tag.schema, Todo.schema, TodoTag.schema];
   static final ModelProvider _instance = ModelProvider();
   @override
   List<ModelSchema> customTypeSchemas = [];
@@ -59,8 +67,12 @@ class ModelProvider implements ModelProviderInterface {
         return Reminder.classType;
       case "Section":
         return Section.classType;
+      case "SmartSpace":
+        return SmartSpace.classType;
       case "Space":
         return Space.classType;
+      case "SpaceQueryPredicate":
+        return SpaceQueryPredicate.classType;
       case "Tag":
         return Tag.classType;
       case "Todo":

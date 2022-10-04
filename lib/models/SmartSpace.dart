@@ -19,20 +19,18 @@
 
 // ignore_for_file: public_member_api_docs, annotate_overrides, dead_code, dead_codepublic_member_api_docs, depend_on_referenced_packages, file_names, library_private_types_in_public_api, no_leading_underscores_for_library_prefixes, no_leading_underscores_for_local_identifiers, non_constant_identifier_names, null_check_on_nullable_type_parameter, prefer_adjacent_string_concatenation, prefer_const_constructors, prefer_if_null_operators, prefer_interpolation_to_compose_strings, slash_for_doc_comments, sort_child_properties_last, unnecessary_const, unnecessary_constructor_name, unnecessary_late, unnecessary_new, unnecessary_null_aware_assignments, unnecessary_nullable_for_final_variable_declarations, unnecessary_string_interpolations, use_build_context_synchronously
 
-import 'ModelProvider.dart';
 import 'package:amplify_core/amplify_core.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 
 
-/** This is an auto generated class representing the Preferences type in your schema. */
+/** This is an auto generated class representing the SmartSpace type in your schema. */
 @immutable
-class Preferences extends Model {
-  static const classType = const _PreferencesModelType();
+class SmartSpace extends Model {
+  static const classType = const _SmartSpaceModelType();
   final String id;
-  final ThemeType? _theme;
-  final CalendarType? _calendar;
-  final List<StaticSpaceType>? _visibleSmartSpaces;
+  final String? _name;
+  final String? _emoji;
+  final String? _color;
   final TemporalDateTime? _createdAt;
   final TemporalDateTime? _updatedAt;
 
@@ -44,16 +42,25 @@ class Preferences extends Model {
     return id;
   }
   
-  ThemeType? get theme {
-    return _theme;
+  String get name {
+    try {
+      return _name!;
+    } catch(e) {
+      throw new AmplifyCodeGenModelException(
+          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+          recoverySuggestion:
+            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+          underlyingException: e.toString()
+          );
+    }
   }
   
-  CalendarType? get calendar {
-    return _calendar;
+  String? get emoji {
+    return _emoji;
   }
   
-  List<StaticSpaceType>? get visibleSmartSpaces {
-    return _visibleSmartSpaces;
+  String? get color {
+    return _color;
   }
   
   TemporalDateTime? get createdAt {
@@ -64,14 +71,14 @@ class Preferences extends Model {
     return _updatedAt;
   }
   
-  const Preferences._internal({required this.id, theme, calendar, visibleSmartSpaces, createdAt, updatedAt}): _theme = theme, _calendar = calendar, _visibleSmartSpaces = visibleSmartSpaces, _createdAt = createdAt, _updatedAt = updatedAt;
+  const SmartSpace._internal({required this.id, required name, emoji, color, createdAt, updatedAt}): _name = name, _emoji = emoji, _color = color, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory Preferences({String? id, ThemeType? theme, CalendarType? calendar, List<StaticSpaceType>? visibleSmartSpaces, TemporalDateTime? createdAt, TemporalDateTime? updatedAt}) {
-    return Preferences._internal(
+  factory SmartSpace({String? id, required String name, String? emoji, String? color, TemporalDateTime? createdAt, TemporalDateTime? updatedAt}) {
+    return SmartSpace._internal(
       id: id == null ? UUID.getUUID() : id,
-      theme: theme,
-      calendar: calendar,
-      visibleSmartSpaces: visibleSmartSpaces != null ? List<StaticSpaceType>.unmodifiable(visibleSmartSpaces) : visibleSmartSpaces,
+      name: name,
+      emoji: emoji,
+      color: color,
       createdAt: createdAt,
       updatedAt: updatedAt);
   }
@@ -83,11 +90,11 @@ class Preferences extends Model {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Preferences &&
+    return other is SmartSpace &&
       id == other.id &&
-      _theme == other._theme &&
-      _calendar == other._calendar &&
-      DeepCollectionEquality().equals(_visibleSmartSpaces, other._visibleSmartSpaces) &&
+      _name == other._name &&
+      _emoji == other._emoji &&
+      _color == other._color &&
       _createdAt == other._createdAt &&
       _updatedAt == other._updatedAt;
   }
@@ -99,11 +106,11 @@ class Preferences extends Model {
   String toString() {
     var buffer = new StringBuffer();
     
-    buffer.write("Preferences {");
+    buffer.write("SmartSpace {");
     buffer.write("id=" + "$id" + ", ");
-    buffer.write("theme=" + (_theme != null ? enumToString(_theme)! : "null") + ", ");
-    buffer.write("calendar=" + (_calendar != null ? enumToString(_calendar)! : "null") + ", ");
-    buffer.write("visibleSmartSpaces=" + (_visibleSmartSpaces != null ? _visibleSmartSpaces!.map((e) => enumToString(e)).toString() : "null") + ", ");
+    buffer.write("name=" + "$_name" + ", ");
+    buffer.write("emoji=" + "$_emoji" + ", ");
+    buffer.write("color=" + "$_color" + ", ");
     buffer.write("createdAt=" + (_createdAt != null ? _createdAt!.format() : "null") + ", ");
     buffer.write("updatedAt=" + (_updatedAt != null ? _updatedAt!.format() : "null"));
     buffer.write("}");
@@ -111,48 +118,41 @@ class Preferences extends Model {
     return buffer.toString();
   }
   
-  Preferences copyWith({String? id, ThemeType? theme, CalendarType? calendar, List<StaticSpaceType>? visibleSmartSpaces, TemporalDateTime? createdAt, TemporalDateTime? updatedAt}) {
-    return Preferences._internal(
+  SmartSpace copyWith({String? id, String? name, String? emoji, String? color, TemporalDateTime? createdAt, TemporalDateTime? updatedAt}) {
+    return SmartSpace._internal(
       id: id ?? this.id,
-      theme: theme ?? this.theme,
-      calendar: calendar ?? this.calendar,
-      visibleSmartSpaces: visibleSmartSpaces ?? this.visibleSmartSpaces,
+      name: name ?? this.name,
+      emoji: emoji ?? this.emoji,
+      color: color ?? this.color,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt);
   }
   
-  Preferences.fromJson(Map<String, dynamic> json)  
+  SmartSpace.fromJson(Map<String, dynamic> json)  
     : id = json['id'],
-      _theme = enumFromString<ThemeType>(json['theme'], ThemeType.values),
-      _calendar = enumFromString<CalendarType>(json['calendar'], CalendarType.values),
-      _visibleSmartSpaces = json['visibleSmartSpaces'] is List
-        ? (json['visibleSmartSpaces'] as List)
-          .map((e) => enumFromString<StaticSpaceType>(e, StaticSpaceType.values)!)
-          .toList()
-        : null,
+      _name = json['name'],
+      _emoji = json['emoji'],
+      _color = json['color'],
       _createdAt = json['createdAt'] != null ? TemporalDateTime.fromString(json['createdAt']) : null,
       _updatedAt = json['updatedAt'] != null ? TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'theme': enumToString(_theme), 'calendar': enumToString(_calendar), 'visibleSmartSpaces': _visibleSmartSpaces?.map((e) => enumToString(e)).toList(), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
+    'id': id, 'name': _name, 'emoji': _emoji, 'color': _color, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
 
   static final QueryField ID = QueryField(fieldName: "id");
-  static final QueryField THEME = QueryField(fieldName: "theme");
-  static final QueryField CALENDAR = QueryField(fieldName: "calendar");
-  static final QueryField VISIBLESMARTSPACES = QueryField(fieldName: "visibleSmartSpaces");
+  static final QueryField NAME = QueryField(fieldName: "name");
+  static final QueryField EMOJI = QueryField(fieldName: "emoji");
+  static final QueryField COLOR = QueryField(fieldName: "color");
   static final QueryField CREATEDAT = QueryField(fieldName: "createdAt");
   static final QueryField UPDATEDAT = QueryField(fieldName: "updatedAt");
   static var schema = Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
-    modelSchemaDefinition.name = "Preferences";
-    modelSchemaDefinition.pluralName = "Preferences";
+    modelSchemaDefinition.name = "SmartSpace";
+    modelSchemaDefinition.pluralName = "SmartSpaces";
     
     modelSchemaDefinition.authRules = [
       AuthRule(
-        authStrategy: AuthStrategy.OWNER,
-        ownerField: "owner",
-        identityClaim: "cognito:username",
-        provider: AuthRuleProvider.USERPOOLS,
+        authStrategy: AuthStrategy.PRIVATE,
         operations: [
           ModelOperation.CREATE,
           ModelOperation.UPDATE,
@@ -164,43 +164,42 @@ class Preferences extends Model {
     modelSchemaDefinition.addField(ModelFieldDefinition.id());
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Preferences.THEME,
-      isRequired: false,
-      ofType: ModelFieldType(ModelFieldTypeEnum.enumeration)
+      key: SmartSpace.NAME,
+      isRequired: true,
+      ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Preferences.CALENDAR,
+      key: SmartSpace.EMOJI,
       isRequired: false,
-      ofType: ModelFieldType(ModelFieldTypeEnum.enumeration)
+      ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Preferences.VISIBLESMARTSPACES,
+      key: SmartSpace.COLOR,
       isRequired: false,
-      isArray: true,
-      ofType: ModelFieldType(ModelFieldTypeEnum.collection, ofModelName: describeEnum(ModelFieldTypeEnum.enumeration))
+      ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Preferences.CREATEDAT,
+      key: SmartSpace.CREATEDAT,
       isRequired: false,
       ofType: ModelFieldType(ModelFieldTypeEnum.dateTime)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Preferences.UPDATEDAT,
+      key: SmartSpace.UPDATEDAT,
       isRequired: false,
       ofType: ModelFieldType(ModelFieldTypeEnum.dateTime)
     ));
   });
 }
 
-class _PreferencesModelType extends ModelType<Preferences> {
-  const _PreferencesModelType();
+class _SmartSpaceModelType extends ModelType<SmartSpace> {
+  const _SmartSpaceModelType();
   
   @override
-  Preferences fromJson(Map<String, dynamic> jsonData) {
-    return Preferences.fromJson(jsonData);
+  SmartSpace fromJson(Map<String, dynamic> jsonData) {
+    return SmartSpace.fromJson(jsonData);
   }
 }

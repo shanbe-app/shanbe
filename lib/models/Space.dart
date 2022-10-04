@@ -37,6 +37,7 @@ class Space extends Model {
   final List<Section>? _sections;
   final String? _parentID;
   final List<Space>? _spaces;
+  final bool? _showOverDue;
   final TemporalDateTime? _createdAt;
   final TemporalDateTime? _updatedAt;
 
@@ -85,6 +86,10 @@ class Space extends Model {
     return _spaces;
   }
   
+  bool? get showOverDue {
+    return _showOverDue;
+  }
+  
   TemporalDateTime? get createdAt {
     return _createdAt;
   }
@@ -93,9 +98,9 @@ class Space extends Model {
     return _updatedAt;
   }
   
-  const Space._internal({required this.id, required name, emoji, color, todos, sections, parentID, spaces, createdAt, updatedAt}): _name = name, _emoji = emoji, _color = color, _todos = todos, _sections = sections, _parentID = parentID, _spaces = spaces, _createdAt = createdAt, _updatedAt = updatedAt;
+  const Space._internal({required this.id, required name, emoji, color, todos, sections, parentID, spaces, showOverDue, createdAt, updatedAt}): _name = name, _emoji = emoji, _color = color, _todos = todos, _sections = sections, _parentID = parentID, _spaces = spaces, _showOverDue = showOverDue, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory Space({String? id, required String name, String? emoji, String? color, List<Todo>? todos, List<Section>? sections, String? parentID, List<Space>? spaces}) {
+  factory Space({String? id, required String name, String? emoji, String? color, List<Todo>? todos, List<Section>? sections, String? parentID, List<Space>? spaces, bool? showOverDue, TemporalDateTime? createdAt, TemporalDateTime? updatedAt}) {
     return Space._internal(
       id: id == null ? UUID.getUUID() : id,
       name: name,
@@ -104,7 +109,10 @@ class Space extends Model {
       todos: todos != null ? List<Todo>.unmodifiable(todos) : todos,
       sections: sections != null ? List<Section>.unmodifiable(sections) : sections,
       parentID: parentID,
-      spaces: spaces != null ? List<Space>.unmodifiable(spaces) : spaces);
+      spaces: spaces != null ? List<Space>.unmodifiable(spaces) : spaces,
+      showOverDue: showOverDue,
+      createdAt: createdAt,
+      updatedAt: updatedAt);
   }
   
   bool equals(Object other) {
@@ -122,7 +130,10 @@ class Space extends Model {
       DeepCollectionEquality().equals(_todos, other._todos) &&
       DeepCollectionEquality().equals(_sections, other._sections) &&
       _parentID == other._parentID &&
-      DeepCollectionEquality().equals(_spaces, other._spaces);
+      DeepCollectionEquality().equals(_spaces, other._spaces) &&
+      _showOverDue == other._showOverDue &&
+      _createdAt == other._createdAt &&
+      _updatedAt == other._updatedAt;
   }
   
   @override
@@ -138,6 +149,7 @@ class Space extends Model {
     buffer.write("emoji=" + "$_emoji" + ", ");
     buffer.write("color=" + "$_color" + ", ");
     buffer.write("parentID=" + "$_parentID" + ", ");
+    buffer.write("showOverDue=" + (_showOverDue != null ? _showOverDue!.toString() : "null") + ", ");
     buffer.write("createdAt=" + (_createdAt != null ? _createdAt!.format() : "null") + ", ");
     buffer.write("updatedAt=" + (_updatedAt != null ? _updatedAt!.format() : "null"));
     buffer.write("}");
@@ -145,7 +157,7 @@ class Space extends Model {
     return buffer.toString();
   }
   
-  Space copyWith({String? id, String? name, String? emoji, String? color, List<Todo>? todos, List<Section>? sections, String? parentID, List<Space>? spaces}) {
+  Space copyWith({String? id, String? name, String? emoji, String? color, List<Todo>? todos, List<Section>? sections, String? parentID, List<Space>? spaces, bool? showOverDue, TemporalDateTime? createdAt, TemporalDateTime? updatedAt}) {
     return Space._internal(
       id: id ?? this.id,
       name: name ?? this.name,
@@ -154,7 +166,10 @@ class Space extends Model {
       todos: todos ?? this.todos,
       sections: sections ?? this.sections,
       parentID: parentID ?? this.parentID,
-      spaces: spaces ?? this.spaces);
+      spaces: spaces ?? this.spaces,
+      showOverDue: showOverDue ?? this.showOverDue,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt);
   }
   
   Space.fromJson(Map<String, dynamic> json)  
@@ -181,11 +196,12 @@ class Space extends Model {
           .map((e) => Space.fromJson(new Map<String, dynamic>.from(e['serializedData'])))
           .toList()
         : null,
+      _showOverDue = json['showOverDue'],
       _createdAt = json['createdAt'] != null ? TemporalDateTime.fromString(json['createdAt']) : null,
       _updatedAt = json['updatedAt'] != null ? TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'name': _name, 'emoji': _emoji, 'color': _color, 'todos': _todos?.map((Todo? e) => e?.toJson()).toList(), 'sections': _sections?.map((Section? e) => e?.toJson()).toList(), 'parentID': _parentID, 'spaces': _spaces?.map((Space? e) => e?.toJson()).toList(), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
+    'id': id, 'name': _name, 'emoji': _emoji, 'color': _color, 'todos': _todos?.map((Todo? e) => e?.toJson()).toList(), 'sections': _sections?.map((Section? e) => e?.toJson()).toList(), 'parentID': _parentID, 'spaces': _spaces?.map((Space? e) => e?.toJson()).toList(), 'showOverDue': _showOverDue, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
 
   static final QueryField ID = QueryField(fieldName: "id");
@@ -202,6 +218,9 @@ class Space extends Model {
   static final QueryField SPACES = QueryField(
     fieldName: "spaces",
     fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Space).toString()));
+  static final QueryField SHOWOVERDUE = QueryField(fieldName: "showOverDue");
+  static final QueryField CREATEDAT = QueryField(fieldName: "createdAt");
+  static final QueryField UPDATEDAT = QueryField(fieldName: "updatedAt");
   static var schema = Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
     modelSchemaDefinition.name = "Space";
     modelSchemaDefinition.pluralName = "Spaces";
@@ -268,17 +287,21 @@ class Space extends Model {
       associatedKey: Space.PARENTID
     ));
     
-    modelSchemaDefinition.addField(ModelFieldDefinition.nonQueryField(
-      fieldName: 'createdAt',
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+      key: Space.SHOWOVERDUE,
       isRequired: false,
-      isReadOnly: true,
+      ofType: ModelFieldType(ModelFieldTypeEnum.bool)
+    ));
+    
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+      key: Space.CREATEDAT,
+      isRequired: false,
       ofType: ModelFieldType(ModelFieldTypeEnum.dateTime)
     ));
     
-    modelSchemaDefinition.addField(ModelFieldDefinition.nonQueryField(
-      fieldName: 'updatedAt',
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+      key: Space.UPDATEDAT,
       isRequired: false,
-      isReadOnly: true,
       ofType: ModelFieldType(ModelFieldTypeEnum.dateTime)
     ));
   });

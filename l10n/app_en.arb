@@ -52,8 +52,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "addProject": "Create project",
-  "@addProject": {
+  "addSpace": "Create Space",
+  "@addSpace": {
     "type": "text",
     "placeholders": {}
   },
@@ -123,8 +123,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "enterProjectName": "Project Name",
-  "@enterProjectName": {
+  "spaceNamePlaceholder": "Space Name",
+  "@spaceNamePlaceholder": {
     "type": "text",
     "placeholders": {}
   },
@@ -302,8 +302,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "editProject": "Edit Project",
-  "@editProject": {
+  "editSpace": "Edit Space",
+  "@editSpace": {
     "type": "text",
     "placeholders": {}
   },
@@ -1695,6 +1695,26 @@
   },
   "newSpace": "new Space",
   "@newSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dropForSubSpace": "Drop here to add sub space",
+  "@dropForSubSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reminders": "Reminders",
+  "@reminders": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emojiTypePeople": "People",
+  "@emojiTypePeople": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emojiTypeSymbols": "Symbols",
+  "@emojiTypeSymbols": {
     "type": "text",
     "placeholders": {}
   }

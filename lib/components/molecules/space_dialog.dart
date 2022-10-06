@@ -1,24 +1,18 @@
 import 'package:client/models/Space.dart';
+import 'package:client/rx/service_provider.dart';
 import 'package:client/shanbe_icons.dart';
+import 'package:client/utils/colors.dart';
 import 'package:client/utils/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_emoji/flutter_emoji.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 class SpaceDialog extends StatefulWidget {
   final AppLocalizations t;
-  final EmojiParser parser;
-  final Space? defaultProject;
   final Function(Space) onCreate;
-  final Function(Space) onUpdate;
 
-  SpaceDialog(this.t,
-      {Key? key,
-      this.defaultProject,
-      required this.onCreate,
-      required this.onUpdate})
-      : parser = EmojiParser(),
-        super(key: key);
+  const SpaceDialog(this.t, {Key? key, required this.onCreate})
+      : super(key: key);
 
   @override
   _SpaceDialogState createState() => _SpaceDialogState();
@@ -32,6 +26,7 @@ class _SpaceDialogState extends State<SpaceDialog>
   AnimationController? animationController;
   Animation<double>? animation;
   TextEditingController? textController;
+  int emojiSegmentIndex = 0;
 
   @override
   void initState() {
@@ -40,13 +35,7 @@ class _SpaceDialogState extends State<SpaceDialog>
         duration: const Duration(milliseconds: 300), vsync: this);
     animation = CurvedAnimation(
         parent: animationController!, curve: Curves.fastOutSlowIn);
-    if (widget.defaultProject != null) {
-      projectName = widget.defaultProject!.name;
-      pickedEmoji = widget.defaultProject!.emoji;
-      textController = TextEditingController(text: widget.defaultProject!.name);
-    } else {
-      textController = TextEditingController();
-    }
+    textController = TextEditingController();
   }
 
   @override
@@ -55,7 +44,7 @@ class _SpaceDialogState extends State<SpaceDialog>
     super.dispose();
   }
 
-  void updateEmojiPickerAnim() {
+  void updateEmojiPickerAnimation() {
     if (showEmojiPicker) {
       animationController?.forward();
     } else {
@@ -66,115 +55,118 @@ class _SpaceDialogState extends State<SpaceDialog>
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      content: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Row(
-              children: [
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.all(8),
-                    shape: const CircleBorder(),
-                    elevation: 4,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      showEmojiPicker = !showEmojiPicker;
-                      updateEmojiPickerAnim();
-                    });
-                  },
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Row(
+            children: [
+              PlatformElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    showEmojiPicker = !showEmojiPicker;
+                    updateEmojiPickerAnimation();
+                  });
+                },
+                padding: EdgeInsets.zero,
+                color: Constants.SECONDARY_COLOR,
+                alignment: Alignment.center,
+                child: Container(
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(45)),
                   child: AnimatedSwitcher(
-                    duration: Duration(milliseconds: 300),
+                    duration: const Duration(milliseconds: 300),
                     transitionBuilder: (child, animation) => FadeTransition(
                       opacity: animation,
                       child: child,
                     ),
                     child: pickedEmoji != null
                         ? Text(
-                            widget.parser.emojify(pickedEmoji!),
-                            style: TextStyle(fontSize: 36),
+                            ServiceProvider.getInstance()
+                                .emojiManager
+                                .parser
+                                .emojify(pickedEmoji!),
+                            style: const TextStyle(
+                                fontSize: Constants.ICON_MEDIUM_SIZE),
                             textAlign: TextAlign.center,
                           )
-                        : Icon(
-                            Shanbe.bullseye,
-                            size: 36,
-                            color: Constants.SECONDARY_COLOR,
+                        : const Icon(
+                            Shanbe.tasklist,
+                            size: Constants.ICON_MEDIUM_SIZE,
+                            color: Colors.white,
                           ),
                   ),
                 ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                  child: TextField(
-                    maxLength: 40,
-                    autofocus: true,
-                    controller: textController,
-                    decoration: InputDecoration(
-                        hintText: widget.t.enterProjectName,
-                        counterStyle: TextStyle()),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                child: PlatformTextField(
+                  autofocus: true,
+                  autocorrect: false,
+                  cupertino: (context, _) => CupertinoTextFieldData(
+                    placeholder: widget.t.spaceNamePlaceholder,
                     textInputAction: TextInputAction.done,
-                    onChanged: (name) {
-                      if (name.length <= 40) {
-                        setState(() {
-                          projectName = name;
-                        });
-                      }
-                    },
-                    textDirection: projectName.startsWith(RegExp(r'[A-Za-z]'))
-                        ? TextDirection.ltr
-                        : TextDirection.rtl,
                   ),
-                )
-              ],
-            ),
-            SizedBox(height: 8),
-            SizeTransition(
+                  onChanged: (value) {
+                    setState(() {
+                      projectName = value;
+                    });
+                  },
+                ),
+              )
+            ],
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            height: showEmojiPicker ? 150 : 0,
+            width: double.maxFinite,
+            alignment: Alignment.topCenter,
+            child: SizeTransition(
               axisAlignment: 1.0,
               sizeFactor: animation!,
-              child: Column(
-                children: [
-                  for (var i = 0;
-                      i <= (Constants.emojis.length / 5).floor();
-                      i++)
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        for (var j = 0; j < 5; j++)
-                          Constants.emojis.length > i * 5 + j
-                              ? InkResponse(
-                                  onTap: () {
-                                    setState(() {
-                                      pickedEmoji = Constants.emojis[i * 5 + j];
-                                      showEmojiPicker = !showEmojiPicker;
-                                      updateEmojiPickerAnim();
-                                    });
-                                  },
-                                  child: Padding(
-                                    padding: EdgeInsets.all(4),
-                                    child: Text(
-                                      widget.parser
-                                          .emojify(Constants.emojis[i * 5 + j]),
-                                      style: TextStyle(
-                                          fontSize: Constants.S1_FONT_SIZE),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                )
-                              : Expanded(child: Container())
-                      ],
-                    )
-                ],
+              child: GridView.builder(
+                padding: EdgeInsets.zero,
+                shrinkWrap: false,
+                itemBuilder: (context, index) => PlatformIconButton(
+                  onPressed: () {
+                    setState(() {
+                      pickedEmoji = Constants.emojis.entries
+                          .elementAt(emojiSegmentIndex)
+                          .value[index];
+                      showEmojiPicker = !showEmojiPicker;
+                      updateEmojiPickerAnimation();
+                    });
+                  },
+                  padding: const EdgeInsets.all(0),
+                  icon: Text(
+                    ServiceProvider.getInstance().emojiManager.parser.emojify(
+                        Constants.emojis.entries
+                            .elementAt(emojiSegmentIndex)
+                            .value[index]),
+                    style: const TextStyle(fontSize: Constants.H5_FONT_SIZE),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                itemCount: Constants.emojis.entries
+                    .elementAt(emojiSegmentIndex)
+                    .value
+                    .length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: 1,
+                    crossAxisCount: 4,
+                    mainAxisExtent: 40,
+                    crossAxisSpacing: 40),
               ),
             ),
-          ],
-        ),
+          )
+        ],
       ),
-      title: Text(widget.defaultProject != null
-          ? widget.t.editProject
-          : widget.t.addProject),
+      title: Text(widget.t.addSpace),
       actions: [
         if (showEmojiPicker)
           TextButton(
@@ -182,37 +174,30 @@ class _SpaceDialogState extends State<SpaceDialog>
               setState(() {
                 showEmojiPicker = !showEmojiPicker;
                 pickedEmoji = null;
-                updateEmojiPickerAnim();
+                updateEmojiPickerAnimation();
               });
             },
             child: Text(widget.t.removeEmoji),
           )
         else ...[
-          TextButton(
+          PlatformTextButton(
             onPressed: () {
               Navigator.of(context).pop();
             },
             child: Text(widget.t.cancel),
           ),
-          ElevatedButton(
+          PlatformElevatedButton(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
             onPressed: projectName == ''
                 ? null
                 : () {
-                    Space? p = widget.defaultProject;
-                    if (p != null) {
-                      widget.onUpdate(
-                          p.copyWith(name: projectName, emoji: pickedEmoji));
-                    } else {
-                      widget.onCreate(Space(
-                        name: projectName,
-                        emoji: pickedEmoji ?? '',
-                      ));
-                    }
+                    widget.onCreate(Space(
+                      name: projectName,
+                      emoji: pickedEmoji ?? '',
+                    ));
                     Navigator.of(context).pop();
                   },
-            child: Text(widget.defaultProject != null
-                ? widget.t.edit
-                : widget.t.create),
+            child: Text(widget.t.create),
           )
         ]
       ],

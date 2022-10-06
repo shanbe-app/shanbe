@@ -51,6 +51,7 @@ class MagicalFloatingActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Draggable(
+        data: 0,
         child: renderFloatingActionButton(),
         feedback: renderFloatingActionButton(),
         childWhenDragging: Container(

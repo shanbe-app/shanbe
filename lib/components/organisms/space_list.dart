@@ -38,6 +38,7 @@ class _SpaceListState extends State<SpaceList> {
               ...querySnapshot.items
                   .map((e) => SpaceItem(
                         space: e,
+                        t: widget.t,
                         onPress: () {
                           widget.onPress(e);
                         },

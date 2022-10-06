@@ -44,6 +44,7 @@ class Shanbe {
   static const IconData list_add = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData bubble_chart = IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData crown = IconData(0xe844, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData smile = IconData(0xf118, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData bullseye = IconData(0xf140, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData sliders_h = IconData(0xf1de, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData tasklist = IconData(0xf31c, fontFamily: _kFontFam, fontPackage: _kFontPkg);

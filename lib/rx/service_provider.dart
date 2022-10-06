@@ -1,6 +1,7 @@
 import 'package:client/rx/services/amplify_service.dart';
 import 'package:client/rx/services/app_info_service.dart';
 import 'package:client/rx/services/connectivity_service.dart';
+import 'package:client/rx/managers/emoji_manager.dart';
 import 'package:client/rx/services/firebase_service.dart';
 import 'package:client/rx/services/notification_service.dart';
 import 'package:client/rx/services/rx_service.dart';
@@ -15,6 +16,7 @@ class ServiceProvider extends RxService {
   late final StorageService storageService;
   late final FirebaseService firebaseService;
   late final AmplifyService amplifyService;
+  late final EmojiManager emojiManager;
   Function? themeChangeCallback;
   Function? localeChangeCallback;
 
@@ -25,6 +27,7 @@ class ServiceProvider extends RxService {
     storageService = StorageService();
     firebaseService = FirebaseService();
     amplifyService = AmplifyService();
+    emojiManager = EmojiManager();
   }
 
   @override

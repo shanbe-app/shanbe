@@ -1,3 +1,4 @@
+import 'package:client/components/atoms/premium_crown.dart';
 import 'package:client/utils/constants.dart';
 import 'package:client/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class UserAvatar extends StatelessWidget {
   final String? avatar;
-  final bool? isOnline;
+  final bool? isPremium;
   final double size;
   final double radius;
   final String? name;
@@ -14,7 +15,7 @@ class UserAvatar extends StatelessWidget {
   UserAvatar(
       {Key? key,
       required this.avatar,
-      this.isOnline,
+      this.isPremium,
       this.size = 42.0,
       this.radius = 45,
       this.name})
@@ -116,26 +117,11 @@ class UserAvatar extends StatelessWidget {
                               )
                       ],
                     ),
-              if (isOnline != null && isOnline!)
-                Positioned(
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Container(
-                        width: 14,
-                        height: 14,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(45)),
-                      ),
-                      Container(
-                        width: 10,
-                        height: 10,
-                        decoration: BoxDecoration(
-                            color: const Color.fromRGBO(0, 180, 181, 1),
-                            borderRadius: BorderRadius.circular(45)),
-                      )
-                    ],
+              if (isPremium != null && isPremium!)
+                const Positioned(
+                  child: PremiumCrown(
+                    alignment: Alignment.topRight,
+                    crownSize: 32,
                   ),
                   right: -2,
                   top: -2,

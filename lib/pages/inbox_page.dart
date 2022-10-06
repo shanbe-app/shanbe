@@ -1,5 +1,4 @@
 import 'package:client/components/atoms/magical_floating_action_button.dart';
-import 'package:client/components/atoms/search_field.dart';
 import 'package:client/components/atoms/user_avatar.dart';
 import 'package:client/components/molecules/space_dialog.dart';
 import 'package:client/components/organisms/space_list.dart';
@@ -11,6 +10,7 @@ import 'package:client/types/space_page_arguments.dart';
 import 'package:client/types/user.dart';
 import 'package:client/utils/colors.dart';
 import 'package:client/utils/constants.dart';
+import 'package:client/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -60,29 +60,35 @@ class _InboxPageState extends State<InboxPage> {
             onTap: (i) => setState(() => _currentPageIndex = i),
             items: [
               SalomonBottomBarItem(
-                icon: const Icon(Icons.check_box_outlined),
-                title: Text(t.tasks),
-                selectedColor: Colors.purple,
+                icon: const Icon(Shanbe.bubble_chart),
+                title: Text(t.spaces),
+                selectedColor: Constants.PRIMARY_COLOR,
               ),
               SalomonBottomBarItem(
                 icon: const Icon(Icons.calendar_month_rounded),
                 title: Text(t.calendar),
-                selectedColor: Colors.purple,
+                selectedColor: Colors.green.shade500,
               ),
               SalomonBottomBarItem(
                 icon: const Icon(Shanbe.bullseye),
                 title: Text(t.focus),
-                selectedColor: Colors.purple,
+                selectedColor: Colors.pink.shade400,
               ),
               SalomonBottomBarItem(
-                icon: const Icon(Icons.book),
-                title: Text(t.notes),
-                selectedColor: Colors.purple,
+                icon: SvgPicture.asset(
+                  'assets/images/notification.svg',
+                  color: grayLighterColor(context),
+                  width: Constants.ICON_MEDIUM_SIZE,
+                  height: Constants.ICON_MEDIUM_SIZE,
+                  fit: BoxFit.contain,
+                ),
+                title: Text(t.reminders),
+                selectedColor: Colors.blue.shade700,
               ),
               SalomonBottomBarItem(
                 icon: const Icon(Icons.settings),
                 title: Text(t.settings),
-                selectedColor: Colors.purple,
+                selectedColor: Colors.grey.shade600,
               ),
             ],
           )),
@@ -102,9 +108,21 @@ class _InboxPageState extends State<InboxPage> {
             BottomNavigationBarItem(
                 icon: const Icon(Shanbe.bullseye), label: t.focus),
             BottomNavigationBarItem(
-                icon: const Icon(CupertinoIcons.book),
-                label: t.notes,
-                activeIcon: const Icon(CupertinoIcons.book_fill)),
+                icon: SvgPicture.asset(
+                  'assets/images/notification.svg',
+                  color: CupertinoColors.inactiveGray,
+                  width: 28,
+                  height: 28,
+                  fit: BoxFit.contain,
+                ),
+                label: t.reminders,
+                activeIcon: SvgPicture.asset(
+                  'assets/images/notification.svg',
+                  color: Constants.PRIMARY_COLOR,
+                  width: 28,
+                  height: 28,
+                  fit: BoxFit.contain,
+                )),
             BottomNavigationBarItem(
                 icon: const Icon(CupertinoIcons.settings), label: t.settings)
           ],
@@ -131,18 +149,6 @@ class _InboxPageState extends State<InboxPage> {
                       onPressed: () {
                         Navigator.pushNamed(context, '/edit-lists');
                       }),
-                  IconButton(
-                    padding: EdgeInsets.zero,
-                    onPressed: () {},
-                    icon: SvgPicture.asset(
-                      'assets/images/notification.svg',
-                      color: grayLighterColor(context),
-                      width: Constants.ICON_MEDIUM_SIZE,
-                      height: Constants.ICON_MEDIUM_SIZE,
-                      fit: BoxFit.contain,
-                    ),
-                    color: Colors.transparent,
-                  )
                 ],
                 leading: StreamBuilder(
                   stream: authBloc.authUser,
@@ -166,7 +172,7 @@ class _InboxPageState extends State<InboxPage> {
                   t.spaces,
                 ),
                 stretch: false,
-                automaticallyImplyLeading: true,
+                automaticallyImplyLeading: false,
                 previousPageTitle: t.today,
                 leading: Row(
                   children: [
@@ -186,21 +192,6 @@ class _InboxPageState extends State<InboxPage> {
                         );
                       },
                     ),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    CupertinoButton(
-                      padding: EdgeInsets.zero,
-                      onPressed: () {},
-                      child: SvgPicture.asset(
-                        'assets/images/notification.svg',
-                        color: grayLighterColor(context),
-                        width: Constants.ICON_MEDIUM_SIZE,
-                        height: Constants.ICON_MEDIUM_SIZE,
-                        fit: BoxFit.contain,
-                      ),
-                      color: Colors.transparent,
-                    )
                   ],
                 ),
                 trailing: CupertinoButton(
@@ -217,16 +208,19 @@ class _InboxPageState extends State<InboxPage> {
                 ),
               ),
             ),
-            SliverToBoxAdapter(
-              child: Container(
-                margin: const EdgeInsets.symmetric(vertical: 16),
-                padding: Constants.PAGE_PADDING,
-                child: SearchField(placeholder: t.searchSpacePlaceholder, t: t),
-              ),
-            ),
+            // SliverToBoxAdapter(
+            //   child: Container(
+            //     margin: const EdgeInsets.symmetric(vertical: 16),
+            //     padding: Constants.PAGE_PADDING,
+            //     child: SearchField(placeholder: t.searchSpacePlaceholder, t: t),
+            //   ),
+            // ),
             SliverToBoxAdapter(
               child: Card(
-                  margin: const EdgeInsets.symmetric(horizontal: 16),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14)),
                   child: Container(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -249,10 +243,10 @@ class _InboxPageState extends State<InboxPage> {
                 context: context,
                 builder: (context) => SpaceDialog(t, onCreate: (Space space) {
                       spaceBloc.createSpace(newSpace: space);
-                    }, onUpdate: (Space space) {}));
+                    }));
           }),
           right: 16,
-          bottom: 96,
+          bottom: 100,
         )
       ],
     );

@@ -3,60 +3,87 @@ import 'package:client/models/Space.dart';
 import 'package:client/utils/colors.dart';
 import 'package:client/utils/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_emoji/flutter_emoji.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SpaceItem extends StatelessWidget {
+  final AppLocalizations t;
   final Space space;
   final VoidCallback? onPress;
   final Color? spaceNameColor;
 
   const SpaceItem(
-      {Key? key, required this.space, this.onPress, this.spaceNameColor})
+      {Key? key,
+      required this.space,
+      this.onPress,
+      this.spaceNameColor,
+      required this.t})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var parser = EmojiParser();
-    return PlatformTextButton(
-      padding: EdgeInsets.zero,
-      onPressed: onPress,
-      child: Column(
-        children: [
-          Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                SpaceIcon(
-                  space,
-                  size: Constants.ICON_SMALL_SIZE,
-                ),
-                const SizedBox(
-                  width: 8,
-                ),
+    return DragTarget(
+      builder: (context, candidateItems, rejectedItems) {
+        return PlatformTextButton(
+          padding: EdgeInsets.zero,
+          onPressed: onPress,
+          child: Stack(
+            alignment: Alignment.center,
+            fit: StackFit.loose,
+            children: [
+              if (candidateItems.isNotEmpty)
                 Text(
-                  space.name,
+                  t.dropForSubSpace,
                   style: TextStyle(
                       fontSize: Constants.S1_FONT_SIZE,
                       fontWeight: Constants.MEDIUM_FONT_WEIGHT,
-                      color: spaceNameColor ?? textColor(context)),
-                )
-              ]),
-          if (space.spaces != null && space.spaces!.isNotEmpty)
-            Container(
-              margin: const EdgeInsets.only(left: 8),
-              child: Column(
-                children: space.spaces!
-                    .map((e) => SpaceItem(
-                          space: e,
-                          onPress: onPress,
-                          spaceNameColor: spaceNameColor,
-                        ))
-                    .toList(),
-              ),
-            )
-        ],
-      ),
+                      color: secondaryTextColor(context)),
+                ),
+              Column(
+                children: [
+                  Opacity(
+                      opacity: candidateItems.isNotEmpty ? .2 : 1,
+                      child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            SpaceIcon(
+                              space,
+                              size: Constants.ICON_SMALL_SIZE,
+                            ),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            Text(
+                              space.name,
+                              style: TextStyle(
+                                  fontSize: Constants.S1_FONT_SIZE,
+                                  fontWeight: Constants.MEDIUM_FONT_WEIGHT,
+                                  color: spaceNameColor ?? textColor(context)),
+                            )
+                          ])),
+                  if (space.spaces != null && space.spaces!.isNotEmpty)
+                    Container(
+                      margin: const EdgeInsets.only(left: 8),
+                      child: Column(
+                        children: space.spaces!
+                            .map((e) => SpaceItem(
+                                space: e,
+                                onPress: onPress,
+                                spaceNameColor: spaceNameColor,
+                                t: t))
+                            .toList(),
+                      ),
+                    )
+                ],
+              )
+            ],
+          ),
+        );
+      },
+      onAccept: (_) {
+        print('accept');
+      },
     );
   }
 }

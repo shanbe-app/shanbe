@@ -1,13 +1,11 @@
-import 'dart:math';
-
 import 'package:client/models/ModelProvider.dart';
+import 'package:client/rx/service_provider.dart';
 import 'package:client/shanbe_icons.dart';
 import 'package:client/types/hex_color.dart';
 import 'package:client/utils/colors.dart';
 import 'package:client/utils/constants.dart';
 import 'package:client/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_emoji/flutter_emoji.dart';
 
 class SpaceIcon extends StatelessWidget {
   final Space space;
@@ -29,7 +27,7 @@ class SpaceIcon extends StatelessWidget {
                 : grayColor(context),
           )
         : Text(
-            EmojiParser().emojify(emoji),
+            ServiceProvider.getInstance().emojiManager.parser.emojify(emoji),
             style: TextStyle(fontSize: size),
           );
   }

@@ -1717,5 +1717,20 @@
   "@emojiTypeSymbols": {
     "type": "text",
     "placeholders": {}
+  },
+  "parentSpace": "Parent Space",
+  "@parentSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceIcon": "Space Icon",
+  "@spaceIcon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceColor": "Space Color",
+  "@spaceColor": {
+    "type": "text",
+    "placeholders": {}
   }
 }

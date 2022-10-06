@@ -1,6 +1,6 @@
 import 'package:client/components/atoms/bottom_sheet_scroll_indicator.dart';
 import 'package:client/components/atoms/new_space_item.dart';
-import 'package:client/components/molecules/space_dialog.dart';
+import 'package:client/components/organisms/space_dialog.dart';
 import 'package:client/components/organisms/space_list.dart';
 import 'package:client/models/Space.dart';
 import 'package:client/types/space_page_arguments.dart';
@@ -61,8 +61,10 @@ class SpacesModalSheet extends StatelessWidget {
               onPress: () {
                 showPlatformDialog(
                     context: context,
-                    builder: (context) =>
-                        SpaceDialog(t, onCreate: onCreateSpace));
+                    builder: (context) => SpaceDialog(
+                          t,
+                          onCreate: onCreateSpace,
+                        ));
               },
             )
           ],

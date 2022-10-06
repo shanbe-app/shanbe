@@ -30,21 +30,18 @@ class _SpaceListState extends State<SpaceList> {
   Widget build(BuildContext context) {
     return StreamBuilder(
       builder: (context, snapshot) {
-        QuerySnapshot<Space>? querySnapshot =
-            snapshot.data as QuerySnapshot<Space>?;
-        if (querySnapshot != null) {
+        List<Space>? items = snapshot.data as List<Space>?;
+        if (items != null) {
           return Column(
-            children: [
-              ...querySnapshot.items
-                  .map((e) => SpaceItem(
-                        space: e,
-                        t: widget.t,
-                        onPress: () {
-                          widget.onPress(e);
-                        },
-                      ))
-                  .toList()
-            ],
+            children: items
+                .map((e) => SpaceItem(
+                      space: e,
+                      t: widget.t,
+                      onPress: () {
+                        widget.onPress(e);
+                      },
+                    ))
+                .toList(),
           );
         }
         return PlatformCircularProgressIndicator();

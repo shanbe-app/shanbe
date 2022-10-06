@@ -19,30 +19,29 @@ class MagicalFloatingActionButton extends StatelessWidget {
           color: Colors.white,
         ),
       ),
-      cupertino: (context, _) => Container(
-        width: 56,
-        height: 56,
-        alignment: Alignment.center,
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(45),
-            color: Constants.PRIMARY_COLOR,
-            boxShadow: [
-              BoxShadow(
-                color: isDark(context) ? Colors.grey.shade900 : Colors.grey,
-                offset: const Offset(0.0, 1),
-                spreadRadius: 2,
-                blurRadius: 4.0,
-              ),
-            ]),
-        child: PlatformIconButton(
-          padding: EdgeInsets.zero,
-          icon: const Icon(
+      cupertino: (context, _) => PlatformIconButton(
+        onPressed: onPress,
+        padding: const EdgeInsets.all(0),
+        icon: Container(
+          width: 56,
+          height: 56,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(45),
+              color: Constants.PRIMARY_COLOR,
+              boxShadow: [
+                BoxShadow(
+                  color: isDark(context) ? Colors.grey.shade900 : Colors.grey,
+                  offset: const Offset(0.0, 1),
+                  spreadRadius: 2,
+                  blurRadius: 4.0,
+                ),
+              ]),
+          child: const Icon(
             Icons.add,
             color: Colors.white,
             // size: Constants.ICON_LARGE_SIZE,
           ),
-          onPressed: onPress,
         ),
       ),
     );

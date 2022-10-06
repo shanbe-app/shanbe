@@ -1,6 +1,6 @@
 import 'package:client/components/atoms/magical_floating_action_button.dart';
 import 'package:client/components/atoms/user_avatar.dart';
-import 'package:client/components/molecules/space_dialog.dart';
+import 'package:client/components/organisms/space_dialog.dart';
 import 'package:client/components/organisms/space_list.dart';
 import 'package:client/models/Space.dart';
 import 'package:client/rx/blocs/auth_bloc.dart';
@@ -241,9 +241,14 @@ class _InboxPageState extends State<InboxPage> {
           child: MagicalFloatingActionButton(onPress: () {
             showPlatformDialog(
                 context: context,
-                builder: (context) => SpaceDialog(t, onCreate: (Space space) {
-                      spaceBloc.createSpace(newSpace: space);
-                    }));
+                barrierDismissible: true,
+                useRootNavigator: true,
+                builder: (context) => SpaceDialog(
+                      t,
+                      onCreate: (Space space) {
+                        spaceBloc.createSpace(newSpace: space);
+                      },
+                    ));
           }),
           right: 16,
           bottom: 100,

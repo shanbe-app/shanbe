@@ -36,6 +36,7 @@ class _SpaceDialogState extends State<SpaceDialog>
   Space? parentSpace;
   late SpaceBloc spaceBloc;
   TextStyle? labelTextStyle;
+  TextStyle? noneTextStyle;
 
   @override
   void initState() {
@@ -65,6 +66,10 @@ class _SpaceDialogState extends State<SpaceDialog>
   @override
   Widget build(BuildContext context) {
     labelTextStyle ??= TextStyle(
+        fontWeight: Constants.REGULAR_FONT_WEIGHT,
+        fontSize: Constants.S1_FONT_SIZE,
+        color: textColor(context));
+    noneTextStyle ??= TextStyle(
         fontWeight: Constants.REGULAR_FONT_WEIGHT,
         fontSize: Constants.S1_FONT_SIZE,
         color: textColor(context));
@@ -107,7 +112,52 @@ class _SpaceDialogState extends State<SpaceDialog>
               )
             ],
           ),
-          SizedBox(
+          const SizedBox(
+            height: 16,
+          ),
+          Row(
+            children: [
+              Text(
+                widget.t.parentSpace,
+                style: labelTextStyle,
+              ),
+              const Spacer(),
+              StreamBuilder(
+                stream: spaceBloc.spaces,
+                builder: (context, snapshot) {
+                  List<Space>? spaces = snapshot.data as List<Space>?;
+                  return PlatformPopupMenu(
+                      options: spaces
+                              ?.map((e) => PopupMenuOption(
+                                  cupertino: (context, _) =>
+                                      CupertinoPopupMenuOptionData(
+                                          child: SpaceItem(
+                                        space: e,
+                                        t: widget.t,
+                                      )),
+                                  material: (context, _) =>
+                                      MaterialPopupMenuOptionData(
+                                          child: SpaceItem(
+                                        space: e,
+                                        t: widget.t,
+                                        spaceNameColor: CupertinoColors.link,
+                                      ))))
+                              .toList() ??
+                          [],
+                      cupertino: (context, _) => CupertinoPopupMenuData(
+                            message: Text(widget.t.yourSpaces),
+                          ),
+                      icon: parentSpace != null
+                          ? SpaceItem(space: parentSpace!, t: widget.t)
+                          : Text(
+                              widget.t.none,
+                              style: noneTextStyle,
+                            ));
+                },
+              )
+            ],
+          ),
+          const SizedBox(
             height: 16,
           ),
           Row(
@@ -149,11 +199,11 @@ class _SpaceDialogState extends State<SpaceDialog>
                                 )
                               : Text(
                                   widget.t.none,
-                                  style: TextStyle(color: placeholderCOl),
+                                  style: noneTextStyle,
                                 ))))
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
           Row(
@@ -195,11 +245,11 @@ class _SpaceDialogState extends State<SpaceDialog>
                                 )
                               : Text(
                                   widget.t.none,
-                                  style: TextStyle(color: placeholderCOl),
+                                  style: noneTextStyle,
                                 ))))
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
           Row(

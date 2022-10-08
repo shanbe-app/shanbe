@@ -52,8 +52,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "addSpace": "Create Space",
-  "@addSpace": {
+  "addList": "New List",
+  "@addList": {
     "type": "text",
     "placeholders": {}
   },
@@ -123,8 +123,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "spaceNamePlaceholder": "Space Name",
-  "@spaceNamePlaceholder": {
+  "listNamePlaceholder": "List Name",
+  "@listNamePlaceholder": {
     "type": "text",
     "placeholders": {}
   },
@@ -302,8 +302,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "editSpace": "Edit Space",
-  "@editSpace": {
+  "editList": "Edit List",
+  "@editList": {
     "type": "text",
     "placeholders": {}
   },
@@ -1568,22 +1568,22 @@
     "type": "text",
     "placeholders": {}
   },
-  "appIntroTitle2": "Your Spaces",
+  "appIntroTitle2": "Focused on real work",
   "@appIntroTitle2": {
     "type": "text",
     "placeholders": {}
   },
-  "appIntroDescription2": "Organize work into spaces to stay organized.",
+  "appIntroDescription2": "We take care of the others",
   "@appIntroDescription2": {
     "type": "text",
     "placeholders": {}
   },
-  "appIntroTitle3": "Spaces inside Spaces!",
+  "appIntroTitle3": "Lists inside Lists!",
   "@appIntroTitle3": {
     "type": "text",
     "placeholders": {}
   },
-  "appIntroDescription3": "Create spaces inside another spaces to stay focused.",
+  "appIntroDescription3": "Create lists inside another lists to stay focused.",
   "@appIntroDescription3": {
     "type": "text",
     "placeholders": {}
@@ -1663,12 +1663,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "spaces": "Spaces",
+  "spaces": "Lists",
   "@spaces": {
     "type": "text",
     "placeholders": {}
   },
-  "searchSpacePlaceholder": "Search all spaces",
+  "searchSpacePlaceholder": "Search all lists",
   "@searchSpacePlaceholder": {
     "type": "text",
     "placeholders": {}
@@ -1718,18 +1718,23 @@
     "type": "text",
     "placeholders": {}
   },
-  "parentSpace": "Parent Space",
-  "@parentSpace": {
+  "spaceNameLabel": "Name",
+  "@spaceNameLabel": {
     "type": "text",
     "placeholders": {}
   },
-  "spaceIcon": "Space Icon",
-  "@spaceIcon": {
+  "parentListLabel": "Parent List",
+  "@parentListLabel": {
     "type": "text",
     "placeholders": {}
   },
-  "spaceColor": "Space Color",
-  "@spaceColor": {
+  "listIconLabel": "Icon",
+  "@listIconLabel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "listColorLabel": "Color",
+  "@listColorLabel": {
     "type": "text",
     "placeholders": {}
   }

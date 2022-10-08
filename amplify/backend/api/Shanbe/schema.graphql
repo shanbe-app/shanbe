@@ -22,7 +22,7 @@ enum ReminderStatus {
   DONE
 }
 
-enum StaticSpaceType {
+enum StaticTaskListType {
   TODAY
   TOMORROW
   DONE
@@ -33,7 +33,7 @@ enum StaticSpaceType {
   OVERDUE
 }
 
-enum SpaceFilterLogic {
+enum TaskListFilterLogic {
   AND
   NOT
   OR
@@ -44,46 +44,47 @@ enum QueryPredicateLogic {
   OR
 }
 
-enum SpaceFilterType {
+enum TaskListFilterType {
   TAGS
-  SPACES
+  TASKLIST
   KEYWORD
   PRIORITY
   DATE
 }
 
-type SpaceQueryPredicate @model @auth(rules: [{allow: private}]) {
+type TaskListQueryPredicate @model @auth(rules: [{allow: private}]) {
   id: ID!
-  filterLogic: SpaceFilterLogic
-  filterType: SpaceFilterType
+  filterLogic: TaskListFilterLogic
+  filterType: TaskListFilterType
   filterValue: [String]
   parentID: ID @index(name: "byParent")
-  childQuerPredicates: [SpaceQueryPredicate] @hasMany(indexName: "byParent", fields: ["id"])
-  childQueryLogic: QueryPredicateLogic
+  childQueryPredicates: [TaskListQueryPredicate] @hasMany(indexName: "byParent", fields: ["id"])
+  childQueryPredicatesLogic: QueryPredicateLogic
 }
 
-type SmartSpace @model @auth(rules: [{allow: private}]) {
+type SmartTaskList @model @auth(rules: [{allow: private}]) {
   id: ID!
   name: String!
   emoji: String
   color: String
-  queryPredicate: SpaceQueryPredicate
-  folderId: ID @index(name: "byFolder")
+  queryPredicate: TaskListQueryPredicate
+  folderID: ID @index(name: "byFolder")
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
 }
 
 
-type Space @model @auth(rules: [{allow: private}]) {
+type TaskList @model @auth(rules: [{allow: private}]) {
   id: ID!
   name: String!
   emoji: String
   color: String
-  todos: [Todo] @hasMany(indexName: "bySpace", fields: ["id"])
-  sections: [Section] @hasMany(indexName: "bySpace", fields: ["id"])
+  todos: [Todo] @hasMany(indexName: "byTaskList", fields: ["id"])
+  sections: [Section] @hasMany(indexName: "byTaskList", fields: ["id"])
   parentID: ID @index(name: "byParent")
-  spaces: [Space] @hasMany(indexName: "byParent", fields: ["id"])
-  folderId: ID @index(name: "byFolder")
+  childTaskLists: [TaskList] @hasMany(indexName: "byParent", fields: ["id"])
+  folderID: ID @index(name: "byFolder")
+  folder: Folder @belongsTo(fields: ["folderID"])
   showOverDue: Boolean
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
@@ -92,10 +93,9 @@ type Space @model @auth(rules: [{allow: private}]) {
 type Folder @model @auth(rules: [{allow: private}]) {
   id: ID!
   name: String!
-  emoji: String
   color: String
-  spaces: [Space] @hasMany(indexName: "byFolder", fields: ["id"])
-  smartSpaces: [SmartSpace] @hasMany(indexName: "byFolder", fields: ["id"])
+  taskLists: [TaskList] @hasMany(indexName: "byFolder", fields: ["id"])
+  smartTaskLists: [SmartTaskList] @hasMany(indexName: "byFolder", fields: ["id"])
 }
 
 type Todo @model @auth(rules: [{allow: private}, {allow: owner}]) {
@@ -117,8 +117,8 @@ type Todo @model @auth(rules: [{allow: private}, {allow: owner}]) {
   section: Section @belongsTo(fields: ["sectionID"])
   parentID: ID @index(name: "byParent")
   todos: [Todo] @hasMany(indexName: "byParent", fields: ["id"])
-  spaceID: ID! @index(name: "bySpace")
-  space: Space! @belongsTo(fields: ["spaceID"])
+  taskListID: ID! @index(name: "byTaskList")
+  taskList: TaskList! @belongsTo(fields: ["taskListID"])
   reminders: [Reminder] @hasMany(indexName: "byTodo", fields: ["id"])
   tags: [Tag] @manyToMany(relationName: "TodoTag")
   nextItem: Todo @hasOne
@@ -128,7 +128,7 @@ type Preferences @model @auth(rules: [{allow: owner}]) {
   id: ID!
   theme: ThemeType
   calendar: CalendarType
-  visibleSmartSpaces: [StaticSpaceType]
+  visibleStaticTaskLists: [StaticTaskListType]
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
 }
@@ -137,8 +137,8 @@ type Section @model @auth(rules: [{allow: owner}]) {
   id: ID!
   name: String!
   todos: [Todo] @hasMany(indexName: "bySection", fields: ["id"])
-  spaceID: ID! @index(name: "bySpace")
-  space: Space @belongsTo(fields: ["spaceID"])
+  taskListID: ID! @index(name: "byTaskList")
+  taskList: TaskList @belongsTo(fields: ["taskListID"])
 }
 
 type Reminder @model @auth(rules: [{allow: owner}]) {

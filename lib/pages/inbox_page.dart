@@ -1,7 +1,7 @@
 import 'package:client/components/atoms/magical_floating_action_button.dart';
 import 'package:client/components/atoms/user_avatar.dart';
-import 'package:client/components/organisms/space_dialog.dart';
-import 'package:client/components/organisms/space_list.dart';
+import 'package:client/components/organisms/list_dialog.dart';
+import 'package:client/components/organisms/lists_list.dart';
 import 'package:client/models/Space.dart';
 import 'package:client/rx/blocs/auth_bloc.dart';
 import 'package:client/rx/blocs/space_bloc.dart';
@@ -60,14 +60,14 @@ class _InboxPageState extends State<InboxPage> {
             onTap: (i) => setState(() => _currentPageIndex = i),
             items: [
               SalomonBottomBarItem(
-                icon: const Icon(Shanbe.bubble_chart),
+                icon: const Icon(Shanbe.checklist),
                 title: Text(t.spaces),
                 selectedColor: Constants.PRIMARY_COLOR,
               ),
               SalomonBottomBarItem(
-                icon: const Icon(Icons.calendar_month_rounded),
-                title: Text(t.calendar),
-                selectedColor: Colors.green.shade500,
+                icon: const Icon(Icons.book),
+                title: Text(t.notes),
+                selectedColor: Colors.blue.shade700,
               ),
               SalomonBottomBarItem(
                 icon: const Icon(Shanbe.bullseye),
@@ -75,15 +75,9 @@ class _InboxPageState extends State<InboxPage> {
                 selectedColor: Colors.pink.shade400,
               ),
               SalomonBottomBarItem(
-                icon: SvgPicture.asset(
-                  'assets/images/notification.svg',
-                  color: grayLighterColor(context),
-                  width: Constants.ICON_MEDIUM_SIZE,
-                  height: Constants.ICON_MEDIUM_SIZE,
-                  fit: BoxFit.contain,
-                ),
-                title: Text(t.reminders),
-                selectedColor: Colors.blue.shade700,
+                icon: const Icon(Icons.calendar_month_rounded),
+                title: Text(t.calendar),
+                selectedColor: Colors.green.shade500,
               ),
               SalomonBottomBarItem(
                 icon: const Icon(Icons.settings),
@@ -100,29 +94,17 @@ class _InboxPageState extends State<InboxPage> {
           onTap: (index) => setState(() => _currentPageIndex = index),
           items: [
             BottomNavigationBarItem(
-                icon: const Icon(Shanbe.bubble_chart),
+                icon: const Icon(Shanbe.checklist),
                 label: t.spaces,
-                activeIcon: const Icon(Shanbe.bubble_chart)),
+                activeIcon: const Icon(Shanbe.checklist)),
             BottomNavigationBarItem(
-                icon: const Icon(CupertinoIcons.calendar), label: t.calendar),
+                icon: const Icon(CupertinoIcons.book),
+                label: t.notes,
+                activeIcon: const Icon(CupertinoIcons.book_fill)),
             BottomNavigationBarItem(
                 icon: const Icon(Shanbe.bullseye), label: t.focus),
             BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  'assets/images/notification.svg',
-                  color: CupertinoColors.inactiveGray,
-                  width: 28,
-                  height: 28,
-                  fit: BoxFit.contain,
-                ),
-                label: t.reminders,
-                activeIcon: SvgPicture.asset(
-                  'assets/images/notification.svg',
-                  color: Constants.PRIMARY_COLOR,
-                  width: 28,
-                  height: 28,
-                  fit: BoxFit.contain,
-                )),
+                icon: const Icon(CupertinoIcons.calendar), label: t.calendar),
             BottomNavigationBarItem(
                 icon: const Icon(CupertinoIcons.settings), label: t.settings)
           ],
@@ -142,31 +124,41 @@ class _InboxPageState extends State<InboxPage> {
           slivers: [
             PlatformWidget(
               material: (_, __) => SliverAppBar(
-                title: Text(t.spaces),
-                actions: [
-                  PlatformIconButton(
-                      icon: const Icon(Shanbe.sliders_h),
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/edit-lists');
-                      }),
-                ],
-                leading: StreamBuilder(
-                  stream: authBloc.authUser,
-                  builder: (context, snapshot) {
-                    User? user = snapshot.data as User?;
-                    return PlatformIconButton(
-                      icon: UserAvatar(
-                        avatar: user?.picture,
-                        name: user?.name,
+                  title: Text(t.spaces),
+                  actions: [
+                    PlatformIconButton(
+                        icon: const Icon(Shanbe.sliders_h),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/edit-lists');
+                        }),
+                  ],
+                  leading: Row(
+                    children: [
+                      StreamBuilder(
+                        stream: authBloc.authUser,
+                        builder: (context, snapshot) {
+                          User? user = snapshot.data as User?;
+                          return PlatformIconButton(
+                            icon: UserAvatar(
+                              avatar: user?.picture,
+                              name: user?.name,
+                            ),
+                            padding: EdgeInsets.zero,
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/settings');
+                            },
+                          );
+                        },
                       ),
-                      padding: EdgeInsets.zero,
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/settings');
-                      },
-                    );
-                  },
-                ),
-              ),
+                      SvgPicture.asset(
+                        'assets/images/notification.svg',
+                        color: Constants.PRIMARY_COLOR,
+                        width: 28,
+                        height: 28,
+                        fit: BoxFit.contain,
+                      )
+                    ],
+                  )),
               cupertino: (_, __) => CupertinoSliverNavigationBar(
                 largeTitle: Text(
                   t.spaces,
@@ -192,6 +184,16 @@ class _InboxPageState extends State<InboxPage> {
                         );
                       },
                     ),
+                    const SizedBox(
+                      width: 16,
+                    ),
+                    SvgPicture.asset(
+                      'assets/images/notification.svg',
+                      color: grayLighterColor(context),
+                      width: Constants.ICON_MEDIUM_SIZE,
+                      height: Constants.ICON_MEDIUM_SIZE,
+                      fit: BoxFit.contain,
+                    )
                   ],
                 ),
                 trailing: CupertinoButton(
@@ -224,7 +226,7 @@ class _InboxPageState extends State<InboxPage> {
                   child: Container(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    child: SpaceList(
+                    child: ListsList(
                       t: t,
                       onPress: (space) {
                         Navigator.of(context).pushNamed('/space',
@@ -243,7 +245,7 @@ class _InboxPageState extends State<InboxPage> {
                 context: context,
                 barrierDismissible: true,
                 useRootNavigator: true,
-                builder: (context) => SpaceDialog(
+                builder: (context) => ListDialog(
                       t,
                       onCreate: (Space space) {
                         spaceBloc.createSpace(newSpace: space);

@@ -10,13 +10,17 @@ class SpaceItem extends StatelessWidget {
   final AppLocalizations t;
   final Space space;
   final VoidCallback? onPress;
-  final Color? spaceNameColor;
+  final Color? nameColor;
+  final double? nameSize;
+  final double? iconSize;
 
   const SpaceItem(
       {Key? key,
       required this.space,
       this.onPress,
-      this.spaceNameColor,
+      this.nameColor,
+      this.nameSize,
+      this.iconSize,
       required this.t})
       : super(key: key);
 
@@ -49,7 +53,7 @@ class SpaceItem extends StatelessWidget {
                           children: [
                             SpaceIcon(
                               space,
-                              size: Constants.ICON_SMALL_SIZE,
+                              size: iconSize ?? Constants.ICON_SMALL_SIZE,
                             ),
                             const SizedBox(
                               width: 8,
@@ -57,20 +61,20 @@ class SpaceItem extends StatelessWidget {
                             Text(
                               space.name,
                               style: TextStyle(
-                                  fontSize: Constants.S1_FONT_SIZE,
+                                  fontSize: nameSize ?? Constants.S1_FONT_SIZE,
                                   fontWeight: Constants.MEDIUM_FONT_WEIGHT,
-                                  color: spaceNameColor ?? textColor(context)),
+                                  color: nameColor ?? textColor(context)),
                             )
                           ])),
                   if (space.spaces != null && space.spaces!.isNotEmpty)
                     Container(
-                      margin: const EdgeInsets.only(left: 8),
+                      margin: const EdgeInsets.only(left: 4),
                       child: Column(
                         children: space.spaces!
                             .map((e) => SpaceItem(
                                 space: e,
                                 onPress: onPress,
-                                spaceNameColor: spaceNameColor,
+                                nameColor: nameColor,
                                 t: t))
                             .toList(),
                       ),

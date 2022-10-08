@@ -1,4 +1,3 @@
-import 'package:amplify_datastore/amplify_datastore.dart';
 import 'package:client/components/atoms/space_item.dart';
 import 'package:client/models/Space.dart';
 import 'package:client/rx/blocs/space_bloc.dart';
@@ -6,18 +5,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
-class SpaceList extends StatefulWidget {
+class ListsList extends StatefulWidget {
   final AppLocalizations t;
+  final double? iconSize;
+  final double? nameSize;
+  final Color? nameColor;
   final Function(Space) onPress;
 
-  const SpaceList({Key? key, required this.t, required this.onPress})
+  const ListsList(
+      {Key? key,
+      required this.t,
+      required this.onPress,
+      this.iconSize,
+      this.nameSize,
+      this.nameColor})
       : super(key: key);
 
   @override
-  State<SpaceList> createState() => _SpaceListState();
+  State<ListsList> createState() => _ListsListState();
 }
 
-class _SpaceListState extends State<SpaceList> {
+class _ListsListState extends State<ListsList> {
   late SpaceBloc spaceBloc;
 
   @override
@@ -37,6 +45,9 @@ class _SpaceListState extends State<SpaceList> {
                 .map((e) => SpaceItem(
                       space: e,
                       t: widget.t,
+                      nameColor: widget.nameColor,
+                      nameSize: widget.nameSize,
+                      iconSize: widget.iconSize,
                       onPress: () {
                         widget.onPress(e);
                       },

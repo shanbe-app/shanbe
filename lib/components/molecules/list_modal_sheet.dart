@@ -1,26 +1,30 @@
 import 'package:client/components/atoms/bottom_sheet_scroll_indicator.dart';
 import 'package:client/components/atoms/new_space_item.dart';
-import 'package:client/components/organisms/space_dialog.dart';
-import 'package:client/components/organisms/space_list.dart';
+import 'package:client/components/organisms/list_dialog.dart';
+import 'package:client/components/organisms/lists_list.dart';
 import 'package:client/models/Space.dart';
-import 'package:client/types/space_page_arguments.dart';
 import 'package:client/utils/colors.dart';
 import 'package:client/utils/constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class SpacesModalSheet extends StatelessWidget {
-  final Function(Space) onCreateSpace;
-  final Space currentSpace;
+  final Function(Space)? onCreateSpace;
+  final Function(Space) onSpaceSelect;
+  final Space? currentSpace;
   final AppLocalizations t;
+  final String title;
 
   const SpacesModalSheet(
       {Key? key,
-      required this.currentSpace,
+      this.currentSpace,
       required this.t,
-      required this.onCreateSpace})
+      this.onCreateSpace,
+      required this.onSpaceSelect,
+      required this.title})
       : super(key: key);
 
   @override
@@ -35,7 +39,7 @@ class SpacesModalSheet extends StatelessWidget {
             const BottomSheetScrollIndicator(),
             Center(
               child: Text(
-                t.yourSpaces,
+                title,
                 style: TextStyle(
                     fontSize: Constants.H6_FONT_SIZE,
                     color: headingColor(context),
@@ -45,28 +49,26 @@ class SpacesModalSheet extends StatelessWidget {
             const SizedBox(
               height: 8,
             ),
-            SpaceList(
+            ListsList(
               t: t,
-              onPress: (space) {
-                if (space.id != currentSpace.id) {
-                  Navigator.of(context).pushNamed('/space',
-                      arguments: SpacePageArguments(space: space));
-                } else {
-                  Navigator.pop(context);
-                }
-              },
+              onPress: onSpaceSelect,
+              nameSize: Constants.H6_FONT_SIZE,
+              iconSize: Constants.ICON_MEDIUM_SIZE,
             ),
-            NewSpaceItem(
-              t: t,
-              onPress: () {
-                showPlatformDialog(
-                    context: context,
-                    builder: (context) => SpaceDialog(
-                          t,
-                          onCreate: onCreateSpace,
-                        ));
-              },
-            )
+            if (onCreateSpace != null)
+              NewSpaceItem(
+                t: t,
+                nameSize: Constants.H6_FONT_SIZE,
+                iconSize: Constants.ICON_MEDIUM_SIZE,
+                onPress: () {
+                  showPlatformDialog(
+                      context: context,
+                      builder: (context) => ListDialog(
+                            t,
+                            onCreate: onCreateSpace!,
+                          ));
+                },
+              )
           ],
         ),
       ),

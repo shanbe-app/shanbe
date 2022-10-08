@@ -25,14 +25,15 @@ import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 
 
-/** This is an auto generated class representing the Section type in your schema. */
+/** This is an auto generated class representing the Folder type in your schema. */
 @immutable
-class Section extends Model {
-  static const classType = const _SectionModelType();
+class Folder extends Model {
+  static const classType = const _FolderModelType();
   final String id;
   final String? _name;
-  final List<Todo>? _todos;
-  final TaskList? _taskList;
+  final String? _color;
+  final List<TaskList>? _taskLists;
+  final List<SmartTaskList>? _smartTaskLists;
   final TemporalDateTime? _createdAt;
   final TemporalDateTime? _updatedAt;
 
@@ -57,12 +58,16 @@ class Section extends Model {
     }
   }
   
-  List<Todo>? get todos {
-    return _todos;
+  String? get color {
+    return _color;
   }
   
-  TaskList? get taskList {
-    return _taskList;
+  List<TaskList>? get taskLists {
+    return _taskLists;
+  }
+  
+  List<SmartTaskList>? get smartTaskLists {
+    return _smartTaskLists;
   }
   
   TemporalDateTime? get createdAt {
@@ -73,14 +78,15 @@ class Section extends Model {
     return _updatedAt;
   }
   
-  const Section._internal({required this.id, required name, todos, taskList, createdAt, updatedAt}): _name = name, _todos = todos, _taskList = taskList, _createdAt = createdAt, _updatedAt = updatedAt;
+  const Folder._internal({required this.id, required name, color, taskLists, smartTaskLists, createdAt, updatedAt}): _name = name, _color = color, _taskLists = taskLists, _smartTaskLists = smartTaskLists, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory Section({String? id, required String name, List<Todo>? todos, TaskList? taskList}) {
-    return Section._internal(
+  factory Folder({String? id, required String name, String? color, List<TaskList>? taskLists, List<SmartTaskList>? smartTaskLists}) {
+    return Folder._internal(
       id: id == null ? UUID.getUUID() : id,
       name: name,
-      todos: todos != null ? List<Todo>.unmodifiable(todos) : todos,
-      taskList: taskList);
+      color: color,
+      taskLists: taskLists != null ? List<TaskList>.unmodifiable(taskLists) : taskLists,
+      smartTaskLists: smartTaskLists != null ? List<SmartTaskList>.unmodifiable(smartTaskLists) : smartTaskLists);
   }
   
   bool equals(Object other) {
@@ -90,11 +96,12 @@ class Section extends Model {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Section &&
+    return other is Folder &&
       id == other.id &&
       _name == other._name &&
-      DeepCollectionEquality().equals(_todos, other._todos) &&
-      _taskList == other._taskList;
+      _color == other._color &&
+      DeepCollectionEquality().equals(_taskLists, other._taskLists) &&
+      DeepCollectionEquality().equals(_smartTaskLists, other._smartTaskLists);
   }
   
   @override
@@ -104,10 +111,10 @@ class Section extends Model {
   String toString() {
     var buffer = new StringBuffer();
     
-    buffer.write("Section {");
+    buffer.write("Folder {");
     buffer.write("id=" + "$id" + ", ");
     buffer.write("name=" + "$_name" + ", ");
-    buffer.write("taskList=" + (_taskList != null ? _taskList!.toString() : "null") + ", ");
+    buffer.write("color=" + "$_color" + ", ");
     buffer.write("createdAt=" + (_createdAt != null ? _createdAt!.format() : "null") + ", ");
     buffer.write("updatedAt=" + (_updatedAt != null ? _updatedAt!.format() : "null"));
     buffer.write("}");
@@ -115,51 +122,54 @@ class Section extends Model {
     return buffer.toString();
   }
   
-  Section copyWith({String? id, String? name, List<Todo>? todos, TaskList? taskList}) {
-    return Section._internal(
+  Folder copyWith({String? id, String? name, String? color, List<TaskList>? taskLists, List<SmartTaskList>? smartTaskLists}) {
+    return Folder._internal(
       id: id ?? this.id,
       name: name ?? this.name,
-      todos: todos ?? this.todos,
-      taskList: taskList ?? this.taskList);
+      color: color ?? this.color,
+      taskLists: taskLists ?? this.taskLists,
+      smartTaskLists: smartTaskLists ?? this.smartTaskLists);
   }
   
-  Section.fromJson(Map<String, dynamic> json)  
+  Folder.fromJson(Map<String, dynamic> json)  
     : id = json['id'],
       _name = json['name'],
-      _todos = json['todos'] is List
-        ? (json['todos'] as List)
+      _color = json['color'],
+      _taskLists = json['taskLists'] is List
+        ? (json['taskLists'] as List)
           .where((e) => e?['serializedData'] != null)
-          .map((e) => Todo.fromJson(new Map<String, dynamic>.from(e['serializedData'])))
+          .map((e) => TaskList.fromJson(new Map<String, dynamic>.from(e['serializedData'])))
           .toList()
         : null,
-      _taskList = json['taskList']?['serializedData'] != null
-        ? TaskList.fromJson(new Map<String, dynamic>.from(json['taskList']['serializedData']))
+      _smartTaskLists = json['smartTaskLists'] is List
+        ? (json['smartTaskLists'] as List)
+          .where((e) => e?['serializedData'] != null)
+          .map((e) => SmartTaskList.fromJson(new Map<String, dynamic>.from(e['serializedData'])))
+          .toList()
         : null,
       _createdAt = json['createdAt'] != null ? TemporalDateTime.fromString(json['createdAt']) : null,
       _updatedAt = json['updatedAt'] != null ? TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'name': _name, 'todos': _todos?.map((Todo? e) => e?.toJson()).toList(), 'taskList': _taskList?.toJson(), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
+    'id': id, 'name': _name, 'color': _color, 'taskLists': _taskLists?.map((TaskList? e) => e?.toJson()).toList(), 'smartTaskLists': _smartTaskLists?.map((SmartTaskList? e) => e?.toJson()).toList(), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
 
   static final QueryField ID = QueryField(fieldName: "id");
   static final QueryField NAME = QueryField(fieldName: "name");
-  static final QueryField TODOS = QueryField(
-    fieldName: "todos",
-    fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Todo).toString()));
-  static final QueryField TASKLIST = QueryField(
-    fieldName: "taskList",
+  static final QueryField COLOR = QueryField(fieldName: "color");
+  static final QueryField TASKLISTS = QueryField(
+    fieldName: "taskLists",
     fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (TaskList).toString()));
+  static final QueryField SMARTTASKLISTS = QueryField(
+    fieldName: "smartTaskLists",
+    fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (SmartTaskList).toString()));
   static var schema = Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
-    modelSchemaDefinition.name = "Section";
-    modelSchemaDefinition.pluralName = "Sections";
+    modelSchemaDefinition.name = "Folder";
+    modelSchemaDefinition.pluralName = "Folders";
     
     modelSchemaDefinition.authRules = [
       AuthRule(
-        authStrategy: AuthStrategy.OWNER,
-        ownerField: "owner",
-        identityClaim: "cognito:username",
-        provider: AuthRuleProvider.USERPOOLS,
+        authStrategy: AuthStrategy.PRIVATE,
         operations: [
           ModelOperation.CREATE,
           ModelOperation.UPDATE,
@@ -168,30 +178,32 @@ class Section extends Model {
         ])
     ];
     
-    modelSchemaDefinition.indexes = [
-      ModelIndex(fields: const ["taskListID"], name: "byTaskList")
-    ];
-    
     modelSchemaDefinition.addField(ModelFieldDefinition.id());
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Section.NAME,
+      key: Folder.NAME,
       isRequired: true,
       ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
-    modelSchemaDefinition.addField(ModelFieldDefinition.hasMany(
-      key: Section.TODOS,
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+      key: Folder.COLOR,
       isRequired: false,
-      ofModelName: (Todo).toString(),
-      associatedKey: Todo.SECTION
+      ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
-    modelSchemaDefinition.addField(ModelFieldDefinition.belongsTo(
-      key: Section.TASKLIST,
+    modelSchemaDefinition.addField(ModelFieldDefinition.hasMany(
+      key: Folder.TASKLISTS,
       isRequired: false,
-      targetName: "taskListID",
-      ofModelName: (TaskList).toString()
+      ofModelName: (TaskList).toString(),
+      associatedKey: TaskList.FOLDER
+    ));
+    
+    modelSchemaDefinition.addField(ModelFieldDefinition.hasMany(
+      key: Folder.SMARTTASKLISTS,
+      isRequired: false,
+      ofModelName: (SmartTaskList).toString(),
+      associatedKey: SmartTaskList.FOLDERID
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.nonQueryField(
@@ -210,11 +222,11 @@ class Section extends Model {
   });
 }
 
-class _SectionModelType extends ModelType<Section> {
-  const _SectionModelType();
+class _FolderModelType extends ModelType<Folder> {
+  const _FolderModelType();
   
   @override
-  Section fromJson(Map<String, dynamic> jsonData) {
-    return Section.fromJson(jsonData);
+  Folder fromJson(Map<String, dynamic> jsonData) {
+    return Folder.fromJson(jsonData);
   }
 }

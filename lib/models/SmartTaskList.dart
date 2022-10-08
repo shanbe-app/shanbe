@@ -19,20 +19,19 @@
 
 // ignore_for_file: public_member_api_docs, annotate_overrides, dead_code, dead_codepublic_member_api_docs, depend_on_referenced_packages, file_names, library_private_types_in_public_api, no_leading_underscores_for_library_prefixes, no_leading_underscores_for_local_identifiers, non_constant_identifier_names, null_check_on_nullable_type_parameter, prefer_adjacent_string_concatenation, prefer_const_constructors, prefer_if_null_operators, prefer_interpolation_to_compose_strings, slash_for_doc_comments, sort_child_properties_last, unnecessary_const, unnecessary_constructor_name, unnecessary_late, unnecessary_new, unnecessary_null_aware_assignments, unnecessary_nullable_for_final_variable_declarations, unnecessary_string_interpolations, use_build_context_synchronously
 
-import 'ModelProvider.dart';
 import 'package:amplify_core/amplify_core.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 
 
-/** This is an auto generated class representing the Preferences type in your schema. */
+/** This is an auto generated class representing the SmartTaskList type in your schema. */
 @immutable
-class Preferences extends Model {
-  static const classType = const _PreferencesModelType();
+class SmartTaskList extends Model {
+  static const classType = const _SmartTaskListModelType();
   final String id;
-  final ThemeType? _theme;
-  final CalendarType? _calendar;
-  final List<StaticTaskListType>? _visibleStaticTaskLists;
+  final String? _name;
+  final String? _emoji;
+  final String? _color;
+  final String? _folderID;
   final TemporalDateTime? _createdAt;
   final TemporalDateTime? _updatedAt;
 
@@ -44,16 +43,29 @@ class Preferences extends Model {
     return id;
   }
   
-  ThemeType? get theme {
-    return _theme;
+  String get name {
+    try {
+      return _name!;
+    } catch(e) {
+      throw new AmplifyCodeGenModelException(
+          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+          recoverySuggestion:
+            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+          underlyingException: e.toString()
+          );
+    }
   }
   
-  CalendarType? get calendar {
-    return _calendar;
+  String? get emoji {
+    return _emoji;
   }
   
-  List<StaticTaskListType>? get visibleStaticTaskLists {
-    return _visibleStaticTaskLists;
+  String? get color {
+    return _color;
+  }
+  
+  String? get folderID {
+    return _folderID;
   }
   
   TemporalDateTime? get createdAt {
@@ -64,14 +76,15 @@ class Preferences extends Model {
     return _updatedAt;
   }
   
-  const Preferences._internal({required this.id, theme, calendar, visibleStaticTaskLists, createdAt, updatedAt}): _theme = theme, _calendar = calendar, _visibleStaticTaskLists = visibleStaticTaskLists, _createdAt = createdAt, _updatedAt = updatedAt;
+  const SmartTaskList._internal({required this.id, required name, emoji, color, folderID, createdAt, updatedAt}): _name = name, _emoji = emoji, _color = color, _folderID = folderID, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory Preferences({String? id, ThemeType? theme, CalendarType? calendar, List<StaticTaskListType>? visibleStaticTaskLists, TemporalDateTime? createdAt, TemporalDateTime? updatedAt}) {
-    return Preferences._internal(
+  factory SmartTaskList({String? id, required String name, String? emoji, String? color, String? folderID, TemporalDateTime? createdAt, TemporalDateTime? updatedAt}) {
+    return SmartTaskList._internal(
       id: id == null ? UUID.getUUID() : id,
-      theme: theme,
-      calendar: calendar,
-      visibleStaticTaskLists: visibleStaticTaskLists != null ? List<StaticTaskListType>.unmodifiable(visibleStaticTaskLists) : visibleStaticTaskLists,
+      name: name,
+      emoji: emoji,
+      color: color,
+      folderID: folderID,
       createdAt: createdAt,
       updatedAt: updatedAt);
   }
@@ -83,11 +96,12 @@ class Preferences extends Model {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Preferences &&
+    return other is SmartTaskList &&
       id == other.id &&
-      _theme == other._theme &&
-      _calendar == other._calendar &&
-      DeepCollectionEquality().equals(_visibleStaticTaskLists, other._visibleStaticTaskLists) &&
+      _name == other._name &&
+      _emoji == other._emoji &&
+      _color == other._color &&
+      _folderID == other._folderID &&
       _createdAt == other._createdAt &&
       _updatedAt == other._updatedAt;
   }
@@ -99,11 +113,12 @@ class Preferences extends Model {
   String toString() {
     var buffer = new StringBuffer();
     
-    buffer.write("Preferences {");
+    buffer.write("SmartTaskList {");
     buffer.write("id=" + "$id" + ", ");
-    buffer.write("theme=" + (_theme != null ? enumToString(_theme)! : "null") + ", ");
-    buffer.write("calendar=" + (_calendar != null ? enumToString(_calendar)! : "null") + ", ");
-    buffer.write("visibleStaticTaskLists=" + (_visibleStaticTaskLists != null ? _visibleStaticTaskLists!.map((e) => enumToString(e)).toString() : "null") + ", ");
+    buffer.write("name=" + "$_name" + ", ");
+    buffer.write("emoji=" + "$_emoji" + ", ");
+    buffer.write("color=" + "$_color" + ", ");
+    buffer.write("folderID=" + "$_folderID" + ", ");
     buffer.write("createdAt=" + (_createdAt != null ? _createdAt!.format() : "null") + ", ");
     buffer.write("updatedAt=" + (_updatedAt != null ? _updatedAt!.format() : "null"));
     buffer.write("}");
@@ -111,48 +126,44 @@ class Preferences extends Model {
     return buffer.toString();
   }
   
-  Preferences copyWith({String? id, ThemeType? theme, CalendarType? calendar, List<StaticTaskListType>? visibleStaticTaskLists, TemporalDateTime? createdAt, TemporalDateTime? updatedAt}) {
-    return Preferences._internal(
+  SmartTaskList copyWith({String? id, String? name, String? emoji, String? color, String? folderID, TemporalDateTime? createdAt, TemporalDateTime? updatedAt}) {
+    return SmartTaskList._internal(
       id: id ?? this.id,
-      theme: theme ?? this.theme,
-      calendar: calendar ?? this.calendar,
-      visibleStaticTaskLists: visibleStaticTaskLists ?? this.visibleStaticTaskLists,
+      name: name ?? this.name,
+      emoji: emoji ?? this.emoji,
+      color: color ?? this.color,
+      folderID: folderID ?? this.folderID,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt);
   }
   
-  Preferences.fromJson(Map<String, dynamic> json)  
+  SmartTaskList.fromJson(Map<String, dynamic> json)  
     : id = json['id'],
-      _theme = enumFromString<ThemeType>(json['theme'], ThemeType.values),
-      _calendar = enumFromString<CalendarType>(json['calendar'], CalendarType.values),
-      _visibleStaticTaskLists = json['visibleStaticTaskLists'] is List
-        ? (json['visibleStaticTaskLists'] as List)
-          .map((e) => enumFromString<StaticTaskListType>(e, StaticTaskListType.values)!)
-          .toList()
-        : null,
+      _name = json['name'],
+      _emoji = json['emoji'],
+      _color = json['color'],
+      _folderID = json['folderID'],
       _createdAt = json['createdAt'] != null ? TemporalDateTime.fromString(json['createdAt']) : null,
       _updatedAt = json['updatedAt'] != null ? TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'theme': enumToString(_theme), 'calendar': enumToString(_calendar), 'visibleStaticTaskLists': _visibleStaticTaskLists?.map((e) => enumToString(e)).toList(), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
+    'id': id, 'name': _name, 'emoji': _emoji, 'color': _color, 'folderID': _folderID, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
 
   static final QueryField ID = QueryField(fieldName: "id");
-  static final QueryField THEME = QueryField(fieldName: "theme");
-  static final QueryField CALENDAR = QueryField(fieldName: "calendar");
-  static final QueryField VISIBLESTATICTASKLISTS = QueryField(fieldName: "visibleStaticTaskLists");
+  static final QueryField NAME = QueryField(fieldName: "name");
+  static final QueryField EMOJI = QueryField(fieldName: "emoji");
+  static final QueryField COLOR = QueryField(fieldName: "color");
+  static final QueryField FOLDERID = QueryField(fieldName: "folderID");
   static final QueryField CREATEDAT = QueryField(fieldName: "createdAt");
   static final QueryField UPDATEDAT = QueryField(fieldName: "updatedAt");
   static var schema = Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
-    modelSchemaDefinition.name = "Preferences";
-    modelSchemaDefinition.pluralName = "Preferences";
+    modelSchemaDefinition.name = "SmartTaskList";
+    modelSchemaDefinition.pluralName = "SmartTaskLists";
     
     modelSchemaDefinition.authRules = [
       AuthRule(
-        authStrategy: AuthStrategy.OWNER,
-        ownerField: "owner",
-        identityClaim: "cognito:username",
-        provider: AuthRuleProvider.USERPOOLS,
+        authStrategy: AuthStrategy.PRIVATE,
         operations: [
           ModelOperation.CREATE,
           ModelOperation.UPDATE,
@@ -161,46 +172,55 @@ class Preferences extends Model {
         ])
     ];
     
+    modelSchemaDefinition.indexes = [
+      ModelIndex(fields: const ["folderID"], name: "byFolder")
+    ];
+    
     modelSchemaDefinition.addField(ModelFieldDefinition.id());
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Preferences.THEME,
-      isRequired: false,
-      ofType: ModelFieldType(ModelFieldTypeEnum.enumeration)
+      key: SmartTaskList.NAME,
+      isRequired: true,
+      ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Preferences.CALENDAR,
+      key: SmartTaskList.EMOJI,
       isRequired: false,
-      ofType: ModelFieldType(ModelFieldTypeEnum.enumeration)
+      ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Preferences.VISIBLESTATICTASKLISTS,
+      key: SmartTaskList.COLOR,
       isRequired: false,
-      isArray: true,
-      ofType: ModelFieldType(ModelFieldTypeEnum.collection, ofModelName: describeEnum(ModelFieldTypeEnum.enumeration))
+      ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Preferences.CREATEDAT,
+      key: SmartTaskList.FOLDERID,
+      isRequired: false,
+      ofType: ModelFieldType(ModelFieldTypeEnum.string)
+    ));
+    
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+      key: SmartTaskList.CREATEDAT,
       isRequired: false,
       ofType: ModelFieldType(ModelFieldTypeEnum.dateTime)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Preferences.UPDATEDAT,
+      key: SmartTaskList.UPDATEDAT,
       isRequired: false,
       ofType: ModelFieldType(ModelFieldTypeEnum.dateTime)
     ));
   });
 }
 
-class _PreferencesModelType extends ModelType<Preferences> {
-  const _PreferencesModelType();
+class _SmartTaskListModelType extends ModelType<SmartTaskList> {
+  const _SmartTaskListModelType();
   
   @override
-  Preferences fromJson(Map<String, dynamic> jsonData) {
-    return Preferences.fromJson(jsonData);
+  SmartTaskList fromJson(Map<String, dynamic> jsonData) {
+    return SmartTaskList.fromJson(jsonData);
   }
 }

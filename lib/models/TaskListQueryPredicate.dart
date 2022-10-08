@@ -36,6 +36,7 @@ class TaskListQueryPredicate extends Model {
   final String? _parentID;
   final List<TaskListQueryPredicate>? _childQueryPredicates;
   final QueryPredicateLogic? _childQueryPredicatesLogic;
+  final SmartTaskList? _smartTaskList;
   final TemporalDateTime? _createdAt;
   final TemporalDateTime? _updatedAt;
 
@@ -71,6 +72,10 @@ class TaskListQueryPredicate extends Model {
     return _childQueryPredicatesLogic;
   }
   
+  SmartTaskList? get smartTaskList {
+    return _smartTaskList;
+  }
+  
   TemporalDateTime? get createdAt {
     return _createdAt;
   }
@@ -79,9 +84,9 @@ class TaskListQueryPredicate extends Model {
     return _updatedAt;
   }
   
-  const TaskListQueryPredicate._internal({required this.id, filterLogic, filterType, filterValue, parentID, childQueryPredicates, childQueryPredicatesLogic, createdAt, updatedAt}): _filterLogic = filterLogic, _filterType = filterType, _filterValue = filterValue, _parentID = parentID, _childQueryPredicates = childQueryPredicates, _childQueryPredicatesLogic = childQueryPredicatesLogic, _createdAt = createdAt, _updatedAt = updatedAt;
+  const TaskListQueryPredicate._internal({required this.id, filterLogic, filterType, filterValue, parentID, childQueryPredicates, childQueryPredicatesLogic, smartTaskList, createdAt, updatedAt}): _filterLogic = filterLogic, _filterType = filterType, _filterValue = filterValue, _parentID = parentID, _childQueryPredicates = childQueryPredicates, _childQueryPredicatesLogic = childQueryPredicatesLogic, _smartTaskList = smartTaskList, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory TaskListQueryPredicate({String? id, TaskListFilterLogic? filterLogic, TaskListFilterType? filterType, List<String>? filterValue, String? parentID, List<TaskListQueryPredicate>? childQueryPredicates, QueryPredicateLogic? childQueryPredicatesLogic}) {
+  factory TaskListQueryPredicate({String? id, TaskListFilterLogic? filterLogic, TaskListFilterType? filterType, List<String>? filterValue, String? parentID, List<TaskListQueryPredicate>? childQueryPredicates, QueryPredicateLogic? childQueryPredicatesLogic, SmartTaskList? smartTaskList}) {
     return TaskListQueryPredicate._internal(
       id: id == null ? UUID.getUUID() : id,
       filterLogic: filterLogic,
@@ -89,7 +94,8 @@ class TaskListQueryPredicate extends Model {
       filterValue: filterValue != null ? List<String>.unmodifiable(filterValue) : filterValue,
       parentID: parentID,
       childQueryPredicates: childQueryPredicates != null ? List<TaskListQueryPredicate>.unmodifiable(childQueryPredicates) : childQueryPredicates,
-      childQueryPredicatesLogic: childQueryPredicatesLogic);
+      childQueryPredicatesLogic: childQueryPredicatesLogic,
+      smartTaskList: smartTaskList);
   }
   
   bool equals(Object other) {
@@ -106,7 +112,8 @@ class TaskListQueryPredicate extends Model {
       DeepCollectionEquality().equals(_filterValue, other._filterValue) &&
       _parentID == other._parentID &&
       DeepCollectionEquality().equals(_childQueryPredicates, other._childQueryPredicates) &&
-      _childQueryPredicatesLogic == other._childQueryPredicatesLogic;
+      _childQueryPredicatesLogic == other._childQueryPredicatesLogic &&
+      _smartTaskList == other._smartTaskList;
   }
   
   @override
@@ -123,6 +130,7 @@ class TaskListQueryPredicate extends Model {
     buffer.write("filterValue=" + (_filterValue != null ? _filterValue!.toString() : "null") + ", ");
     buffer.write("parentID=" + "$_parentID" + ", ");
     buffer.write("childQueryPredicatesLogic=" + (_childQueryPredicatesLogic != null ? enumToString(_childQueryPredicatesLogic)! : "null") + ", ");
+    buffer.write("smartTaskList=" + (_smartTaskList != null ? _smartTaskList!.toString() : "null") + ", ");
     buffer.write("createdAt=" + (_createdAt != null ? _createdAt!.format() : "null") + ", ");
     buffer.write("updatedAt=" + (_updatedAt != null ? _updatedAt!.format() : "null"));
     buffer.write("}");
@@ -130,7 +138,7 @@ class TaskListQueryPredicate extends Model {
     return buffer.toString();
   }
   
-  TaskListQueryPredicate copyWith({String? id, TaskListFilterLogic? filterLogic, TaskListFilterType? filterType, List<String>? filterValue, String? parentID, List<TaskListQueryPredicate>? childQueryPredicates, QueryPredicateLogic? childQueryPredicatesLogic}) {
+  TaskListQueryPredicate copyWith({String? id, TaskListFilterLogic? filterLogic, TaskListFilterType? filterType, List<String>? filterValue, String? parentID, List<TaskListQueryPredicate>? childQueryPredicates, QueryPredicateLogic? childQueryPredicatesLogic, SmartTaskList? smartTaskList}) {
     return TaskListQueryPredicate._internal(
       id: id ?? this.id,
       filterLogic: filterLogic ?? this.filterLogic,
@@ -138,7 +146,8 @@ class TaskListQueryPredicate extends Model {
       filterValue: filterValue ?? this.filterValue,
       parentID: parentID ?? this.parentID,
       childQueryPredicates: childQueryPredicates ?? this.childQueryPredicates,
-      childQueryPredicatesLogic: childQueryPredicatesLogic ?? this.childQueryPredicatesLogic);
+      childQueryPredicatesLogic: childQueryPredicatesLogic ?? this.childQueryPredicatesLogic,
+      smartTaskList: smartTaskList ?? this.smartTaskList);
   }
   
   TaskListQueryPredicate.fromJson(Map<String, dynamic> json)  
@@ -154,11 +163,14 @@ class TaskListQueryPredicate extends Model {
           .toList()
         : null,
       _childQueryPredicatesLogic = enumFromString<QueryPredicateLogic>(json['childQueryPredicatesLogic'], QueryPredicateLogic.values),
+      _smartTaskList = json['smartTaskList']?['serializedData'] != null
+        ? SmartTaskList.fromJson(new Map<String, dynamic>.from(json['smartTaskList']['serializedData']))
+        : null,
       _createdAt = json['createdAt'] != null ? TemporalDateTime.fromString(json['createdAt']) : null,
       _updatedAt = json['updatedAt'] != null ? TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'filterLogic': enumToString(_filterLogic), 'filterType': enumToString(_filterType), 'filterValue': _filterValue, 'parentID': _parentID, 'childQueryPredicates': _childQueryPredicates?.map((TaskListQueryPredicate? e) => e?.toJson()).toList(), 'childQueryPredicatesLogic': enumToString(_childQueryPredicatesLogic), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
+    'id': id, 'filterLogic': enumToString(_filterLogic), 'filterType': enumToString(_filterType), 'filterValue': _filterValue, 'parentID': _parentID, 'childQueryPredicates': _childQueryPredicates?.map((TaskListQueryPredicate? e) => e?.toJson()).toList(), 'childQueryPredicatesLogic': enumToString(_childQueryPredicatesLogic), 'smartTaskList': _smartTaskList?.toJson(), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
 
   static final QueryField ID = QueryField(fieldName: "id");
@@ -170,6 +182,9 @@ class TaskListQueryPredicate extends Model {
     fieldName: "childQueryPredicates",
     fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (TaskListQueryPredicate).toString()));
   static final QueryField CHILDQUERYPREDICATESLOGIC = QueryField(fieldName: "childQueryPredicatesLogic");
+  static final QueryField SMARTTASKLIST = QueryField(
+    fieldName: "smartTaskList",
+    fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (SmartTaskList).toString()));
   static var schema = Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
     modelSchemaDefinition.name = "TaskListQueryPredicate";
     modelSchemaDefinition.pluralName = "TaskListQueryPredicates";
@@ -186,7 +201,8 @@ class TaskListQueryPredicate extends Model {
     ];
     
     modelSchemaDefinition.indexes = [
-      ModelIndex(fields: const ["parentID"], name: "byParent")
+      ModelIndex(fields: const ["parentID"], name: "byParent"),
+      ModelIndex(fields: const ["smartTaskListID"], name: "bySmartTaskList")
     ];
     
     modelSchemaDefinition.addField(ModelFieldDefinition.id());
@@ -227,6 +243,13 @@ class TaskListQueryPredicate extends Model {
       key: TaskListQueryPredicate.CHILDQUERYPREDICATESLOGIC,
       isRequired: false,
       ofType: ModelFieldType(ModelFieldTypeEnum.enumeration)
+    ));
+    
+    modelSchemaDefinition.addField(ModelFieldDefinition.belongsTo(
+      key: TaskListQueryPredicate.SMARTTASKLIST,
+      isRequired: false,
+      targetName: "smartTaskListID",
+      ofModelName: (SmartTaskList).toString()
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.nonQueryField(

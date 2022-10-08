@@ -1,8 +1,7 @@
-import 'package:client/components/atoms/space_item.dart';
+import 'package:client/components/atoms/task_list_item.dart';
 import 'package:client/components/molecules/emoji_segments.dart';
-import 'package:client/components/molecules/list_modal_sheet.dart';
-import 'package:client/models/Space.dart';
-import 'package:client/rx/blocs/space_bloc.dart';
+import 'package:client/components/molecules/task_lists_bottom_sheet.dart';
+import 'package:client/models/TaskList.dart';
 import 'package:client/rx/service_provider.dart';
 import 'package:client/utils/colors.dart';
 import 'package:client/utils/constants.dart';
@@ -13,7 +12,7 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 class ListDialog extends StatefulWidget {
   final AppLocalizations t;
-  final Function(Space) onCreate;
+  final Function(TaskList) onCreate;
 
   const ListDialog(
     this.t, {
@@ -33,8 +32,7 @@ class _ListDialogState extends State<ListDialog>
   AnimationController? animationController;
   Animation<double>? animation;
   TextEditingController? textController;
-  Space? parentSpace;
-  late SpaceBloc spaceBloc;
+  TaskList? parentSpace;
   TextStyle? labelTextStyle;
   TextStyle? noneTextStyle;
 
@@ -46,7 +44,6 @@ class _ListDialogState extends State<ListDialog>
     animation = CurvedAnimation(
         parent: animationController!, curve: Curves.fastOutSlowIn);
     textController = TextEditingController();
-    spaceBloc = SpaceBloc();
   }
 
   @override
@@ -81,7 +78,7 @@ class _ListDialogState extends State<ListDialog>
           Row(
             children: [
               Text(
-                widget.t.spaceNameLabel,
+                widget.t.taskListNameLabel,
                 style: labelTextStyle,
               ),
               const SizedBox(
@@ -115,46 +112,40 @@ class _ListDialogState extends State<ListDialog>
           const SizedBox(
             height: 16,
           ),
-          StreamBuilder(
-            stream: spaceBloc.spaces,
-            builder: (context, snapshot) {
-              List<Space>? spaces = snapshot.data as List<Space>?;
-              return PlatformTextButton(
-                padding: EdgeInsets.zero,
-                onPressed: () {
-                  showPlatformContentSheet(
-                      context: context,
-                      builder: (context) {
-                        return SpacesModalSheet(
-                          t: widget.t,
-                          title: widget.t.parentListLabel,
-                          onSpaceSelect: (space) {
-                            setState(() {
-                              parentSpace = space;
-                            });
-                            Navigator.pop(context);
-                          },
-                        );
-                      });
-                },
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Text(
-                      widget.t.parentListLabel,
-                      style: labelTextStyle,
-                    ),
-                    const Spacer(),
-                    parentSpace != null
-                        ? SpaceItem(space: parentSpace!, t: widget.t)
-                        : Text(
-                            widget.t.none,
-                            style: noneTextStyle,
-                          )
-                  ],
-                ),
-              );
+          PlatformTextButton(
+            padding: EdgeInsets.zero,
+            onPressed: () {
+              showPlatformContentSheet(
+                  context: context,
+                  builder: (context) {
+                    return TaskListsBottomSheet(
+                      t: widget.t,
+                      title: widget.t.parentListLabel,
+                      onTaskListSelected: (space) {
+                        setState(() {
+                          parentSpace = space;
+                        });
+                        Navigator.pop(context);
+                      },
+                    );
+                  });
             },
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Text(
+                  widget.t.parentListLabel,
+                  style: labelTextStyle,
+                ),
+                const Spacer(),
+                parentSpace != null
+                    ? TaskListItem(taskList: parentSpace!, t: widget.t)
+                    : Text(
+                        widget.t.none,
+                        style: noneTextStyle,
+                      )
+              ],
+            ),
           ),
           const SizedBox(
             height: 16,
@@ -263,7 +254,7 @@ class _ListDialogState extends State<ListDialog>
             onPressed: projectName == ''
                 ? null
                 : () {
-                    widget.onCreate(Space(
+                    widget.onCreate(TaskList(
                       name: projectName,
                       emoji: pickedEmoji ?? '',
                     ));

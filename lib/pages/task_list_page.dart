@@ -1,7 +1,7 @@
-import 'package:client/components/atoms/space_item.dart';
-import 'package:client/components/molecules/list_modal_sheet.dart';
-import 'package:client/rx/blocs/space_bloc.dart';
-import 'package:client/types/space_page_arguments.dart';
+import 'package:client/components/atoms/task_list_item.dart';
+import 'package:client/components/molecules/task_lists_bottom_sheet.dart';
+import 'package:client/rx/blocs/task_list_bloc.dart';
+import 'package:client/types/task_list_page_arguments.dart';
 import 'package:client/utils/colors.dart';
 import 'package:client/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,25 +9,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
-class SpacePage extends StatefulWidget {
-  final SpacePageArguments arguments;
+class TaskListPage extends StatefulWidget {
+  final TaskListPageArguments arguments;
   final BuildContext context;
 
-  const SpacePage({Key? key, required this.arguments, required this.context})
+  const TaskListPage({Key? key, required this.arguments, required this.context})
       : super(key: key);
 
   @override
-  _SpacePageState createState() => _SpacePageState();
+  _TaskListPageState createState() => _TaskListPageState();
 }
 
-class _SpacePageState extends State<SpacePage> {
+class _TaskListPageState extends State<TaskListPage> {
   late AppLocalizations t;
-  late SpaceBloc spaceBloc;
+  late TaskListBloc taskListBloc;
 
   @override
   void initState() {
     super.initState();
-    spaceBloc = SpaceBloc();
+    taskListBloc = TaskListBloc();
     t = AppLocalizations.of(widget.context)!;
   }
 
@@ -56,16 +56,17 @@ class _SpacePageState extends State<SpacePage> {
                 showPlatformContentSheet(
                     context: context,
                     builder: (context) {
-                      return SpacesModalSheet(
+                      return TaskListsBottomSheet(
                         t: t,
-                        title: t.yourSpaces,
+                        title: t.yourTaskLists,
                         onCreateSpace: (space) =>
-                            spaceBloc.createSpace(newSpace: space),
-                        currentSpace: widget.arguments.space,
-                        onSpaceSelect: (space) {
-                          if (space.id != widget.arguments.space.id) {
+                            taskListBloc.createTaskList(newSpace: space),
+                        currentTaskList: widget.arguments.taskLists,
+                        onTaskListSelected: (taskList) {
+                          if (taskList.id != widget.arguments.taskLists.id) {
                             Navigator.of(context).pushNamed('/space',
-                                arguments: SpacePageArguments(space: space));
+                                arguments:
+                                    TaskListPageArguments(taskLists: taskList));
                           } else {
                             Navigator.pop(context);
                           }
@@ -78,8 +79,8 @@ class _SpacePageState extends State<SpacePage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Wrap(children: [
-                    SpaceItem(
-                        space: widget.arguments.space,
+                    TaskListItem(
+                        taskList: widget.arguments.taskLists,
                         nameColor: headingColor(context),
                         t: t)
                   ]),
@@ -94,7 +95,7 @@ class _SpacePageState extends State<SpacePage> {
               ),
             ),
             cupertino: (context, _) => CupertinoNavigationBarData(
-              previousPageTitle: t.spaces,
+              previousPageTitle: t.taskLists,
             ),
           )
         ],

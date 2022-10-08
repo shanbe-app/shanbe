@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
-class NewSpaceItem extends StatelessWidget {
+class NewTaskListItem extends StatelessWidget {
   final AppLocalizations t;
   final VoidCallback onPress;
   final double? iconSize;
   final double? nameSize;
 
-  const NewSpaceItem(
+  const NewTaskListItem(
       {Key? key,
       required this.t,
       required this.onPress,
@@ -38,7 +38,7 @@ class NewSpaceItem extends StatelessWidget {
               width: 8,
             ),
             Text(
-              t.newSpace,
+              t.newTaskList,
               style: TextStyle(
                   fontSize: nameSize ?? Constants.S1_FONT_SIZE,
                   fontWeight: Constants.MEDIUM_FONT_WEIGHT,

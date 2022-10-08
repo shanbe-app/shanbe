@@ -1618,7 +1618,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "appRegisterTitle5": "Beautiful covers for notes and spaces",
+  "appRegisterTitle5": "Beautiful covers for notes and lists",
   "@appRegisterTitle5": {
     "type": "text",
     "placeholders": {}
@@ -1663,13 +1663,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "spaces": "Lists",
-  "@spaces": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "searchSpacePlaceholder": "Search all lists",
-  "@searchSpacePlaceholder": {
+  "taskLists": "Lists",
+  "@taskLists": {
     "type": "text",
     "placeholders": {}
   },
@@ -1678,8 +1673,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "allSpaces": "All Spaces",
-  "@allSpaces": {
+  "allTaskLists": "All Lists",
+  "@allTaskLists": {
     "type": "text",
     "placeholders": {}
   },
@@ -1688,18 +1683,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "yourSpaces": "Your Spaces",
-  "@yourSpaces": {
+  "yourTaskLists": "Your Lists",
+  "@yourTaskLists": {
     "type": "text",
     "placeholders": {}
   },
-  "newSpace": "new Space",
-  "@newSpace": {
+  "newTaskList": "new List",
+  "@newTaskList": {
     "type": "text",
     "placeholders": {}
   },
-  "dropForSubSpace": "Drop here to add sub space",
-  "@dropForSubSpace": {
+  "dropForSubTaskList": "Drop here to add sub list",
+  "@dropForSubTaskList": {
     "type": "text",
     "placeholders": {}
   },
@@ -1718,8 +1713,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "spaceNameLabel": "Name",
-  "@spaceNameLabel": {
+  "taskListNameLabel": "Name",
+  "@taskListNameLabel": {
     "type": "text",
     "placeholders": {}
   },

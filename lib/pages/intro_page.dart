@@ -108,8 +108,8 @@ class _IntroPageState extends State<IntroPage> {
                                     child: Text(t.confirm),
                                     onPressed: () {
                                       settingsBloc.onFirstVisit();
-                                      Navigator.pushNamedAndRemoveUntil(
-                                          context, '/spaces', (route) => false);
+                                      Navigator.pushNamedAndRemoveUntil(context,
+                                          '/task-lists', (route) => false);
                                     },
                                   ),
                                 ],

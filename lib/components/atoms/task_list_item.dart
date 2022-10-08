@@ -1,22 +1,22 @@
-import 'package:client/components/atoms/space_icon.dart';
-import 'package:client/models/Space.dart';
+import 'package:client/components/atoms/task_list_icon.dart';
+import 'package:client/models/TaskList.dart';
 import 'package:client/utils/colors.dart';
 import 'package:client/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class SpaceItem extends StatelessWidget {
+class TaskListItem extends StatelessWidget {
   final AppLocalizations t;
-  final Space space;
+  final TaskList taskList;
   final VoidCallback? onPress;
   final Color? nameColor;
   final double? nameSize;
   final double? iconSize;
 
-  const SpaceItem(
+  const TaskListItem(
       {Key? key,
-      required this.space,
+      required this.taskList,
       this.onPress,
       this.nameColor,
       this.nameSize,
@@ -37,7 +37,7 @@ class SpaceItem extends StatelessWidget {
             children: [
               if (candidateItems.isNotEmpty)
                 Text(
-                  t.dropForSubSpace,
+                  t.dropForSubTaskList,
                   style: TextStyle(
                       fontSize: Constants.S1_FONT_SIZE,
                       fontWeight: Constants.MEDIUM_FONT_WEIGHT,
@@ -51,28 +51,29 @@ class SpaceItem extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            SpaceIcon(
-                              space,
+                            TaskListIcon(
+                              taskList,
                               size: iconSize ?? Constants.ICON_SMALL_SIZE,
                             ),
                             const SizedBox(
                               width: 8,
                             ),
                             Text(
-                              space.name,
+                              taskList.name,
                               style: TextStyle(
                                   fontSize: nameSize ?? Constants.S1_FONT_SIZE,
                                   fontWeight: Constants.MEDIUM_FONT_WEIGHT,
                                   color: nameColor ?? textColor(context)),
                             )
                           ])),
-                  if (space.spaces != null && space.spaces!.isNotEmpty)
+                  if (taskList.childTaskLists != null &&
+                      taskList.childTaskLists!.isNotEmpty)
                     Container(
                       margin: const EdgeInsets.only(left: 4),
                       child: Column(
-                        children: space.spaces!
-                            .map((e) => SpaceItem(
-                                space: e,
+                        children: taskList.childTaskLists!
+                            .map((e) => TaskListItem(
+                                taskList: e,
                                 onPress: onPress,
                                 nameColor: nameColor,
                                 t: t))

@@ -1,16 +1,15 @@
 import 'package:client/components/atoms/magical_floating_action_button.dart';
 import 'package:client/components/atoms/user_avatar.dart';
-import 'package:client/components/organisms/list_dialog.dart';
-import 'package:client/components/organisms/lists_list.dart';
-import 'package:client/models/Space.dart';
+import 'package:client/components/organisms/task_list_dialog.dart';
+import 'package:client/components/organisms/task_lists_list.dart';
+import 'package:client/models/TaskList.dart';
 import 'package:client/rx/blocs/auth_bloc.dart';
-import 'package:client/rx/blocs/space_bloc.dart';
+import 'package:client/rx/blocs/task_list_bloc.dart';
 import 'package:client/shanbe_icons.dart';
-import 'package:client/types/space_page_arguments.dart';
+import 'package:client/types/task_list_page_arguments.dart';
 import 'package:client/types/user.dart';
 import 'package:client/utils/colors.dart';
 import 'package:client/utils/constants.dart';
-import 'package:client/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -30,7 +29,7 @@ class InboxPage extends StatefulWidget {
 class _InboxPageState extends State<InboxPage> {
   late AppLocalizations t;
   late AuthBloc authBloc;
-  late SpaceBloc spaceBloc;
+  late TaskListBloc taskListBloc;
   late CupertinoTabController _controller;
   int _currentPageIndex = 0;
 
@@ -38,7 +37,7 @@ class _InboxPageState extends State<InboxPage> {
   void initState() {
     super.initState();
     authBloc = AuthBloc();
-    spaceBloc = SpaceBloc();
+    taskListBloc = TaskListBloc();
     t = AppLocalizations.of(widget.context)!;
     _controller = CupertinoTabController(initialIndex: 0);
   }
@@ -61,7 +60,7 @@ class _InboxPageState extends State<InboxPage> {
             items: [
               SalomonBottomBarItem(
                 icon: const Icon(Shanbe.checklist),
-                title: Text(t.spaces),
+                title: Text(t.taskLists),
                 selectedColor: Constants.PRIMARY_COLOR,
               ),
               SalomonBottomBarItem(
@@ -95,7 +94,7 @@ class _InboxPageState extends State<InboxPage> {
           items: [
             BottomNavigationBarItem(
                 icon: const Icon(Shanbe.checklist),
-                label: t.spaces,
+                label: t.taskLists,
                 activeIcon: const Icon(Shanbe.checklist)),
             BottomNavigationBarItem(
                 icon: const Icon(CupertinoIcons.book),
@@ -124,7 +123,7 @@ class _InboxPageState extends State<InboxPage> {
           slivers: [
             PlatformWidget(
               material: (_, __) => SliverAppBar(
-                  title: Text(t.spaces),
+                  title: Text(t.taskLists),
                   actions: [
                     PlatformIconButton(
                         icon: const Icon(Shanbe.sliders_h),
@@ -161,7 +160,7 @@ class _InboxPageState extends State<InboxPage> {
                   )),
               cupertino: (_, __) => CupertinoSliverNavigationBar(
                 largeTitle: Text(
-                  t.spaces,
+                  t.taskLists,
                 ),
                 stretch: false,
                 automaticallyImplyLeading: false,
@@ -230,7 +229,7 @@ class _InboxPageState extends State<InboxPage> {
                       t: t,
                       onPress: (space) {
                         Navigator.of(context).pushNamed('/space',
-                            arguments: SpacePageArguments(space: space));
+                            arguments: TaskListPageArguments(taskLists: space));
                       },
                     ),
                   )),
@@ -247,8 +246,8 @@ class _InboxPageState extends State<InboxPage> {
                 useRootNavigator: true,
                 builder: (context) => ListDialog(
                       t,
-                      onCreate: (Space space) {
-                        spaceBloc.createSpace(newSpace: space);
+                      onCreate: (TaskList space) {
+                        taskListBloc.createTaskList(newSpace: space);
                       },
                     ));
           }),

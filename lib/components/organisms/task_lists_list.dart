@@ -1,6 +1,6 @@
-import 'package:client/components/atoms/space_item.dart';
-import 'package:client/models/Space.dart';
-import 'package:client/rx/blocs/space_bloc.dart';
+import 'package:client/components/atoms/task_list_item.dart';
+import 'package:client/models/ModelProvider.dart';
+import 'package:client/rx/blocs/task_list_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
@@ -10,7 +10,7 @@ class ListsList extends StatefulWidget {
   final double? iconSize;
   final double? nameSize;
   final Color? nameColor;
-  final Function(Space) onPress;
+  final Function(TaskList) onPress;
 
   const ListsList(
       {Key? key,
@@ -26,24 +26,24 @@ class ListsList extends StatefulWidget {
 }
 
 class _ListsListState extends State<ListsList> {
-  late SpaceBloc spaceBloc;
+  late TaskListBloc taskListBloc;
 
   @override
   void initState() {
     super.initState();
-    spaceBloc = SpaceBloc();
+    taskListBloc = TaskListBloc();
   }
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
       builder: (context, snapshot) {
-        List<Space>? items = snapshot.data as List<Space>?;
+        List<TaskList>? items = snapshot.data as List<TaskList>?;
         if (items != null) {
           return Column(
             children: items
-                .map((e) => SpaceItem(
-                      space: e,
+                .map((e) => TaskListItem(
+                      taskList: e,
                       t: widget.t,
                       nameColor: widget.nameColor,
                       nameSize: widget.nameSize,
@@ -57,7 +57,7 @@ class _ListsListState extends State<ListsList> {
         }
         return PlatformCircularProgressIndicator();
       },
-      stream: spaceBloc.spaces,
+      stream: taskListBloc.spaces,
     );
   }
 }

@@ -50,7 +50,7 @@ class Todo extends Model {
   final List<Reminder>? _reminders;
   final List<TodoTag>? _tags;
   final Todo? _nextItem;
-  final String? _todoNextItemId;
+  final String? _temporalString;
 
   @override
   getInstanceType() => classType;
@@ -158,13 +158,13 @@ class Todo extends Model {
     return _nextItem;
   }
   
-  String? get todoNextItemId {
-    return _todoNextItemId;
+  String? get temporalString {
+    return _temporalString;
   }
   
-  const Todo._internal({required this.id, required title, content, createdAt, updatedAt, startDate, dueDate, endDate, doneAt, priority, timezone, isFloating, isAllDay, rrule, section, parentID, todos, required taskList, reminders, tags, nextItem, todoNextItemId}): _title = title, _content = content, _createdAt = createdAt, _updatedAt = updatedAt, _startDate = startDate, _dueDate = dueDate, _endDate = endDate, _doneAt = doneAt, _priority = priority, _timezone = timezone, _isFloating = isFloating, _isAllDay = isAllDay, _rrule = rrule, _section = section, _parentID = parentID, _todos = todos, _taskList = taskList, _reminders = reminders, _tags = tags, _nextItem = nextItem, _todoNextItemId = todoNextItemId;
+  const Todo._internal({required this.id, required title, content, createdAt, updatedAt, startDate, dueDate, endDate, doneAt, priority, timezone, isFloating, isAllDay, rrule, section, parentID, todos, required taskList, reminders, tags, nextItem, temporalString}): _title = title, _content = content, _createdAt = createdAt, _updatedAt = updatedAt, _startDate = startDate, _dueDate = dueDate, _endDate = endDate, _doneAt = doneAt, _priority = priority, _timezone = timezone, _isFloating = isFloating, _isAllDay = isAllDay, _rrule = rrule, _section = section, _parentID = parentID, _todos = todos, _taskList = taskList, _reminders = reminders, _tags = tags, _nextItem = nextItem, _temporalString = temporalString;
   
-  factory Todo({String? id, required String title, String? content, TemporalDateTime? createdAt, TemporalDateTime? updatedAt, TemporalDateTime? startDate, TemporalDateTime? dueDate, TemporalDateTime? endDate, TemporalDateTime? doneAt, int? priority, String? timezone, bool? isFloating, bool? isAllDay, String? rrule, Section? section, String? parentID, List<Todo>? todos, required TaskList taskList, List<Reminder>? reminders, List<TodoTag>? tags, Todo? nextItem, String? todoNextItemId}) {
+  factory Todo({String? id, required String title, String? content, TemporalDateTime? createdAt, TemporalDateTime? updatedAt, TemporalDateTime? startDate, TemporalDateTime? dueDate, TemporalDateTime? endDate, TemporalDateTime? doneAt, int? priority, String? timezone, bool? isFloating, bool? isAllDay, String? rrule, Section? section, String? parentID, List<Todo>? todos, required TaskList taskList, List<Reminder>? reminders, List<TodoTag>? tags, Todo? nextItem, String? temporalString}) {
     return Todo._internal(
       id: id == null ? UUID.getUUID() : id,
       title: title,
@@ -187,7 +187,7 @@ class Todo extends Model {
       reminders: reminders != null ? List<Reminder>.unmodifiable(reminders) : reminders,
       tags: tags != null ? List<TodoTag>.unmodifiable(tags) : tags,
       nextItem: nextItem,
-      todoNextItemId: todoNextItemId);
+      temporalString: temporalString);
   }
   
   bool equals(Object other) {
@@ -219,7 +219,7 @@ class Todo extends Model {
       DeepCollectionEquality().equals(_reminders, other._reminders) &&
       DeepCollectionEquality().equals(_tags, other._tags) &&
       _nextItem == other._nextItem &&
-      _todoNextItemId == other._todoNextItemId;
+      _temporalString == other._temporalString;
   }
   
   @override
@@ -247,13 +247,14 @@ class Todo extends Model {
     buffer.write("section=" + (_section != null ? _section!.toString() : "null") + ", ");
     buffer.write("parentID=" + "$_parentID" + ", ");
     buffer.write("taskList=" + (_taskList != null ? _taskList!.toString() : "null") + ", ");
-    buffer.write("todoNextItemId=" + "$_todoNextItemId");
+    buffer.write("nextItem=" + (_nextItem != null ? _nextItem!.toString() : "null") + ", ");
+    buffer.write("temporalString=" + "$_temporalString");
     buffer.write("}");
     
     return buffer.toString();
   }
   
-  Todo copyWith({String? id, String? title, String? content, TemporalDateTime? createdAt, TemporalDateTime? updatedAt, TemporalDateTime? startDate, TemporalDateTime? dueDate, TemporalDateTime? endDate, TemporalDateTime? doneAt, int? priority, String? timezone, bool? isFloating, bool? isAllDay, String? rrule, Section? section, String? parentID, List<Todo>? todos, TaskList? taskList, List<Reminder>? reminders, List<TodoTag>? tags, Todo? nextItem, String? todoNextItemId}) {
+  Todo copyWith({String? id, String? title, String? content, TemporalDateTime? createdAt, TemporalDateTime? updatedAt, TemporalDateTime? startDate, TemporalDateTime? dueDate, TemporalDateTime? endDate, TemporalDateTime? doneAt, int? priority, String? timezone, bool? isFloating, bool? isAllDay, String? rrule, Section? section, String? parentID, List<Todo>? todos, TaskList? taskList, List<Reminder>? reminders, List<TodoTag>? tags, Todo? nextItem, String? temporalString}) {
     return Todo._internal(
       id: id ?? this.id,
       title: title ?? this.title,
@@ -276,7 +277,7 @@ class Todo extends Model {
       reminders: reminders ?? this.reminders,
       tags: tags ?? this.tags,
       nextItem: nextItem ?? this.nextItem,
-      todoNextItemId: todoNextItemId ?? this.todoNextItemId);
+      temporalString: temporalString ?? this.temporalString);
   }
   
   Todo.fromJson(Map<String, dynamic> json)  
@@ -322,10 +323,10 @@ class Todo extends Model {
       _nextItem = json['nextItem']?['serializedData'] != null
         ? Todo.fromJson(new Map<String, dynamic>.from(json['nextItem']['serializedData']))
         : null,
-      _todoNextItemId = json['todoNextItemId'];
+      _temporalString = json['temporalString'];
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'title': _title, 'content': _content, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format(), 'startDate': _startDate?.format(), 'dueDate': _dueDate?.format(), 'endDate': _endDate?.format(), 'doneAt': _doneAt?.format(), 'priority': _priority, 'timezone': _timezone, 'isFloating': _isFloating, 'isAllDay': _isAllDay, 'rrule': _rrule, 'section': _section?.toJson(), 'parentID': _parentID, 'todos': _todos?.map((Todo? e) => e?.toJson()).toList(), 'taskList': _taskList?.toJson(), 'reminders': _reminders?.map((Reminder? e) => e?.toJson()).toList(), 'tags': _tags?.map((TodoTag? e) => e?.toJson()).toList(), 'nextItem': _nextItem?.toJson(), 'todoNextItemId': _todoNextItemId
+    'id': id, 'title': _title, 'content': _content, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format(), 'startDate': _startDate?.format(), 'dueDate': _dueDate?.format(), 'endDate': _endDate?.format(), 'doneAt': _doneAt?.format(), 'priority': _priority, 'timezone': _timezone, 'isFloating': _isFloating, 'isAllDay': _isAllDay, 'rrule': _rrule, 'section': _section?.toJson(), 'parentID': _parentID, 'todos': _todos?.map((Todo? e) => e?.toJson()).toList(), 'taskList': _taskList?.toJson(), 'reminders': _reminders?.map((Reminder? e) => e?.toJson()).toList(), 'tags': _tags?.map((TodoTag? e) => e?.toJson()).toList(), 'nextItem': _nextItem?.toJson(), 'temporalString': _temporalString
   };
 
   static final QueryField ID = QueryField(fieldName: "id");
@@ -361,7 +362,7 @@ class Todo extends Model {
   static final QueryField NEXTITEM = QueryField(
     fieldName: "nextItem",
     fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Todo).toString()));
-  static final QueryField TODONEXTITEMID = QueryField(fieldName: "todoNextItemId");
+  static final QueryField TEMPORALSTRING = QueryField(fieldName: "temporalString");
   static var schema = Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
     modelSchemaDefinition.name = "Todo";
     modelSchemaDefinition.pluralName = "Todos";
@@ -391,7 +392,8 @@ class Todo extends Model {
     modelSchemaDefinition.indexes = [
       ModelIndex(fields: const ["sectionID"], name: "bySection"),
       ModelIndex(fields: const ["parentID"], name: "byParent"),
-      ModelIndex(fields: const ["taskListID"], name: "byTaskList")
+      ModelIndex(fields: const ["taskListID"], name: "byTaskList"),
+      ModelIndex(fields: const ["nextItemID"], name: "byNextItem")
     ];
     
     modelSchemaDefinition.addField(ModelFieldDefinition.id());
@@ -515,15 +517,15 @@ class Todo extends Model {
       associatedKey: TodoTag.TODO
     ));
     
-    modelSchemaDefinition.addField(ModelFieldDefinition.hasOne(
+    modelSchemaDefinition.addField(ModelFieldDefinition.belongsTo(
       key: Todo.NEXTITEM,
       isRequired: false,
-      ofModelName: (Todo).toString(),
-      associatedKey: Todo.TODOS
+      targetName: "nextItemID",
+      ofModelName: (Todo).toString()
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Todo.TODONEXTITEMID,
+      key: Todo.TEMPORALSTRING,
       isRequired: false,
       ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));

@@ -1,4 +1,4 @@
-import 'package:client/models/ModelProvider.dart';
+import 'package:client/models/TaskList.dart';
 import 'package:client/rx/service_provider.dart';
 import 'package:client/shanbe_icons.dart';
 import 'package:client/types/hex_color.dart';
@@ -7,11 +7,11 @@ import 'package:client/utils/constants.dart';
 import 'package:client/utils/utils.dart';
 import 'package:flutter/material.dart';
 
-class SpaceIcon extends StatelessWidget {
-  final Space space;
+class TaskListIcon extends StatelessWidget {
+  final TaskList space;
   final double size;
 
-  const SpaceIcon(this.space,
+  const TaskListIcon(this.space,
       {Key? key, this.size = Constants.ICON_MEDIUM_SIZE})
       : super(key: key);
 

@@ -6,6 +6,7 @@ import 'package:client/components/molecules/signup_intro.dart';
 import 'package:client/rx/blocs/auth_bloc.dart';
 import 'package:client/types/enums.dart';
 import 'package:client/types/signup_intro_data.dart';
+import 'package:client/types/signup_page_arugments.dart';
 import 'package:client/utils/colors.dart';
 import 'package:client/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +16,10 @@ import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 class SignupPage extends StatefulWidget {
   final BuildContext context;
+  final SignupPageArguments arguments;
 
-  const SignupPage({Key? key, required this.context}) : super(key: key);
+  const SignupPage({Key? key, required this.arguments, required this.context})
+      : super(key: key);
 
   @override
   State<SignupPage> createState() => _SignupPageState();
@@ -45,7 +48,7 @@ class _SignupPageState extends State<SignupPage> {
     _subscription = authBloc.authState.listen((event) {
       if (event == AuthState.authenticated) {
         Navigator.pushNamedAndRemoveUntil(
-            widget.context, '/task-lists', (route) => false);
+            widget.context, '/lists', (route) => false);
       }
     });
   }
@@ -61,7 +64,7 @@ class _SignupPageState extends State<SignupPage> {
     return PlatformScaffold(
       appBar: PlatformAppBar(
         cupertino: (_, __) => CupertinoNavigationBarData(
-          previousPageTitle: t.settings,
+          previousPageTitle: widget.arguments.previousPageTitle,
           border: Border.all(width: 0, color: backgroundColor(context)),
           backgroundColor: backgroundColor(context),
           automaticallyImplyMiddle: true,

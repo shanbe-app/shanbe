@@ -29,9 +29,10 @@ class SettingsBloc extends RxBloc {
   Stream<ThemeMode> get theme => _theme.stream;
 
   SettingsBloc(this.storageService) {
-    _isFirstVisit.add(
-        storageService.sharedPreferences.getBool(Constants.FIRST_VISIT_PREFS) ??
-            true);
+    _isFirstVisit.add(true);
+    // _isFirstVisit.add(
+    //     storageService.sharedPreferences.getBool(Constants.FIRST_VISIT_PREFS) ??
+    //         true);
     _calendar.add(EnumToString.fromString(
             CalendarType.values,
             storageService.sharedPreferences

@@ -203,7 +203,7 @@ class Folder extends Model {
       key: Folder.SMARTTASKLISTS,
       isRequired: false,
       ofModelName: (SmartTaskList).toString(),
-      associatedKey: SmartTaskList.FOLDERID
+      associatedKey: SmartTaskList.FOLDER
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.nonQueryField(

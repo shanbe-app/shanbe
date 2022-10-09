@@ -1573,17 +1573,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "appIntroDescription2": "We take care of the others",
+  "appIntroDescription2": "The chores are covered",
   "@appIntroDescription2": {
     "type": "text",
     "placeholders": {}
   },
-  "appIntroTitle3": "Lists inside Lists!",
+  "appIntroTitle3": "Your personal workstation",
   "@appIntroTitle3": {
     "type": "text",
     "placeholders": {}
   },
-  "appIntroDescription3": "Create lists inside another lists to stay focused.",
+  "appIntroDescription3": "All you need to get the work done",
   "@appIntroDescription3": {
     "type": "text",
     "placeholders": {}

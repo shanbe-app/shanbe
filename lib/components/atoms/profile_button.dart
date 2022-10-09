@@ -9,10 +9,13 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ProfileButton extends StatelessWidget {
+  final String previousPageTitle;
   final AppLocalizations t;
   final AuthBloc authBloc;
 
-  const ProfileButton(this.authBloc, this.t, {Key? key}) : super(key: key);
+  const ProfileButton(this.authBloc, this.t,
+      {Key? key, required this.previousPageTitle})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +40,12 @@ class ProfileButton extends StatelessWidget {
         stream: authBloc.authUser,
         builder: (context, snapshot) {
           User? user = snapshot.data as User?;
-          if (user == null) return const SignupButton();
+          if (user == null) {
+            return SignupButton(
+              t: t,
+              previousPageTitle: previousPageTitle,
+            );
+          }
           return Padding(
             padding: Constants.CARD_INNER_PADDING,
             child: Row(

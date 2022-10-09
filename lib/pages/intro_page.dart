@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:client/rx/blocs/settings_bloc.dart';
 import 'package:client/rx/service_provider.dart';
 import 'package:client/types/app_intro_data.dart';
+import 'package:client/types/signup_page_arugments.dart';
 import 'package:client/utils/colors.dart';
 import 'package:client/utils/constants.dart';
 import 'package:client/utils/utils.dart';
@@ -38,11 +39,14 @@ class _IntroPageState extends State<IntroPage> {
     appIntroData = [
       AppIntroData(t.appIntroTitle1, 'assets/files/meditate3.json',
           t.appIntroDescription1),
-      AppIntroData(t.appIntroTitle2, 'assets/files/calendar2.json',
-          t.appIntroDescription2,
-          reverse: true),
       AppIntroData(
-          t.appIntroTitle3, 'assets/files/yoga2.json', t.appIntroDescription3),
+        t.appIntroTitle2,
+        'assets/files/yoga2.json',
+        t.appIntroDescription2,
+      ),
+      AppIntroData(t.appIntroTitle3, 'assets/files/calendar2.json',
+          t.appIntroDescription3,
+          reverse: true),
       AppIntroData(
           t.appIntroTitle4, 'assets/files/fly.json', t.appIntroDescription4),
     ];
@@ -108,8 +112,8 @@ class _IntroPageState extends State<IntroPage> {
                                     child: Text(t.confirm),
                                     onPressed: () {
                                       settingsBloc.onFirstVisit();
-                                      Navigator.pushNamedAndRemoveUntil(context,
-                                          '/task-lists', (route) => false);
+                                      Navigator.pushNamedAndRemoveUntil(
+                                          context, '/lists', (route) => false);
                                     },
                                   ),
                                 ],
@@ -215,8 +219,10 @@ class _IntroPageState extends State<IntroPage> {
                   onPressed: () {
                     settingsBloc.onFirstVisit();
                     Navigator.pushNamedAndRemoveUntil(
-                        context, '/spaces', (route) => false);
-                    Navigator.pushNamed(context, '/signup');
+                        context, '/lists', (route) => false);
+                    Navigator.pushNamed(context, '/signup',
+                        arguments:
+                            SignupPageArguments(previousPageTitle: t.lists));
                   },
                 ),
               ),

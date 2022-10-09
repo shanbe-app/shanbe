@@ -1,22 +1,20 @@
+import 'package:client/types/signup_page_arugments.dart';
 import 'package:client/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class SignupButton extends StatefulWidget {
-  const SignupButton({Key? key}) : super(key: key);
+class SignupButton extends StatelessWidget {
+  final String previousPageTitle;
+  final AppLocalizations t;
 
-  @override
-  State<SignupButton> createState() => _SignupButtonState();
-}
-
-class _SignupButtonState extends State<SignupButton> {
-  AppLocalizations? t;
+  const SignupButton(
+      {Key? key, required this.previousPageTitle, required this.t})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    t ??= AppLocalizations.of(context);
     return PlatformWidgetBuilder(
       material: (_, child, __) =>
           Card(shape: Constants.CARD_SHAPE, child: child),
@@ -25,7 +23,9 @@ class _SignupButtonState extends State<SignupButton> {
         padding: EdgeInsets.zero,
         child: child ?? Container(),
         onPressed: () {
-          Navigator.pushNamed(context, '/signup');
+          Navigator.pushNamed(context, '/signup',
+              arguments:
+                  SignupPageArguments(previousPageTitle: previousPageTitle));
         },
       ),
       child: Padding(
@@ -46,7 +46,7 @@ class _SignupButtonState extends State<SignupButton> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  t!.loginOrRegister,
+                  t.loginOrRegister,
                   style: TextStyle(
                       fontSize: Constants.S1_FONT_SIZE,
                       color: Constants.PRIMARY_COLOR,
@@ -56,7 +56,7 @@ class _SignupButtonState extends State<SignupButton> {
                   height: 4,
                 ),
                 Text(
-                  t!.loginOrRegisterDesc,
+                  t.loginOrRegisterDesc,
                   style: const TextStyle(
                       fontSize: Constants.CAPTION_FONT_SIZE,
                       fontWeight: Constants.REGULAR_FONT_WEIGHT,

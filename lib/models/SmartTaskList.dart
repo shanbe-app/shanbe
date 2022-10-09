@@ -33,7 +33,7 @@ class SmartTaskList extends Model {
   final String? _emoji;
   final String? _color;
   final TaskListQueryPredicate? _queryPredicate;
-  final String? _folderID;
+  final Folder? _folder;
   final TemporalDateTime? _createdAt;
   final TemporalDateTime? _updatedAt;
   final String? _smartTaskListQueryPredicateId;
@@ -71,8 +71,8 @@ class SmartTaskList extends Model {
     return _queryPredicate;
   }
   
-  String? get folderID {
-    return _folderID;
+  Folder? get folder {
+    return _folder;
   }
   
   TemporalDateTime? get createdAt {
@@ -87,16 +87,16 @@ class SmartTaskList extends Model {
     return _smartTaskListQueryPredicateId;
   }
   
-  const SmartTaskList._internal({required this.id, required name, emoji, color, queryPredicate, folderID, createdAt, updatedAt, smartTaskListQueryPredicateId}): _name = name, _emoji = emoji, _color = color, _queryPredicate = queryPredicate, _folderID = folderID, _createdAt = createdAt, _updatedAt = updatedAt, _smartTaskListQueryPredicateId = smartTaskListQueryPredicateId;
+  const SmartTaskList._internal({required this.id, required name, emoji, color, queryPredicate, folder, createdAt, updatedAt, smartTaskListQueryPredicateId}): _name = name, _emoji = emoji, _color = color, _queryPredicate = queryPredicate, _folder = folder, _createdAt = createdAt, _updatedAt = updatedAt, _smartTaskListQueryPredicateId = smartTaskListQueryPredicateId;
   
-  factory SmartTaskList({String? id, required String name, String? emoji, String? color, TaskListQueryPredicate? queryPredicate, String? folderID, TemporalDateTime? createdAt, TemporalDateTime? updatedAt, String? smartTaskListQueryPredicateId}) {
+  factory SmartTaskList({String? id, required String name, String? emoji, String? color, TaskListQueryPredicate? queryPredicate, Folder? folder, TemporalDateTime? createdAt, TemporalDateTime? updatedAt, String? smartTaskListQueryPredicateId}) {
     return SmartTaskList._internal(
       id: id == null ? UUID.getUUID() : id,
       name: name,
       emoji: emoji,
       color: color,
       queryPredicate: queryPredicate,
-      folderID: folderID,
+      folder: folder,
       createdAt: createdAt,
       updatedAt: updatedAt,
       smartTaskListQueryPredicateId: smartTaskListQueryPredicateId);
@@ -115,7 +115,7 @@ class SmartTaskList extends Model {
       _emoji == other._emoji &&
       _color == other._color &&
       _queryPredicate == other._queryPredicate &&
-      _folderID == other._folderID &&
+      _folder == other._folder &&
       _createdAt == other._createdAt &&
       _updatedAt == other._updatedAt &&
       _smartTaskListQueryPredicateId == other._smartTaskListQueryPredicateId;
@@ -133,7 +133,7 @@ class SmartTaskList extends Model {
     buffer.write("name=" + "$_name" + ", ");
     buffer.write("emoji=" + "$_emoji" + ", ");
     buffer.write("color=" + "$_color" + ", ");
-    buffer.write("folderID=" + "$_folderID" + ", ");
+    buffer.write("folder=" + (_folder != null ? _folder!.toString() : "null") + ", ");
     buffer.write("createdAt=" + (_createdAt != null ? _createdAt!.format() : "null") + ", ");
     buffer.write("updatedAt=" + (_updatedAt != null ? _updatedAt!.format() : "null") + ", ");
     buffer.write("smartTaskListQueryPredicateId=" + "$_smartTaskListQueryPredicateId");
@@ -142,14 +142,14 @@ class SmartTaskList extends Model {
     return buffer.toString();
   }
   
-  SmartTaskList copyWith({String? id, String? name, String? emoji, String? color, TaskListQueryPredicate? queryPredicate, String? folderID, TemporalDateTime? createdAt, TemporalDateTime? updatedAt, String? smartTaskListQueryPredicateId}) {
+  SmartTaskList copyWith({String? id, String? name, String? emoji, String? color, TaskListQueryPredicate? queryPredicate, Folder? folder, TemporalDateTime? createdAt, TemporalDateTime? updatedAt, String? smartTaskListQueryPredicateId}) {
     return SmartTaskList._internal(
       id: id ?? this.id,
       name: name ?? this.name,
       emoji: emoji ?? this.emoji,
       color: color ?? this.color,
       queryPredicate: queryPredicate ?? this.queryPredicate,
-      folderID: folderID ?? this.folderID,
+      folder: folder ?? this.folder,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
       smartTaskListQueryPredicateId: smartTaskListQueryPredicateId ?? this.smartTaskListQueryPredicateId);
@@ -163,13 +163,15 @@ class SmartTaskList extends Model {
       _queryPredicate = json['queryPredicate']?['serializedData'] != null
         ? TaskListQueryPredicate.fromJson(new Map<String, dynamic>.from(json['queryPredicate']['serializedData']))
         : null,
-      _folderID = json['folderID'],
+      _folder = json['folder']?['serializedData'] != null
+        ? Folder.fromJson(new Map<String, dynamic>.from(json['folder']['serializedData']))
+        : null,
       _createdAt = json['createdAt'] != null ? TemporalDateTime.fromString(json['createdAt']) : null,
       _updatedAt = json['updatedAt'] != null ? TemporalDateTime.fromString(json['updatedAt']) : null,
       _smartTaskListQueryPredicateId = json['smartTaskListQueryPredicateId'];
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'name': _name, 'emoji': _emoji, 'color': _color, 'queryPredicate': _queryPredicate?.toJson(), 'folderID': _folderID, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format(), 'smartTaskListQueryPredicateId': _smartTaskListQueryPredicateId
+    'id': id, 'name': _name, 'emoji': _emoji, 'color': _color, 'queryPredicate': _queryPredicate?.toJson(), 'folder': _folder?.toJson(), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format(), 'smartTaskListQueryPredicateId': _smartTaskListQueryPredicateId
   };
 
   static final QueryField ID = QueryField(fieldName: "id");
@@ -179,7 +181,9 @@ class SmartTaskList extends Model {
   static final QueryField QUERYPREDICATE = QueryField(
     fieldName: "queryPredicate",
     fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (TaskListQueryPredicate).toString()));
-  static final QueryField FOLDERID = QueryField(fieldName: "folderID");
+  static final QueryField FOLDER = QueryField(
+    fieldName: "folder",
+    fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (Folder).toString()));
   static final QueryField CREATEDAT = QueryField(fieldName: "createdAt");
   static final QueryField UPDATEDAT = QueryField(fieldName: "updatedAt");
   static final QueryField SMARTTASKLISTQUERYPREDICATEID = QueryField(fieldName: "smartTaskListQueryPredicateId");
@@ -229,10 +233,11 @@ class SmartTaskList extends Model {
       associatedKey: TaskListQueryPredicate.SMARTTASKLIST
     ));
     
-    modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: SmartTaskList.FOLDERID,
+    modelSchemaDefinition.addField(ModelFieldDefinition.belongsTo(
+      key: SmartTaskList.FOLDER,
       isRequired: false,
-      ofType: ModelFieldType(ModelFieldTypeEnum.string)
+      targetName: "folderID",
+      ofModelName: (Folder).toString()
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(

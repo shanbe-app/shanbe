@@ -52,9 +52,16 @@ class _SettingsPageState extends State<SettingsPage> {
                   builder: (context, snapshot) {
                     AuthState? state = snapshot.data as AuthState?;
                     if (state == AuthState.authenticated) {
-                      return ProfileButton(authBloc, t);
+                      return ProfileButton(
+                        authBloc,
+                        t,
+                        previousPageTitle: t.settings,
+                      );
                     } else {
-                      return const SignupButton();
+                      return SignupButton(
+                        t: t,
+                        previousPageTitle: t.settings,
+                      );
                     }
                   },
                   stream: authBloc.authState,

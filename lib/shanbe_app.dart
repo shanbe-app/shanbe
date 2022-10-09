@@ -6,6 +6,7 @@ import 'package:client/pages/signup_page.dart';
 import 'package:client/pages/inbox_page.dart';
 import 'package:client/rx/blocs/settings_bloc.dart';
 import 'package:client/rx/service_provider.dart';
+import 'package:client/types/signup_page_arugments.dart';
 import 'package:client/types/task_list_page_arguments.dart';
 import 'package:client/utils/constants.dart';
 import 'package:client/utils/utils.dart';
@@ -96,13 +97,13 @@ class _ShanbeAppState extends State<ShanbeApp> {
                 builder: (context) => InitPage(
                       appInitFuture: appInitFuture,
                     ));
-          case '/task-list':
+          case '/list':
             return platformPageRoute(
                 context: context,
                 builder: (context) => TaskListPage(
                     arguments: settings.arguments as TaskListPageArguments,
                     context: context));
-          case '/task-lists':
+          case '/lists':
             return platformPageRoute(
                 context: context,
                 builder: (context) => InboxPage(
@@ -122,6 +123,7 @@ class _ShanbeAppState extends State<ShanbeApp> {
                 context: context,
                 builder: (context) => SignupPage(
                       context: context,
+                      arguments: settings.arguments as SignupPageArguments,
                     ));
           default:
             return null;

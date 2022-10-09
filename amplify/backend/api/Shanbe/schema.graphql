@@ -60,8 +60,7 @@ type TaskListQueryPredicate @model @auth(rules: [{allow: private}]) {
   parentID: ID @index(name: "byParent")
   childQueryPredicates: [TaskListQueryPredicate] @hasMany(indexName: "byParent", fields: ["id"])
   childQueryPredicatesLogic: QueryPredicateLogic
-  smartTaskListID: ID! @index(name: "byTaskListQueryPredicate")
-  smartTaskList: SmartTaskList @belongsTo(fields: ["smartTaskListID"])
+  smartTaskList: SmartTaskList @belongsTo
 }
 
 type SmartTaskList @model @auth(rules: [{allow: private}]) {
@@ -71,6 +70,7 @@ type SmartTaskList @model @auth(rules: [{allow: private}]) {
   color: String
   queryPredicate: TaskListQueryPredicate @hasOne
   folderID: ID @index(name: "byFolder")
+  folder: Folder @belongsTo(fields: ["folderID"])
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
 }
@@ -124,8 +124,7 @@ type Todo @model @auth(rules: [{allow: private}, {allow: owner}]) {
   reminders: [Reminder] @hasMany(indexName: "byTodo", fields: ["id"])
   tags: [Tag] @manyToMany(relationName: "TodoTag")
   nextItemID: ID @index(name: "byNextItem")
-  nextItem: Todo @belongsTo(fields: ["nextItemID"])
-  temporalString: String
+  nextItem: Todo @hasOne(fields: ["nextItemID"])
 }
 
 type Preferences @model @auth(rules: [{allow: owner}]) {

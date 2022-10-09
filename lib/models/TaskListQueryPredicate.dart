@@ -202,7 +202,7 @@ class TaskListQueryPredicate extends Model {
     
     modelSchemaDefinition.indexes = [
       ModelIndex(fields: const ["parentID"], name: "byParent"),
-      ModelIndex(fields: const ["smartTaskListID"], name: "bySmartTaskList")
+      ModelIndex(fields: const ["smartTaskListID"], name: "byTaskListQueryPredicate")
     ];
     
     modelSchemaDefinition.addField(ModelFieldDefinition.id());

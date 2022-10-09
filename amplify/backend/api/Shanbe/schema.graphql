@@ -60,7 +60,7 @@ type TaskListQueryPredicate @model @auth(rules: [{allow: private}]) {
   parentID: ID @index(name: "byParent")
   childQueryPredicates: [TaskListQueryPredicate] @hasMany(indexName: "byParent", fields: ["id"])
   childQueryPredicatesLogic: QueryPredicateLogic
-  smartTaskListID: ID @index(name: "bySmartTaskList")
+  smartTaskListID: ID! @index(name: "byTaskListQueryPredicate")
   smartTaskList: SmartTaskList @belongsTo(fields: ["smartTaskListID"])
 }
 

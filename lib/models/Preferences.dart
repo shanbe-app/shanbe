@@ -33,6 +33,8 @@ class Preferences extends Model {
   final ThemeType? _theme;
   final CalendarType? _calendar;
   final List<StaticTaskListType>? _visibleStaticTaskLists;
+  final StartOfTheWeekType? _startOfTheWeek;
+  final String? _locale;
   final TemporalDateTime? _createdAt;
   final TemporalDateTime? _updatedAt;
 
@@ -56,6 +58,14 @@ class Preferences extends Model {
     return _visibleStaticTaskLists;
   }
   
+  StartOfTheWeekType? get startOfTheWeek {
+    return _startOfTheWeek;
+  }
+  
+  String? get locale {
+    return _locale;
+  }
+  
   TemporalDateTime? get createdAt {
     return _createdAt;
   }
@@ -64,14 +74,16 @@ class Preferences extends Model {
     return _updatedAt;
   }
   
-  const Preferences._internal({required this.id, theme, calendar, visibleStaticTaskLists, createdAt, updatedAt}): _theme = theme, _calendar = calendar, _visibleStaticTaskLists = visibleStaticTaskLists, _createdAt = createdAt, _updatedAt = updatedAt;
+  const Preferences._internal({required this.id, theme, calendar, visibleStaticTaskLists, startOfTheWeek, locale, createdAt, updatedAt}): _theme = theme, _calendar = calendar, _visibleStaticTaskLists = visibleStaticTaskLists, _startOfTheWeek = startOfTheWeek, _locale = locale, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory Preferences({String? id, ThemeType? theme, CalendarType? calendar, List<StaticTaskListType>? visibleStaticTaskLists, TemporalDateTime? createdAt, TemporalDateTime? updatedAt}) {
+  factory Preferences({String? id, ThemeType? theme, CalendarType? calendar, List<StaticTaskListType>? visibleStaticTaskLists, StartOfTheWeekType? startOfTheWeek, String? locale, TemporalDateTime? createdAt, TemporalDateTime? updatedAt}) {
     return Preferences._internal(
       id: id == null ? UUID.getUUID() : id,
       theme: theme,
       calendar: calendar,
       visibleStaticTaskLists: visibleStaticTaskLists != null ? List<StaticTaskListType>.unmodifiable(visibleStaticTaskLists) : visibleStaticTaskLists,
+      startOfTheWeek: startOfTheWeek,
+      locale: locale,
       createdAt: createdAt,
       updatedAt: updatedAt);
   }
@@ -88,6 +100,8 @@ class Preferences extends Model {
       _theme == other._theme &&
       _calendar == other._calendar &&
       DeepCollectionEquality().equals(_visibleStaticTaskLists, other._visibleStaticTaskLists) &&
+      _startOfTheWeek == other._startOfTheWeek &&
+      _locale == other._locale &&
       _createdAt == other._createdAt &&
       _updatedAt == other._updatedAt;
   }
@@ -104,6 +118,8 @@ class Preferences extends Model {
     buffer.write("theme=" + (_theme != null ? enumToString(_theme)! : "null") + ", ");
     buffer.write("calendar=" + (_calendar != null ? enumToString(_calendar)! : "null") + ", ");
     buffer.write("visibleStaticTaskLists=" + (_visibleStaticTaskLists != null ? _visibleStaticTaskLists!.map((e) => enumToString(e)).toString() : "null") + ", ");
+    buffer.write("startOfTheWeek=" + (_startOfTheWeek != null ? enumToString(_startOfTheWeek)! : "null") + ", ");
+    buffer.write("locale=" + "$_locale" + ", ");
     buffer.write("createdAt=" + (_createdAt != null ? _createdAt!.format() : "null") + ", ");
     buffer.write("updatedAt=" + (_updatedAt != null ? _updatedAt!.format() : "null"));
     buffer.write("}");
@@ -111,12 +127,14 @@ class Preferences extends Model {
     return buffer.toString();
   }
   
-  Preferences copyWith({String? id, ThemeType? theme, CalendarType? calendar, List<StaticTaskListType>? visibleStaticTaskLists, TemporalDateTime? createdAt, TemporalDateTime? updatedAt}) {
+  Preferences copyWith({String? id, ThemeType? theme, CalendarType? calendar, List<StaticTaskListType>? visibleStaticTaskLists, StartOfTheWeekType? startOfTheWeek, String? locale, TemporalDateTime? createdAt, TemporalDateTime? updatedAt}) {
     return Preferences._internal(
       id: id ?? this.id,
       theme: theme ?? this.theme,
       calendar: calendar ?? this.calendar,
       visibleStaticTaskLists: visibleStaticTaskLists ?? this.visibleStaticTaskLists,
+      startOfTheWeek: startOfTheWeek ?? this.startOfTheWeek,
+      locale: locale ?? this.locale,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt);
   }
@@ -130,17 +148,21 @@ class Preferences extends Model {
           .map((e) => enumFromString<StaticTaskListType>(e, StaticTaskListType.values)!)
           .toList()
         : null,
+      _startOfTheWeek = enumFromString<StartOfTheWeekType>(json['startOfTheWeek'], StartOfTheWeekType.values),
+      _locale = json['locale'],
       _createdAt = json['createdAt'] != null ? TemporalDateTime.fromString(json['createdAt']) : null,
       _updatedAt = json['updatedAt'] != null ? TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'theme': enumToString(_theme), 'calendar': enumToString(_calendar), 'visibleStaticTaskLists': _visibleStaticTaskLists?.map((e) => enumToString(e)).toList(), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
+    'id': id, 'theme': enumToString(_theme), 'calendar': enumToString(_calendar), 'visibleStaticTaskLists': _visibleStaticTaskLists?.map((e) => enumToString(e)).toList(), 'startOfTheWeek': enumToString(_startOfTheWeek), 'locale': _locale, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
 
   static final QueryField ID = QueryField(fieldName: "id");
   static final QueryField THEME = QueryField(fieldName: "theme");
   static final QueryField CALENDAR = QueryField(fieldName: "calendar");
   static final QueryField VISIBLESTATICTASKLISTS = QueryField(fieldName: "visibleStaticTaskLists");
+  static final QueryField STARTOFTHEWEEK = QueryField(fieldName: "startOfTheWeek");
+  static final QueryField LOCALE = QueryField(fieldName: "locale");
   static final QueryField CREATEDAT = QueryField(fieldName: "createdAt");
   static final QueryField UPDATEDAT = QueryField(fieldName: "updatedAt");
   static var schema = Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
@@ -180,6 +202,18 @@ class Preferences extends Model {
       isRequired: false,
       isArray: true,
       ofType: ModelFieldType(ModelFieldTypeEnum.collection, ofModelName: describeEnum(ModelFieldTypeEnum.enumeration))
+    ));
+    
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+      key: Preferences.STARTOFTHEWEEK,
+      isRequired: false,
+      ofType: ModelFieldType(ModelFieldTypeEnum.enumeration)
+    ));
+    
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+      key: Preferences.LOCALE,
+      isRequired: false,
+      ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(

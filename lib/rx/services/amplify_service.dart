@@ -8,29 +8,47 @@ import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:client/amplifyconfiguration.dart';
 import 'package:client/models/ModelProvider.dart';
 import 'package:client/rx/services/rx_service.dart';
+import 'package:client/utils/constants.dart';
 
 class AmplifyService extends RxService {
+  late Stream<List<Preferences>> preferences;
+
   AmplifyService();
+
+  bool get _isAmplifyDatastoreSupported => Platform.isAndroid || Platform.isIOS;
 
   @override
   Future<void> onCreate() async {
     AmplifyAuthCognito auth = AmplifyAuthCognito();
     AmplifyAPI api = AmplifyAPI(modelProvider: ModelProvider.instance);
     await Amplify.addPlugins([auth, api]);
-    if (Platform.isAndroid || Platform.isIOS) {
+    if (_isAmplifyDatastoreSupported) {
       AmplifyDataStore dataStore =
           AmplifyDataStore(modelProvider: ModelProvider.instance);
       await Amplify.addPlugin(dataStore);
     }
     await Amplify.configure(amplifyconfig);
-    await initializeModels();
+    if (_isAmplifyDatastoreSupported) {
+      await _listenPreferences();
+    }
   }
 
-  Future<void> initializeModels() async {
-    List<Preferences> prefs = await Amplify.DataStore.query(
-      Preferences.classType,
-    );
-    if (prefs.isEmpty || prefs.length > 1) {}
+  Future<void> _listenPreferences() async {
+    List<Preferences> prefs =
+        await Amplify.DataStore.query(Preferences.classType);
+    if (prefs.isEmpty) {
+      Amplify.DataStore.save(Preferences(
+          theme: Constants.DEFAULT_THEME,
+          calendar: Constants.DEFAULT_CALENDAR,
+          visibleStaticTaskLists: Constants.DEFAULT_STATIC_TASK_LISTS,
+          startOfTheWeek: Constants.DEFAULT_START_OF_THE_WEEK,
+          updatedAt: TemporalDateTime(DateTime.now().toUtc())));
+    }
+    preferences.listen((event) {
+      if (event.isNotEmpty && event.length > 1) {
+        Preferences latest;
+      }
+    });
   }
 
   @override

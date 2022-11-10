@@ -3,6 +3,12 @@ enum CalendarType {
   SHAMSI
 }
 
+enum StartOfTheWeekType {
+  SATURDAY
+  SUNDAY
+  MONDAY
+}
+
 enum ThemeType {
   DARK
   LIGHT
@@ -132,6 +138,8 @@ type Preferences @model @auth(rules: [{allow: owner}]) {
   theme: ThemeType
   calendar: CalendarType
   visibleStaticTaskLists: [StaticTaskListType]
+  startOfTheWeek: StartOfTheWeekType
+  locale: String
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
 }

@@ -29,10 +29,9 @@ class SettingsBloc extends RxBloc {
   Stream<ThemeMode> get theme => _theme.stream;
 
   SettingsBloc(this.storageService) {
-    _isFirstVisit.add(true);
-    // _isFirstVisit.add(
-    //     storageService.sharedPreferences.getBool(Constants.FIRST_VISIT_PREFS) ??
-    //         true);
+    _isFirstVisit.add(
+        storageService.sharedPreferences.getBool(Constants.FIRST_VISIT_PREFS) ??
+            true);
     _calendar.add(EnumToString.fromString(
             CalendarType.values,
             storageService.sharedPreferences
@@ -64,10 +63,6 @@ class SettingsBloc extends RxBloc {
     _calendar.add(calendarType);
     storageService.sharedPreferences.setString(Constants.USER_CALENDAR_PREFS,
         EnumToString.convertToString(calendarType));
-/*TODO: THIS IS WRONG UPDATE USER PREFERENCES*/
-    Amplify.Auth.updateUserAttribute(
-        userAttributeKey: Constants.USER_PREFERENCES_COGNITO_KEY,
-        value: json.encode({'calendar': calendarType}));
   }
 
   ThemeMode currentTheme() {

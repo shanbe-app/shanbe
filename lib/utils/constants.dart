@@ -2,6 +2,7 @@
 
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:client/models/CalendarType.dart';
+import 'package:client/models/ModelProvider.dart';
 import 'package:client/types/hex_color.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,16 @@ class Constants {
   Constants._();
 
   static const Locale DEFAULT_LOCALE = Locale('en');
-  static const ThemeMode DEFAULT_THEME = ThemeMode.system;
+  static const ThemeType DEFAULT_THEME = ThemeType.SYSTEM;
+  static const CalendarType DEFAULT_CALENDAR = CalendarType.GREGORIAN;
+  static final List<StaticTaskListType> DEFAULT_STATIC_TASK_LISTS = [
+    StaticTaskListType.TODAY,
+    StaticTaskListType.TOMORROW,
+    StaticTaskListType.DONE,
+    StaticTaskListType.TRASH,
+  ];
+  static const StartOfTheWeekType DEFAULT_START_OF_THE_WEEK =
+      StartOfTheWeekType.MONDAY;
   static const String INDEX_PROJECT_NAME = 'shanbe_todo_index_project';
   static const String ACCESS_TOKEN_PREFS = 'access_token';
   static const String REFRESH_TOKEN_PREFS = 'refresh_token';
@@ -97,20 +107,6 @@ class Constants {
       EdgeInsets.symmetric(horizontal: 8, vertical: 4);
   static final ShapeBorder CARD_SHAPE =
       RoundedRectangleBorder(borderRadius: BorderRadius.circular(8));
-
-  /*TODO: THESE MAPS ARE REDUNDANT AND NOT NECESSARY*/
-  static final Map USER_PREFERENCES_EN = {
-    'locale': 'fa',
-    'calendar': EnumToString.convertToString(CalendarType.GREGORIAN)
-  };
-  static final Map USER_PREFERENCES_FA = {
-    'locale': 'fa',
-    'calendar': EnumToString.convertToString(CalendarType.SHAMSI)
-  };
-  static final Map USER_PREFERENCES_COGNITO_DEFAULT = USER_PREFERENCES_EN;
-  static const UserAttributeKey USER_PREFERENCES_COGNITO_KEY =
-      CognitoUserAttributeKey.custom('preferences');
-
   static const List<List<Color>> AVATAR_GRADIENT_COLORS = [
     [
       Color.fromRGBO(255, 220, 228, 1),

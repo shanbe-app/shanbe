@@ -40,6 +40,7 @@ export 'Reminder.dart';
 export 'ReminderStatus.dart';
 export 'Section.dart';
 export 'SmartTaskList.dart';
+export 'StartOfTheWeekType.dart';
 export 'StaticTaskListType.dart';
 export 'Tag.dart';
 export 'TaskList.dart';
@@ -52,7 +53,7 @@ export 'TodoTag.dart';
 
 class ModelProvider implements ModelProviderInterface {
   @override
-  String version = "1e5a340da0c9857b670da6f730f0c7a3";
+  String version = "4b82431cd2bbd699257286b3eb626269";
   @override
   List<ModelSchema> modelSchemas = [Folder.schema, Preferences.schema, Reminder.schema, Section.schema, SmartTaskList.schema, Tag.schema, TaskList.schema, TaskListQueryPredicate.schema, Todo.schema, TodoTag.schema];
   static final ModelProvider _instance = ModelProvider();

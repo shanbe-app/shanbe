@@ -57,7 +57,7 @@ class _ListsListState extends State<ListsList> {
         }
         return PlatformCircularProgressIndicator();
       },
-      stream: taskListBloc.spaces,
+      stream: taskListBloc.taskLists,
     );
   }
 }

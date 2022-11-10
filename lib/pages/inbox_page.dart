@@ -220,8 +220,7 @@ class _InboxPageState extends State<InboxPage> {
               child: Card(
                   margin:
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14)),
+                  shape: Constants.CARD_SHAPE,
                   child: Container(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 16, vertical: 8),

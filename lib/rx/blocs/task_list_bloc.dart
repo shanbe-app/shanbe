@@ -7,7 +7,7 @@ class TaskListBloc extends RxBloc {
   Stream<QuerySnapshot<TaskList>> get spacesQuery =>
       Amplify.DataStore.observeQuery(TaskList.classType);
 
-  Stream<List<TaskList>> get spaces =>
+  Stream<List<TaskList>> get taskLists =>
       Amplify.DataStore.observeQuery(TaskList.classType)
           .map((event) => event.items);
 

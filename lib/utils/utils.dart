@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:client/models/ModelProvider.dart';
 import 'package:client/utils/colors.dart';
 import 'package:client/utils/constants.dart';
 import 'package:crypto/crypto.dart';
@@ -173,5 +174,16 @@ void showPlatformContentSheet<T>(
         expand: false,
         context: context,
         builder: builder);
+  }
+}
+
+ThemeMode themeTypeToThemeMode(ThemeType themeType) {
+  switch (themeType) {
+    case ThemeType.DARK:
+      return ThemeMode.dark;
+    case ThemeType.LIGHT:
+      return ThemeMode.light;
+    case ThemeType.SYSTEM:
+      return ThemeMode.system;
   }
 }

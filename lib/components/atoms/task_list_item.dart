@@ -87,7 +87,7 @@ class TaskListItem extends StatelessWidget {
         );
       },
       onAccept: (_) {
-        print('accept');
+        //  TODO do something with task drag
       },
     );
   }

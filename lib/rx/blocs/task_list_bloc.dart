@@ -1,4 +1,3 @@
-import 'package:amplify_datastore/amplify_datastore.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:client/models/TaskList.dart';
 import 'package:client/rx/blocs/rx_bloc.dart';

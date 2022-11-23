@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:client/models/CalendarType.dart';
 import 'package:client/rx/blocs/rx_bloc.dart';
 import 'package:client/rx/services/storage_service.dart';
@@ -70,8 +67,8 @@ class SettingsBloc extends RxBloc {
         storageService.sharedPreferences.getString(Constants.USER_THEME_PREFS);
     return strNotEmpty(themeMode)
         ? EnumToString.fromString(ThemeMode.values, themeMode!) ??
-            Constants.DEFAULT_THEME
-        : Constants.DEFAULT_THEME;
+            themeTypeToThemeMode(Constants.DEFAULT_THEME)
+        : themeTypeToThemeMode(Constants.DEFAULT_THEME);
   }
 
   Locale currentLocale() {

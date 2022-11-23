@@ -1,4 +1,3 @@
-import 'package:client/rx/services/rx_service.dart';
 import 'package:flutter_emoji/flutter_emoji.dart';
 
 class EmojiManager {

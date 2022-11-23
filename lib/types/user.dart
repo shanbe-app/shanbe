@@ -14,7 +14,6 @@ class User {
       required this.isPremium});
 
   factory User.fromCognitoUserAttributes(List<AuthUserAttribute> attributes) {
-    print('attributes ${attributes}');
     int? isPremium = firstOrNull(attributes,
             (element) => element.userAttributeKey.key == 'is_premium')?.value
         as int?;

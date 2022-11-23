@@ -1,10 +1,7 @@
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
 
-import 'package:amplify_flutter/amplify_flutter.dart';
-import 'package:client/models/CalendarType.dart';
 import 'package:client/models/ModelProvider.dart';
 import 'package:client/types/hex_color.dart';
-import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/material.dart';
 
 class Constants {

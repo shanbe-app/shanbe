@@ -11,7 +11,7 @@
 ///      fonts:
 ///       - asset: fonts/Shanbe.ttf
 ///
-/// 
+///
 /// * Entypo, Copyright (C) 2012 by Daniel Bruce
 ///         Author:    Daniel Bruce
 ///         License:   SIL (http://scripts.sil.org/OFL)
@@ -33,6 +33,8 @@
 ///         License:   MIT (http://opensource.org/licenses/mit-license.php)
 ///         Homepage:  https://primer.style/octicons/
 ///
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter/widgets.dart';
 
 class Shanbe {
@@ -41,12 +43,20 @@ class Shanbe {
   static const _kFontFam = 'Shanbe';
   static const String? _kFontPkg = null;
 
-  static const IconData list_add = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData bubble_chart = IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData crown = IconData(0xe844, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData smile = IconData(0xf118, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData bullseye = IconData(0xf140, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData sliders_h = IconData(0xf1de, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData checklist = IconData(0xf301, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData tasklist = IconData(0xf31c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData list_add =
+      IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData bubble_chart =
+      IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData crown =
+      IconData(0xe844, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData smile =
+      IconData(0xf118, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData bullseye =
+      IconData(0xf140, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData sliders_h =
+      IconData(0xf1de, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData checklist =
+      IconData(0xf301, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData tasklist =
+      IconData(0xf31c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

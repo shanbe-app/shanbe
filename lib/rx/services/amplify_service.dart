@@ -46,7 +46,7 @@ class AmplifyService extends RxService {
     }
     preferences.listen((event) {
       if (event.isNotEmpty && event.length > 1) {
-        Preferences latest;
+        //  TODO: merge preferences
       }
     });
   }

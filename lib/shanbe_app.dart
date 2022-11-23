@@ -29,7 +29,7 @@ class _ShanbeAppState extends State<ShanbeApp> {
   late SettingsBloc settingsBloc;
 
   Locale locale = Constants.DEFAULT_LOCALE;
-  ThemeMode theme = Constants.DEFAULT_THEME;
+  ThemeMode theme = themeTypeToThemeMode(Constants.DEFAULT_THEME);
 
   @override
   void initState() {
@@ -200,8 +200,7 @@ class _ShanbeAppState extends State<ShanbeApp> {
               toggleableActiveColor: Constants.SECONDARY_COLOR,
               primarySwatch: Colors.blue,
               primaryColor: Constants.PRIMARY_COLOR,
-              accentColor: Constants.SECONDARY_COLOR,
-              // canvasColor: Constants.BACKGROUND_COLOR,
+              canvasColor: Constants.BACKGROUND_COLOR,
               scaffoldBackgroundColor: Constants.BACKGROUND_COLOR_DARK,
               fontFamily: Constants.APPLICATION_DEFAULT_FONT,
               errorColor: Constants.ERROR_COLOR,
@@ -212,8 +211,8 @@ class _ShanbeAppState extends State<ShanbeApp> {
                   .copyWith(secondary: Constants.SECONDARY_COLOR),
               elevatedButtonTheme: ElevatedButtonThemeData(
                   style: ElevatedButton.styleFrom(
-                      primary: Constants.PRIMARY_COLOR_DARK,
-                      onPrimary: Colors.white,
+                      backgroundColor: Constants.PRIMARY_COLOR_DARK,
+                      foregroundColor: Colors.white,
                       textStyle: const TextStyle(
                           color: Colors.white,
                           fontFamily: Constants.APPLICATION_DEFAULT_FONT),
@@ -244,8 +243,7 @@ class _ShanbeAppState extends State<ShanbeApp> {
           theme: ThemeData(
               primarySwatch: Colors.blue,
               primaryColor: Constants.PRIMARY_COLOR,
-              accentColor: Constants.SECONDARY_COLOR,
-              // canvasColor: Constants.BACKGROUND_COLOR,
+              canvasColor: Constants.BACKGROUND_COLOR,
               fontFamily: Constants.APPLICATION_DEFAULT_FONT,
               errorColor: Constants.ERROR_COLOR,
               toggleableActiveColor: Constants.SECONDARY_COLOR,
@@ -257,8 +255,8 @@ class _ShanbeAppState extends State<ShanbeApp> {
               cardTheme: CardTheme(shape: Constants.CARD_SHAPE, elevation: 4),
               elevatedButtonTheme: ElevatedButtonThemeData(
                   style: ElevatedButton.styleFrom(
-                      primary: Constants.PRIMARY_COLOR_DARK,
-                      onPrimary: Colors.white,
+                      backgroundColor: Constants.PRIMARY_COLOR_DARK,
+                      foregroundColor: Colors.white,
                       textStyle: const TextStyle(
                           color: Colors.white,
                           fontFamily: Constants.APPLICATION_DEFAULT_FONT),

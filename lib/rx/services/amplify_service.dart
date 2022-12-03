@@ -11,8 +11,6 @@ import 'package:client/rx/services/rx_service.dart';
 import 'package:client/utils/constants.dart';
 
 class AmplifyService extends RxService {
-  late Stream<List<Preferences>> preferences;
-
   AmplifyService();
 
   bool get _isAmplifyDatastoreSupported => Platform.isAndroid || Platform.isIOS;
@@ -42,18 +40,21 @@ class AmplifyService extends RxService {
           calendar: Constants.DEFAULT_CALENDAR,
           visibleStaticTaskLists: Constants.DEFAULT_STATIC_TASK_LISTS,
           startOfTheWeek: Constants.DEFAULT_START_OF_THE_WEEK,
+          createdAt: TemporalDateTime(DateTime.now().toUtc()),
           updatedAt: TemporalDateTime(DateTime.now().toUtc())));
     }
-    preferences.listen((event) {
-      if (event.isNotEmpty && event.length > 1) {
-        //  TODO: merge preferences
+    Amplify.DataStore.observeQuery(
+      Preferences.classType,
+    ).listen((event) {
+      if (event.items.length > 1) {
+        //  TODO: sync preferences
       }
     });
   }
 
   @override
   Future<void> onTerminate() async {
-    if (Platform.isAndroid || Platform.isIOS) {
+    if (_isAmplifyDatastoreSupported) {
       Amplify.DataStore.stop();
     }
   }

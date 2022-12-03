@@ -669,7 +669,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "loginOrRegister": "Sign in or Sign up",
+  "loginOrRegister": "Sign In or Sign Up",
   "@loginOrRegister": {
     "type": "text",
     "placeholders": {}
@@ -1573,7 +1573,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "appIntroDescription2": "The chores are taken care",
+  "appIntroDescription2": "Chores are taken care of",
   "@appIntroDescription2": {
     "type": "text",
     "placeholders": {}
@@ -1628,7 +1628,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "skipSignup": "Skip Sign up?",
+  "skipSignup": "Skip Sign Up?",
   "@skipSignup": {
     "type": "text",
     "placeholders": {}
@@ -1643,7 +1643,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "signup": "Sign up",
+  "signup": "Sign Up",
   "@signup": {
     "type": "text",
     "placeholders": {}

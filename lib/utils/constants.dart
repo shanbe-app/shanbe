@@ -76,6 +76,7 @@ class Constants {
   static const double ICON_SMALL_SIZE = 18;
   static const double ICON_MEDIUM_SIZE = 24;
   static const double ICON_LARGE_SIZE = 32;
+  static const double ICON_X_LARGE_SIZE = 40;
   static const double CAPTION_FONT_SIZE = 12;
   static const double S2_FONT_SIZE = 14;
   static const double S1_FONT_SIZE = 16;

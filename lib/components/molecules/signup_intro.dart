@@ -93,7 +93,8 @@ class _SignupIntroState extends State<SignupIntro> {
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: headingColor(context),
-                              fontSize: Constants.S1_FONT_SIZE),
+                              fontWeight: Constants.REGULAR_FONT_WEIGHT,
+                              fontSize: Constants.H6_FONT_SIZE),
                         ),
                       ],
                     ))

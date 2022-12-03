@@ -17,6 +17,12 @@
         "Shanbe": {
           "googleClientId": "641408115307-6ejhv5e2sfe1jgqtvj0b00m3ad02814c.apps.googleusercontent.com"
         }
+      },
+      "api": {
+        "Shanbe": {}
+      },
+      "storage": {
+        "s3shanbestagingstorage37e5c4dd": {}
       }
     }
   }

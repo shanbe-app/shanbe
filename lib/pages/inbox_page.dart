@@ -166,6 +166,7 @@ class _InboxPageState extends State<InboxPage> {
                 automaticallyImplyLeading: false,
                 previousPageTitle: t.today,
                 leading: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     StreamBuilder(
                       stream: authBloc.authUser,
@@ -175,9 +176,13 @@ class _InboxPageState extends State<InboxPage> {
                           icon: UserAvatar(
                             avatar: user?.picture,
                             name: user?.name,
+                            size: Constants.ICON_X_LARGE_SIZE,
                           ),
                           padding: EdgeInsets.zero,
                           onPressed: () {
+                            if (user != null) {
+                              Navigator.pushNamed(context, '/profile');
+                            }
                             Navigator.pushNamed(context, '/settings');
                           },
                         );

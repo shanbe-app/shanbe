@@ -16,7 +16,7 @@ class UserAvatar extends StatelessWidget {
       {Key? key,
       required this.avatar,
       this.isPremium,
-      this.size = 42.0,
+      this.size = Constants.ICON_X_LARGE_SIZE,
       this.radius = 45,
       this.name})
       : gradientColors = name == null

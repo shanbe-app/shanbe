@@ -118,4 +118,4 @@
     "googleClientId": "641408115307-6ejhv5e2sfe1jgqtvj0b00m3ad02814c.apps.googleusercontent.com",
     "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"app.shanbe.auth://\"],\"LogoutURLs\":[\"app.shanbe.auth://\"]}"
   }
-}
+} 

@@ -10,6 +10,7 @@ import 'package:client/types/signup_page_arugments.dart';
 import 'package:client/types/task_list_page_arguments.dart';
 import 'package:client/utils/constants.dart';
 import 'package:client/utils/utils.dart';
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -77,6 +78,7 @@ class _ShanbeAppState extends State<ShanbeApp> {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       locale: locale,
+      builder: DevicePreview.appBuilder,
       localeResolutionCallback:
           (Locale? locale, Iterable<Locale> supportedLocales) {
         for (var element in supportedLocales) {
@@ -195,6 +197,7 @@ class _ShanbeAppState extends State<ShanbeApp> {
       )),
       material: (context, target) => MaterialAppData(
           themeMode: theme,
+          useInheritedMediaQuery: true,
           darkTheme: ThemeData(
               brightness: Brightness.dark,
               toggleableActiveColor: Constants.SECONDARY_COLOR,

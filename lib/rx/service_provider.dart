@@ -32,12 +32,18 @@ class ServiceProvider extends RxService {
 
   @override
   Future<void> onCreate() async {
-    await appInfoService.onCreate();
-    await amplifyService.onCreate();
-    await connectivityService.onCreate();
-    await notificationService.onCreate();
-    await storageService.onCreate();
-    await firebaseService.onCreate();
+    try {
+      await appInfoService.onCreate();
+      await amplifyService.onCreate();
+      await connectivityService.onCreate();
+      await notificationService.onCreate();
+      print('here');
+      await storageService.onCreate();
+      await firebaseService.onCreate();
+    } catch (e) {
+      print('error');
+      print(e);
+    }
     _registerSingleton();
   }
 

@@ -1,4 +1,4 @@
-enum AuthState {
+enum UserAuthState {
   authenticating,
   notAuthenticated,
   authenticated,

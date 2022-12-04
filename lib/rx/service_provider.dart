@@ -35,9 +35,9 @@ class ServiceProvider extends RxService {
     try {
       await appInfoService.onCreate();
       await amplifyService.onCreate();
+      print('here');
       await connectivityService.onCreate();
       await notificationService.onCreate();
-      print('here');
       await storageService.onCreate();
       await firebaseService.onCreate();
     } catch (e) {

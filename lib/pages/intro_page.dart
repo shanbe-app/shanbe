@@ -83,6 +83,7 @@ class _IntroPageState extends State<IntroPage> {
           padding: Constants.PAGE_PADDING,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -128,6 +129,7 @@ class _IntroPageState extends State<IntroPage> {
               Image.asset(
                 'assets/images/logo.png',
                 width: 128,
+                height: 128,
                 fit: BoxFit.contain,
               ),
               Text(
@@ -208,11 +210,12 @@ class _IntroPageState extends State<IntroPage> {
                 height: 32,
               ),
               Flexible(
-                flex: 1,
+                flex: 2,
                 child: PlatformElevatedButton(
                   child: Text(
                     t.letsGo,
                     style: const TextStyle(
+                        color: Colors.white,
                         fontWeight: Constants.MEDIUM_FONT_WEIGHT,
                         fontSize: Constants.S1_FONT_SIZE),
                   ),

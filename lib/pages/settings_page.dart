@@ -50,8 +50,8 @@ class _SettingsPageState extends State<SettingsPage> {
               SliverToBoxAdapter(
                 child: StreamBuilder(
                   builder: (context, snapshot) {
-                    AuthState? state = snapshot.data as AuthState?;
-                    if (state == AuthState.authenticated) {
+                    UserAuthState? state = snapshot.data as UserAuthState?;
+                    if (state == UserAuthState.authenticated) {
                       return ProfileButton(
                         authBloc,
                         t,

@@ -1,4 +1,6 @@
 PODS:
+  - amplify_secure_storage (0.0.1):
+    - FlutterMacOS
   - assets_audio_player (0.0.1):
     - FlutterMacOS
   - assets_audio_player_web (0.0.1):
@@ -105,6 +107,7 @@ PODS:
     - FlutterMacOS
 
 DEPENDENCIES:
+  - amplify_secure_storage (from `Flutter/ephemeral/.symlinks/plugins/amplify_secure_storage/macos`)
   - assets_audio_player (from `Flutter/ephemeral/.symlinks/plugins/assets_audio_player/macos`)
   - assets_audio_player_web (from `Flutter/ephemeral/.symlinks/plugins/assets_audio_player_web/macos`)
   - connectivity_plus_macos (from `Flutter/ephemeral/.symlinks/plugins/connectivity_plus_macos/macos`)
@@ -137,6 +140,8 @@ SPEC REPOS:
     - ReachabilitySwift
 
 EXTERNAL SOURCES:
+  amplify_secure_storage:
+    :path: Flutter/ephemeral/.symlinks/plugins/amplify_secure_storage/macos
   assets_audio_player:
     :path: Flutter/ephemeral/.symlinks/plugins/assets_audio_player/macos
   assets_audio_player_web:
@@ -169,6 +174,7 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos
 
 SPEC CHECKSUMS:
+  amplify_secure_storage: 2ec88824d58d3e8fc45fc14ff0c5a0a0d5473d4b
   assets_audio_player: be2578e6f11dd4d183412e97143673c3c4cb2e8a
   assets_audio_player_web: 917101123b6db8f73156835c0fa266c11340ff15
   connectivity_plus_macos: f6e86fd000e971d361e54b5afcadc8c8fa773308
@@ -197,6 +203,6 @@ SPEC CHECKSUMS:
   sqflite: a5789cceda41d54d23f31d6de539d65bb14100ea
   url_launcher_macos: 597e05b8e514239626bcf4a850fcf9ef5c856ec3
 
-PODFILE CHECKSUM: 3a479442cb3da6ca1c9d41b084c02449867274e9
+PODFILE CHECKSUM: ce895612fb7b37914e4d9dff0a394fa6718e6383
 
 COCOAPODS: 1.11.3

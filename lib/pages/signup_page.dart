@@ -46,7 +46,7 @@ class _SignupPageState extends State<SignupPage> {
     ];
     authBloc = AuthBloc();
     _subscription = authBloc.authState.listen((event) {
-      if (event == AuthState.authenticated) {
+      if (event == UserAuthState.authenticated) {
         Navigator.pushNamedAndRemoveUntil(
             widget.context, '/lists', (route) => false);
       }

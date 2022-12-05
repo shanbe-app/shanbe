@@ -10,12 +10,12 @@ import 'package:client/types/signup_page_arugments.dart';
 import 'package:client/types/task_list_page_arguments.dart';
 import 'package:client/utils/constants.dart';
 import 'package:client/utils/utils.dart';
-import 'package:device_preview/device_preview.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:macos_ui/macos_ui.dart';
 
 class ShanbeApp extends StatefulWidget {
   const ShanbeApp({Key? key}) : super(key: key);
@@ -70,7 +70,7 @@ class _ShanbeAppState extends State<ShanbeApp> {
 
   @override
   Widget build(BuildContext context) {
-    return PlatformApp(
+    MacosApp macosApp = MacosApp(
       key: GlobalKey(debugLabel: 'shanbeApp'),
       showSemanticsDebugger: false,
       debugShowCheckedModeBanner: false,
@@ -78,7 +78,67 @@ class _ShanbeAppState extends State<ShanbeApp> {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       locale: locale,
-      builder: DevicePreview.appBuilder,
+      localeResolutionCallback:
+          (Locale? locale, Iterable<Locale> supportedLocales) {
+        for (var element in supportedLocales) {
+          if (element.languageCode == locale?.languageCode) {
+            return element;
+          }
+        }
+        return const Locale.fromSubtags(languageCode: 'en');
+      },
+      navigatorObservers: const [],
+      initialRoute: '/',
+      onGenerateTitle: (context) => AppLocalizations.of(context)!.title,
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case '/':
+            return platformPageRoute(
+                context: context,
+                builder: (context) => InitPage(
+                      appInitFuture: appInitFuture,
+                    ));
+          case '/list':
+            return platformPageRoute(
+                context: context,
+                builder: (context) => TaskListPage(
+                    arguments: settings.arguments as TaskListPageArguments,
+                    context: context));
+          case '/lists':
+            return platformPageRoute(
+                context: context,
+                builder: (context) => InboxPage(
+                      context: context,
+                    ));
+          case '/settings':
+            return platformPageRoute(
+                context: context,
+                builder: (context) => SettingsPage(
+                      context: context,
+                    ));
+          case '/edit-lists':
+            return platformPageRoute(
+                context: context, builder: (context) => const EditListsPage());
+          case '/signup':
+            return platformPageRoute(
+                context: context,
+                builder: (context) => SignupPage(
+                      context: context,
+                      arguments: settings.arguments as SignupPageArguments,
+                    ));
+          default:
+            return null;
+        }
+      },
+    );
+    PlatformApp platformApp = PlatformApp(
+      key: GlobalKey(debugLabel: 'shanbeApp'),
+      showSemanticsDebugger: false,
+      debugShowCheckedModeBanner: false,
+      showPerformanceOverlay: false,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      locale: locale,
       localeResolutionCallback:
           (Locale? locale, Iterable<Locale> supportedLocales) {
         for (var element in supportedLocales) {
@@ -288,6 +348,15 @@ class _ShanbeAppState extends State<ShanbeApp> {
                   fontFamily: Constants.APPLICATION_DEFAULT_FONT,
                   bodyColor: Constants.TEXT_BODY_COLOR,
                   displayColor: Constants.TEXT_BODY_COLOR))),
+    );
+    return PlatformWidget(
+      material: (context, platform) => platformApp,
+      cupertino: (context, platform) {
+        if (platform == PlatformTarget.macOS) {
+          return macosApp;
+        }
+        return platformApp;
+      },
     );
   }
 }

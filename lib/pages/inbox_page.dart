@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:macos_ui/macos_ui.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class InboxPage extends StatefulWidget {
@@ -85,31 +86,49 @@ class _InboxPageState extends State<InboxPage> {
               ),
             ],
           )),
-      cupertino: (context, platform) => CupertinoTabScaffold(
-        key: widget.key ?? GlobalKey(),
-        controller: _controller,
-        tabBar: CupertinoTabBar(
-          height: 54,
-          onTap: (index) => setState(() => _currentPageIndex = index),
-          items: [
-            BottomNavigationBarItem(
-                icon: const Icon(Shanbe.checklist),
-                label: t.taskLists,
-                activeIcon: const Icon(Shanbe.checklist)),
-            BottomNavigationBarItem(
-                icon: const Icon(CupertinoIcons.book),
-                label: t.notes,
-                activeIcon: const Icon(CupertinoIcons.book_fill)),
-            BottomNavigationBarItem(
-                icon: const Icon(Shanbe.bullseye), label: t.focus),
-            BottomNavigationBarItem(
-                icon: const Icon(CupertinoIcons.calendar), label: t.calendar),
-            BottomNavigationBarItem(
-                icon: const Icon(CupertinoIcons.settings), label: t.settings)
-          ],
-        ),
-        tabBuilder: renderTabBody,
-      ),
+      cupertino: (context, platform) {
+        if (platform == PlatformTarget.macOS) {
+          return MacosWindow(
+            titleBar: TitleBar(
+              title: Text('Macos App'),
+            ),
+            sidebar: Sidebar(
+                minWidth: 60,
+                bottom: Text('sidebar'),
+                builder: (context, controller) => Text('test')),
+            child: MacosScaffold(
+              toolBar: ToolBar(
+                title: Text('toolbar'),
+              ),
+            ),
+          );
+        }
+        return CupertinoTabScaffold(
+          key: widget.key ?? GlobalKey(),
+          controller: _controller,
+          tabBar: CupertinoTabBar(
+            height: 54,
+            onTap: (index) => setState(() => _currentPageIndex = index),
+            items: [
+              BottomNavigationBarItem(
+                  icon: const Icon(Shanbe.checklist),
+                  label: t.taskLists,
+                  activeIcon: const Icon(Shanbe.checklist)),
+              BottomNavigationBarItem(
+                  icon: const Icon(CupertinoIcons.book),
+                  label: t.notes,
+                  activeIcon: const Icon(CupertinoIcons.book_fill)),
+              BottomNavigationBarItem(
+                  icon: const Icon(Shanbe.bullseye), label: t.focus),
+              BottomNavigationBarItem(
+                  icon: const Icon(CupertinoIcons.calendar), label: t.calendar),
+              BottomNavigationBarItem(
+                  icon: const Icon(CupertinoIcons.settings), label: t.settings)
+            ],
+          ),
+          tabBuilder: renderTabBody,
+        );
+      },
     );
   }
 

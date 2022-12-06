@@ -1,6 +1,6 @@
-import 'package:client/models/CalendarType.dart';
 import 'package:client/rx/blocs/rx_bloc.dart';
 import 'package:client/rx/services/storage_service.dart';
+import 'package:client/types/enums.dart';
 import 'package:client/utils/constants.dart';
 import 'package:client/utils/utils.dart';
 import 'package:enum_to_string/enum_to_string.dart';

@@ -1,4 +1,3 @@
-import 'package:client/rx/services/amplify_service.dart';
 import 'package:client/rx/services/app_info_service.dart';
 import 'package:client/rx/services/connectivity_service.dart';
 import 'package:client/rx/managers/emoji_manager.dart';
@@ -15,7 +14,6 @@ class ServiceProvider extends RxService {
   late final NotificationService notificationService;
   late final StorageService storageService;
   late final FirebaseService firebaseService;
-  late final AmplifyService amplifyService;
   late final EmojiManager emojiManager;
   Function? themeChangeCallback;
   Function? localeChangeCallback;
@@ -26,7 +24,6 @@ class ServiceProvider extends RxService {
     notificationService = NotificationService();
     storageService = StorageService();
     firebaseService = FirebaseService();
-    amplifyService = AmplifyService();
     emojiManager = EmojiManager();
   }
 
@@ -34,8 +31,6 @@ class ServiceProvider extends RxService {
   Future<void> onCreate() async {
     try {
       await appInfoService.onCreate();
-      await amplifyService.onCreate();
-      print('here');
       await connectivityService.onCreate();
       await notificationService.onCreate();
       await storageService.onCreate();
@@ -50,7 +45,6 @@ class ServiceProvider extends RxService {
   @override
   Future<void> onTerminate() async {
     await appInfoService.onTerminate();
-    await amplifyService.onTerminate();
     await connectivityService.onTerminate();
     await notificationService.onTerminate();
     await storageService.onTerminate();

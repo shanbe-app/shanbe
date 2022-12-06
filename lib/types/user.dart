@@ -1,4 +1,3 @@
-import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:client/utils/utils.dart';
 
 class User {
@@ -13,7 +12,7 @@ class User {
       this.picture,
       required this.isPremium});
 
-  factory User.fromCognitoUserAttributes(List<AuthUserAttribute> attributes) {
+  factory User.fromCognitoUserAttributes(List attributes) {
     int? isPremium = firstOrNull(attributes,
             (element) => element.userAttributeKey.key == 'is_premium')?.value
         as int?;

@@ -1,9 +1,5 @@
-import 'package:amplify_flutter/amplify_flutter.dart';
-import 'package:client/models/TaskList.dart';
-
 class TaskListPageArguments {
-  final TaskList taskLists;
-  final QueryPredicate? query;
+  final List taskLists;
 
-  TaskListPageArguments({required this.taskLists, this.query});
+  TaskListPageArguments({required this.taskLists});
 }

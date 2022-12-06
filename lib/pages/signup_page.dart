@@ -1,7 +1,5 @@
 import 'dart:async';
 
-import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
-import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:client/components/molecules/signup_intro.dart';
 import 'package:client/rx/blocs/auth_bloc.dart';
 import 'package:client/types/enums.dart';
@@ -94,7 +92,7 @@ class _SignupPageState extends State<SignupPage> {
                 elevation: 4,
                 text: t.continueWithGoogle,
                 onPressed: () {
-                  authBloc.socialSignIn(AuthProvider.google);
+                  authBloc.socialSignIn();
                 },
               ),
             ),

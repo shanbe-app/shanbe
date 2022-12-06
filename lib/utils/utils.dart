@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
 
-import 'package:client/models/ModelProvider.dart';
+import 'package:client/types/enums.dart';
 import 'package:client/utils/colors.dart';
 import 'package:client/utils/constants.dart';
 import 'package:crypto/crypto.dart';

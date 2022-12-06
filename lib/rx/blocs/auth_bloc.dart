@@ -1,11 +1,9 @@
 import 'dart:async';
 
-import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
-import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:client/rx/blocs/rx_bloc.dart';
 import 'package:client/types/enums.dart';
-import 'package:client/types/user.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthBloc extends RxBloc {
   final _authState = BehaviorSubject<UserAuthState>();
@@ -19,21 +17,11 @@ class AuthBloc extends RxBloc {
   Stream<User?> get authUser => _authUser.stream;
 
   AuthBloc() {
-    autoLogin();
-    Amplify.Hub.listen(HubChannel.Auth, (event) {
-      switch (event) {
-        case 'SIGNED_IN':
-          _authState.add(UserAuthState.authenticated);
-          break;
-        case 'SIGNED_OUT':
-          _authState.add(UserAuthState.notAuthenticated);
-          break;
-        case 'SESSION_EXPIRED':
-          _authState.add(UserAuthState.notAuthenticated);
-          break;
-        case 'USER_DELETED':
-          _authState.add(UserAuthState.notAuthenticated);
-          break;
+    FirebaseAuth.instance.authStateChanges().listen((user) {
+      if (user == null) {
+        _authState.add(UserAuthState.notAuthenticated);
+      } else {
+        _authState.add(UserAuthState.authenticated);
       }
     });
   }
@@ -41,35 +29,12 @@ class AuthBloc extends RxBloc {
   @override
   void dispose() {}
 
-  void autoLogin() {
-    _authState.add(UserAuthState.authenticating);
-    addFutureSubscription(Amplify.Auth.fetchAuthSession(), (AuthSession event) {
-      if (event.isSignedIn) {
-        authenticate();
-      } else {
-        _authState.add(UserAuthState.notAuthenticated);
-      }
-    }, (e) {
-      _authState.add(UserAuthState.notAuthenticated);
-    });
-  }
-
-  void authenticate() {
-    addFutureSubscription(Amplify.Auth.fetchUserAttributes(),
-        (List<AuthUserAttribute> event) {
-      _authUser.add(User.fromCognitoUserAttributes(event));
-      _authState.add(UserAuthState.authenticated);
-    }, (e) {
-      _authState.add(UserAuthState.notAuthenticated);
-    });
-  }
-
   void login(String username, String password) {
     _authState.add(UserAuthState.authenticating);
     addFutureSubscription(
-        Amplify.Auth.signIn(username: username, password: password),
-        (SignInResult event) {
-      if (event.isSignedIn) {
+        FirebaseAuth.instance.signInWithEmailAndPassword(
+            email: username, password: password), (UserCredential event) {
+      if (event.user != null) {
         _authState.add(UserAuthState.authenticated);
       } else {
         _authState.add(UserAuthState.notAuthenticated);
@@ -79,36 +44,34 @@ class AuthBloc extends RxBloc {
 
   void logout() {
     _authState.add(UserAuthState.authenticating);
-    addFutureSubscription(
-        Amplify.Auth.signOut(
-            options: const SignOutOptions(globalSignOut: false)), (event) {
+    addFutureSubscription(FirebaseAuth.instance.signOut(), (event) {
       _authState.add(UserAuthState.notAuthenticated);
     });
   }
 
   void register(String name, String email, String password) {
     addFutureSubscription(
-        Amplify.Auth.signUp(
-            username: email,
-            password: password,
-            options: CognitoSignUpOptions(userAttributes: {
-              CognitoUserAttributeKey.name: name,
-              CognitoUserAttributeKey.email: email
-            })),
-        (SignUpResult result) {},
-        (e) {});
+        FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: email,
+          password: password,
+        ), (UserCredential result) {
+/*TODO: HANDLE EMAIL SHOWING PROCESS*/
+    }, (e) {});
   }
 
-  void socialSignIn(AuthProvider provider) {
+  void socialSignIn() {
     _authState.add(UserAuthState.authenticating);
-    addFutureSubscription(Amplify.Auth.signInWithWebUI(provider: provider),
-        (SignInResult event) {
-      if (event.isSignedIn) {
-        authenticate();
+    addFutureSubscription(
+        FirebaseAuth.instance.signInWithProvider(GoogleAuthProvider()),
+        (UserCredential event) {
+      if (event.user != null) {
+        _authUser.add(event.user);
       } else {
+        _authUser.add(null);
         _authState.add(UserAuthState.notAuthenticated);
       }
     }, (e) {
+      _authUser.add(null);
       _authState.add(UserAuthState.notAuthenticated);
       _authErrors.add(e.toString());
     });

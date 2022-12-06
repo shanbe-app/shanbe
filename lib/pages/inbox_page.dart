@@ -1,12 +1,7 @@
 import 'package:client/components/atoms/magical_floating_action_button.dart';
 import 'package:client/components/atoms/user_avatar.dart';
-import 'package:client/components/organisms/task_list_dialog.dart';
-import 'package:client/components/organisms/task_lists_list.dart';
-import 'package:client/models/TaskList.dart';
 import 'package:client/rx/blocs/auth_bloc.dart';
-import 'package:client/rx/blocs/task_list_bloc.dart';
 import 'package:client/shanbe_icons.dart';
-import 'package:client/types/task_list_page_arguments.dart';
 import 'package:client/types/user.dart';
 import 'package:client/utils/colors.dart';
 import 'package:client/utils/constants.dart';
@@ -30,7 +25,6 @@ class InboxPage extends StatefulWidget {
 class _InboxPageState extends State<InboxPage> {
   late AppLocalizations t;
   late AuthBloc authBloc;
-  late TaskListBloc taskListBloc;
   late CupertinoTabController _controller;
   int _currentPageIndex = 0;
 
@@ -38,7 +32,6 @@ class _InboxPageState extends State<InboxPage> {
   void initState() {
     super.initState();
     authBloc = AuthBloc();
-    taskListBloc = TaskListBloc();
     t = AppLocalizations.of(widget.context)!;
     _controller = CupertinoTabController(initialIndex: 0);
   }
@@ -249,13 +242,6 @@ class _InboxPageState extends State<InboxPage> {
                   child: Container(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    child: ListsList(
-                      t: t,
-                      onPress: (space) {
-                        Navigator.of(context).pushNamed('/space',
-                            arguments: TaskListPageArguments(taskLists: space));
-                      },
-                    ),
                   )),
             )
             //  Projects
@@ -268,11 +254,8 @@ class _InboxPageState extends State<InboxPage> {
                 context: context,
                 barrierDismissible: true,
                 useRootNavigator: true,
-                builder: (context) => ListDialog(
-                      t,
-                      onCreate: (TaskList space) {
-                        taskListBloc.createTaskList(newSpace: space);
-                      },
+                builder: (context) => Dialog(
+                      child: Text('to be built'),
                     ));
           }),
           right: 16,

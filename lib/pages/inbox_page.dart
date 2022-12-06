@@ -89,11 +89,12 @@ class _InboxPageState extends State<InboxPage> {
       cupertino: (context, platform) {
         if (platform == PlatformTarget.macOS) {
           return MacosWindow(
-            titleBar: TitleBar(
-              title: Text('Macos App'),
-            ),
+            endSidebar: Sidebar(
+                minWidth: 120,
+                bottom: Text('wow'),
+                builder: (context, controller) => Text('test')),
             sidebar: Sidebar(
-                minWidth: 60,
+                minWidth: 120,
                 bottom: Text('sidebar'),
                 builder: (context, controller) => Text('test')),
             child: MacosScaffold(

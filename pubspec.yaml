@@ -69,6 +69,11 @@ dependencies:
   modal_bottom_sheet: ^2.1.2
   device_preview: ^1.1.0
   macos_ui: ^1.7.5
+  window_size:
+    git:
+      url: https://github.com/google/flutter-desktop-embedding.git
+      path: plugins/window_size
+  popover: ^0.2.7
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -1,5 +1,6 @@
 import 'package:client/components/atoms/magical_floating_action_button.dart';
 import 'package:client/components/atoms/user_avatar.dart';
+import 'package:client/components/molecules/macos_sidebar.dart';
 import 'package:client/rx/blocs/auth_bloc.dart';
 import 'package:client/shanbe_icons.dart';
 import 'package:client/types/user.dart';
@@ -82,15 +83,8 @@ class _InboxPageState extends State<InboxPage> {
       cupertino: (context, platform) {
         if (platform == PlatformTarget.macOS) {
           return MacosWindow(
-            endSidebar: Sidebar(
-                minWidth: 120,
-                bottom: Text('wow'),
-                builder: (context, controller) => Text('test')),
-            sidebar: Sidebar(
-                minWidth: 120,
-                bottom: Text('sidebar'),
-                builder: (context, controller) => Text('test')),
-            child: MacosScaffold(
+            sidebar: macosSidebar(t, context),
+            child: const MacosScaffold(
               toolBar: ToolBar(
                 title: Text('toolbar'),
               ),

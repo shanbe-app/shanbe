@@ -1732,5 +1732,35 @@
   "@listColorLabel": {
     "type": "text",
     "placeholders": {}
+  },
+  "copyrightShanbe": "@ Copyright Shanbe.app 2022",
+  "@copyrightShanbe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newPage": "New Page",
+  "@newPage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fullScreen": "Full Screen",
+  "@fullScreen": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rightPane": "Right Pane",
+  "@rightPane": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "centerSheet": "Center Sheet",
+  "@centerSheet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addTo": "Add to",
+  "@addTo": {
+    "type": "text",
+    "placeholders": {}
   }
 }

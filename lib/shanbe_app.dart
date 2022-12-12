@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:client/pages/edit_lists_page.dart';
 import 'package:client/pages/settings_page.dart';
 import 'package:client/pages/init_page.dart';
@@ -14,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:macos_ui/macos_ui.dart';
+import 'package:window_size/window_size.dart';
 
 class ShanbeApp extends StatefulWidget {
   const ShanbeApp({Key? key}) : super(key: key);
@@ -68,62 +71,95 @@ class _ShanbeAppState extends State<ShanbeApp> {
 
   @override
   Widget build(BuildContext context) {
-    MacosApp macosApp = MacosApp(
-      key: GlobalKey(debugLabel: 'shanbeApp'),
-      showSemanticsDebugger: false,
-      debugShowCheckedModeBanner: false,
-      showPerformanceOverlay: false,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      locale: locale,
-      localeResolutionCallback:
-          (Locale? locale, Iterable<Locale> supportedLocales) {
-        for (var element in supportedLocales) {
-          if (element.languageCode == locale?.languageCode) {
-            return element;
-          }
-        }
-        return const Locale.fromSubtags(languageCode: 'en');
-      },
-      navigatorObservers: const [],
-      initialRoute: '/',
-      onGenerateTitle: (context) => AppLocalizations.of(context)!.title,
-      onGenerateRoute: (settings) {
-        switch (settings.name) {
-          case '/':
-            return platformPageRoute(
-                context: context,
-                builder: (context) => InitPage(
-                      appInitFuture: appInitFuture,
-                    ));
-          case '/lists':
-            return platformPageRoute(
-                context: context,
-                builder: (context) => InboxPage(
-                      context: context,
-                    ));
-          case '/settings':
-            return platformPageRoute(
-                context: context,
-                builder: (context) => SettingsPage(
-                      context: context,
-                    ));
-          case '/edit-lists':
-            return platformPageRoute(
-                context: context, builder: (context) => const EditListsPage());
-          case '/signup':
-            return platformPageRoute(
-                context: context,
-                builder: (context) => SignupPage(
-                      context: context,
-                      arguments: settings.arguments as SignupPageArguments,
-                    ));
-          default:
-            return null;
-        }
-      },
-    );
-    PlatformApp platformApp = PlatformApp(
+    if (Platform.isMacOS) {
+      const ratio = 1.73;
+      const minWidth = 400.0;
+      setWindowMinSize(const Size(minWidth, 400));
+      setWindowMaxSize(Size.infinite);
+
+      return PlatformMenuBar(
+        menus: const [
+          PlatformMenu(label: 'File', menus: [
+            PlatformProvidedMenuItem(type: PlatformProvidedMenuItemType.about),
+            PlatformProvidedMenuItem(type: PlatformProvidedMenuItemType.quit),
+          ]),
+          PlatformMenu(label: 'Edit', menus: [
+            PlatformProvidedMenuItem(
+                type: PlatformProvidedMenuItemType.startSpeaking),
+            PlatformProvidedMenuItem(
+                type: PlatformProvidedMenuItemType.stopSpeaking),
+          ]),
+          PlatformMenu(label: 'View', menus: [
+            PlatformProvidedMenuItem(
+                type: PlatformProvidedMenuItemType.zoomWindow),
+            PlatformProvidedMenuItem(
+                type: PlatformProvidedMenuItemType.toggleFullScreen),
+          ]),
+          PlatformMenu(label: 'Window', menus: [
+            PlatformProvidedMenuItem(type: PlatformProvidedMenuItemType.hide),
+            PlatformProvidedMenuItem(
+                type: PlatformProvidedMenuItemType.toggleFullScreen),
+          ])
+        ],
+        child: MacosApp(
+          key: GlobalKey(debugLabel: 'shanbeApp'),
+          showSemanticsDebugger: false,
+          debugShowCheckedModeBanner: false,
+          showPerformanceOverlay: false,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          locale: locale,
+          localeResolutionCallback:
+              (Locale? locale, Iterable<Locale> supportedLocales) {
+            for (var element in supportedLocales) {
+              if (element.languageCode == locale?.languageCode) {
+                return element;
+              }
+            }
+            return const Locale.fromSubtags(languageCode: 'en');
+          },
+          navigatorObservers: const [],
+          initialRoute: '/',
+          onGenerateTitle: (context) => AppLocalizations.of(context)!.title,
+          onGenerateRoute: (settings) {
+            switch (settings.name) {
+              case '/':
+                return platformPageRoute(
+                    context: context,
+                    builder: (context) => InitPage(
+                          appInitFuture: appInitFuture,
+                        ));
+              case '/lists':
+                return platformPageRoute(
+                    context: context,
+                    builder: (context) => InboxPage(
+                          context: context,
+                        ));
+              case '/settings':
+                return platformPageRoute(
+                    context: context,
+                    builder: (context) => SettingsPage(
+                          context: context,
+                        ));
+              case '/edit-lists':
+                return platformPageRoute(
+                    context: context,
+                    builder: (context) => const EditListsPage());
+              case '/signup':
+                return platformPageRoute(
+                    context: context,
+                    builder: (context) => SignupPage(
+                          context: context,
+                          arguments: settings.arguments as SignupPageArguments,
+                        ));
+              default:
+                return null;
+            }
+          },
+        ),
+      );
+    }
+    return PlatformApp(
       key: GlobalKey(debugLabel: 'shanbeApp'),
       showSemanticsDebugger: false,
       debugShowCheckedModeBanner: false,
@@ -334,15 +370,6 @@ class _ShanbeAppState extends State<ShanbeApp> {
                   fontFamily: Constants.APPLICATION_DEFAULT_FONT,
                   bodyColor: Constants.TEXT_BODY_COLOR,
                   displayColor: Constants.TEXT_BODY_COLOR))),
-    );
-    return PlatformWidget(
-      material: (context, platform) => platformApp,
-      cupertino: (context, platform) {
-        if (platform == PlatformTarget.macOS) {
-          return macosApp;
-        }
-        return platformApp;
-      },
     );
   }
 }

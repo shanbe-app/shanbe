@@ -22,7 +22,7 @@ class InitPage extends StatelessWidget {
             builder: (context, snapshot) {
               bool? isFirstVisit = snapshot.data as bool?;
               if (isFirstVisit == null) {
-                return const LoadingPage();
+                return LoadingPage(context: context);
               }
               if (isFirstVisit) {
                 return IntroPage(
@@ -36,7 +36,7 @@ class InitPage extends StatelessWidget {
             stream: bloc.isFirstVisit,
           );
         }
-        return const LoadingPage();
+        return LoadingPage(context: context);
       },
     );
   }

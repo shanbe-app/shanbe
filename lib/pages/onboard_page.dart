@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:lottie/lottie.dart';
+import 'package:macos_ui/macos_ui.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardPage extends StatefulWidget {
@@ -74,7 +75,37 @@ class _OnBoardPageState extends State<OnBoardPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (isMacos()) {}
+    Size windowSize = MediaQuery.of(context).size;
+
+    if (isMacos()) {
+      return MacosWindow(
+        titleBar: TitleBar(
+          title: Text(
+            t.welcomeToShanbe,
+            style: const TextStyle(
+                fontWeight: Constants.MEDIUM_FONT_WEIGHT,
+                fontSize: Constants.MACOS_TITLE_BAR_FONT_SIZE),
+          ),
+          height: Constants.MACOS_TITLE_BAR_HEIGHT,
+        ),
+        child: MacosScaffold(
+          children: [
+            ContentArea(
+                minWidth: 300,
+                builder: (context, controller) => Column(
+                      children: [
+                        Image.asset(
+                          'assets/images/logo.png',
+                          width: windowSize.width,
+                          height: windowSize.height / 2,
+                          fit: BoxFit.contain,
+                        )
+                      ],
+                    ))
+          ],
+        ),
+      );
+    }
     return PlatformScaffold(
       iosContentPadding: true,
       body: SafeArea(

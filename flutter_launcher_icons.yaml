@@ -3,7 +3,7 @@ flutter_icons:
   ios: true
   macos:
     generate: true
-    image_path: "./assets/images/logo_macos.png"
-  image_path: "assets/images/logo_ios.png"
+    image_path: "./art/logo_macos.png"
+  image_path: "./art/logo_ios.jpg"
   adaptive_icon_background: "#00c8ff"
   adaptive_icon_foreground: "assets/images/logo.png"

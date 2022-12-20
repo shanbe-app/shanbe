@@ -1,8 +1,13 @@
+import 'dart:developer';
+
+import 'package:client/models/WorkSpace.dart';
 import 'package:client/pages/onboard_page.dart';
 import 'package:client/pages/loading_page.dart';
 import 'package:client/pages/inbox_page.dart';
+import 'package:client/rx/blocs/model_bloc.dart';
 import 'package:client/rx/blocs/settings_bloc.dart';
 import 'package:client/rx/service_provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class InitPage extends StatelessWidget {
@@ -16,15 +21,16 @@ class InitPage extends StatelessWidget {
       future: appInitFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          SettingsBloc bloc =
-              SettingsBloc(ServiceProvider.getInstance().storageService);
+          ModelBloc<WorkSpace> workspaceBloc = ModelBloc(
+              ServiceProvider.getInstance().firebaseService, 'workspaces');
           return StreamBuilder(
             builder: (context, snapshot) {
-              bool? isFirstVisit = snapshot.data as bool?;
-              if (true) {
+              QuerySnapshot? workspaces = snapshot.data as QuerySnapshot?;
+              print(workspaces?.docs);
+              if (workspaces == null) {
                 return LoadingPage(context: context);
               }
-              if (false) {
+              if (workspaces.docs.isEmpty) {
                 return OnBoardPage(
                   context: context,
                 );
@@ -33,7 +39,7 @@ class InitPage extends StatelessWidget {
                 context: context,
               );
             },
-            stream: bloc.isFirstVisit,
+            stream: workspaceBloc.allModels,
           );
         }
         return LoadingPage(context: context);

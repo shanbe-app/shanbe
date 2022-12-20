@@ -1762,5 +1762,10 @@
   "@addTo": {
     "type": "text",
     "placeholders": {}
+  },
+  "welcomeToShanbe": "Welcome to Shanbe",
+  "@welcomeToShanbe": {
+    "type": "text",
+    "placeholders": {}
   }
 }

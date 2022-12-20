@@ -12,8 +12,8 @@ class FirebaseService extends RxService {
     firebaseApp = await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform);
     firebaseApp.setAutomaticDataCollectionEnabled(true);
-    firestore.useFirestoreEmulator('localhost', 4000);
     firestore = FirebaseFirestore.instance;
+    firestore.useFirestoreEmulator('localhost', 4000);
   }
 
   @override

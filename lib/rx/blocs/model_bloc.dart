@@ -8,30 +8,30 @@ import 'package:rxdart/rxdart.dart';
 class ModelBloc<T extends Model> extends RxBloc {
   final FirebaseService firebaseService;
   final _isFirstVisit = BehaviorSubject<bool>();
-  final _allPages = BehaviorSubject<QuerySnapshot<List<T>>>();
-  final CollectionReference _pagesRef;
+  final _allModels = BehaviorSubject<QuerySnapshot>();
+  final CollectionReference collectionRef;
 
   Stream<bool> get isFirstVisit => _isFirstVisit.stream;
+  Stream<QuerySnapshot> get allModels => _allModels.stream;
 
-  ModelBloc(this.firebaseService)
-      : _pagesRef = firebaseService.firestore.collection('pages') {
-    _allPages
-        .addStream(_pagesRef.snapshots() as Stream<QuerySnapshot<List<T>>>);
+  ModelBloc(this.firebaseService, String collectionPath)
+      : collectionRef = firebaseService.firestore.collection(collectionPath) {
+    _allModels.addStream(collectionRef.snapshots());
   }
 
   void createPage(
     T page,
   ) {
     addFutureSubscription(
-      _pagesRef.doc(page.id).set(page),
+      collectionRef.doc(page.id).set(page),
     );
   }
 
   void update(T page) {
-    addFutureSubscription(_pagesRef.doc(page.id).update(page.toMap()));
+    addFutureSubscription(collectionRef.doc(page.id).update(page.toMap()));
   }
 
   void delete(T page, Function(void) onData, Function(Exception) onError) {
-    addFutureSubscription(_pagesRef.doc(page.id).delete(), onData, onError);
+    addFutureSubscription(collectionRef.doc(page.id).delete(), onData, onError);
   }
 }

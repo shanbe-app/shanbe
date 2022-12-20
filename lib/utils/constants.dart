@@ -3,6 +3,7 @@
 import 'package:client/types/enums.dart';
 import 'package:client/types/hex_color.dart';
 import 'package:flutter/material.dart';
+import 'package:macos_ui/macos_ui.dart';
 
 class Constants {
   Constants._();
@@ -86,6 +87,9 @@ class Constants {
   static const double H3_FONT_SIZE = 28;
   static const double H2_FONT_SIZE = 31;
   static const double H1_FONT_SIZE = 34;
+
+  static const double MACOS_TITLE_BAR_HEIGHT = kTitleBarHeight * 2;
+  static const double MACOS_TITLE_BAR_FONT_SIZE = 12;
 
   static const FontWeight REGULAR_FONT_WEIGHT = FontWeight.w400;
   static const FontWeight MEDIUM_FONT_WEIGHT = FontWeight.w500;

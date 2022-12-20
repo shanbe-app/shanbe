@@ -34,7 +34,7 @@ class SettingsBloc extends RxBloc {
             storageService.sharedPreferences
                     .getString(Constants.USER_CALENDAR_PREFS) ??
                 '') ??
-        CalendarType.GREGORIAN);
+        CalendarType.gregorian);
     _locale.add(Locale(storageService.sharedPreferences
             .getString(Constants.USER_LOCALE_PREFS) ??
         'en'));

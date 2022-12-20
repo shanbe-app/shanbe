@@ -1,4 +1,4 @@
-import 'package:client/pages/intro_page.dart';
+import 'package:client/pages/onboard_page.dart';
 import 'package:client/pages/loading_page.dart';
 import 'package:client/pages/inbox_page.dart';
 import 'package:client/rx/blocs/settings_bloc.dart';
@@ -21,11 +21,11 @@ class InitPage extends StatelessWidget {
           return StreamBuilder(
             builder: (context, snapshot) {
               bool? isFirstVisit = snapshot.data as bool?;
-              if (isFirstVisit == null) {
+              if (true) {
                 return LoadingPage(context: context);
               }
-              if (isFirstVisit) {
-                return IntroPage(
+              if (false) {
+                return OnBoardPage(
                   context: context,
                 );
               }

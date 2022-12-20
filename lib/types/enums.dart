@@ -9,29 +9,25 @@ enum UserAuthState {
 
 enum HttpRequestState { requesting, resolved, rejected }
 
-enum CalendarType { GREGORIAN, SHAMSI }
+enum CalendarType { gregorian, shamsi }
 
-enum StartOfTheWeekType { SATURDAY, SUNDAY, MONDAY }
+enum StartOfTheWeekType { saturday, sunday, monday }
 
-enum ThemeType { DARK, LIGHT, SYSTEM }
+enum ThemeType { dark, light, system }
 
-enum PriorityType { URGENT, HIGH, NORMAL }
+enum PriorityType { urgent, high, normal }
 
-enum ReminderStatus { INITIALIZED, SHOWN, SNOOZED, DONE }
+enum ReminderStatus { initialized, shown, snoozed, done }
 
 enum StaticTaskListType {
-  TODAY,
-  TOMORROW,
-  DONE,
-  TRASH,
-  WONTDO,
-  ALL,
-  NEXT7DAYS,
-  OVERDUE
+  today,
+  tomorrow,
+  done,
+  trash,
+  wontdo,
+  all,
+  next7days,
+  overdue
 }
 
-enum TaskListFilterLogic { AND, NOT, OR }
-
-enum QueryPredicateLogic { AND, OR }
-
-enum TaskListFilterType { TAGS, TASKLIST, KEYWORD, PRIORITY, DATE }
+enum TaskListFilterType { tags, task_list, keyword, priority, date }

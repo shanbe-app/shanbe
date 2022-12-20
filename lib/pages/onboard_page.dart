@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:client/rx/blocs/settings_bloc.dart';
 import 'package:client/rx/service_provider.dart';
@@ -13,16 +14,16 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:lottie/lottie.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class IntroPage extends StatefulWidget {
+class OnBoardPage extends StatefulWidget {
   final BuildContext context;
 
-  const IntroPage({Key? key, required this.context}) : super(key: key);
+  const OnBoardPage({Key? key, required this.context}) : super(key: key);
 
   @override
-  State<IntroPage> createState() => _IntroPageState();
+  State<OnBoardPage> createState() => _OnBoardPageState();
 }
 
-class _IntroPageState extends State<IntroPage> {
+class _OnBoardPageState extends State<OnBoardPage> {
   late PageController _controller;
   late List<AppIntroData> appIntroData;
   late SettingsBloc settingsBloc;
@@ -52,7 +53,7 @@ class _IntroPageState extends State<IntroPage> {
   }
 
   void setupTimer() {
-    _timer = Timer.periodic(const Duration(seconds: 15), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 10), (timer) {
       if (_controller.page == null) return;
       if (_controller.page!.toInt() + 1 == appIntroData.length) {
         _controller.animateToPage(0,
@@ -73,6 +74,7 @@ class _IntroPageState extends State<IntroPage> {
 
   @override
   Widget build(BuildContext context) {
+    if (isMacos()) {}
     return PlatformScaffold(
       iosContentPadding: true,
       body: SafeArea(

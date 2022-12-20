@@ -21,7 +21,7 @@ class LoadingScaffold extends StatelessWidget {
         Image.asset(
           'assets/images/logo.png',
           fit: BoxFit.contain,
-          height: windowSize.height / 2,
+          height: windowSize.height * 3 / 4,
           width: windowSize.width,
           isAntiAlias: true,
         ),

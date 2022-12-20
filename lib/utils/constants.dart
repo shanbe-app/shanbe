@@ -8,16 +8,16 @@ class Constants {
   Constants._();
 
   static const Locale DEFAULT_LOCALE = Locale('en');
-  static const ThemeType DEFAULT_THEME = ThemeType.SYSTEM;
-  static const CalendarType DEFAULT_CALENDAR = CalendarType.GREGORIAN;
+  static const ThemeType DEFAULT_THEME = ThemeType.system;
+  static const CalendarType DEFAULT_CALENDAR = CalendarType.gregorian;
   static final List<StaticTaskListType> DEFAULT_STATIC_TASK_LISTS = [
-    StaticTaskListType.TODAY,
-    StaticTaskListType.TOMORROW,
-    StaticTaskListType.DONE,
-    StaticTaskListType.TRASH,
+    StaticTaskListType.today,
+    StaticTaskListType.tomorrow,
+    StaticTaskListType.done,
+    StaticTaskListType.trash,
   ];
   static const StartOfTheWeekType DEFAULT_START_OF_THE_WEEK =
-      StartOfTheWeekType.MONDAY;
+      StartOfTheWeekType.monday;
   static const String INDEX_PROJECT_NAME = 'shanbe_todo_index_project';
   static const String ACCESS_TOKEN_PREFS = 'access_token';
   static const String REFRESH_TOKEN_PREFS = 'refresh_token';

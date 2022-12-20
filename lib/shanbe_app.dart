@@ -72,15 +72,17 @@ class _ShanbeAppState extends State<ShanbeApp> {
   @override
   Widget build(BuildContext context) {
     if (Platform.isMacOS) {
-      const ratio = 1.73;
       const minWidth = 400.0;
-      setWindowMinSize(const Size(minWidth, 400));
+      setWindowMinSize(const Size(minWidth, minWidth));
       setWindowMaxSize(Size.infinite);
 
       return PlatformMenuBar(
         menus: const [
-          PlatformMenu(label: 'File', menus: [
+          PlatformMenu(label: 'Shanbe', menus: [
             PlatformProvidedMenuItem(type: PlatformProvidedMenuItemType.about),
+            PlatformProvidedMenuItem(type: PlatformProvidedMenuItemType.quit),
+          ]),
+          PlatformMenu(label: 'File', menus: [
             PlatformProvidedMenuItem(type: PlatformProvidedMenuItemType.quit),
           ]),
           PlatformMenu(label: 'Edit', menus: [
@@ -99,6 +101,9 @@ class _ShanbeAppState extends State<ShanbeApp> {
             PlatformProvidedMenuItem(type: PlatformProvidedMenuItemType.hide),
             PlatformProvidedMenuItem(
                 type: PlatformProvidedMenuItemType.toggleFullScreen),
+          ]),
+          PlatformMenu(label: 'Help', menus: [
+            PlatformProvidedMenuItem(type: PlatformProvidedMenuItemType.hide),
           ])
         ],
         child: MacosApp(

@@ -1,6 +1,20 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    function uidFieldPresentInRequest() {
+      return request.auth != null && request.resource.data.uid != null && request.resource.data.uid == request.auth.uid;
+    }
+    function haveAccessToDocument() {
+      return request.auth != null && resource.data.uid == request.auth.uid;
+    }
+    function notUpdatingUidField() {
+      return request.auth != null && request.resource.data.uid == resource.data.uid;
+    }
+    match /pages/{page} {
+        allow create: if uidFieldPresentInRequest();
+        allow update, delete: if haveAccessToDocument() && notUpdatingUidField();
+        allow read: if haveAccessToDocument();
+    }
     match /{document=**} {
       allow read, write: if false;
     }

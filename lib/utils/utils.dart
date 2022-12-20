@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'dart:math';
 
 import 'package:client/types/enums.dart';
@@ -179,11 +180,15 @@ void showPlatformContentSheet<T>(
 
 ThemeMode themeTypeToThemeMode(ThemeType themeType) {
   switch (themeType) {
-    case ThemeType.DARK:
+    case ThemeType.dark:
       return ThemeMode.dark;
-    case ThemeType.LIGHT:
+    case ThemeType.light:
       return ThemeMode.light;
-    case ThemeType.SYSTEM:
+    case ThemeType.system:
       return ThemeMode.system;
   }
+}
+
+bool isMacos() {
+  return Platform.isMacOS;
 }

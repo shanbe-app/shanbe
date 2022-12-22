@@ -55,12 +55,12 @@ class _InboxPageState extends State<InboxPage> {
             items: [
               SalomonBottomBarItem(
                 icon: const Icon(Shanbe.checklist),
-                title: Text(t.taskLists),
+                title: Text(t.focus),
                 selectedColor: Constants.PRIMARY_COLOR,
               ),
               SalomonBottomBarItem(
                 icon: const Icon(Icons.book),
-                title: Text(t.notes),
+                title: Text(t.focus),
                 selectedColor: Colors.blue.shade700,
               ),
               SalomonBottomBarItem(
@@ -100,11 +100,11 @@ class _InboxPageState extends State<InboxPage> {
             items: [
               BottomNavigationBarItem(
                   icon: const Icon(Shanbe.checklist),
-                  label: t.taskLists,
+                  label: t.focus,
                   activeIcon: const Icon(Shanbe.checklist)),
               BottomNavigationBarItem(
                   icon: const Icon(CupertinoIcons.book),
-                  label: t.notes,
+                  label: t.focus,
                   activeIcon: const Icon(CupertinoIcons.book_fill)),
               BottomNavigationBarItem(
                   icon: const Icon(Shanbe.bullseye), label: t.focus),
@@ -130,7 +130,7 @@ class _InboxPageState extends State<InboxPage> {
           slivers: [
             PlatformWidget(
               material: (_, __) => SliverAppBar(
-                  title: Text(t.taskLists),
+                  title: Text(t.focus),
                   actions: [
                     PlatformIconButton(
                         icon: const Icon(Shanbe.sliders_h),
@@ -167,7 +167,7 @@ class _InboxPageState extends State<InboxPage> {
                   )),
               cupertino: (_, __) => CupertinoSliverNavigationBar(
                 largeTitle: Text(
-                  t.taskLists,
+                  t.focus,
                 ),
                 stretch: false,
                 automaticallyImplyLeading: false,

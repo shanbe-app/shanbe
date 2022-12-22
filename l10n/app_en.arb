@@ -52,32 +52,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "addList": "New List",
-  "@addList": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "todayDayNavigator": "Today، {dayFormatted}",
-  "@todayDayNavigator": {
-    "type": "text",
-    "placeholders": {
-      "dayFormatted": {}
-    }
-  },
-  "tomorrowDayNavigator": "Tomorrow, {dayFormatted}",
-  "@tomorrowDayNavigator": {
-    "type": "text",
-    "placeholders": {
-      "dayFormatted": {}
-    }
-  },
-  "yesterdayDayNavigator": "Yesterday, {dayFormatted}",
-  "@yesterdayDayNavigator": {
-    "type": "text",
-    "placeholders": {
-      "dayFormatted": {}
-    }
-  },
   "jWeekDay1": "S",
   "@jWeekDay1": {
     "type": "text",
@@ -115,16 +89,6 @@
   },
   "upcoming": "Upcoming",
   "@upcoming": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "todoTitle": "What would you like to do?",
-  "@todoTitle": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "listNamePlaceholder": "List Name",
-  "@listNamePlaceholder": {
     "type": "text",
     "placeholders": {}
   },
@@ -243,18 +207,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "projectLimitExceed": "Purchase Premium to create more projects",
-  "@projectLimitExceed": {
-    "type": "text",
-    "placeholders": {}
-  },
   "hello": "Hello!",
   "@hello": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "fromProjects": "From Projects",
-  "@fromProjects": {
     "type": "text",
     "placeholders": {}
   },
@@ -265,13 +219,6 @@
       "name": {}
     }
   },
-  "nTask": "{count} todos",
-  "@nTask": {
-    "type": "text",
-    "placeholders": {
-      "count": {}
-    }
-  },
   "upcomingSeparator": "•",
   "@upcomingSeparator": {
     "type": "text",
@@ -279,16 +226,6 @@
   },
   "selectDueTime": "Select Due Time",
   "@selectDueTime": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "todos": "Todos",
-  "@todos": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "personal": "Backlog",
-  "@personal": {
     "type": "text",
     "placeholders": {}
   },
@@ -302,8 +239,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "editList": "Edit List",
-  "@editList": {
+  "editPage": "Edit Page",
+  "@editPage": {
     "type": "text",
     "placeholders": {}
   },
@@ -312,18 +249,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "deleteProject": "Delete Project",
-  "@deleteProject": {
+  "deletePage": "Delete Page",
+  "@deletePage": {
     "type": "text",
     "placeholders": {}
   },
-  "allTodosWillBeDeletedByDeletingProject": "By deleting this project, all of its todos will be deleted.",
-  "@allTodosWillBeDeletedByDeletingProject": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "deleteProjectQuestion": "Delete Project?",
-  "@deleteProjectQuestion": {
+  "deletePageQuestion": "Delete Page?",
+  "@deletePageQuestion": {
     "type": "text",
     "placeholders": {}
   },
@@ -347,23 +279,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "nextWeekSaturday": "Next week (Saturday)",
-  "@nextWeekSaturday": {
-    "type": "text",
-    "placeholders": {}
-  },
   "pickADate": "Pick Date and Time",
   "@pickADate": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "removeTodoQuestion": "Remove Todo?",
-  "@removeTodoQuestion": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "todoCanNotBeRetrieved": "Todo can not be retrieved after delete.",
-  "@todoCanNotBeRetrieved": {
     "type": "text",
     "placeholders": {}
   },
@@ -373,16 +290,6 @@
     "placeholders": {
       "date": {}
     }
-  },
-  "noTodoForToday": "What you plan for today?",
-  "@noTodoForToday": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noTodoForTodayDesc": "What big things should happen today? Write it down.",
-  "@noTodoForTodayDesc": {
-    "type": "text",
-    "placeholders": {}
   },
   "goodMorning": "Good morning",
   "@goodMorning": {
@@ -404,56 +311,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "workProject": "Work",
-  "@workProject": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "shoppingProject": "Shopping",
-  "@shoppingProject": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "birthdayProject": "Birthdays",
-  "@birthdayProject": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "wishListProject": "Wish list",
-  "@wishListProject": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "learningProject": "Learning",
-  "@learningProject": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "fitnessProject": "Fitness",
-  "@fitnessProject": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "financialGoalProject": "Financial goals",
-  "@financialGoalProject": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "billsReminderProject": "Bills reminder",
-  "@billsReminderProject": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "donePageEmptyTitle": "No done todo found!",
-  "@donePageEmptyTitle": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "donePageEmptyDesc": "Todos that you have checked them done will appear here.",
-  "@donePageEmptyDesc": {
-    "type": "text",
-    "placeholders": {}
-  },
   "letsGo": "Create account",
   "@letsGo": {
     "type": "text",
@@ -466,21 +323,6 @@
   },
   "goAhead": "Go ahead",
   "@goAhead": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "whatYouWantShanbeFor": "What do you want to use Shanbe for?",
-  "@whatYouWantShanbeFor": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noTodoTitle": "No todo found!",
-  "@noTodoTitle": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noTodoDesc": "Create your first todo for this project.",
-  "@noTodoDesc": {
     "type": "text",
     "placeholders": {}
   },
@@ -572,18 +414,8 @@
       "time": {}
     }
   },
-  "commentOnBazaar": "Rate Shanbe on Bazaar",
-  "@commentOnBazaar": {
-    "type": "text",
-    "placeholders": {}
-  },
   "shareWithFriends": "Share with friends",
   "@shareWithFriends": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "shareWithFriendsMessage": "Checkout Shanbe on Cafebazaar. I use it to manage my personal goals and projects! https://cafebazaar.ir/app/io.shanbe.shanbe?ref=ias",
-  "@shareWithFriendsMessage": {
     "type": "text",
     "placeholders": {}
   },
@@ -659,11 +491,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "todosCanNotBeRetrievedAfterDelete": "Todos can not be retrieved after delete.",
-  "@todosCanNotBeRetrievedAfterDelete": {
-    "type": "text",
-    "placeholders": {}
-  },
   "deleteAll": "Delete all",
   "@deleteAll": {
     "type": "text",
@@ -734,11 +561,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "newProject": "New project",
-  "@newProject": {
-    "type": "text",
-    "placeholders": {}
-  },
   "showQuickCreateNotification": "show quick add notification",
   "@showQuickCreateNotification": {
     "type": "text",
@@ -764,7 +586,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "notGettingReminderNotifications": "Not getting reminder notifications!",
+  "notGettingReminderNotifications": "Not getting reminder notifications?",
   "@notGettingReminderNotifications": {
     "type": "text",
     "placeholders": {}
@@ -824,11 +646,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "moveToAnotherProject": "Move to another project",
-  "@moveToAnotherProject": {
-    "type": "text",
-    "placeholders": {}
-  },
   "logout": "Logout",
   "@logout": {
     "type": "text",
@@ -841,21 +658,6 @@
   },
   "willBeAddedInNextRelease": "Will be added on next release!",
   "@willBeAddedInNextRelease": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "projects": "Projects",
-  "@projects": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "deleteTodo": "Delete Todo",
-  "@deleteTodo": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "todaysProjects": "Today's projects",
-  "@todaysProjects": {
     "type": "text",
     "placeholders": {}
   },
@@ -963,12 +765,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "premiumFeatureUnlimited": "Unlimited todos and projects",
+  "premiumFeatureUnlimited": "Unlimited Pages",
   "@premiumFeatureUnlimited": {
     "type": "text",
     "placeholders": {}
   },
-  "premiumFeatureUnlimitedDesc": "Create unlimited todos, projects and subtasks.",
+  "premiumFeatureUnlimitedDesc": "Create unlimited pages, databases and documents.",
   "@premiumFeatureUnlimitedDesc": {
     "type": "text",
     "placeholders": {}
@@ -993,33 +795,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "premiumYearlyPrice": "196,000 IRR",
-  "@premiumYearlyPrice": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "premiumMonthlyPrice": "20,000 IRR",
-  "@premiumMonthlyPrice": {
-    "type": "text",
-    "placeholders": {}
-  },
   "premiumYearly": "Annul subscription",
   "@premiumYearly": {
     "type": "text",
     "placeholders": {}
   },
-  "premiumYearlyDiscount": "(20% discount)",
-  "@premiumYearlyDiscount": {
-    "type": "text",
-    "placeholders": {}
-  },
   "premiumMonthly": "Monthly subscription",
   "@premiumMonthly": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "selectProject": "Select Project",
-  "@selectProject": {
     "type": "text",
     "placeholders": {}
   },
@@ -1115,27 +897,27 @@
     "type": "text",
     "placeholders": {}
   },
-  "purchasePremiumToAddMoreSubTasks": "Purchase Premium to add more subtasks",
-  "@purchasePremiumToAddMoreSubTasks": {
+  "purchasePremiumToAddMoreSubPages": "Purchase Premium to add more sub pages",
+  "@purchasePremiumToAddMoreSubPages": {
     "type": "text",
     "placeholders": {}
   },
-  "purchasePremiumToAddMoreTodos": "Purchase Premium to add more todos",
-  "@purchasePremiumToAddMoreTodos": {
+  "purchasePremiumToAddMorePages": "Purchase Premium to add more todos",
+  "@purchasePremiumToAddMorePages": {
     "type": "text",
     "placeholders": {}
   },
-  "enterTagName": "Label Name",
+  "enterTagName": "Tag Name",
   "@enterTagName": {
     "type": "text",
     "placeholders": {}
   },
-  "editTag": "Edit Label",
+  "editTag": "Edit Tag",
   "@editTag": {
     "type": "text",
     "placeholders": {}
   },
-  "addTag": "Create Label",
+  "addTag": "Create Tag",
   "@addTag": {
     "type": "text",
     "placeholders": {}
@@ -1145,22 +927,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "tagsArePremiumOnly": "Purchase Premium to create Labels",
-  "@tagsArePremiumOnly": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "tagsGuide": "Filter your todos in endless ways according to your workflow, priorities and work context. Use of tags is limited to your imagination!",
-  "@tagsGuide": {
-    "type": "text",
-    "placeholders": {}
-  },
   "purchaseProcessError": "Error while processing purchase. Please contact salam@shanbe.io if problem persists",
   "@purchaseProcessError": {
     "type": "text",
     "placeholders": {}
   },
-  "selectTags": "Labels",
+  "selectTags": "Tags",
   "@selectTags": {
     "type": "text",
     "placeholders": {}
@@ -1172,35 +944,30 @@
       "count": {}
     }
   },
-  "deleteTag": "Delete Label",
+  "deleteTag": "Delete Tag",
   "@deleteTag": {
     "type": "text",
     "placeholders": {}
   },
-  "deleteTagConfirm": "Delete Label?",
+  "deleteTagConfirm": "Delete Tag?",
   "@deleteTagConfirm": {
     "type": "text",
     "placeholders": {}
   },
-  "deleteTagConfirmDesc": "Label \"{tagName}\" will be removed from all todos. Delete it now?",
+  "deleteTagConfirmDesc": "Tag \"{tagName}\" will be removed from all pages. Delete it now?",
   "@deleteTagConfirmDesc": {
     "type": "text",
     "placeholders": {
       "tagName": {}
     }
   },
-  "setTags": "Set Labels",
+  "setTags": "Set Tags",
   "@setTags": {
     "type": "text",
     "placeholders": {}
   },
   "tagSeparator": ", ",
   "@tagSeparator": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noTagTitle": "No todos with this label!",
-  "@noTagTitle": {
     "type": "text",
     "placeholders": {}
   },
@@ -1344,13 +1111,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "purchasePremiumToCustomizeProjects": "Purchase Premium to customize projects",
-  "@purchasePremiumToCustomizeProjects": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "projectColor": "Project Color",
-  "@projectColor": {
+  "pageColor": "Page Color",
+  "@pageColor": {
     "type": "text",
     "placeholders": {}
   },
@@ -1359,8 +1121,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "projectColorSelect": "Project Color Select",
-  "@projectColorSelect": {
+  "pageColorSelect": "Page Color Select",
+  "@pageColorSelect": {
     "type": "text",
     "placeholders": {}
   },
@@ -1371,21 +1133,6 @@
   },
   "noCover": "No Cover",
   "@noCover": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "projectCoverSelect": "Project Cover Select",
-  "@projectCoverSelect": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "premiumFeaturePersonalize": "Personalize Projects",
-  "@premiumFeaturePersonalize": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "premiumFeaturePersonalizeDesc": "Personalize your projects with colors and beautiful images!",
-  "@premiumFeaturePersonalizeDesc": {
     "type": "text",
     "placeholders": {}
   },
@@ -1405,11 +1152,6 @@
   },
   "doneTodo": "Done",
   "@doneTodo": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "purchasePremiumToCustomizeMyDay": "Purchase Premium to customize My Day",
-  "@purchasePremiumToCustomizeMyDay": {
     "type": "text",
     "placeholders": {}
   },
@@ -1498,23 +1240,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "goToProject": "Go to Project",
-  "@goToProject": {
-    "type": "text",
-    "placeholders": {}
-  },
   "backgroundColor": "Background color",
   "@backgroundColor": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "shareWithFriendsMessageMyket": "Checkout Shanbe on Myket. I use it to manage my goals and projects! https://myket.ir/app/io.shanbe.shanbe",
-  "@shareWithFriendsMessageMyket": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "commentWithMyketApp": "Please place your comment in Myket app.",
-  "@commentWithMyketApp": {
     "type": "text",
     "placeholders": {}
   },
@@ -1530,21 +1257,6 @@
   },
   "listening": "Listening...",
   "@listening": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "folders": "Folders",
-  "@folders": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "lists": "Lists",
-  "@lists": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "notes": "Notes",
-  "@notes": {
     "type": "text",
     "placeholders": {}
   },
@@ -1628,8 +1340,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "skipSignup": "Skip Sign Up?",
-  "@skipSignup": {
+  "skipIntro": "Skip Intro?",
+  "@skipIntro": {
     "type": "text",
     "placeholders": {}
   },
@@ -1663,38 +1375,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "taskLists": "Lists",
-  "@taskLists": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "newTodo": "New Todo",
-  "@newTodo": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "allTaskLists": "All Lists",
-  "@allTaskLists": {
-    "type": "text",
-    "placeholders": {}
-  },
   "nextSevenDays": "Next 7 Days",
   "@nextSevenDays": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "yourTaskLists": "Your Lists",
-  "@yourTaskLists": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "newTaskList": "new List",
-  "@newTaskList": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "dropForSubTaskList": "Drop here to add sub list",
-  "@dropForSubTaskList": {
     "type": "text",
     "placeholders": {}
   },
@@ -1718,8 +1400,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "parentListLabel": "Parent List",
-  "@parentListLabel": {
+  "parentPage": "Parent Page",
+  "@parentPage": {
     "type": "text",
     "placeholders": {}
   },
@@ -1765,6 +1447,31 @@
   },
   "welcomeToShanbe": "Welcome to Shanbe",
   "@welcomeToShanbe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcome": "Welcome",
+  "@welcome": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeIntro": "Shanbe is a secure and open source Note taking app. You can use it as your Todo list, Note taking, Knowledge management or even Task management tool.",
+  "@welcomeIntro": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privacyPolicyAgreementPrompt": "By using the app, you accept the Terms and Conditions and Privacy Policy available on",
+  "@privacyPolicyAgreementPrompt": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "next": "Next",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pages": "Pages",
+  "@pages": {
     "type": "text",
     "placeholders": {}
   }

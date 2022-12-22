@@ -38,7 +38,7 @@ class NewTaskListItem extends StatelessWidget {
               width: 8,
             ),
             Text(
-              t.newTaskList,
+              t.newPage,
               style: TextStyle(
                   fontSize: nameSize ?? Constants.S1_FONT_SIZE,
                   fontWeight: Constants.MEDIUM_FONT_WEIGHT,

@@ -75,7 +75,8 @@ class _ShanbeAppState extends State<ShanbeApp> {
       const minWidth = 400.0;
       setWindowMinSize(const Size(minWidth, minWidth));
       setWindowMaxSize(Size.infinite);
-
+      setWindowVisibility(visible: true);
+      setWindowTitle('title');
       return PlatformMenuBar(
         menus: const [
           PlatformMenu(label: 'Shanbe', menus: [

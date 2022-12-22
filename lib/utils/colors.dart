@@ -64,6 +64,7 @@ Color inputBackgroundColor(BuildContext context) {
       ? Constants.INPUT_BACKGROUND_COLOR_DARK
       : Constants.INPUT_BACKGROUND_COLOR;
 }
+
 Color modalSheetBackgroundColor(BuildContext context) {
   return isDark(context)
       ? Constants.BACKGROUND_COLOR_MODAL_SHEET_DARK

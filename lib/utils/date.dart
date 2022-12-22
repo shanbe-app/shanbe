@@ -151,12 +151,12 @@ bool hasOccurrence(DateTime source, Todo todo, {String? calendar}) {
   switch (todo.repeatType) {
     case RepeatType.DAILY:
       return */
-/*!isSameDay(source, todo.dueDate) &&*//*
+/*!isSameDay(source, todo.dueDate) &&*/ /*
 
           diffInDays(source, dueDate) % todo.repeatInterval! == 0;
     case RepeatType.WEEKLY:
       return */
-/*!isSameDay(source, todo.dueDate) &&*//*
+/*!isSameDay(source, todo.dueDate) &&*/ /*
 
           diffInDays(source, dueDate) % 7 * todo.repeatInterval! == 0;
     case RepeatType.MONTHLY:
@@ -360,36 +360,9 @@ String formatDayRelativelyShort(DateTime d, BuildContext c, String calendar) {
   }
 }
 
-String formatDayRelatively(DateTime d, BuildContext c, String calendar,
-    [bool withYear = false]) {
-  AppLocalizations t = AppLocalizations.of(c)!;
-  DateTime now = DateTime.now();
-  DateTime nowZero = DateTime(now.year, now.month, now.day);
-  DateTime thenZero = DateTime(d.year, d.month, d.day);
-  String dateFormatted = dMnYYYY(d, calendar, withYear);
-  switch (thenZero.difference(nowZero).inDays) {
-    case 1:
-      return t.tomorrowDayNavigator(dateFormatted);
-    case 0:
-      return t.todayDayNavigator(dateFormatted);
-    case -1:
-      return t.yesterdayDayNavigator(dateFormatted);
-    default:
-      return dateFormatted;
-  }
-}
-
 String timeAt(TimeOfDay time, BuildContext context) {
   AppLocalizations t = AppLocalizations.of(context)!;
   return t.timeAt('${timeTo2Digit(time.hour)}:${timeTo2Digit(time.minute)}');
-}
-
-String formatDateRelativeWithTime(
-    DateTime date, TimeOfDay? time, BuildContext context, String calendr) {
-  if (time == null) {
-    return formatDayRelatively(date, context, calendr);
-  }
-  return '${formatDayRelatively(date, context, calendr)} ${timeAt(time, context)}';
 }
 
 String wnMdMnYyyy(

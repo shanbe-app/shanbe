@@ -1474,5 +1474,15 @@
   "@pages": {
     "type": "text",
     "placeholders": {}
+  },
+  "shareAnonymousData": "Share anonymous app usage data and crash statistics.",
+  "@shareAnonymousData": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "defaultWorkspaceName": "My Workspace",
+  "@defaultWorkspaceName": {
+    "type": "text",
+    "placeholders": {}
   }
 }

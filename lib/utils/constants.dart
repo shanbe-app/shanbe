@@ -1008,4 +1008,8 @@ class Constants {
       ':point_up:',
     ]
   };
+
+  static const Size MIN_WINDOW_SIZE = Size(400, 400);
+  static const Size DEFAULT_WINDOW_SIZE = Size(800, 800);
+  static const String PRIVACY_POLICY_URL = 'https://shanbe.app/privacypolicy';
 }

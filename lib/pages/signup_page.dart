@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:client/components/molecules/signup_intro.dart';
 import 'package:client/rx/blocs/auth_bloc.dart';
+import 'package:client/rx/service_provider.dart';
 import 'package:client/types/enums.dart';
 import 'package:client/types/signup_intro_data.dart';
 import 'package:client/types/signup_page_arugments.dart';
@@ -42,7 +43,7 @@ class _SignupPageState extends State<SignupPage> {
           reverse: true),
       SignupIntroData(t.appRegisterTitle5, 'assets/files/images.json')
     ];
-    authBloc = AuthBloc();
+    authBloc = AuthBloc(ServiceProvider.getInstance().firebaseService);
     _subscription = authBloc.authState.listen((event) {
       if (event == UserAuthState.authenticated) {
         Navigator.pushNamedAndRemoveUntil(

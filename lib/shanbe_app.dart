@@ -1,10 +1,10 @@
 import 'dart:io';
 
 import 'package:client/pages/edit_lists_page.dart';
-import 'package:client/pages/settings_page.dart';
-import 'package:client/pages/init_page.dart';
-import 'package:client/pages/signup_page.dart';
 import 'package:client/pages/inbox_page.dart';
+import 'package:client/pages/init_page.dart';
+import 'package:client/pages/settings_page.dart';
+import 'package:client/pages/signup_page.dart';
 import 'package:client/rx/blocs/settings_bloc.dart';
 import 'package:client/rx/service_provider.dart';
 import 'package:client/types/signup_page_arugments.dart';
@@ -16,7 +16,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:macos_ui/macos_ui.dart';
-import 'package:window_size/window_size.dart';
 
 class ShanbeApp extends StatefulWidget {
   const ShanbeApp({Key? key}) : super(key: key);
@@ -72,11 +71,6 @@ class _ShanbeAppState extends State<ShanbeApp> {
   @override
   Widget build(BuildContext context) {
     if (Platform.isMacOS) {
-      const minWidth = 400.0;
-      setWindowMinSize(const Size(minWidth, minWidth));
-      setWindowMaxSize(Size.infinite);
-      setWindowVisibility(visible: true);
-      setWindowTitle('title');
       return PlatformMenuBar(
         menus: const [
           PlatformMenu(label: 'Shanbe', menus: [

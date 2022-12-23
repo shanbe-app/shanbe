@@ -2,6 +2,7 @@ import 'package:client/components/atoms/magical_floating_action_button.dart';
 import 'package:client/components/atoms/user_avatar.dart';
 import 'package:client/components/molecules/macos_sidebar.dart';
 import 'package:client/rx/blocs/auth_bloc.dart';
+import 'package:client/rx/service_provider.dart';
 import 'package:client/shanbe_icons.dart';
 import 'package:client/types/user.dart';
 import 'package:client/utils/colors.dart';
@@ -32,7 +33,7 @@ class _InboxPageState extends State<InboxPage> {
   @override
   void initState() {
     super.initState();
-    authBloc = AuthBloc();
+    authBloc = AuthBloc(ServiceProvider.getInstance().firebaseService);
     t = AppLocalizations.of(widget.context)!;
     _controller = CupertinoTabController(initialIndex: 0);
   }
@@ -248,7 +249,7 @@ class _InboxPageState extends State<InboxPage> {
                 context: context,
                 barrierDismissible: true,
                 useRootNavigator: true,
-                builder: (context) => Dialog(
+                builder: (context) => const Dialog(
                       child: Text('to be built'),
                     ));
           }),

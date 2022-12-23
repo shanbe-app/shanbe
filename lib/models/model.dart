@@ -1,15 +1,17 @@
-import 'package:uuid/uuid.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 abstract class Model {
-  final String createdByUserId;
-  final String id = const Uuid().v4();
-  final String object;
-  final DateTime createdAt;
+  final String uid;
+  final String id;
+
+  final Timestamp createdAt;
+  final Timestamp updatedAt;
 
   Model(
-      {required this.object,
-      required this.createdByUserId,
-      required this.createdAt});
+      {required this.uid,
+      required this.id,
+      required this.createdAt,
+      required this.updatedAt});
 
   Map<String, Object?> toMap();
 }

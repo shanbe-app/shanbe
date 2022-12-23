@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'dart:io';
 
+import 'package:client/components/organisms/macos_onboard_view.dart';
 import 'package:client/rx/blocs/settings_bloc.dart';
 import 'package:client/rx/service_provider.dart';
 import 'package:client/types/app_intro_data.dart';
@@ -75,8 +75,6 @@ class _OnBoardPageState extends State<OnBoardPage> {
 
   @override
   Widget build(BuildContext context) {
-    Size windowSize = MediaQuery.of(context).size;
-    MacosThemeData macosTheme = MacosTheme.of(context);
     if (isMacos()) {
       return MacosWindow(
         titleBar: TitleBar(
@@ -91,90 +89,7 @@ class _OnBoardPageState extends State<OnBoardPage> {
         child: MacosScaffold(
           children: [
             ContentArea(
-                minWidth: 300,
-                builder: (context, controller) => ScrollConfiguration(
-                    behavior: const MacosScrollBehavior(),
-                    child: SingleChildScrollView(
-                      padding: Constants.PAGE_PADDING,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const SizedBox(
-                            height: 24,
-                          ),
-                          Image.asset(
-                            'assets/images/logo.png',
-                            width: windowSize.width / 3,
-                            height: windowSize.height / 3,
-                            fit: BoxFit.contain,
-                          ),
-                          const SizedBox(
-                            height: 24,
-                          ),
-                          Text(
-                            t.welcomeToShanbe,
-                            style: MacosTheme.of(context).typography.title1,
-                          ),
-                          const SizedBox(
-                            height: 32,
-                          ),
-                          Text(
-                            t.welcomeIntro,
-                            textAlign: TextAlign.center,
-                            style: MacosTheme.of(context).typography.body,
-                          ),
-                          SizedBox(
-                            height: windowSize.height / 6,
-                          ),
-                          Text(
-                            t.privacyPolicyAgreementPrompt,
-                            style: MacosTheme.of(context).typography.caption1,
-                          ),
-                          const SizedBox(
-                            height: 16,
-                          ),
-                          PushButton(
-                            child: const Text(
-                              'https://shanbe.app/privacypolicy',
-                            ),
-                            color: macosTheme.pushButtonTheme.secondaryColor,
-                            buttonSize: ButtonSize.small,
-                            onPressed: () {},
-                          ),
-                          const SizedBox(
-                            height: 24,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              PushButton(
-                                  child: Text(
-                                    t.skip,
-                                  ),
-                                  color:
-                                      macosTheme.pushButtonTheme.secondaryColor,
-                                  onPressed: () {},
-                                  buttonSize: ButtonSize.small),
-                              const SizedBox(
-                                width: 16,
-                              ),
-                              PushButton(
-                                child: Text(
-                                  t.next,
-                                  style: macosTheme.typography.caption1,
-                                ),
-                                buttonSize: ButtonSize.small,
-                                onPressed: () {},
-                              )
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 24,
-                          )
-                        ],
-                      ),
-                    )))
+                builder: (context, controller) => MacosOnboardView(t: t))
           ],
         ),
       );

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:client/rx/blocs/rx_bloc.dart';
+import 'package:client/rx/services/firebase_service.dart';
 import 'package:client/types/enums.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,6 +10,7 @@ class AuthBloc extends RxBloc {
   final _authState = BehaviorSubject<UserAuthState>();
   final _authErrors = BehaviorSubject<String>();
   final _authUser = BehaviorSubject<User?>();
+  late final FirebaseAuth firebaseAuth;
 
   Stream<UserAuthState> get authState => _authState.stream;
 
@@ -16,8 +18,9 @@ class AuthBloc extends RxBloc {
 
   Stream<User?> get authUser => _authUser.stream;
 
-  AuthBloc() {
-    FirebaseAuth.instance.authStateChanges().listen((user) {
+  AuthBloc(FirebaseService firebaseService)
+      : firebaseAuth = firebaseService.firebaseAuth {
+    firebaseAuth.authStateChanges().listen((user) {
       if (user == null) {
         _authState.add(UserAuthState.notAuthenticated);
       } else {
@@ -32,7 +35,7 @@ class AuthBloc extends RxBloc {
   void login(String username, String password) {
     _authState.add(UserAuthState.authenticating);
     addFutureSubscription(
-        FirebaseAuth.instance.signInWithEmailAndPassword(
+        firebaseAuth.signInWithEmailAndPassword(
             email: username, password: password), (UserCredential event) {
       if (event.user != null) {
         _authState.add(UserAuthState.authenticated);
@@ -44,14 +47,14 @@ class AuthBloc extends RxBloc {
 
   void logout() {
     _authState.add(UserAuthState.authenticating);
-    addFutureSubscription(FirebaseAuth.instance.signOut(), (event) {
+    addFutureSubscription(firebaseAuth.signOut(), (event) {
       _authState.add(UserAuthState.notAuthenticated);
     });
   }
 
   void register(String name, String email, String password) {
     addFutureSubscription(
-        FirebaseAuth.instance.createUserWithEmailAndPassword(
+        firebaseAuth.createUserWithEmailAndPassword(
           email: email,
           password: password,
         ), (UserCredential result) {
@@ -61,19 +64,42 @@ class AuthBloc extends RxBloc {
 
   void socialSignIn() {
     _authState.add(UserAuthState.authenticating);
-    addFutureSubscription(
-        FirebaseAuth.instance.signInWithProvider(GoogleAuthProvider()),
+    addFutureSubscription(firebaseAuth.signInWithProvider(GoogleAuthProvider()),
         (UserCredential event) {
-      if (event.user != null) {
-        _authUser.add(event.user);
-      } else {
-        _authUser.add(null);
-        _authState.add(UserAuthState.notAuthenticated);
-      }
+      _userLogin(event);
     }, (e) {
+      _authError(e);
+    });
+  }
+
+  void _authError(e) {
+    _authUser.add(null);
+    _authState.add(UserAuthState.notAuthenticated);
+    _authErrors.add(e.toString());
+  }
+
+  void _userLogin(UserCredential? event) {
+    var user = event?.user;
+    if (user != null) {
+      _authUser.add(user);
+    } else {
       _authUser.add(null);
       _authState.add(UserAuthState.notAuthenticated);
-      _authErrors.add(e.toString());
-    });
+    }
+  }
+
+  void signInAnonymously() {
+    addFutureSubscription(signInAnonymouslyAsync());
+  }
+
+  Future<UserCredential?> signInAnonymouslyAsync() async {
+    try {
+      var credentials = await firebaseAuth.signInAnonymously();
+      _userLogin(credentials);
+      return credentials;
+    } catch (e) {
+      _authError(e);
+    }
+    return null;
   }
 }

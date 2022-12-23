@@ -1,6 +1,7 @@
 import 'package:client/components/atoms/signup_button.dart';
 import 'package:client/components/atoms/profile_button.dart';
 import 'package:client/rx/blocs/auth_bloc.dart';
+import 'package:client/rx/service_provider.dart';
 import 'package:client/types/enums.dart';
 import 'package:client/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
@@ -24,7 +25,7 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   void initState() {
     super.initState();
-    authBloc = AuthBloc();
+    authBloc = AuthBloc(ServiceProvider.getInstance().firebaseService);
     t = AppLocalizations.of(widget.context)!;
   }
 

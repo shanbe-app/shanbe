@@ -8,7 +8,7 @@ class SelectPageSheet extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: [Text('my pages')],
+        children: const [Text('my pages')],
       ),
     );
   }

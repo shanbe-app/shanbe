@@ -15,10 +15,10 @@ class SelectParentPageButton extends StatelessWidget {
         child: Row(
           children: [
             Text(t.addTo),
-            SizedBox(
+            const SizedBox(
               width: 4,
             ),
-            Text('My Pages')
+            const Text('My Pages')
           ],
         ),
         onPressed: () {

@@ -1,4 +1,3 @@
-import 'package:client/models/block.dart';
 import 'package:client/models/model.dart';
 import 'package:client/rx/blocs/rx_bloc.dart';
 import 'package:client/rx/services/firebase_service.dart';
@@ -6,16 +5,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:rxdart/rxdart.dart';
 
 class ModelBloc<T extends Model> extends RxBloc {
-  final FirebaseService firebaseService;
-  final _isFirstVisit = BehaviorSubject<bool>();
+  final FirebaseService _firebaseService;
   final _allModels = BehaviorSubject<QuerySnapshot>();
   final CollectionReference collectionRef;
 
-  Stream<bool> get isFirstVisit => _isFirstVisit.stream;
   Stream<QuerySnapshot> get allModels => _allModels.stream;
 
-  ModelBloc(this.firebaseService, String collectionPath)
-      : collectionRef = firebaseService.firestore.collection(collectionPath) {
+  ModelBloc(this._firebaseService, String collectionPath)
+      : collectionRef = _firebaseService.firestore.collection(collectionPath) {
     _allModels.addStream(collectionRef.snapshots());
   }
 

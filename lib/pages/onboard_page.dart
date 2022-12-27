@@ -76,23 +76,7 @@ class _OnBoardPageState extends State<OnBoardPage> {
   @override
   Widget build(BuildContext context) {
     if (isMacos()) {
-      return MacosWindow(
-        titleBar: TitleBar(
-          title: Text(
-            t.welcome,
-            style: const TextStyle(
-                fontWeight: Constants.MEDIUM_FONT_WEIGHT,
-                fontSize: Constants.MACOS_TITLE_BAR_FONT_SIZE),
-          ),
-          height: Constants.MACOS_TITLE_BAR_HEIGHT,
-        ),
-        child: MacosScaffold(
-          children: [
-            ContentArea(
-                builder: (context, controller) => MacosOnboardView(t: t))
-          ],
-        ),
-      );
+      return MacosOnboardView(t: t);
     }
     return PlatformScaffold(
       iosContentPadding: true,

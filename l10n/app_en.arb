@@ -1475,13 +1475,58 @@
     "type": "text",
     "placeholders": {}
   },
-  "shareAnonymousData": "Share anonymous app usage data and crash statistics.",
+  "shareAnonymousData": "Share anonymous app usage and crash statistics",
   "@shareAnonymousData": {
     "type": "text",
     "placeholders": {}
   },
   "defaultWorkspaceName": "My Workspace",
   "@defaultWorkspaceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "settingUpYourAccount": "Setting up your account...",
+  "@settingUpYourAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "infinitePossibilitiesTitle": "Flexible",
+  "@infinitePossibilitiesTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "infinitePossibilitiesDesc": "Shanbe is created to be malleable for many scenarios and use cases. Todo list, note taking, knowledge management, project management, etc. You're covered.",
+  "@infinitePossibilitiesDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loveIngredientTitle": "Made with Love!",
+  "@loveIngredientTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loveIngredientDesc": "Shanbe is open source software (under Apache 2.0 license). We share your information with no one (We are GDPR compliant) and you can self-host Shanbe yourself!",
+  "@loveIngredientDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityInMindTitle": "Secure",
+  "@securityInMindTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityInMindDesc": "All data are sent using industry standard encryption practices. We use Google Firebase to host all your data. We extensively rely on their security rules to protect access to your data.",
+  "@securityInMindDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "back": "Back",
+  "@back": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "introduction": "Introduction",
+  "@introduction": {
     "type": "text",
     "placeholders": {}
   }

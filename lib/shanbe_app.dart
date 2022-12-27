@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:macos_ui/macos_ui.dart';
+import 'package:window_manager/window_manager.dart';
 
 class ShanbeApp extends StatefulWidget {
   const ShanbeApp({Key? key}) : super(key: key);
@@ -40,6 +41,18 @@ class _ShanbeAppState extends State<ShanbeApp> {
 
   Future<void> bootstrapApp() async {
     serviceProvider = ServiceProvider();
+    windowManager.ensureInitialized();
+    windowManager.waitUntilReadyToShow(
+        const WindowOptions(
+            alwaysOnTop: true,
+            skipTaskbar: false,
+            title: 'Shanbe',
+            size: Constants.DEFAULT_WINDOW_SIZE,
+            maximumSize: Size.infinite,
+            minimumSize: Constants.MIN_WINDOW_SIZE), () async {
+      await windowManager.show();
+      await windowManager.focus();
+    });
     try {
       await serviceProvider.onCreate();
       serviceProvider.setThemeChangeListener((event) {

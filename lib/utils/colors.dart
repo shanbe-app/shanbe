@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:client/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:macos_ui/macos_ui.dart';
 
 Color headingColor(BuildContext context) {
   return isDark(context)
@@ -53,8 +54,10 @@ Color appbarBackIconColor(BuildContext context) {
 }
 
 bool isDark(BuildContext context) {
-  if (Platform.isIOS || Platform.isMacOS) {
+  if (Platform.isIOS) {
     CupertinoTheme.of(context).brightness == Brightness.dark;
+  } else if (Platform.isMacOS) {
+    return MacosTheme.of(context).brightness.isDark;
   }
   return Theme.of(context).brightness == Brightness.dark;
 }

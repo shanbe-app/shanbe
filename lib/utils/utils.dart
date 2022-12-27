@@ -14,7 +14,8 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 String languageCodeFromLocaleName(String localeName) =>
     localeName.split('_').first;
 
-String countryFromLocaleName(String localeName) => localeName.split('_').last;
+String countryCodeFromLocaleName(String localeName) =>
+    localeName.split('_').last;
 
 bool isAndroid(TargetPlatform platform) => platform == TargetPlatform.android;
 

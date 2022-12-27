@@ -22,21 +22,6 @@ class WorkSpace extends Model {
             id: id,
             createdAt: createdAt ?? Timestamp.now(),
             updatedAt: updatedAt ?? Timestamp.now());
-
-  @override
-  Map<String, Object?> toMap() {
-    return {
-      'id': id,
-      'name': name,
-      'uid': uid,
-      'readMembers': readMembers,
-      'editorMembers': editorMembers,
-      'adminMembers': adminMembers,
-      'createdAt': createdAt.millisecondsSinceEpoch,
-      'updatedAt': updatedAt.millisecondsSinceEpoch
-    };
-  }
-
   factory WorkSpace.fromFirestore(
       DocumentSnapshot<Map<String, dynamic>> snapshot,
       SnapshotOptions? options) {
@@ -52,5 +37,19 @@ class WorkSpace extends Model {
         readMembers: data?['readMembers'],
         editorMembers: data?['editorMembers'],
         adminMembers: data?['adminMembers']);
+  }
+
+  @override
+  Map<String, Object?> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'uid': uid,
+      'readMembers': readMembers,
+      'editorMembers': editorMembers,
+      'adminMembers': adminMembers,
+      'createdAt': createdAt.millisecondsSinceEpoch,
+      'updatedAt': updatedAt.millisecondsSinceEpoch
+    };
   }
 }

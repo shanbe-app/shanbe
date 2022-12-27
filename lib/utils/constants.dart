@@ -53,9 +53,9 @@ class Constants {
   static const Color TEXT_BLACK_COLOR = Color.fromRGBO(20, 20, 43, 1);
   static const Color TEXT_BLACK_COLOR_DARK = Color.fromRGBO(235, 235, 212, 1.0);
   static const Color TEXT_BODY_COLOR = Color.fromRGBO(78, 75, 102, 1.0);
-  static const Color TEXT_BODY_COLOR_DARK = Color.fromRGBO(203, 203, 203, 1);
+  static const Color TEXT_BODY_COLOR_DARK = Color.fromRGBO(255, 255, 255, 1);
   static const Color TEXT_LABEL_COLOR = Color.fromRGBO(110, 113, 145, 1);
-  static const Color TEXT_LABEL_COLOR_DARK = Color.fromRGBO(145, 142, 110, 1.0);
+  static const Color TEXT_LABEL_COLOR_DARK = Color.fromRGBO(255, 255, 255, .55);
   static const Color PLACEHOLDER_COLOR = Color.fromRGBO(160, 163, 189, 1);
   static const Color PLACEHOLDER_COLOR_DARK = Color.fromRGBO(95, 92, 66, 1.0);
   static const Color LINE_COLOR = Color.fromRGBO(214, 216, 231, 1);
@@ -88,7 +88,7 @@ class Constants {
   static const double H2_FONT_SIZE = 31;
   static const double H1_FONT_SIZE = 34;
 
-  static const double MACOS_TITLE_BAR_HEIGHT = kTitleBarHeight * 2;
+  static const double MACOS_TITLE_BAR_HEIGHT = 54;
   static const double MACOS_TITLE_BAR_FONT_SIZE = 12;
 
   static const FontWeight REGULAR_FONT_WEIGHT = FontWeight.w400;

@@ -1,4 +1,5 @@
 import 'package:client/firebase_options.dart';
+import 'package:client/flavors.dart';
 import 'package:client/rx/services/rx_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -15,9 +16,11 @@ class FirebaseService extends RxService {
         options: DefaultFirebaseOptions.currentPlatform);
     firebaseApp.setAutomaticDataCollectionEnabled(true);
     firestore = FirebaseFirestore.instance;
-    firestore.useFirestoreEmulator('localhost', 4000);
     firebaseAuth = FirebaseAuth.instance;
-    firebaseAuth.useAuthEmulator('localhost', 4000);
+    if (F.appFlavor == Flavor.dev) {
+      firestore.useFirestoreEmulator('localhost', 4000);
+      firebaseAuth.useAuthEmulator('localhost', 4000);
+    }
   }
 
   @override

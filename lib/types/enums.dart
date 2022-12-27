@@ -1,5 +1,3 @@
-// ignore_for_file: constant_identifier_names
-
 enum UserAuthState {
   authenticating,
   notAuthenticated,
@@ -24,10 +22,10 @@ enum StaticTaskListType {
   tomorrow,
   done,
   trash,
-  wontdo,
+  wontDo,
   all,
   next7days,
   overdue
 }
 
-enum TaskListFilterType { tags, task_list, keyword, priority, date }
+enum TaskListFilterType { tags, taskList, keyword, priority, date }

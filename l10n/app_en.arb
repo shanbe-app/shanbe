@@ -1455,7 +1455,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "welcomeIntro": "Shanbe is a secure and open source Note taking app. You can use it as your Todo list, Note taking, Knowledge management or even Task management tool.",
+  "welcomeIntro": "Shanbe is a secure and open source Note taking app. You can use it as your todo list, note taking, knowledge management or even project management.",
   "@welcomeIntro": {
     "type": "text",
     "placeholders": {}
@@ -1495,7 +1495,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "infinitePossibilitiesDesc": "Shanbe is created to be malleable for many scenarios and use cases. Todo list, note taking, knowledge management, project management, etc. You're covered.",
+  "infinitePossibilitiesDesc": "Shanbe is created to be malleable for many scenarios and use cases. todo list, note taking, knowledge management, project management, etc. You're covered.",
   "@infinitePossibilitiesDesc": {
     "type": "text",
     "placeholders": {}
@@ -1505,7 +1505,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "loveIngredientDesc": "Shanbe is open source software (under Apache 2.0 license). We share your information with no one (We are GDPR compliant) and you can self-host Shanbe yourself!",
+  "loveIngredientDesc": "Shanbe is open source software (under Apache 2.0 license). We share your information with no one (We are GDPR compliant) and you can even self-host Shanbe yourself!",
   "@loveIngredientDesc": {
     "type": "text",
     "placeholders": {}
@@ -1527,6 +1527,11 @@
   },
   "introduction": "Introduction",
   "@introduction": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginToSyncYourContent": "Login to sync your content.",
+  "@loginToSyncYourContent": {
     "type": "text",
     "placeholders": {}
   }

@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:client/components/molecules/signup_intro.dart';
+import 'package:client/components/organisms/macos_onboard_register_view.dart';
 import 'package:client/rx/blocs/auth_bloc.dart';
 import 'package:client/rx/service_provider.dart';
 import 'package:client/types/enums.dart';
@@ -60,6 +62,9 @@ class _SignupPageState extends State<SignupPage> {
 
   @override
   Widget build(BuildContext context) {
+    if (Platform.isMacOS) {
+      return MacosOnboardRegisterView(t: t, signupData: signupData);
+    }
     return PlatformScaffold(
       appBar: PlatformAppBar(
         cupertino: (_, __) => CupertinoNavigationBarData(

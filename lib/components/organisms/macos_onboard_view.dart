@@ -1,4 +1,4 @@
-import 'package:client/components/molecules/macos_onboard_values_view.dart';
+import 'package:client/components/organisms/macos_onboard_values_view.dart';
 import 'package:client/rx/blocs/onboard_bloc.dart';
 import 'package:client/rx/service_provider.dart';
 import 'package:client/utils/colors.dart';
@@ -51,69 +51,81 @@ class _MacosOnboardViewState extends State<MacosOnboardView> {
         ),
         children: [
           ContentArea(
-              builder: (context, controller) => ScrollConfiguration(
-                  behavior: const MacosScrollBehavior(),
-                  child: Column(
+              builder: (context, controller) => Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
                           child: SingleChildScrollView(
                         padding: Constants.PAGE_PADDING,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const SizedBox(
-                              height: 24,
-                            ),
-                            Image.asset(
-                              'assets/images/logo.png',
-                              width: windowSize.width / 3,
-                              height: windowSize.height / 3,
-                              fit: BoxFit.contain,
-                            ),
-                            const SizedBox(
-                              height: 24,
-                            ),
-                            Text(
-                              widget.t.welcomeToShanbe,
-                              style: MacosTheme.of(context).typography.title1,
-                            ),
-                            const SizedBox(
-                              height: 32,
-                            ),
-                            Text(
-                              t.welcomeIntro,
-                              textAlign: TextAlign.center,
-                              style: MacosTheme.of(context).typography.body,
-                            ),
-                            SizedBox(
-                              height: windowSize.height / 6,
-                            ),
-                            Text(
-                              t.privacyPolicyAgreementPrompt,
-                              style: MacosTheme.of(context).typography.caption1,
-                            ),
-                            const SizedBox(
-                              height: 16,
-                            ),
-                            PushButton(
-                              child: const Text(Constants.PRIVACY_POLICY_URL),
-                              color: macosTheme.pushButtonTheme.secondaryColor,
-                              buttonSize: ButtonSize.small,
-                              onPressed: () async {
-                                await launchUrlString(
-                                    Constants.PRIVACY_POLICY_URL,
-                                    mode: LaunchMode.platformDefault);
-                              },
-                            ),
-                            SizedBox(
-                              height: windowSize.height / 16,
-                            ),
-                          ],
+                        primary: true,
+                        child: SizedBox(
+                          width: windowSize.width,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const SizedBox(
+                                height: 24,
+                              ),
+                              Image.asset(
+                                'assets/images/logo.png',
+                                width: windowSize.width / 3,
+                                height: windowSize.height / 3,
+                                fit: BoxFit.contain,
+                              ),
+                              const SizedBox(
+                                height: 24,
+                              ),
+                              Text(
+                                widget.t.welcomeToShanbe,
+                                style: MacosTheme.of(context).typography.title1,
+                              ),
+                              const SizedBox(
+                                height: 32,
+                              ),
+                              SizedBox(
+                                width: windowSize.width / 1.4,
+                                child: Text(
+                                  t.welcomeIntro,
+                                  textAlign: TextAlign.center,
+                                  style: MacosTheme.of(context)
+                                      .typography
+                                      .body
+                                      .copyWith(height: 1.6),
+                                ),
+                              ),
+                              SizedBox(
+                                height: windowSize.height / 6,
+                              ),
+                              Text(
+                                t.privacyPolicyAgreementPrompt,
+                                style:
+                                    MacosTheme.of(context).typography.caption1,
+                              ),
+                              const SizedBox(
+                                height: 16,
+                              ),
+                              PushButton(
+                                alignment: Alignment.center,
+                                child: const Text(Constants.PRIVACY_POLICY_URL),
+                                color:
+                                    macosTheme.pushButtonTheme.secondaryColor,
+                                buttonSize: ButtonSize.small,
+                                onPressed: () async {
+                                  await launchUrlString(
+                                      Constants.PRIVACY_POLICY_URL,
+                                      mode: LaunchMode.platformDefault);
+                                },
+                              ),
+                              SizedBox(
+                                height: windowSize.height / 16,
+                              ),
+                            ],
+                          ),
                         ),
                       )),
                       Padding(
-                        padding: Constants.PAGE_PADDING,
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 16, horizontal: 16),
                         child: Column(
                           children: [
                             GestureDetector(
@@ -177,8 +189,7 @@ class _MacosOnboardViewState extends State<MacosOnboardView> {
                                         child: Text(
                                           t.skip,
                                         ),
-                                        color: macosTheme
-                                            .pushButtonTheme.secondaryColor,
+                                        isSecondary: true,
                                         onPressed: () {
                                           onboardBloc.setupAnonymous(
                                               shareAnonymousData,
@@ -204,14 +215,11 @@ class _MacosOnboardViewState extends State<MacosOnboardView> {
                                 );
                               },
                             ),
-                            const SizedBox(
-                              height: 16,
-                            )
                           ],
                         ),
                       )
                     ],
-                  )))
+                  ))
         ],
       ),
     );

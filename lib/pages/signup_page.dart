@@ -154,7 +154,7 @@ class _SignupPageState extends State<SignupPage> {
               height: 16,
             ),
             Text(
-              '© 2022 Shanbe',
+              t.copyrightShanbe,
               textAlign: TextAlign.left,
               style: TextStyle(
                   color: secondaryTextColor(context),

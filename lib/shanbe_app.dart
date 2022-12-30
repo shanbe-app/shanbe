@@ -8,6 +8,7 @@ import 'package:client/pages/signup_page.dart';
 import 'package:client/rx/blocs/settings_bloc.dart';
 import 'package:client/rx/service_provider.dart';
 import 'package:client/types/signup_page_arugments.dart';
+import 'package:client/utils/colors.dart';
 import 'package:client/utils/constants.dart';
 import 'package:client/utils/utils.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -84,6 +85,9 @@ class _ShanbeAppState extends State<ShanbeApp> {
   @override
   Widget build(BuildContext context) {
     if (Platform.isMacOS) {
+      MacosThemeData macosTheme = MacosTheme.of(context);
+      MacosThemeData darkTheme = MacosThemeData.dark();
+      MacosThemeData lightTheme = MacosThemeData.light();
       return PlatformMenuBar(
         menus: const [
           PlatformMenu(label: 'Shanbe', menus: [
@@ -122,6 +126,42 @@ class _ShanbeAppState extends State<ShanbeApp> {
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
           locale: locale,
+          theme: MacosThemeData.light().copyWith(
+              typography: MacosTypography(
+                  color: Constants.TEXT_BODY_COLOR,
+                  title2: lightTheme.typography.title2.copyWith(
+                      fontFamily: Constants.APPLICATION_DEFAULT_FONT,
+                      fontFamilyFallback: Constants.APPLICATION_FALLBACK_FONTS),
+                  title3: lightTheme.typography.title3.copyWith(
+                      fontFamily: Constants.APPLICATION_DEFAULT_FONT,
+                      fontFamilyFallback: Constants.APPLICATION_FALLBACK_FONTS),
+                  body: lightTheme.typography.body.copyWith(
+                      fontFamily: Constants.APPLICATION_DEFAULT_FONT,
+                      fontFamilyFallback: Constants.APPLICATION_FALLBACK_FONTS),
+                  subheadline: lightTheme.typography.subheadline.copyWith(
+                      fontFamily: Constants.APPLICATION_DEFAULT_FONT,
+                      fontFamilyFallback: Constants.APPLICATION_FALLBACK_FONTS),
+                  footnote: lightTheme.typography.footnote.copyWith(
+                      fontFamily: Constants.APPLICATION_DEFAULT_FONT,
+                      fontFamilyFallback: Constants.APPLICATION_FALLBACK_FONTS),
+                  headline: lightTheme.typography.headline.copyWith(
+                      fontFamily: Constants.APPLICATION_DEFAULT_FONT,
+                      fontFamilyFallback: Constants.APPLICATION_FALLBACK_FONTS),
+                  largeTitle: lightTheme.typography.largeTitle.copyWith(
+                      fontFamily: Constants.APPLICATION_DEFAULT_FONT,
+                      fontFamilyFallback: Constants.APPLICATION_FALLBACK_FONTS),
+                  callout: lightTheme.typography.callout.copyWith(
+                      fontFamily: Constants.APPLICATION_DEFAULT_FONT,
+                      fontFamilyFallback: Constants.APPLICATION_FALLBACK_FONTS),
+                  caption1: lightTheme.typography.caption1.copyWith(
+                      fontFamily: Constants.APPLICATION_DEFAULT_FONT,
+                      fontFamilyFallback: Constants.APPLICATION_FALLBACK_FONTS),
+                  caption2: lightTheme.typography.caption2.copyWith(
+                      fontFamily: Constants.APPLICATION_DEFAULT_FONT,
+                      fontFamilyFallback: Constants.APPLICATION_FALLBACK_FONTS),
+                  title1: lightTheme.typography.title1.copyWith(
+                      fontFamily: Constants.APPLICATION_DEFAULT_FONT,
+                      fontFamilyFallback: Constants.APPLICATION_FALLBACK_FONTS))),
           localeResolutionCallback:
               (Locale? locale, Iterable<Locale> supportedLocales) {
             for (var element in supportedLocales) {

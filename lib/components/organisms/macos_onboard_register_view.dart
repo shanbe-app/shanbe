@@ -1,15 +1,16 @@
+import 'package:client/components/atoms/macos_or_divider.dart';
 import 'package:client/components/atoms/macos_social_login_button.dart';
 import 'package:client/components/organisms/macos_onboard_values_view.dart';
 import 'package:client/rx/blocs/onboard_bloc.dart';
 import 'package:client/rx/service_provider.dart';
 import 'package:client/types/signup_intro_data.dart';
+import 'package:client/utils/colors.dart';
 import 'package:client/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:macos_ui/macos_ui.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 class MacosOnboardRegisterView extends StatefulWidget {
   final AppLocalizations t;
@@ -27,6 +28,8 @@ class MacosOnboardRegisterView extends StatefulWidget {
 class _MacosOnboardRegisterViewState extends State<MacosOnboardRegisterView> {
   late OnboardBloc onboardBloc;
   bool shareAnonymousData = true;
+  final _formKey = GlobalKey<FormState>();
+  final double pageWidth = 245;
 
   @override
   initState() {
@@ -66,112 +69,218 @@ class _MacosOnboardRegisterViewState extends State<MacosOnboardRegisterView> {
         children: [
           ContentArea(
               minWidth: 400,
-              builder: (context, controller) => SingleChildScrollView(
-                    padding: Constants.PAGE_PADDING,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const SizedBox(
-                          height: 24,
-                        ),
-                        // SignupIntro(
-                        //   signupData: widget.signupData,
-                        // ),
-                        Row(
+              builder: (context, controller) => Column(
+                    children: [
+                      Expanded(
+                          child: SingleChildScrollView(
+                        padding: Constants.PAGE_PADDING,
+                        child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Image.asset(
-                              'assets/images/logo.png',
-                              height: windowSize.height / 8,
-                              width: windowSize.width / 8,
-                              fit: BoxFit.contain,
-                            ),
                             const SizedBox(
-                              width: 16,
+                              height: 32,
                             ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(
-                                  t.welcomeToShanbe,
-                                  style: macosTheme.typography.title1,
+                                Image.asset(
+                                  'assets/images/logo.png',
+                                  height: windowSize.height / 8,
+                                  width: windowSize.width / 8,
+                                  fit: BoxFit.contain,
+                                  isAntiAlias: true,
                                 ),
                                 const SizedBox(
-                                  height: 8,
+                                  width: 16,
                                 ),
-                                Text(
-                                  t.loginToSyncYourContent,
-                                  style: macosTheme.typography.title3,
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      t.welcomeToShanbe,
+                                      style: macosTheme.typography.title1,
+                                    ),
+                                    const SizedBox(
+                                      height: 8,
+                                    ),
+                                    Text(
+                                      t.loginToSyncYourContent,
+                                      style: macosTheme.typography.title3,
+                                    )
+                                  ],
                                 )
                               ],
-                            )
+                            ),
+                            const SizedBox(
+                              height: 32,
+                            ),
+                            Container(
+                              width: pageWidth,
+                              alignment: Alignment.center,
+                              child: Column(
+                                children: [
+                                  MacosSocialLoginButton(
+                                      buttonType: Buttons.Google,
+                                      text: t.continueWithGoogle),
+                                  const SizedBox(
+                                    height: 16,
+                                  ),
+                                  MacosOrDivider(t: t),
+                                  const SizedBox(
+                                    height: 16,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          const SizedBox(
+                                            width: 4,
+                                          ),
+                                          Text(
+                                            t.email,
+                                            style: macosTheme.typography.body,
+                                          )
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 8,
+                                      ),
+                                      const SizedBox(
+                                        height: 8,
+                                      ),
+                                      MacosTextField(
+                                        placeholder: t.enterYourEmail,
+                                        maxLines: 1,
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        textInputAction: TextInputAction.done,
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 8, horizontal: 8),
+                                      ),
+                                      const SizedBox(
+                                        height: 16,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                              child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 4),
+                                            child: PushButton(
+                                                child:
+                                                    Text(t.continueWithEmail),
+                                                onPressed: () {},
+                                                isSecondary: true,
+                                                buttonSize: ButtonSize.large),
+                                          ))
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 32,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                              child: PushButton(
+                                            buttonSize: ButtonSize.small,
+                                            child: Container(
+                                              padding: const EdgeInsets.only(
+                                                  bottom: 2),
+                                              decoration: BoxDecoration(
+                                                  border: Border(
+                                                      bottom: BorderSide(
+                                                          color: macosTheme
+                                                              .typography
+                                                              .body
+                                                              .color!))),
+                                              child: Text(
+                                                t.forgotPassword,
+                                                style:
+                                                    macosTheme.typography.body,
+                                              ),
+                                            ),
+                                            isSecondary: true,
+                                            mouseCursor:
+                                                MouseCursor.uncontrolled,
+                                            alignment: Alignment.center,
+                                            color: Colors.transparent,
+                                            onPressed: () {},
+                                          ))
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
                           ],
                         ),
-                        const SizedBox(
-                          height: 32,
-                        ),
-                        Container(
-                          width: 245,
-                          alignment: Alignment.center,
-                          child: MacosSocialLoginButton(
-                              buttonType: Buttons.Google,
-                              text: t.continueWithGoogle),
-                        ),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        Container(
-                          width: 245,
-                          alignment: Alignment.center,
-                          child: MacosSocialLoginButton(
-                              buttonType: Buttons.Apple,
-                              text: t.continueWithGoogle),
-                        ),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        const SizedBox(
-                          height: 24,
-                        ),
-                        Text(
-                          widget.t.welcomeToShanbe,
-                          style: MacosTheme.of(context).typography.title1,
-                        ),
-                        const SizedBox(
-                          height: 32,
-                        ),
-                        Text(
-                          t.welcomeIntro,
-                          textAlign: TextAlign.center,
-                          style: MacosTheme.of(context).typography.body,
-                        ),
-                        SizedBox(
-                          height: windowSize.height / 6,
-                        ),
-                        Text(
-                          t.privacyPolicyAgreementPrompt,
-                          style: MacosTheme.of(context).typography.caption1,
-                        ),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        PushButton(
-                          child: const Text(Constants.PRIVACY_POLICY_URL),
-                          color: macosTheme.pushButtonTheme.secondaryColor,
-                          buttonSize: ButtonSize.small,
-                          onPressed: () async {
-                            await launchUrlString(Constants.PRIVACY_POLICY_URL,
-                                mode: LaunchMode.platformDefault);
-                          },
-                        ),
-                        SizedBox(
-                          height: windowSize.height / 16,
-                        ),
-                      ],
-                    ),
+                      )),
+                      Column(
+                        children: [
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          Container(
+                            constraints: BoxConstraints(
+                                minWidth: pageWidth, maxWidth: 700),
+                            width: windowSize.width / 2,
+                            child: Text(
+                              t.licenseAgreement,
+                              textAlign: TextAlign.center,
+                              style: macosTheme.typography.body
+                                  .copyWith(color: secondaryTextColor(context)),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 24,
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  PushButton(
+                                    child: Text(t.privacyPolicy),
+                                    buttonSize: ButtonSize.small,
+                                    isSecondary: true,
+                                    onPressed: () {},
+                                  ),
+                                  const SizedBox(
+                                    width: 16,
+                                  ),
+                                  PushButton(
+                                    child: Text(t.privacyPolicy),
+                                    buttonSize: ButtonSize.small,
+                                    isSecondary: true,
+                                    onPressed: () {},
+                                  ),
+                                  const SizedBox(
+                                    width: 16,
+                                  ),
+                                  Text(
+                                    t.copyrightShanbe,
+                                    textAlign: TextAlign.center,
+                                    style: macosTheme.typography.body.copyWith(
+                                        color: secondaryTextColor(context)),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 32,
+                          )
+                        ],
+                      )
+                    ],
                   ))
         ],
       ),

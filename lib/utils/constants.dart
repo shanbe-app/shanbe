@@ -59,7 +59,7 @@ class Constants {
   static const Color PLACEHOLDER_COLOR = Color.fromRGBO(160, 163, 189, 1);
   static const Color PLACEHOLDER_COLOR_DARK = Color.fromRGBO(95, 92, 66, 1.0);
   static const Color LINE_COLOR = Color.fromRGBO(214, 216, 231, 1);
-  static const Color LINE_COLOR_DARK = Color.fromRGBO(41, 39, 24, 1.0);
+  static const Color LINE_COLOR_DARK = Color.fromRGBO(255, 255, 255, .9);
   static Color GRAY_COLOR = HexColor.fromHex('#505050');
   static Color GRAY_COLOR_DARK = HexColor.fromHex('#383838');
   static Color GRAY_LIGHTER_COLOR = HexColor.fromHex('#979797');
@@ -95,8 +95,9 @@ class Constants {
   static const FontWeight MEDIUM_FONT_WEIGHT = FontWeight.w500;
   static const FontWeight DEMI_BOLD_FONT_WEIGHT = FontWeight.w600;
   static const FontWeight BOLD_FONT_WEIGHT = FontWeight.bold;
-  static const String APPLICATION_DEFAULT_FONT = 'Graphik';
+  static const String APPLICATION_DEFAULT_FONT = 'Noto';
   static const List<String> APPLICATION_FALLBACK_FONTS = [
+    'Graphik',
     'IranSans',
     'sans-serif'
   ];

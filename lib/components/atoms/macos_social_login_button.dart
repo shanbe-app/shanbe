@@ -22,7 +22,8 @@ class MacosSocialLoginButton extends StatelessWidget {
       default:
         return const Icon(
           Icons.apple,
-          size: Constants.ICON_X_LARGE_SIZE,
+          color: Colors.black,
+          size: Constants.ICON_LARGE_SIZE,
         );
     }
   }
@@ -30,7 +31,7 @@ class MacosSocialLoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PushButton(
-      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+      padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 8),
       onPressed: () {},
       color: Colors.white,
       buttonSize: ButtonSize.large,
@@ -41,7 +42,11 @@ class MacosSocialLoginButton extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            renderIcon(context),
+            SizedBox(
+              width: Constants.ICON_X_LARGE_SIZE,
+              height: Constants.ICON_X_LARGE_SIZE,
+              child: renderIcon(context),
+            ),
             const SizedBox(
               width: 8,
             ),

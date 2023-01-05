@@ -102,4 +102,21 @@ class AuthBloc extends RxBloc {
     }
     return null;
   }
+
+  Future<void> continueWithEmail(String email) async {
+    print(await firebaseAuth.fetchSignInMethodsForEmail(email));
+  }
+
+  Future<void> sendEmailResetLink(String email) async {
+    await firebaseAuth.sendPasswordResetEmail(
+        email: email,
+        actionCodeSettings: ActionCodeSettings(
+            androidInstallApp: true,
+            handleCodeInApp: true,
+            url: '',
+            iOSBundleId: ,
+            androidPackageName: ,
+            dynamicLinkDomain: ,
+            androidMinimumVersion: '1.0.0'));
+  }
 }

@@ -3,6 +3,7 @@
 import 'package:client/types/enums.dart';
 import 'package:client/types/hex_color.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 class Constants {
@@ -1013,4 +1014,7 @@ class Constants {
   static const Size MIN_WINDOW_SIZE = Size(400, 400);
   static const Size DEFAULT_WINDOW_SIZE = Size(800, 800);
   static const String PRIVACY_POLICY_URL = 'https://shanbe.app/privacypolicy';
+  static const String TERMS_AND_CONDITIONS_URL = 'https://shanbe.app/terms';
+  static const ToastGravity MACOS_TOAST_LOCATION = ToastGravity.BOTTOM;
+  static const Duration ERROR_MESSAGE_DURATION = Duration(seconds: 3);
 }

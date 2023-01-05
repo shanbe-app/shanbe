@@ -104,17 +104,53 @@ class _MacosOnboardViewState extends State<MacosOnboardView> {
                               const SizedBox(
                                 height: 16,
                               ),
-                              PushButton(
-                                alignment: Alignment.center,
-                                child: const Text(Constants.PRIVACY_POLICY_URL),
-                                color:
-                                    macosTheme.pushButtonTheme.secondaryColor,
-                                buttonSize: ButtonSize.small,
-                                onPressed: () async {
-                                  await launchUrlString(
-                                      Constants.PRIVACY_POLICY_URL,
-                                      mode: LaunchMode.platformDefault);
-                                },
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      SizedBox(
+                                        width: 150,
+                                        child: PushButton(
+                                          alignment: Alignment.center,
+                                          child: Text(t.privacyPolicy),
+                                          color: macosTheme
+                                              .pushButtonTheme.secondaryColor,
+                                          buttonSize: ButtonSize.small,
+                                          onPressed: () async {
+                                            await launchUrlString(
+                                                Constants.PRIVACY_POLICY_URL,
+                                                mode:
+                                                    LaunchMode.platformDefault);
+                                          },
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 16,
+                                      ),
+                                      SizedBox(
+                                        width: 150,
+                                        child: PushButton(
+                                          alignment: Alignment.center,
+                                          child: Text(t.termsAndConditions),
+                                          color: macosTheme
+                                              .pushButtonTheme.secondaryColor,
+                                          buttonSize: ButtonSize.small,
+                                          onPressed: () async {
+                                            await launchUrlString(
+                                                Constants
+                                                    .TERMS_AND_CONDITIONS_URL,
+                                                mode:
+                                                    LaunchMode.platformDefault);
+                                          },
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ],
                               ),
                               SizedBox(
                                 height: windowSize.height / 16,

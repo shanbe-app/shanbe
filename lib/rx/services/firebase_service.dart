@@ -18,7 +18,7 @@ class FirebaseService extends RxService {
     firestore = FirebaseFirestore.instance;
     firebaseAuth = FirebaseAuth.instance;
     if (F.appFlavor == Flavor.dev) {
-      firestore.useFirestoreEmulator('localhost', 4000);
+      firestore.useFirestoreEmulator('localhost', 8080);
       firebaseAuth.useAuthEmulator('localhost', 4000);
     }
   }

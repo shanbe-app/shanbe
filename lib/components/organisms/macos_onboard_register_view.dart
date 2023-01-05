@@ -1,15 +1,22 @@
 import 'package:client/components/atoms/macos_or_divider.dart';
 import 'package:client/components/atoms/macos_social_login_button.dart';
 import 'package:client/components/organisms/macos_onboard_values_view.dart';
+import 'package:client/rx/blocs/auth_bloc.dart';
 import 'package:client/rx/blocs/onboard_bloc.dart';
 import 'package:client/rx/service_provider.dart';
+import 'package:client/rx/services/firebase_service.dart';
 import 'package:client/types/signup_intro_data.dart';
 import 'package:client/utils/colors.dart';
 import 'package:client/utils/constants.dart';
+import 'package:client/utils/utils.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:form_validator/form_validator.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 class MacosOnboardRegisterView extends StatefulWidget {
@@ -30,16 +37,67 @@ class _MacosOnboardRegisterViewState extends State<MacosOnboardRegisterView> {
   bool shareAnonymousData = true;
   final _formKey = GlobalKey<FormState>();
   final double pageWidth = 245;
+  late AuthBloc authBloc;
+  bool isResettingPassword = false;
+  String emailInput = '';
+  String? emailValidationError;
+  Offset errorOffset = const Offset(0, 0);
+  late FToast fToast;
 
   @override
   initState() {
     super.initState();
-    onboardBloc = OnboardBloc(ServiceProvider.getInstance().firebaseService);
+    FirebaseService firebaseService =
+        ServiceProvider.getInstance().firebaseService;
+    onboardBloc = OnboardBloc(firebaseService);
+    authBloc = AuthBloc(firebaseService);
+    fToast = FToast();
+    fToast.init(context);
   }
 
   void nextPage() {
     Navigator.of(context).push(CupertinoPageRoute(
         builder: (_) => MacosOnboardValuesView(t: widget.t)));
+  }
+
+  String? validateEmailField() {
+    var t = widget.t;
+    final validate = ValidationBuilder(requiredMessage: t.emailIsRequired)
+        .email(t.notValidEmail)
+        .required(t.emailIsRequired)
+        .build();
+    String? validationError = validate(emailInput);
+    setState(() {
+      errorOffset =
+          validationError != null ? const Offset(0, .3) : const Offset(0, 0);
+      emailValidationError = validationError;
+    });
+    return validationError;
+  }
+
+  Future<void> continueWithEmail(MacosThemeData macosTheme) async {
+    var t = widget.t;
+    try {
+      if (validateEmailField() == null) {
+        if (!isResettingPassword) {
+          await authBloc.continueWithEmail(emailInput);
+        } else {
+          await authBloc.sendPasswordResetLink(emailInput);
+        }
+      }
+    } catch (e) {
+      Widget child;
+      if (e is FirebaseAuthException) {
+        child = macosErrorContainer(
+            macosTheme, e.message ?? t.unknownErrorOccurred);
+      } else {
+        child = macosErrorContainer(macosTheme, t.unknownErrorOccurred);
+      }
+      fToast.showToast(
+          child: child,
+          toastDuration: Constants.ERROR_MESSAGE_DURATION,
+          gravity: Constants.MACOS_TOAST_LOCATION);
+    }
   }
 
   @override
@@ -150,9 +208,6 @@ class _MacosOnboardRegisterViewState extends State<MacosOnboardRegisterView> {
                                       const SizedBox(
                                         height: 8,
                                       ),
-                                      const SizedBox(
-                                        height: 8,
-                                      ),
                                       MacosTextField(
                                         placeholder: t.enterYourEmail,
                                         maxLines: 1,
@@ -161,6 +216,30 @@ class _MacosOnboardRegisterViewState extends State<MacosOnboardRegisterView> {
                                         textInputAction: TextInputAction.done,
                                         padding: const EdgeInsets.symmetric(
                                             vertical: 8, horizontal: 8),
+                                        onChanged: (value) {
+                                          setState(() {
+                                            emailInput = value;
+                                          });
+                                        },
+                                        onSubmitted: (_) async {
+                                          await continueWithEmail(macosTheme);
+                                        },
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 8),
+                                        child: AnimatedSlide(
+                                            offset: errorOffset,
+                                            curve: Curves.easeInOut,
+                                            duration: const Duration(
+                                                milliseconds: 250),
+                                            child: Text(
+                                              emailValidationError ?? '',
+                                              style: macosTheme.typography.body
+                                                  .copyWith(
+                                                      color: Constants
+                                                          .ERROR_COLOR),
+                                            )),
                                       ),
                                       const SizedBox(
                                         height: 16,
@@ -172,9 +251,13 @@ class _MacosOnboardRegisterViewState extends State<MacosOnboardRegisterView> {
                                             padding: const EdgeInsets.symmetric(
                                                 horizontal: 4),
                                             child: PushButton(
-                                                child:
-                                                    Text(t.continueWithEmail),
-                                                onPressed: () {},
+                                                child: Text(isResettingPassword
+                                                    ? t.sendResetLink
+                                                    : t.continueWithEmail),
+                                                onPressed: () async {
+                                                  await continueWithEmail(
+                                                      macosTheme);
+                                                },
                                                 isSecondary: true,
                                                 buttonSize: ButtonSize.large),
                                           ))
@@ -198,18 +281,29 @@ class _MacosOnboardRegisterViewState extends State<MacosOnboardRegisterView> {
                                                               .typography
                                                               .body
                                                               .color!))),
-                                              child: Text(
-                                                t.forgotPassword,
-                                                style:
-                                                    macosTheme.typography.body,
-                                              ),
+                                              child: isResettingPassword
+                                                  ? Text(
+                                                      t.continueWithEmail,
+                                                      style: macosTheme
+                                                          .typography.body,
+                                                    )
+                                                  : Text(
+                                                      t.forgotPassword,
+                                                      style: macosTheme
+                                                          .typography.body,
+                                                    ),
                                             ),
                                             isSecondary: true,
                                             mouseCursor:
                                                 MouseCursor.uncontrolled,
                                             alignment: Alignment.center,
                                             color: Colors.transparent,
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              setState(() {
+                                                isResettingPassword =
+                                                    !isResettingPassword;
+                                              });
+                                            },
                                           ))
                                         ],
                                       )
@@ -237,43 +331,52 @@ class _MacosOnboardRegisterViewState extends State<MacosOnboardRegisterView> {
                                   .copyWith(color: secondaryTextColor(context)),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 24,
                           ),
                           Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  PushButton(
-                                    child: Text(t.privacyPolicy),
-                                    buttonSize: ButtonSize.small,
-                                    isSecondary: true,
-                                    onPressed: () {},
-                                  ),
-                                  const SizedBox(
-                                    width: 16,
-                                  ),
-                                  PushButton(
-                                    child: Text(t.privacyPolicy),
-                                    buttonSize: ButtonSize.small,
-                                    isSecondary: true,
-                                    onPressed: () {},
-                                  ),
-                                  const SizedBox(
-                                    width: 16,
-                                  ),
-                                  Text(
-                                    t.copyrightShanbe,
-                                    textAlign: TextAlign.center,
-                                    style: macosTheme.typography.body.copyWith(
-                                        color: secondaryTextColor(context)),
-                                  )
-                                ],
+                              Padding(
+                                padding: Constants.PAGE_PADDING,
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    SizedBox(
+                                      width: 150,
+                                      child: PushButton(
+                                        child: Text(t.privacyPolicy),
+                                        buttonSize: ButtonSize.small,
+                                        isSecondary: true,
+                                        onPressed: () {},
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 16,
+                                    ),
+                                    SizedBox(
+                                      width: 150,
+                                      child: PushButton(
+                                        child: Text(t.termsAndConditions),
+                                        buttonSize: ButtonSize.small,
+                                        isSecondary: true,
+                                        onPressed: () {},
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               )
                             ],
+                          ),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          Text(
+                            t.copyrightShanbe,
+                            textAlign: TextAlign.center,
+                            style: macosTheme.typography.body
+                                .copyWith(color: secondaryTextColor(context)),
                           ),
                           const SizedBox(
                             height: 32,

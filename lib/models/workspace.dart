@@ -11,10 +11,10 @@ class WorkSpace extends Model {
   WorkSpace(
       {required String userId,
       required this.name,
+      required String id,
       this.readMembers = const [],
       this.editorMembers = const [],
       this.adminMembers = const [],
-      required String id,
       Timestamp? createdAt,
       Timestamp? updatedAt})
       : super(
@@ -22,6 +22,7 @@ class WorkSpace extends Model {
             id: id,
             createdAt: createdAt ?? Timestamp.now(),
             updatedAt: updatedAt ?? Timestamp.now());
+
   factory WorkSpace.fromFirestore(
       DocumentSnapshot<Map<String, dynamic>> snapshot,
       SnapshotOptions? options) {

@@ -688,7 +688,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "privacyPolicy": "Privacy Policy & Terms of use",
+  "privacyPolicy": "Privacy Policy",
   "@privacyPolicy": {
     "type": "text",
     "placeholders": {}
@@ -1460,7 +1460,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "privacyPolicyAgreementPrompt": "By using the app, you accept the Terms and Conditions and Privacy Policy available on",
+  "privacyPolicyAgreementPrompt": "By using the app, you acknowledge that you've read and accept Shanbe's Terms & Conditions and Privacy Policy available on",
   "@privacyPolicyAgreementPrompt": {
     "type": "text",
     "placeholders": {}
@@ -1475,7 +1475,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "shareAnonymousData": "Share anonymous app usage and crash statistics",
+  "shareAnonymousData": "Share anonymous app usage and crash reports",
   "@shareAnonymousData": {
     "type": "text",
     "placeholders": {}
@@ -1540,13 +1540,38 @@
     "type": "text",
     "placeholders": {}
   },
-  "or": "OR",
+  "or": "or",
   "@or": {
     "type": "text",
     "placeholders": {}
   },
   "forgotPassword": "Forgot Password?",
   "@forgotPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "termsAndConditions": "Terms & Conditions",
+  "@termsAndConditions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendResetLink": "Send reset link",
+  "@sendResetLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emailIsRequired": "Email is required",
+  "@emailIsRequired": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notValidEmail": "Not valid email",
+  "@notValidEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownErrorOccurred": "Unknown Error Occurred",
+  "@unknownErrorOccurred": {
     "type": "text",
     "placeholders": {}
   }

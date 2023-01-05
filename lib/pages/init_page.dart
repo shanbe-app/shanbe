@@ -2,7 +2,7 @@ import 'package:client/models/workspace.dart';
 import 'package:client/pages/inbox_page.dart';
 import 'package:client/pages/loading_page.dart';
 import 'package:client/pages/onboard_page.dart';
-import 'package:client/rx/blocs/model_bloc.dart';
+import 'package:client/rx/managers/model_bloc.dart';
 import 'package:client/rx/service_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';

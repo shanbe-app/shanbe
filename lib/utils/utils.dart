@@ -9,6 +9,7 @@ import 'package:crypto/crypto.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:macos_ui/macos_ui.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 String languageCodeFromLocaleName(String localeName) =>
@@ -192,4 +193,33 @@ ThemeMode themeTypeToThemeMode(ThemeType themeType) {
 
 bool isMacos() {
   return Platform.isMacOS;
+}
+
+Widget macosErrorContainer(MacosThemeData macosTheme, String message) {
+  return Container(
+    padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(25.0),
+      color: Constants.ERROR_COLOR,
+    ),
+    child: Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const Icon(
+          Icons.error,
+          color: Colors.white,
+        ),
+        const SizedBox(
+          width: 8,
+        ),
+        Text(
+          message,
+          style: macosTheme.typography.body.copyWith(
+              fontSize: Constants.S2_FONT_SIZE,
+              color: Colors.white,
+              fontWeight: Constants.MEDIUM_FONT_WEIGHT),
+        ),
+      ],
+    ),
+  );
 }

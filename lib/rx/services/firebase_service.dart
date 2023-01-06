@@ -1,4 +1,4 @@
-import 'package:client/firebase_options.dart';
+// import 'package:client/firebase_options.dart';
 import 'package:client/flavors.dart';
 import 'package:client/rx/services/rx_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -12,8 +12,8 @@ class FirebaseService extends RxService {
 
   @override
   Future<void> onCreate() async {
-    firebaseApp = await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform);
+    // firebaseApp = await Firebase.initializeApp(
+    //     options: DefaultFirebaseOptions.currentPlatform);
     firebaseApp.setAutomaticDataCollectionEnabled(true);
     firestore = FirebaseFirestore.instance;
     firebaseAuth = FirebaseAuth.instance;

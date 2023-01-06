@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:client/rx/blocs/rx_bloc.dart';
 import 'package:client/rx/services/firebase_service.dart';
 import 'package:client/types/enums.dart';
+import 'package:client/utils/constants.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -107,16 +108,16 @@ class AuthBloc extends RxBloc {
     print(await firebaseAuth.fetchSignInMethodsForEmail(email));
   }
 
-  Future<void> sendEmailResetLink(String email) async {
+  Future<void> sendPasswordResetLink(String email) async {
     await firebaseAuth.sendPasswordResetEmail(
         email: email,
         actionCodeSettings: ActionCodeSettings(
             androidInstallApp: true,
             handleCodeInApp: true,
             url: '',
-            iOSBundleId: ,
-            androidPackageName: ,
-            dynamicLinkDomain: ,
+            iOSBundleId: Constants.PACKAGE_NAME,
+            androidPackageName: Constants.PACKAGE_NAME,
+            dynamicLinkDomain: Constants.DYNAMIC_LINK_DOMAIN,
             androidMinimumVersion: '1.0.0'));
   }
 }

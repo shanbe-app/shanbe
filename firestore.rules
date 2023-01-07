@@ -1,0 +1,50 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function uidFieldPresentInRequest() {
+      return request.auth != null && request.resource.data.uid != null && request.resource.data.uid == request.auth.uid;
+    }
+    function workspaceFieldPresentInRequest() {
+        let workspace = get(/databases/$(database)/documents/workspaces/$(request.resource.data.workspaceId).data
+        let userId = request.auth.uId
+        return isUserWorkspaceMember(workspace, userId);
+    }
+    function documentOwner() {
+        return request.auth != null && resource.data.uid == request.auth.uid;
+    }
+    function notUpdatingUidField() {
+        return request.auth != null && request.resource.data.uid == resource.data.uid;
+    }
+    function documentAdmin() {
+        return request.auth != null && request.auth.uid in resource.data.adminMembers;
+    }
+    function documentEditor() {
+        return request.auth != null && request.auth.uid in resource.data.editorMembers;
+    }
+    function documentReader() {
+        return request.auth != null && request.auth.uid in resource.data.readMembers;
+    }
+    function hasAccessToWorkspace() {
+        if(request.auth == null) return false
+        let workspace = get(/databases/$(database)/documents/workspaces/${resource.data.workspaceId}).data
+        let userId = request.auth.uid
+        return isUserWorkspaceMember(workspace, userId)
+    }
+    function isUserWorkspaceMember(workspace, userId) {
+       return userId in workspace.adminMembers || userId in workspace.editorMembers || userId in workspace.readMembers
+    }
+    match /blocks/{block} {
+        allow create: if uidFieldPresentInRequest() && workspaceFieldPresentInRequest();
+        allow update, delete: if notUpdatingUidField() && (documentOwner() || documentEditor());
+        allow read: if documentOwner() || hasAccessToWorkspace();
+    }
+    match /workspaces/{workspace} {
+        allow create: if uidFieldPresentInRequest();
+        allow update, delete: if notUpdatingUidField() && (documentOwner() || documentAdmin() || documentEditor());
+        allow read: if documentOwner() || documentAdmin() || documentEditor() || documentReader();
+    }
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

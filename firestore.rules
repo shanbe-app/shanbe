@@ -5,7 +5,7 @@ service cloud.firestore {
       return request.auth != null && request.resource.data.uid != null && request.resource.data.uid == request.auth.uid;
     }
     function workspaceFieldPresentInRequest() {
-        let workspace = get(/databases/$(database)/documents/workspaces/$(request.resource.data.workspaceId).data
+        let workspace = get(/databases/$(database)/documents/workspaces/$(request.resource.data.workspaceId)).data
         let userId = request.auth.uId
         return isUserWorkspaceMember(workspace, userId);
     }
@@ -24,19 +24,17 @@ service cloud.firestore {
     function documentReader() {
         return request.auth != null && request.auth.uid in resource.data.readMembers;
     }
-    function hasAccessToWorkspace() {
-        if(request.auth == null) return false
-        let workspace = get(/databases/$(database)/documents/workspaces/${resource.data.workspaceId}).data
-        let userId = request.auth.uid
-        return isUserWorkspaceMember(workspace, userId)
+    function hasReadAccessToWorkspace() {
+        let workspace = get(/databases/$(database)/documents/workspaces/$(resource.data.workspaceId)).data
+        return request.auth != null && isUserWorkspaceMember(workspace, request.auth.uid);
     }
     function isUserWorkspaceMember(workspace, userId) {
-       return userId in workspace.adminMembers || userId in workspace.editorMembers || userId in workspace.readMembers
+       return userId in workspace.adminMembers || userId in workspace.editorMembers || userId in workspace.readMembers;
     }
     match /blocks/{block} {
         allow create: if uidFieldPresentInRequest() && workspaceFieldPresentInRequest();
         allow update, delete: if notUpdatingUidField() && (documentOwner() || documentEditor());
-        allow read: if documentOwner() || hasAccessToWorkspace();
+        allow read: if documentOwner() || hasReadAccessToWorkspace();
     }
     match /workspaces/{workspace} {
         allow create: if uidFieldPresentInRequest();

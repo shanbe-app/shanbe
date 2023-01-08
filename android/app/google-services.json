@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "328657175996",
-    "project_id": "shanbe-2f899",
-    "storage_bucket": "shanbe-2f899.appspot.com"
+    "project_number": "308286860901",
+    "project_id": "shanbe-cdebc",
+    "storage_bucket": "shanbe-cdebc.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:328657175996:android:3d290fb8fd15db44c917b9",
+        "mobilesdk_app_id": "1:308286860901:android:2392d47afead2fcb14208c",
         "android_client_info": {
           "package_name": "app.shanbe.client"
         }
       },
       "oauth_client": [
         {
-          "client_id": "328657175996-s9qtqdm6u5m10pptig41d0sk5pf4vlnh.apps.googleusercontent.com",
+          "client_id": "308286860901-4iuknhp31uib4hhtal85eplb98l6a6ep.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDDeSlcZZxlgV0waxanxOJzoJEowerDa-o"
+          "current_key": "AIzaSyBKO-SlDyHWTa01ruzDlNmK9v2YMnBZP_0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "328657175996-s9qtqdm6u5m10pptig41d0sk5pf4vlnh.apps.googleusercontent.com",
+              "client_id": "308286860901-4iuknhp31uib4hhtal85eplb98l6a6ep.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

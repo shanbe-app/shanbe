@@ -47,30 +47,30 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDDeSlcZZxlgV0waxanxOJzoJEowerDa-o',
-    appId: '1:328657175996:android:3d290fb8fd15db44c917b9',
-    messagingSenderId: '328657175996',
-    projectId: 'shanbe-2f899',
-    storageBucket: 'shanbe-2f899.appspot.com',
+    apiKey: 'AIzaSyBKO-SlDyHWTa01ruzDlNmK9v2YMnBZP_0',
+    appId: '1:308286860901:android:2392d47afead2fcb14208c',
+    messagingSenderId: '308286860901',
+    projectId: 'shanbe-cdebc',
+    storageBucket: 'shanbe-cdebc.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAW2PgXhuG6hubL0NuDw9NIFwVTarVQOQ8',
-    appId: '1:328657175996:ios:0e2484798d827252c917b9',
-    messagingSenderId: '328657175996',
-    projectId: 'shanbe-2f899',
-    storageBucket: 'shanbe-2f899.appspot.com',
-    iosClientId: '328657175996-5s8rj1t3p3fv26h4m7m1fcv0ke7jsj99.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAqUKxxue5cLlfKTzf_L6cD--e4JPo75x0',
+    appId: '1:308286860901:ios:0b70b9f8b9da502f14208c',
+    messagingSenderId: '308286860901',
+    projectId: 'shanbe-cdebc',
+    storageBucket: 'shanbe-cdebc.appspot.com',
+    iosClientId: '308286860901-tr0j3tq8g3jqunir15o116t39889k0fp.apps.googleusercontent.com',
     iosBundleId: 'app.shanbe.client',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAW2PgXhuG6hubL0NuDw9NIFwVTarVQOQ8',
-    appId: '1:328657175996:ios:0e2484798d827252c917b9',
-    messagingSenderId: '328657175996',
-    projectId: 'shanbe-2f899',
-    storageBucket: 'shanbe-2f899.appspot.com',
-    iosClientId: '328657175996-5s8rj1t3p3fv26h4m7m1fcv0ke7jsj99.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAqUKxxue5cLlfKTzf_L6cD--e4JPo75x0',
+    appId: '1:308286860901:ios:0b70b9f8b9da502f14208c',
+    messagingSenderId: '308286860901',
+    projectId: 'shanbe-cdebc',
+    storageBucket: 'shanbe-cdebc.appspot.com',
+    iosClientId: '308286860901-tr0j3tq8g3jqunir15o116t39889k0fp.apps.googleusercontent.com',
     iosBundleId: 'app.shanbe.client',
   );
 }

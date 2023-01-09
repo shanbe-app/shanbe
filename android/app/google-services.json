@@ -29,6 +29,13 @@
             {
               "client_id": "308286860901-4iuknhp31uib4hhtal85eplb98l6a6ep.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "308286860901-tr0j3tq8g3jqunir15o116t39889k0fp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "app.shanbe.client"
+              }
             }
           ]
         }

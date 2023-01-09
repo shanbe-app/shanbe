@@ -1018,5 +1018,6 @@ class Constants {
   static const ToastGravity MACOS_TOAST_LOCATION = ToastGravity.BOTTOM;
   static const Duration ERROR_MESSAGE_DURATION = Duration(seconds: 3);
   static const String PACKAGE_NAME = 'client.shanbe.app';
+  static const String APP_NAME = 'shanbe';
   static const String DYNAMIC_LINK_DOMAIN = 'i.shanbe.app';
 }
